@@ -1,0 +1,190 @@
+# Repository Skills Scanner — CLI Specification
+
+## 1. Purpose
+
+Build a command-line tool that scans the entire repository tree for agent skills
+and prints a machine-readable, sectioned inventory of every skill it finds. The
+tool is intended to be run by humans and automation, including coding agents.
+
+A **skill** is a directory containing a `SKILL.md` manifest. A skill may also
+include supporting files such as scripts, templates, assets, and reference
+documents. The scanner must discover the manifests and report metadata that
+allows a caller to locate and use every skill.
+
+## 2. Command interface
+
+The executable name is configurable by the implementer. In this document it is
+represented by `<toolname>`.
+
+The required command is:
+
+```text
+<toolname> scan <repository-path>
+```
+
+Examples:
+
+```bash
+<toolname> scan .
+<toolname> scan /absolute/path/to/repository
+```
+
+`<repository-path>` is required and can be relative or absolute. Relative paths
+are resolved from the current working directory. The command must not modify
+the target repository.
+
+## 3. Discovery rules
+
+1. Verify that the supplied path exists and is a directory.
+2. Recursively walk the complete directory tree rooted at the repository path,
+   subject only to the explicit exclusions below. Do not restrict discovery to a
+   conventional directory such as `skills/`.
+3. A directory is a skill directory when it directly contains a regular file
+   named `SKILL.md` (case-sensitive).
+4. Each `SKILL.md` represents exactly one discovered skill.
+5. Do not follow symbolic links to directories. A symbolic link to a file named
+   `SKILL.md` is not a skill manifest.
+6. Skip these directories anywhere in the tree:
+   - `.git`
+   - `node_modules`
+   - `vendor`
+   - `.venv`
+   - `venv`
+   - `dist`
+   - `build`
+   - `target`
+   - `.idea`
+   - `.vscode`
+7. Do not apply `.gitignore` rules in the first version. The fixed exclusions
+   above are the complete exclusion policy.
+8. Continue scanning after a per-file read error or an inaccessible directory;
+   record the problem as a warning instead of failing the entire scan.
+
+## 4. Manifest parsing
+
+Read every discovered `SKILL.md` as UTF-8 text. Extract metadata as follows:
+
+- `name`: the first Markdown level-1 heading (`# Heading`). Remove the leading
+  `#` and surrounding whitespace. If no level-1 heading exists, use the skill
+  directory's base name.
+- `description`: the first non-empty paragraph after the level-1 heading. Stop
+  at the next heading, list, fenced code block, or blank-line-separated block.
+  If it cannot be determined, return `null`.
+- `manifest_path`: the path to `SKILL.md`, relative to the repository root,
+  normalized with forward slashes.
+- `skill_path`: the manifest's parent directory, relative to the repository
+  root, normalized with forward slashes. Use `.` if the manifest is at the
+  repository root.
+
+The parser must be deliberately lightweight: it must not execute code, evaluate
+front matter, or require a specific Markdown library. Invalid or unusual
+Markdown must still yield a skill record using the directory-name fallback.
+
+## 5. Output contract
+
+Write one JSON document to standard output and nothing else on a successful
+scan. Use UTF-8 and terminate the document with a newline. Paths in JSON use
+forward slashes on every platform. Return skills as a list grouped into
+sections. A section corresponds to the first path component of `skill_path`:
+for example, `skills/review` belongs to the `skills` section and
+`tools/formatting/kotlin` belongs to the `tools` section. A skill at the
+repository root belongs to the `.` section. Sort sections by `path` ascending,
+sort skills in each section by `manifest_path` ascending, and sort `warnings`
+lexicographically.
+
+Successful output schema:
+
+```json
+{
+  "repository": "/absolute/path/to/repository",
+  "sections": [
+    {
+      "name": "skills",
+      "path": "skills",
+      "skills": [
+        {
+          "name": "Example skill",
+          "description": "A short description of the skill.",
+          "location": "skills/example",
+          "manifest_path": "skills/example/SKILL.md"
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}
+```
+
+Requirements:
+
+- `repository` is the normalized absolute path actually scanned.
+- `sections` is always present, including when no skills are found.
+- Each section has a display `name`, its repository-relative `path`, and a
+  `skills` list. The `name` and `path` are identical in version 1, except that
+  both are `.` for the repository-root section.
+- Every skill record includes `name`, `location`, and `description`; these are
+  the required fields consumers use to display a skill list. `location` is the
+  repository-relative skill directory. `manifest_path` is retained so callers
+  can open the manifest directly.
+- `description` is a string or `null`.
+- `warnings` is always present. Each warning is a concise string containing the
+  affected relative path and the reason.
+- A repository with no skill manifests is a successful scan and returns exit
+  code `0` with an empty `sections` array.
+
+## 6. Errors and exit codes
+
+Diagnostic messages go to standard error. Standard output must remain empty
+when command validation fails.
+
+| Exit code | Meaning |
+| --- | --- |
+| `0` | Scan completed; warnings may be present. |
+| `2` | Invalid invocation, missing argument, or unsupported command. |
+| `3` | Repository path does not exist or is not a directory. |
+| `4` | An unexpected fatal runtime error prevented scanning. |
+
+For invalid invocation, print a short error followed by:
+
+```text
+Usage: <toolname> scan <repository-path>
+```
+
+## 7. Help and version
+
+Support these additional commands:
+
+```text
+<toolname> --help
+<toolname> --version
+```
+
+`--help` prints usage, a one-sentence description, and the available commands,
+then exits `0`. `--version` prints a semantic version string (for example,
+`<toolname> 0.1.0`) and exits `0`.
+
+## 8. Acceptance criteria
+
+The implementation is complete when all of the following are true:
+
+1. `<toolname> scan <path>` finds every eligible `SKILL.md` recursively.
+2. It excludes manifests under every directory listed in the discovery rules.
+3. It does not traverse directory symlinks.
+4. It produces valid, deterministic JSON matching the output contract.
+5. It returns every discovered skill in a sectioned list, with its name,
+   repository-relative location, and short description.
+6. It succeeds with an empty `sections` list when no skills exist.
+7. It handles a missing heading or malformed Markdown without crashing.
+8. It reports unreadable entries as warnings and scans all remaining entries.
+9. It uses the specified exit codes and keeps diagnostics separate from JSON.
+10. Automated tests cover normal discovery, nested skills, exclusions, no skills,
+   invalid paths, malformed manifests, and deterministic ordering.
+
+## 9. Non-goals
+
+- Executing skill scripts or any repository code.
+- Installing dependencies or changing files in the scanned repository.
+- Parsing `.gitignore`.
+- Searching outside the supplied repository root.
+- Validating the semantics of a skill beyond locating and lightly describing its
+  `SKILL.md` manifest.
