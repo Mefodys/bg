@@ -73,7 +73,10 @@ class WebTests(unittest.TestCase):
         status, data = self.request("/api/repositories")
         self.assertEqual(status, 200)
         for repository in data:
-            self.assertTrue(Path(repository["path"]).is_dir())
+            self.assertTrue(repository["repository_id"])
+            self.assertEqual(Path(repository["path"]).is_dir(), repository["available"])
+            if repository["available"]:
+                self.assertEqual(str(Path(repository["path"]).resolve()), repository["path"])
 
     def test_empty_repository(self):
         result = self.scan()

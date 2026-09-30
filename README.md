@@ -93,6 +93,19 @@ npm run test:web
 Browser checks cover scanning, search, filters, source details, and mobile
 layout. Playwright is not required to start the server.
 
+Filter's **Search in** control searches the current repository (the default),
+selected repositories, or all added repositories, up to eight at once. Available
+presets and successfully scanned local directories form the catalogue; aliases
+of one realpath share an entry. Manual additions last until the server restarts.
+Results are grouped by repository and show their owning paths. Full manifest
+text is indexed once, with literal matching and safe highlights. Typing,
+categories and paging reuse snapshots; **Refresh search repositories** picks up
+changes. Partial coverage, unavailable directories and stale results are labelled.
+Results open their own manifests and select their own repository for Similar
+skills. Statistics and JSON export describe the focused repository. Search shows
+100 results per page, with counts for all matches. See the complete
+[multi-repository search specification](spec/multi-repository-filter.md).
+
 ## GitHub Actions
 
 `.github/workflows/ci.yml` runs on pull requests, pushes/merges to `main`, and
@@ -125,5 +138,5 @@ aliases of the selected checkout are excluded. Results show actual percentages,
 progress bars, repository/skill paths, source roles/conflicts, and manifest text.
 Read errors and resource limits are reported as partial comparisons. Text overlap
 is not a probability of equivalent functionality. See `spec/web.md` for the
-algorithm, API, and bounds. `npm run test:web` runs both Filter and Similar skills
-browser suites, including desktop/mobile review captures under `reports/`.
+algorithm, API, and bounds. `npm run test:web` runs Filter, Similar skills and
+multi-repository browser suites, including desktop/mobile captures under `reports/`.

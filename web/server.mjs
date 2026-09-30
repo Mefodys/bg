@@ -1,20 +1,18 @@
 import http from 'node:http';
 import { compare } from './similarity.mjs';
-import { readFile, realpath, stat } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import { readManifestText } from './manifests.mjs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { Repositories } from './repositories.mjs';
 
 const execute = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const binary = path.join(root, 'bg');
-const sessions = new Map();
-const assets = new Map([['/similarity.js', ['similarity.js', 'text/javascript']], ['/similarity.css', ['similarity.css', 'text/css']], ['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
-let running = false;
-let comparing = false;
+
+const assets = new Map([['/search-scope.js', ['search-scope.js', 'text/javascript']], ['/similarity.js', ['similarity.js', 'text/javascript']], ['/similarity.css', ['similarity.css', 'text/css']], ['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
 async function scanRepository(repository, timeout = 120000) {
   const { stdout } = await execute(binary, ['scan', repository, '--json'], { timeout, maxBuffer: 16 * 1024 * 1024 });
   return JSON.parse(stdout);
@@ -37,26 +35,15 @@ async function body(req) {
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { throw fail(400, 'Invalid JSON.'); }
 }
 // Read only scanner-allowlisted sources, with containment and bounded allocation.
-async function manifestText(session, relative, limit) {
+async function manifestText(session, relative, limit, timeout) {
   if (!session.manifests.has(relative)) throw fail(403, 'Manifest is not part of this scan.');
-  return readManifestText(session.repository, relative, limit);
+  return readManifestText(session.repository, relative, limit, timeout);
 }
-async function searchIndex(session) {
-  const sources = [];
-  let remaining = 8 * 1024 * 1024, count = 0;
-  for (const relative of session.manifests) {
-    if (count++ >= 512 || remaining <= 0) {
-      sources.push({ path: relative, content: '', error: 'Source omitted: search index limit reached.' });
-      continue;
-    }
-    try {
-      const result = await manifestText(session, relative, Math.min(1024 * 1024, remaining));
-      remaining -= result.bytes;
-      sources.push({ path: relative, content: result.content, truncated: result.truncated });
-    } catch (error) { sources.push({ path: relative, content: '', error: error.message }); }
-  }
-  return { sources };
-}
+const presets = ['MPS', 'koog', 'android'].map(name => ({ name, path: path.join(root, 'repositories', name) }));
+presets.push({ name: 'kotlin', path: path.resolve(root, '../../GIT/kotlin') });
+const repositories = new Repositories(root, scanRepository, manifestText, presets);
+await repositories.list();
+const sessions = repositories.sessions;
 const server = http.createServer(async (req, res) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Cache-Control', 'no-store');
@@ -74,49 +61,31 @@ const server = http.createServer(async (req, res) => {
       res.end(await readFile(path.join(root, 'web/public', file))); return;
     }
     if (req.method === 'GET' && url.pathname === '/api/repositories') {
-      const candidates = ['MPS', 'koog', 'android'].map(name => ({ name, path: path.join(root, 'repositories', name) }));
-      candidates.push({ name: 'kotlin', path: path.resolve(root, '../../GIT/kotlin') });
-      const available = [];
-      for (const candidate of candidates) {
-        try { if ((await stat(path.join(candidate.path, '.git'))).isDirectory()) available.push(candidate); } catch { /* optional checkout */ }
-      }
-      json(res, 200, available); return;
+      json(res, 200, await repositories.list()); return;
+    }
+    const snapshotMatch = /^\/api\/repositories\/([a-f0-9-]+)\/search-snapshot$/.exec(url.pathname);
+    if (req.method === 'POST' && snapshotMatch) {
+      json(res, 200, await repositories.snapshot(snapshotMatch[1], await body(req))); return;
     }
     if (req.method === 'POST' && url.pathname === '/api/scan') {
       const input = await body(req);
       if (!input || typeof input.path !== 'string' || !input.path.trim() || input.path.includes('\0')) throw fail(400, 'Enter a repository directory.');
-      if (running || comparing) throw fail(409, 'A scan or comparison is already running. Please wait.');
-      running = true;
-      try {
-        let repository;
-        try { repository = await realpath(path.resolve(root, input.path)); if (!(await stat(repository)).isDirectory()) throw new Error(); }
-        catch { throw fail(400, 'Repository directory does not exist.'); }
-        const inventory = await scanRepository(repository);
-        const id = randomUUID();
-        const manifests = new Set(inventory.sections.flatMap(s => s.skills.flatMap(k => k.sources.map(source => source.manifest_path))));
-        if (sessions.size >= 8) sessions.delete(sessions.keys().next().value);
-        sessions.set(id, { repository, manifests, inventory });
-        json(res, 200, { scan_id: id, inventory });
-      } catch (error) { if (error.status) throw error; console.error('Scan failed:', error.message); throw fail(500, error.killed ? 'Scan timed out.' : 'Scanner failed. Check the server terminal.'); }
-      finally { running = false; }
+      try { json(res, 200, await repositories.scan(input.path)); }
+      catch (error) { if (error.status) throw error; console.error('Scan failed:', error.message); throw fail(error.killed ? 504 : 500, error.killed ? 'Scan timed out.' : 'Scanner failed. Check the server terminal.'); }
       return;
     }
     if (req.method === 'POST' && url.pathname === '/api/similarity') {
       const input = await body(req);
       const session = sessions.get(input?.scan_id);
       if (!session) throw fail(404, 'Scan expired. Scan the repository again.');
-      if (comparing || running) throw fail(409, 'A comparison or scan is already running. Please wait.');
-      comparing = true;
-      try { json(res, 200, await compare(input, session, scanRepository, root)); }
-      finally { comparing = false; }
+      json(res, 200, await repositories.work(() => compare(input, session, scanRepository, root)));
       return;
     }
     const indexMatch = /^\/api\/scans\/([a-f0-9-]+)\/search-index$/.exec(url.pathname);
     if (req.method === 'GET' && indexMatch) {
       const session = sessions.get(indexMatch[1]);
       if (!session) throw fail(404, 'Scan expired. Scan the repository again.');
-      session.index ??= searchIndex(session);
-      json(res, 200, await session.index); return;
+      json(res, 200, await repositories.index(session)); return;
     }
     const match = /^\/api\/scans\/([a-f0-9-]+)\/manifest$/.exec(url.pathname);
     if (req.method === 'GET' && match) {

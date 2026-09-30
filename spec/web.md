@@ -40,9 +40,14 @@ summary counters, and skill cards. Support narrow screens and keyboard use.
 
 ## Server API
 
-- `GET /api/repositories`: available reference checkouts (name and absolute path).
+- `GET /api/repositories`: added checkouts (opaque `repository_id`, name,
+  canonical absolute path and `available`); presets plus successful manual scans.
 - `POST /api/scan`: JSON `{ "path": "..." }`; on success return
-  `{ "scan_id": "...", "inventory": <scanner JSON> }`.
+  `{ "scan_id": "...", "inventory": <scanner JSON>, "repository": <catalogue entry>, "scanned_at": <ISO timestamp> }`.
+- `POST /api/repositories/<repository_id>/search-snapshot`: JSON
+  `{ "refresh": false, "budget_ms": 120000 }`; reuse or refresh a live scan
+  and full-manifest index, returning repository, scan_id, scanned_at, inventory,
+  index and partial coverage. See the multi-repository specification below.
 - `GET /api/scans/<scan_id>/manifest?path=<relative-manifest-path>`: return
   JSON `{ "path": "...", "content": "..." }` for a source present in that scan.
 
@@ -117,6 +122,27 @@ for `test`, mixed case and partial words, mirror paths, Unicode, literal HTML an
 regex characters, category counts, clear/Escape and Enter on results, index
 loading/partial/failure, details/export preservation, and 390px overflow checks.
 Desktop/mobile review screenshots are captured by the browser suite.
+
+### Search across added repositories
+
+Implemented contract: [multi-repository-filter.md](multi-repository-filter.md).
+Filter supports Current repository, Selected repositories and All added
+repositories. The catalogue is process-local, deduplicated by realpath, and
+limited to 64 entries. Search scopes contain at most eight repositories.
+Results group by repository/section and retain owning scan identities for
+details and Similar skills. Focused statistics/export remain single-repository.
+Pages contain at most 100 rows; the counts include all pages and label partial
+coverage. Errors during Refresh retain explicitly stale previous results.
+
+The scan, search-index/snapshot and comparison preparation APIs share one
+worker and eight server sessions. Same-repository snapshot requests coalesce;
+incompatible concurrent work receives 409. Indices/snapshots enforce the
+remaining 120-second job budget in each native subprocess. Snapshots have a
+64 MiB serialized response bound. The browser retains at most eight search
+snapshots plus its focused snapshot, and folds source text once per snapshot
+(at most 8 Mi UTF-16 units per index). Changing query, category or page does
+not submit any native work. Explicit refresh regenerates selected indices.
+Expired detail sessions offer a refresh action and validate the skill again.
 
 ## Similar skills
 

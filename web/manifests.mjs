@@ -11,7 +11,7 @@ const failure = (status, message) => Object.assign(new Error(message), { status 
 // The native subprocess pins each directory with fchdir and uses O_NOFOLLOW
 // for EVERY component. Keep the original root/relative path, not realpath's target:
 // resolving and later opening a pathname is vulnerable to ancestor swaps.
-export async function readManifestText(repository, relative, limit) {
+export async function readManifestText(repository, relative, limit, timeout = 10000) {
   if (!Number.isInteger(limit) || limit < 0 || limit > 1024 * 1024) throw failure(400, 'Invalid manifest limit.');
   try {
     const target = await fs.realpath(path.join(repository, relative));
@@ -19,13 +19,14 @@ export async function readManifestText(repository, relative, limit) {
     if (rel.startsWith(`..${path.sep}`) || rel === '..' || path.isAbsolute(rel))
       throw failure(403, 'Manifest is outside the repository.');
     const { stdout } = await execute(binary, ['--read-manifest', repository, relative, String(limit)], {
-      encoding: 'buffer', timeout: 10000, maxBuffer: limit + 4096,
+      encoding: 'buffer', timeout: Math.max(1, Math.min(10000, timeout)), maxBuffer: limit + 4096,
     });
     const truncated = stdout.length > limit;
     const content = new TextDecoder().decode(stdout.subarray(0, limit), { stream: truncated });
     return { content, truncated, bytes: Math.min(stdout.length, limit) };
   } catch (error) {
     if (error.status) throw error;
+    if (error.killed) throw failure(504, 'Manifest read timed out.');
     if (error.code === 3) throw failure(403, 'Manifest path contains a symbolic link or is outside the repository.');
     throw failure(404, 'Manifest is no longer available.');
   }

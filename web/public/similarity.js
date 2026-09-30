@@ -53,7 +53,7 @@ export function createSimilarity(api) {
       $('similarity-repository').textContent = scan.inventory.repository;
       select.disabled = !select.options.length; $('compare-button').disabled = pending || !select.options.length;
     },
-    select(skill) { select.value = skill.manifest_path; clear(); },
+    select(skill, owner) { if (owner && scan?.scan_id !== owner.scan_id) this.load(owner); select.value = skill.manifest_path; clear(); },
     presets(repositories) {
       $('similarity-targets').value = repositories.map(r => r.path).join('\n');
     },
