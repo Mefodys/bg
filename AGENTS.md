@@ -3,6 +3,11 @@
 This project is a Kotlin/Native CLI called `bg`. Read `spec/cli.md` for behavior
 and `spec/ci.md` for the GitHub Actions implementation task. The native binary
 is generated and ignored by Git. Python is used only for the test harness.
+Read `spec/web.md` for the local Node.js web interface. The web server wraps
+the native scanner; it must not duplicate discovery logic. Include HTTP tests
+in the strict suite and run Node syntax checks when changing web code.
+Run `npm run test:web` after UI changes; CI installs the development-only
+Playwright dependency and headless Chromium for the same browser checks.
 Read `spec/scan-corner-cases.md` for required coverage of MPS duplicates, Koog
 test fixtures, Android's unconventional layout, and MPS product resources.
 

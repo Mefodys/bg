@@ -64,11 +64,40 @@ merge. JSON entries add `category`, `conflict`, and `sources`; the canonical
 `location` and `manifest_path` fields remain available. Reserved section IDs
 `@test-fixtures` and `@product` display as `Test fixtures` and `Product skills`.
 
+## Local web interface
+
+Requires Node.js 24 (or newer). No npm dependencies are needed. Build the
+scanner first, then run:
+
+```bash
+bash web/run.sh
+```
+
+Open http://127.0.0.1:4173 in your browser. The server runs only on loopback.
+Use a local repository path or a detected checkout preset, search/filter the
+inventory, open a skill to read its manifests, and export JSON. Nothing is
+uploaded and repository code is never executed. Stop the server with Ctrl+C.
+Use `PORT=4174 bash web/run.sh` for another port, or set `NODE` to a Node.js
+executable if it is not on PATH. The launcher detects local Node.js 24 installs
+in the Gradle cache as a convenience. See [the web specification](spec/web.md).
+
+HTTP tests run with `python3 tests/run.py`. For browser verification only,
+install the development dependency and Chromium:
+
+```bash
+npm ci --ignore-scripts
+npx playwright install chromium --only-shell
+npm run test:web
+```
+
+Browser checks cover scanning, search, filters, source details, and mobile
+layout. Playwright is not required to start the server.
+
 ## GitHub Actions
 
 `.github/workflows/ci.yml` runs on pull requests, pushes/merges to `main`, and
 manual dispatch. The `build-and-test` job uses the macOS 15 ARM64 runner,
-Kotlin/Native 2.4.20, JDK 21, and Python 3.12. It builds from source, checks the
+Kotlin/Native 2.4.20, JDK 21, Node.js 24, and Python 3.12. It builds from source, checks the
 native binary, runs the complete suite with `python3 tests/run.py`, and fails
 on failures, errors, skipped tests, or zero tests. Core corner-case tests use
 small checked-in fixtures; CI does not clone the external reference projects.

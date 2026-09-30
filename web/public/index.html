@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Skill Atlas · Repository explorer</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="Skill Atlas home"><span class="brand-icon">✳</span><span>skill atlas<span class="brand-sub">REPOSITORY EXPLORER</span></span></a>
+  <div class="side-label">WORKSPACE</div><div class="nav-active"><span>◈</span> Skill explorer <span class="nav-dot"></span></div>
+  <div class="side-label repo-label">YOUR REPOSITORIES</div><div id="repositories" class="repo-list"><p class="side-muted">No local presets yet</p></div>
+  <div class="sidebar-footer"><span class="live-dot"></span> Local workspace <span class="privacy">Your code stays on your machine.</span></div>
+</aside>
+<main>
+  <header class="topbar"><div>Workspace <span class="slash">/</span> <strong>Skill explorer</strong></div><span class="local-badge"><span class="live-dot"></span> LOCAL</span></header>
+  <div class="workspace">
+    <div class="intro"><div><p class="eyebrow">DISCOVER. UNDERSTAND. BUILD.</p><h1>Your skills, mapped.</h1><p class="subtitle">A clear view of every agent skill living in your repository.</p></div><span class="hero-mark" aria-hidden="true">✳</span></div>
+    <form id="scan-form" class="scan-box"><label for="repository-path">REPOSITORY PATH</label><div class="scan-row"><span class="folder-icon" aria-hidden="true">▱</span><input id="repository-path" name="path" placeholder="/path/to/your/repository" required autocomplete="off"><button id="scan-button" type="submit">Scan repository <span>↗</span></button></div><p>Point to a local checkout. We’ll find the skills wherever they live.</p></form>
+    <div id="message" role="status" aria-live="polite"></div>
+    <section class="stats" aria-label="Inventory summary"><div><span class="stat-icon purple">◈</span><span class="stat-label">Skills discovered</span><strong id="count-skills">—</strong></div><div><span class="stat-icon teal">⌘</span><span class="stat-label">Source manifests</span><strong id="count-sources">—</strong></div><div><span class="stat-icon blue">⧉</span><span class="stat-label">Mirrored skills</span><strong id="count-mirrors">—</strong></div><div><span class="stat-icon amber">⚑</span><span class="stat-label">Conflicting variants</span><strong id="count-conflicts">—</strong></div></section>
+    <div class="inventory-heading"><div><h2>Skill inventory <span id="inventory-count"></span></h2><p id="inventory-caption">Scan a repository to see what’s inside.</p></div><button id="download" class="secondary" disabled>↓ Export JSON</button></div>
+    <div class="toolbar"><div class="filters" role="group" aria-label="Skill category"><button class="filter active" data-category="all" aria-pressed="true">All skills</button><button class="filter" data-category="development" aria-pressed="false">Development</button><button class="filter" data-category="test-fixture" aria-pressed="false">Test fixtures</button><button class="filter" data-category="product" aria-pressed="false">Product</button></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" placeholder="Search skills…" aria-label="Search skills"></label></div>
+    <div id="inventory"><div class="empty"><span class="empty-icon">◈</span><h3>A little clarity for your codebase.</h3><p>Scan your first repository to explore its skills,<br>sources, and the connections between them.</p></div></div>
+    <div class="bottom-note"><span class="live-dot"></span> Powered by the Kotlin/Native scanner <span>READ-ONLY · LOCAL-FIRST</span></div>
+  </div>
+</main>
+<dialog id="detail"><div class="detail-top"><span class="eyebrow">SKILL DETAILS</span><button id="close-detail" class="icon-button" aria-label="Close details">×</button></div><h2 id="detail-name"></h2><p id="detail-description"></p><label for="source-select">Source manifest</label><select id="source-select"></select><p id="manifest-message" role="status"></p><pre id="manifest-content"></pre></dialog>
+</body></html>
