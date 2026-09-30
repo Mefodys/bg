@@ -1,5 +1,7 @@
 # Feature demos
 
+[![Play the multi-repository Filter demo](multi-repository-filter-preview.png)](multi-repository-filter.webm)
+
 [Multi-repository Filter video](multi-repository-filter.webm) — 21 seconds,
 1280 × 900, WebM/VP8. Recorded from published application commit
 `f3a50517cd95dc08fa1048726647dbef9ad8468a` for

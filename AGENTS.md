@@ -54,6 +54,11 @@ behavior; screenshots do not replace the recording. Prefer a local test server,
 small fixtures and headless recording. Use a GitHub attachment when available,
 or commit a small demo file on the feature branch and link it in the PR body.
 Verify that the video plays and the PR link resolves; state its source commit.
+The video must be immediately visible with a preview near the top of the PR:
+prefer an embedded GitHub attachment player. If browser/upload access is
+unavailable, include a clickable poster image linking to the recording and
+explicitly report that it is a preview link rather than an inline player.
+An ordinary text link alone does not satisfy the preview requirement.
 Update the video after changes to demonstrated behavior. If recording/upload is
 blocked, preserve the artifact and report the concrete blocker with this step
 pending. A feature PR handoff must include its accessible demo video.
