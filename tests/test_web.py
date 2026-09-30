@@ -62,7 +62,7 @@ class WebTests(unittest.TestCase):
         return result
 
     def test_static_interface_and_asset_allowlist(self):
-        for asset in ["/", "/style.css", "/app.js"]:
+        for asset in ["/", "/style.css", "/app.js", "/filter.js", "/filter.css"]:
             status, body = self.request(asset)
             self.assertEqual(status, 200)
             self.assertTrue(body)
@@ -160,3 +160,71 @@ class WebTests(unittest.TestCase):
         status, data = self.request(f'/api/scans/{result["scan_id"]}/manifest?path=SKILL.md')
         self.assertEqual(status, 200)
         self.assertEqual(data["content"], content)
+
+    def test_search_index_full_text_mirrors_and_cache(self):
+        shutil.copytree(ROOT / "tests/fixtures/corner-cases", self.repository, dirs_exist_ok=True)
+        body = "# Context\n\nShort summary.\n\n" + "padding " * 100 + "WhenConcreteStatement <script> .* 世界"
+        (self.repository / "SKILL.md").write_text(body)
+        result = self.scan()
+        endpoint = f'/api/scans/{result["scan_id"]}/search-index'
+        status, index = self.request(endpoint)
+        self.assertEqual(status, 200)
+        sources = {source["path"]: source for source in index["sources"]}
+        self.assertEqual(sources["SKILL.md"]["content"], body)
+        self.assertIn(".claude/skills/shared/SKILL.md", sources)
+        self.assertIn(".agents/skills/shared/SKILL.md", sources)
+        (self.repository / "SKILL.md").unlink()
+        self.assertEqual(self.request(endpoint)[1], index, "Index must be cached per scan")
+        self.assertEqual(self.request(endpoint, headers={"Origin": "https://example.com"})[0], 403)
+        self.assertEqual(self.request('/api/scans/00000000-0000-0000-0000-000000000000/search-index')[0], 404)
+
+    def test_search_index_reports_missing_escaped_and_truncated_sources(self):
+        for name in ["missing", "escape", "large"]:
+            folder = self.repository / name
+            folder.mkdir()
+            (folder / "SKILL.md").write_text("# " + name)
+        result = self.scan()
+        (self.repository / "missing/SKILL.md").unlink()
+        (self.repository / "escape/SKILL.md").unlink()
+        (self.repository / "escape/SKILL.md").symlink_to(ROOT / "AGENTS.md")
+        (self.repository / "large/SKILL.md").write_text("a" * (1024 * 1024 + 10))
+        status, index = self.request(f'/api/scans/{result["scan_id"]}/search-index')
+        self.assertEqual(status, 200)
+        sources = {source["path"]: source for source in index["sources"]}
+        self.assertIn("no longer available", sources["missing/SKILL.md"]["error"])
+        self.assertIn("outside", sources["escape/SKILL.md"]["error"])
+        self.assertEqual(sources["escape/SKILL.md"]["content"], "")
+        self.assertTrue(sources["large/SKILL.md"]["truncated"])
+        self.assertEqual(len(sources["large/SKILL.md"]["content"]), 1024 * 1024)
+        self.assertEqual(self.request(f'/api/scans/{result["scan_id"]}/manifest?path=large/SKILL.md')[0], 413)
+
+    def test_search_index_total_budget_and_session_expiration(self):
+        for number in range(10):
+            folder = self.repository / str(number)
+            folder.mkdir()
+            (folder / "SKILL.md").write_text("# Small")
+        result = self.scan()
+        for manifest in self.repository.glob("*/SKILL.md"):
+            manifest.write_text("a" * (1024 * 1024))
+        endpoint = f'/api/scans/{result["scan_id"]}/search-index'
+        status, index = self.request(endpoint)
+        self.assertEqual(status, 200)
+        self.assertEqual(sum(len(s["content"].encode()) for s in index["sources"]), 8 * 1024 * 1024)
+        self.assertEqual(sum("error" in s for s in index["sources"]), 2)
+        for manifest in self.repository.glob("*/SKILL.md"):
+            manifest.write_text("# Small")
+        for _ in range(8):
+            self.scan()
+        self.assertEqual(self.request(endpoint)[0], 404)
+
+    def test_search_index_source_limit(self):
+        for number in range(513):
+            folder = self.repository / f"skill-{number:03}"
+            folder.mkdir()
+            (folder / "SKILL.md").write_text("# Small")
+        result = self.scan()
+        status, index = self.request(f'/api/scans/{result["scan_id"]}/search-index')
+        self.assertEqual(status, 200)
+        self.assertEqual(len(index["sources"]), 513)
+        self.assertEqual(sum("error" not in s for s in index["sources"]), 512)
+        self.assertIn("limit reached", index["sources"][-1]["error"])
