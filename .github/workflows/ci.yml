@@ -59,7 +59,7 @@ jobs:
         run: |
           test -x bg
           file bg | tee "$RUNNER_TEMP/bg-file.txt"
-          rg 'Mach-O.*arm64' "$RUNNER_TEMP/bg-file.txt"
+          grep -E 'Mach-O.*arm64' "$RUNNER_TEMP/bg-file.txt"
           ./bg --version
           ./bg --help
       - name: Run all tests (including corner cases)
