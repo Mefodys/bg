@@ -115,3 +115,15 @@ python3 tests/verify_repositories.py repositories/MPS repositories/koog reposito
 
 This compares every eligible tracked `SKILL.md` with the scanner's source list
 and reports the exact repository revisions and discovery counts.
+
+Similar skills compares a selected inventory skill with other local checkouts.
+Open Comparison settings, enter one repository path per line, and press Compare.
+It uses complete canonical manifests and deterministic local TF-IDF cosine text
+similarity, with no inference services. Matching roles are the default; other
+roles require an explicit option. Mirrors remain logical skills and realpath
+aliases of the selected checkout are excluded. Results show actual percentages,
+progress bars, repository/skill paths, source roles/conflicts, and manifest text.
+Read errors and resource limits are reported as partial comparisons. Text overlap
+is not a probability of equivalent functionality. See `spec/web.md` for the
+algorithm, API, and bounds. `npm run test:web` runs both Filter and Similar skills
+browser suites, including desktop/mobile review captures under `reports/`.

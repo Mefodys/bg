@@ -117,3 +117,64 @@ for `test`, mixed case and partial words, mirror paths, Unicode, literal HTML an
 regex characters, category counts, clear/Escape and Enter on results, index
 loading/partial/failure, details/export preservation, and 390px overflow checks.
 Desktop/mobile review screenshots are captured by the browser suite.
+
+## Similar skills
+
+The Similar skills panel sits beside Filter on wide screens and stacks on narrow
+screens. Selecting a detail result also selects it for comparison; the selected
+skill dropdown can replace it independently. Scan success resets selection and
+results; failed scans preserve the current inventory. Comparison settings accept
+one to eight local repository paths, one per line. Reference checkout presets
+prefill these paths. By default only matching categories are compared. An explicit
+unchecked option includes other roles. Source-repository candidates are always
+excluded, including realpath aliases; repeated target aliases are scanned once.
+
+`POST /api/similarity` accepts `{scan_id, manifest_path, targets: [path],
+include_roles?: boolean}`. The selected path must belong to a logical skill in
+that live scan session (an additional mirror path selects the canonical source).
+An expired scan returns 404, an unallowlisted source 403, invalid input 400,
+an oversized source 413, and concurrent scan/comparison 409. Host/Origin/body
+validation is shared with other APIs. Discovery, classification, conflicts, and
+mirror grouping come from `bg scan`; no JavaScript filesystem discovery exists.
+Full canonical manifests use the same native pinned bounded reader as Filter.
+Unreadable selected text fails the request. Target scan/read failures produce
+explicit warnings and `partial: true`; truncated/omitted targets receive no score.
+
+Responses contain `{method, results, warnings, partial}`. Each result has
+`repository` (realpath), `repository_name` (directory basename), the scanner's
+`skill` record with its role/conflict/sources, canonical `content`, and numeric
+`score` on 0–100. Results sort by descending score, then canonical absolute repo
+path and canonical relative manifest path in code-unit lexical order. Paths,
+description, sources, and escaped plain manifest text are accessible through
+expandable details, without requiring hover. Progress bars use numeric scores;
+percentages show one decimal. Empty, loading, partial, and expired/error states
+are explicit. This measures text overlap, not the probability of equivalent
+functionality. There is no AI, embedding, network inference, or runtime dependency.
+
+### Deterministic scoring and limits
+
+The corpus is the selected manifest plus every successfully read eligible logical
+candidate (mirrors contribute once). Normalize complete manifest text with Unicode
+NFKC and JavaScript Unicode lowercase. Tokens are maximal sequences of Unicode
+letters or numbers (`[\p{L}\p{N}]+`); punctuation and whitespace separate tokens.
+Do not strip front matter, headings, code, or body text. No stemming/stopwords.
+For term count `c`, TF is `1 + ln(c)`. For document frequency `df` and corpus
+size `N`, IDF is `1 + ln((N + 1)/(df + 1))`. Multiply TF by IDF and compute
+cosine with L2 norms. Multiply by 100 and clamp to [0,100]; floating point values
+within 1e-10 of 100 are snapped to 100. Zero vectors score 0, including two empty
+texts. Identical nonempty vectors score 100. Candidate selection changes IDF;
+scores are relative to this comparison corpus, not global ratings.
+
+Allow at most eight input repositories, 512 visited eligible candidates, 1 MiB
+per manifest, and 8 MiB total read text including the selected source. Each scan
+has at most 16 MiB output. Target operations share a 120-second deadline; native
+reads have a 10-second timeout and the source read precedes that deadline. One
+comparison may run at a time and scans cannot overlap it. Each full manifest
+is read once for that comparison; comparison results are not stored server-side.
+Source and target read limits yield explicit omissions rather than prefix scores.
+The existing Filter implementation and its scan-lifetime index stay independent.
+
+Tests include formula/Unicode/full-body scoring, empty/identical/disjoint/partial
+texts, stable corpus order/ties, canonical mirror aliases, roles/product boundaries,
+realpath aliases, source allowlists/expiry/symlinks, missing target sources,
+invalid paths, count/byte limits, and API/keyboard/browser/mobile states.

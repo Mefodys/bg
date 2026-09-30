@@ -44,3 +44,13 @@ authorization; request missing access when it is required to finish.
 
 Preserve the read-only scan behavior. Changes to output formats or arguments
 must include corresponding updates to tests and the CLI specification.
+
+After a user-authorized PR merge, verify CI for the actual merge SHA, update the
+local serving checkout to that revision, and rebuild the native scanner. Restart
+the existing Skill Atlas web server from the updated checkout using its current
+host and port. Stop only the identified server process; do not interrupt unrelated
+services. Verify an HTTP response and that the merged feature is available. Report
+the serving SHA, URL, and restart result. If the server is not running, start it
+without opening a browser. In the sandbox workflow, the trusted host performs
+this step; the coding agent records it as pending until the host verifies it.
+Do not merge a PR merely to trigger this step; merging still requires authorization.

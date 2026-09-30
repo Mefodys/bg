@@ -1,0 +1,28 @@
+.feature-panels { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:22px; align-items:start }
+.similarity-panel { background:white; border:1px solid #dedfdd; border-radius:18px; padding:24px; box-shadow:0 5px 18px #20253006; min-width:0 }
+.similarity-panel h2 { display:flex; align-items:center; gap:12px; color:#20282c; margin:0 0 20px; font-size:25px }
+.similarity-selection { background:#fff; border:1px solid #dedfdd; border-radius:12px; padding:14px; margin-bottom:16px }
+.similarity-panel label { display:block; margin-bottom:8px; color:#454c53; font-size:13px }
+.similarity-panel select,.similarity-panel textarea { width:100%; min-width:0; border:1px solid #cfd1da; border-radius:8px; padding:10px; background:white; font:inherit }
+.similarity-panel select { font-family:monospace }
+.similarity-panel textarea { resize:vertical }
+.similarity-panel small { display:block; color:#606a74; font-family:monospace; margin-top:5px; overflow-wrap:anywhere }
+.similarity-panel .role-choice { display:flex; gap:8px; align-items:center; margin:12px 0 }
+.similarity-panel button { padding:11px 18px; background:#494dd5; color:white; border:0; border-radius:8px; cursor:pointer }
+.similarity-panel button:disabled { opacity:.55; cursor:default }
+.similarity-inner { background:#f8f9f7; border:1px solid #dedfdd; border-radius:12px; padding:16px; margin-top:18px }
+.similarity-label { color:#646d75; font-size:12px; letter-spacing:.09em }
+.similarity-row { padding:14px 0; border-bottom:1px solid #e2e3e6; overflow-wrap:anywhere }
+.similarity-heading { display:grid; grid-template-columns:minmax(0,1fr) 90px 65px; align-items:center; gap:12px }
+.similarity-heading strong { font:16px monospace; color:#20282c }
+.similarity-score { color:#4149af; font-weight:700; text-align:right; white-space:nowrap }
+.similarity-panel progress { width:100%; height:10px; accent-color:#494dd5; border:0; border-radius:9px; overflow:hidden; background:#e4e6f1 }
+.similarity-panel progress::-webkit-progress-bar { background:#e4e6f1 }
+.similarity-panel progress::-webkit-progress-value { background:#494dd5; border-radius:9px }
+.similarity-panel summary { cursor:pointer; margin:12px 0; font-size:13px }
+.similarity-panel p { font-size:13px; color:#58636d; overflow-wrap:anywhere }
+.similarity-panel pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:12px; max-height:320px; overflow:auto }
+.similarity-panel :focus-visible { outline:3px solid #666af0; outline-offset:3px }
+@media(max-width:1150px) { .feature-panels { grid-template-columns:minmax(0,1fr) } }
+@media(max-width:500px) { .similarity-panel { padding:16px } .similarity-heading { grid-template-columns:minmax(0,1fr) 55px 60px; gap:6px } }
+@media(prefers-reduced-motion:reduce) { .similarity-panel * { transition:none; animation:none } }

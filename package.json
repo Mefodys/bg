@@ -2,6 +2,6 @@
   "name": "bg-skill-atlas",
   "private": true,
   "type": "module",
-  "scripts": { "test:web": "node tests/web_smoke.mjs" },
+  "scripts": { "test:web": "node tests/web_all.mjs" },
   "devDependencies": { "playwright": "1.63.0" }
 }
