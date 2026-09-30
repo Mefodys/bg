@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { compare } from './similarity.mjs';
 import { readFile, realpath, stat } from 'node:fs/promises';
 import { readManifestText } from './manifests.mjs';
 import { execFile } from 'node:child_process';
@@ -11,8 +12,13 @@ const execute = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const binary = path.join(root, 'bg');
 const sessions = new Map();
-const assets = new Map([['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
+const assets = new Map([['/similarity.js', ['similarity.js', 'text/javascript']], ['/similarity.css', ['similarity.css', 'text/css']], ['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
 let running = false;
+let comparing = false;
+async function scanRepository(repository, timeout = 120000) {
+  const { stdout } = await execute(binary, ['scan', repository, '--json'], { timeout, maxBuffer: 16 * 1024 * 1024 });
+  return JSON.parse(stdout);
+}
 const port = Number(process.env.PORT ?? 4173);
 if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('PORT must be an integer between 0 and 65535');
 try { await stat(binary); } catch { console.error('Scanner missing. Run bash build.sh first.'); process.exit(1); }
@@ -79,21 +85,30 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && url.pathname === '/api/scan') {
       const input = await body(req);
       if (!input || typeof input.path !== 'string' || !input.path.trim() || input.path.includes('\0')) throw fail(400, 'Enter a repository directory.');
-      if (running) throw fail(409, 'A scan is already running. Please wait.');
-      let repository;
-      try { repository = await realpath(path.resolve(root, input.path)); if (!(await stat(repository)).isDirectory()) throw new Error(); }
-      catch { throw fail(400, 'Repository directory does not exist.'); }
+      if (running || comparing) throw fail(409, 'A scan or comparison is already running. Please wait.');
       running = true;
       try {
-        const { stdout } = await execute(binary, ['scan', repository, '--json'], { timeout: 120000, maxBuffer: 16 * 1024 * 1024 });
-        const inventory = JSON.parse(stdout);
+        let repository;
+        try { repository = await realpath(path.resolve(root, input.path)); if (!(await stat(repository)).isDirectory()) throw new Error(); }
+        catch { throw fail(400, 'Repository directory does not exist.'); }
+        const inventory = await scanRepository(repository);
         const id = randomUUID();
         const manifests = new Set(inventory.sections.flatMap(s => s.skills.flatMap(k => k.sources.map(source => source.manifest_path))));
         if (sessions.size >= 8) sessions.delete(sessions.keys().next().value);
-        sessions.set(id, { repository, manifests });
+        sessions.set(id, { repository, manifests, inventory });
         json(res, 200, { scan_id: id, inventory });
-      } catch (error) { console.error('Scan failed:', error.message); throw fail(500, error.killed ? 'Scan timed out.' : 'Scanner failed. Check the server terminal.'); }
+      } catch (error) { if (error.status) throw error; console.error('Scan failed:', error.message); throw fail(500, error.killed ? 'Scan timed out.' : 'Scanner failed. Check the server terminal.'); }
       finally { running = false; }
+      return;
+    }
+    if (req.method === 'POST' && url.pathname === '/api/similarity') {
+      const input = await body(req);
+      const session = sessions.get(input?.scan_id);
+      if (!session) throw fail(404, 'Scan expired. Scan the repository again.');
+      if (comparing || running) throw fail(409, 'A comparison or scan is already running. Please wait.');
+      comparing = true;
+      try { json(res, 200, await compare(input, session, scanRepository, root)); }
+      finally { comparing = false; }
       return;
     }
     const indexMatch = /^\/api\/scans\/([a-f0-9-]+)\/search-index$/.exec(url.pathname);

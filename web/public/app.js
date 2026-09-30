@@ -1,3 +1,4 @@
+import { createSimilarity } from './similarity.js';
 import { createFilter, highlight } from './filter.js';
 const $ = id => document.getElementById(id);
 let scan = null, category = 'all', manifestRequest = 0;
@@ -6,6 +7,7 @@ function element(tag, className, text) { const node = document.createElement(tag
 async function api(url, options) { const response = await fetch(url, options); const result = await response.json(); if (!response.ok) throw new Error(result.error || 'Request failed.'); return result; }
 function message(text, error = false) { $('message').textContent = text; $('message').className = error ? 'error' : ''; }
 function allSkills() { return scan?.inventory.sections.flatMap(section => section.skills) ?? []; }
+const similarity = createSimilarity(api);
 const filter = createFilter(api, () => { if (scan) render(); });
 function render() {
   const host = $('inventory'); host.replaceChildren();
@@ -47,6 +49,7 @@ async function loadManifest() {
   } catch (error) { if (request === manifestRequest) $('manifest-message').textContent = error.message; }
 }
 function details(skill) {
+  similarity.select(skill);
   $('detail-name').textContent = skill.name; $('detail-description').textContent = skill.description || 'No description available.';
   $('source-select').replaceChildren(...skill.sources.map(source => { const option = element('option', '', source.manifest_path); option.value = source.manifest_path; return option; }));
   $('detail').showModal(); loadManifest();
@@ -62,7 +65,7 @@ $('scan-form').addEventListener('submit', async event => {
   event.preventDefault(); const button = $('scan-button'); button.disabled = true; button.textContent = 'Scanning…'; message('Mapping your repository. This may take a moment.');
   try {
     const result = await api('/api/scan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ path: $('repository-path').value }) });
-    scan = result; const skills = allSkills();
+    scan = result; similarity.load(scan); const skills = allSkills();
     $('count-skills').textContent = skills.length;
     $('count-sources').textContent = skills.reduce((sum, skill) => sum + skill.sources.length, 0);
     $('count-mirrors').textContent = skills.filter(skill => skill.sources.length > 1).length;
@@ -77,6 +80,7 @@ $('download').addEventListener('click', () => {
   const link = element('a'); link.href = url; link.download = 'skill-atlas.json'; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 api('/api/repositories').then(repositories => {
+  similarity.presets(repositories);
   if (!repositories.length) return;
   $('repositories').replaceChildren(...repositories.map(repository => {
     const button = element('button'); button.append(element('span', '', repository.name.slice(0, 1).toUpperCase()), document.createTextNode(repository.name));

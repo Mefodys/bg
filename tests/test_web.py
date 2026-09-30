@@ -61,7 +61,7 @@ class WebTests(unittest.TestCase):
         return result
 
     def test_static_interface_and_asset_allowlist(self):
-        for asset in ["/", "/style.css", "/app.js", "/filter.js", "/filter.css"]:
+        for asset in ["/", "/style.css", "/app.js", "/filter.js", "/filter.css", "/similarity.js", "/similarity.css"]:
             status, body = self.request(asset)
             self.assertEqual(status, 200)
             self.assertTrue(body)
