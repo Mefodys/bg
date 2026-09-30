@@ -310,7 +310,80 @@ private fun scan(root: String, json: Boolean): String {
 
 private fun diagnostic(message: String) { fputs("$message\n", stderr) }
 
+// Internal web-server primitive: open every component relative to a pinned
+// directory, never a re-resolved pathname. This single-purpose subprocess uses
+// fchdir + open because macOS Kotlin/Native does not expose openat. Its cwd is
+// process-local and never changes the web server's cwd. O_NOFOLLOW on a leaf is not
+// sufficient: an ancestor can be replaced with a symlink after realpath().
+private class ManifestReadError(val code: Int, message: String) : Exception(message)
+
+private fun boundedManifest(args: Array<String>) {
+    val limit = args.getOrNull(3)?.toIntOrNull() ?: -1
+    val repository = args.getOrNull(1).orEmpty()
+    val relative = args.getOrNull(2).orEmpty()
+    val rootParts = repository.split('/').filter { it.isNotEmpty() }
+    val parts = relative.split('/')
+    if (args.size != 4 || limit !in 0..1048576 ||
+        !repository.startsWith('/') || rootParts.any { it == "." || it == ".." } ||
+        parts.any { it.isEmpty() || it == "." || it == ".." } || parts.last() != "SKILL.md") {
+        diagnostic("Error: invalid internal manifest-read arguments.")
+        exit(2)
+    }
+    var directory = -1
+    var file = -1
+    try {
+        directory = open("/", O_RDONLY or O_DIRECTORY or O_NOFOLLOW)
+        if (directory < 0) throw ManifestReadError(4, "Manifest is no longer available.")
+        for (part in rootParts + parts.dropLast(1)) {
+            if (fchdir(directory) != 0) throw ManifestReadError(4, "Manifest is no longer available.")
+            val next = open(part, O_RDONLY or O_DIRECTORY or O_NOFOLLOW)
+            if (next < 0) {
+                val code = if (errno == ELOOP || errno == ENOTDIR) 3 else 4
+                throw ManifestReadError(code, if (code == 3) "Manifest path contains a symbolic link or is outside the repository." else "Manifest is no longer available.")
+            }
+            close(directory)
+            directory = next
+        }
+        if (fchdir(directory) != 0) throw ManifestReadError(4, "Manifest is no longer available.")
+        file = open(parts.last(), O_RDONLY or O_NOFOLLOW or O_NONBLOCK)
+        if (file < 0) {
+            val code = if (errno == ELOOP) 3 else 4
+            throw ManifestReadError(code, if (code == 3) "Manifest path contains a symbolic link or is outside the repository." else "Manifest is no longer available.")
+        }
+        memScoped {
+            val info = alloc<stat>()
+            if (fstat(file, info.ptr) != 0 || info.st_mode.toInt() and S_IFMT.toInt() != S_IFREG.toInt())
+                throw ManifestReadError(4, "Manifest is no longer a regular file.")
+        }
+        val bytes = ByteArray(limit + 1)
+        var size = 0
+        bytes.usePinned { pinned ->
+            while (size < bytes.size) {
+                val count = read(file, pinned.addressOf(size), (bytes.size - size).toULong()).toInt()
+                if (count < 0) {
+                    if (errno == EINTR) continue
+                    throw ManifestReadError(4, "Cannot read manifest.")
+                }
+                if (count == 0) break
+                size += count
+            }
+            if (size > 0 && fwrite(pinned.addressOf(0), 1u, size.toULong(), stdout).toInt() != size)
+                throw ManifestReadError(4, "Cannot output manifest.")
+        }
+    } catch (error: ManifestReadError) {
+        diagnostic(error.message ?: "Cannot read manifest.")
+        // finally must close descriptors before exiting the process.
+        if (file >= 0) { close(file); file = -1 }
+        if (directory >= 0) { close(directory); directory = -1 }
+        exit(error.code)
+    } finally {
+        if (file >= 0) close(file)
+        if (directory >= 0) close(directory)
+    }
+}
+
 fun main(args: Array<String>) {
+    if (args.firstOrNull() == "--read-manifest") { boundedManifest(args); return }
     if (args.toList() == listOf("--help")) {
         println("Usage: bg scan <repository-path> [--json]\nScan a repository for agent skills grouped by directory.\nCommands: scan <repository-path>, --help, --version\nDefault output: readable sectioned list. Use --json for machine-readable output.")
         return

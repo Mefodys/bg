@@ -1,5 +1,6 @@
 import http from 'node:http';
 import { readFile, realpath, stat } from 'node:fs/promises';
+import { readManifestText } from './manifests.mjs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
@@ -10,7 +11,7 @@ const execute = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const binary = path.join(root, 'bg');
 const sessions = new Map();
-const assets = new Map([['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']]]);
+const assets = new Map([['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
 let running = false;
 const port = Number(process.env.PORT ?? 4173);
 if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('PORT must be an integer between 0 and 65535');
@@ -28,6 +29,27 @@ async function body(req) {
     chunks.push(chunk);
   }
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { throw fail(400, 'Invalid JSON.'); }
+}
+// Read only scanner-allowlisted sources, with containment and bounded allocation.
+async function manifestText(session, relative, limit) {
+  if (!session.manifests.has(relative)) throw fail(403, 'Manifest is not part of this scan.');
+  return readManifestText(session.repository, relative, limit);
+}
+async function searchIndex(session) {
+  const sources = [];
+  let remaining = 8 * 1024 * 1024, count = 0;
+  for (const relative of session.manifests) {
+    if (count++ >= 512 || remaining <= 0) {
+      sources.push({ path: relative, content: '', error: 'Source omitted: search index limit reached.' });
+      continue;
+    }
+    try {
+      const result = await manifestText(session, relative, Math.min(1024 * 1024, remaining));
+      remaining -= result.bytes;
+      sources.push({ path: relative, content: result.content, truncated: result.truncated });
+    } catch (error) { sources.push({ path: relative, content: '', error: error.message }); }
+  }
+  return { sources };
 }
 const server = http.createServer(async (req, res) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -74,22 +96,22 @@ const server = http.createServer(async (req, res) => {
       finally { running = false; }
       return;
     }
+    const indexMatch = /^\/api\/scans\/([a-f0-9-]+)\/search-index$/.exec(url.pathname);
+    if (req.method === 'GET' && indexMatch) {
+      const session = sessions.get(indexMatch[1]);
+      if (!session) throw fail(404, 'Scan expired. Scan the repository again.');
+      session.index ??= searchIndex(session);
+      json(res, 200, await session.index); return;
+    }
     const match = /^\/api\/scans\/([a-f0-9-]+)\/manifest$/.exec(url.pathname);
     if (req.method === 'GET' && match) {
       const session = sessions.get(match[1]);
       const relative = url.searchParams.get('path');
       if (!session) throw fail(404, 'Scan expired. Scan the repository again.');
       if (!session.manifests.has(relative)) throw fail(403, 'Manifest is not part of this scan.');
-      let target;
-      try {
-        target = await realpath(path.join(session.repository, relative));
-        const rel = path.relative(session.repository, target);
-        if (rel.startsWith(`..${path.sep}`) || rel === '..' || path.isAbsolute(rel)) throw fail(403, 'Manifest is outside the repository.');
-        const info = await stat(target);
-        if (!info.isFile()) throw fail(404, 'Manifest is no longer a file.');
-        if (info.size > 1024 * 1024) throw fail(413, 'Manifest exceeds 1 MB.');
-        json(res, 200, { path: relative, content: await readFile(target, 'utf8') });
-      } catch (error) { throw error.status ? error : fail(404, 'Manifest is no longer available.'); }
+      const result = await manifestText(session, relative, 1024 * 1024);
+      if (result.truncated) throw fail(413, 'Manifest exceeds 1 MB.');
+      json(res, 200, { path: relative, content: result.content });
       return;
     }
     throw fail(404, 'Not found.');
