@@ -7,6 +7,34 @@ host credentials, Docker socket, or automatic permission to push/merge.
 
 ## Optional sbx launcher: Codex through JetBrains Central
 
+Current execution order is sequential: finish `atlas-filter`, publish its own
+PR and verify its exact CI revision, then start `atlas-similar` in a separate
+sandbox/branch. Both use the same immutable infrastructure base; no automatic
+merge or shared writable Git metadata.
+
+For the verified ARM64 sbx environment, use the local credential-free template
+`skill-atlas-sbx:arm64-v1` without host workspace mounts. Import the trusted base
+bundle into `/workspace/repo`, create the assigned branch, and provision writable
+`/results`. Copy the baseline ARM64 scanner and lockfile-installed browser tools.
+Before launch, disable `ssh.agentForwardingEnabled` (requires daemon restart)
+and verify `ssh-add -l` cannot access keys and personal `auth.json` is absent.
+Never snapshot a task's generated Central config/session directory into a template.
+
+`python3 sandbox/check-central.py atlas-filter --task atlas-filter` verifies the
+model connection and starts the real Codex task through Central. The corresponding
+`atlas-similar` command runs the second task. `--repair` reads CI logs already
+copied into `/results/ci-failure.log`. Host logs are token-redacted under ignored
+`sandbox/.runtime/results/<task>/`; generated Central files remain private.
+
+The ARM64 worker cannot host the Linux x86_64 Kotlin compiler. Use the existing
+`build.sh` in the isolated x86_64 builder with `BG_TARGET=linux_arm64`, then run
+the complete suite in ARM64 sbx. After the final edit, cross-build that exact
+source again and verify both the source SHA and native tests before publication.
+Model commands retain `workspace-write`; a trusted host process reviews the
+feature-only diff and creates the commit in the sandbox, then exports its bundle.
+GitHub keys stay on the host. Import `input/base.bundle` into the publisher before
+the feature bundle when infrastructure commits are not yet on remote main.
+
 `sbx-codex.sh` adapts the supplied Claude/Central example for **Codex only**.
 It uses `/wire/<token>/codex/openai/v1`, passes the token by environment-variable
 name (not literal argv), and runs `codex exec --sandbox workspace-write`.

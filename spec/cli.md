@@ -15,8 +15,10 @@ allows a caller to locate and use every skill.
 
 Implement the tool in Kotlin and compile it with Kotlin/Native to a standalone
 native executable named `bg`. It must run without Python or a JVM. The initial
-supported platforms are macOS ARM64 and Linux x86_64; provide a reproducible
+supported platforms are macOS ARM64, Linux x86_64, and Linux ARM64; provide a reproducible
 build script and platform-specific POSIX errno adapters.
+Linux ARM64 is cross-compiled by the Linux x86_64 Kotlin/Native host compiler
+using `BG_TARGET=linux_arm64`; validate the resulting ELF on native ARM64.
 
 The executable name is configurable by the implementer. In this document it is
 represented by `<toolname>`.

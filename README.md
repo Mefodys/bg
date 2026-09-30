@@ -1,6 +1,6 @@
 # bg — Repository Skills Scanner
 
-A Kotlin/Native executable for macOS Apple Silicon and Linux x86_64. The built binary runs
+A Kotlin/Native executable for macOS Apple Silicon, Linux x86_64, and Linux ARM64. The built binary runs
 without Python or a JVM. The implementation uses POSIX APIs; Windows is not
 currently supported.
 
@@ -12,6 +12,18 @@ bash build.sh
 
 The script also detects the matching installed Kotlin/Native 2.4.20 distribution under
 `~/.konan`. Output is the native binary `bg` (also `build/bg.kexe`).
+
+For ARM64 Linux sandboxes, cross-compile using the Linux x86_64 compiler:
+
+```bash
+BG_TARGET=linux_arm64 bash build.sh
+```
+
+Run this command in a Linux x86_64 builder, not directly on macOS or an ARM64
+Linux host: Kotlin/Native 2.4.20 publishes no ARM64 Linux host compiler. The
+result is an ARM64 ELF executable and runs natively inside an ARM64 `sbx`.
+Keep each platform's binary in a separate output location when transferring
+it; do not replace the macOS binary with a Linux executable.
 
 ```bash
 ./bg scan /path/to/repository

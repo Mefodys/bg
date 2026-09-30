@@ -36,8 +36,11 @@ def prepare():
         raise SystemExit("Snapshot already belongs to another SHA; preserve existing task volumes and start a new batch explicitly")
     source = RUNTIME / "input"
     source.mkdir(parents=True, exist_ok=True)
-    run(["git", "bundle", "create", str(source / "base.bundle"), "main"])
-    environment.write_text(model_lines[0] + "\nATLAS_BASE_SHA=" + base + "\n")
+    base_ref = subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip()
+    if not base_ref:
+        raise SystemExit("Use a named branch for the reproducible base")
+    run(["git", "bundle", "create", str(source / "base.bundle"), base_ref])
+    environment.write_text(model_lines[0] + "\nATLAS_BASE_SHA=" + base + "\nATLAS_BASE_REF=" + base_ref + "\n")
     environment.chmod(0o600)
     print("Prepared identical base for both tasks: " + base)
 

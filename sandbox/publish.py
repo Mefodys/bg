@@ -52,6 +52,14 @@ def main():
         subprocess.run(["git", "-c", "core.hooksPath=/dev/null", "clone", "https://github.com/Mefodys/bg.git", str(repo)], check=True)
     if git("status", "--porcelain", capture=True).strip():
         raise SystemExit("Publisher checkout is dirty; inspect it before proceeding")
+    # Feature bundles exclude their base, which can be a local infrastructure
+    # commit not yet present on remote main. Import the trusted base first.
+    base_bundle = regular(RUNTIME / "input/base.bundle", 100 * 1024 * 1024)
+    base_ref = config.get("ATLAS_BASE_REF", "main")
+    git("check-ref-format", "refs/heads/" + base_ref)
+    git("fetch", "--no-tags", str(base_bundle), "refs/heads/" + base_ref)
+    if git("rev-parse", "FETCH_HEAD", capture=True).strip() != data["base_sha"]:
+        raise SystemExit("Trusted base bundle SHA mismatch")
     git("fetch", str(bundle), "refs/heads/" + data["branch"])
     if git("rev-parse", "FETCH_HEAD", capture=True).strip() != data["head_sha"]:
         raise SystemExit("Bundle head mismatch")

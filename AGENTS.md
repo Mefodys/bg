@@ -50,3 +50,9 @@ For container-agent tasks, read `sandbox/README.md`, the assigned task prompt,
 and `spec/parallel-forms-ui.md`. Work only on the assigned branch. Export a
 clean committed result for the trusted host publisher; do not push, merge,
 access host credentials, or modify sandbox/workflow security controls.
+When Codex's workspace-write policy protects `.git`, leave a reviewable diff:
+the trusted host may create the scoped commit after review. Never bypass the
+policy to commit. On ARM64 Linux, the host cross-builds the final source with
+the Linux x86_64 compiler and reruns checks with the resulting ARM64 binary;
+until that happens, final-build verification is pending. This does not relax
+the definition of done or permit passing off a prebuilt binary as a fresh build.
