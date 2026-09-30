@@ -1,0 +1,82 @@
+# Visual regression on every PR
+
+The `visual-regression` workflow runs every PR creation/update/reopen, main push,
+and manual dispatch. It complements the existing macOS native `build-and-test`.
+Both checks can be made required in branch protection; settings are unchanged.
+
+## Fixed rendering and data
+
+CI uses the official Playwright1.63.0 Ubuntu Noble amd64 image pinned by SHA256,
+Node24.9.0, locked Playwright, and bundled Noto Sans/Mono/CJK fonts verified by
+SHA256. Fonts load locally through the test harness; no network font requests.
+Fixtures/scenarios fix paths/content/order/time/storage/sessions. Desktop1440×1000,
+mobile390×844, DPR1, en-US/UTC/light/reduced motion, no animation/caret.
+Fonts are capture-only overrides shared by both revisions; production unchanged.
+Actual UI and native scan/search/details/similarity execute. Screenshot stability
+and full repaint prevent incremental edge-raster differences.
+
+CI builds exact PR base and head checkouts, retrieves accepted screenshots from
+a successful main run for the exact base SHA, and runs each revision twice with
+23 Playwright Test tests. First run creates an isolated ephemeral self-reference;
+second verifies it without snapshot updates/retries, using threshold0/maxDiffPixels0.
+The separate previous/current comparison always remains required, so generating
+a per-revision self-reference cannot hide a regression. Retained base images are
+also compared with fresh base images. If no artifact remains (90-day retention or
+initial bootstrap), the previous exact revision is reconstructed in the pinned
+container; baseline-source.txt explicitly records this fallback. Never use an
+unrelated older commit. Missing/incompatible/nondeterministic captures fail.
+
+Existing fixtures/scenarios/viewports/font versions cannot change in an ordinary
+PR; CI blocks such changes pending an explicit visual-contract migration. This
+prevents removing tests or changing data to hide differences.
+
+## Classification and review
+
+Undeclared differences fail with **REGRESSION** in a large job summary heading
+and an error annotation. Failed behavior assertions always block, regardless of
+visual expectations. Capture incompatibility is INCOMPLETE, not a claimed bug.
+
+After inspecting the failed artifact, describe intentional changes in
+`tests/visual/expected-changes.json`:
+
+```json
+{
+  "baseSHA": "exact PR base SHA",
+  "changes": [{
+    "scenario": "desktop/03-name",
+    "reason": "The search field uses the requested feature color",
+    "afterPixelSHA256": "reviewed decoded-pixel SHA256 from comparison.json",
+    "regions": [{"x":336,"y":635,"width":452,"height":62}]
+  }]
+}
+```
+
+All changed pixels must lie in the declared regions; exact reviewed after-image
+hash and actual base SHA must match. Unexpected pixels outside the feature area,
+a different image or undeclared observed-state change remain REGRESSION. For an
+intentional DOM-state change, include full `observedAfter` from the scenario record.
+Expected differences are **EXPECTED FEATURE CHANGE — REVIEW REQUIRED**. A feature
+label never automatically permits differences; pixel declarations do not infer
+semantics. Defects inside a declared region still need reviewer analysis.
+
+## Artifacts and baseline
+
+Every run uploads `visual-comparison-<headSHA>` with before/after/diff PNGs,
+comparison.json/.md, three-column gallery.html with synchronized zoom/scroll,
+Playwright results/traces and repeat-determinism reports. All labels are English.
+Download/unzip and open comparison/gallery.html; inline PR uploads are not claimed.
+Only a successful main push publishes `visual-baseline-<mergeSHA>` for the next PR.
+A green PR result does not replace checking the actual merge SHA.
+
+Local verification (macOS rendering is not comparable to Linux CI rendering):
+
+```sh
+npm ci --ignore-scripts
+bash build.sh
+python3 tests/visual/test_analysis.py
+python3 tests/visual/ci.py /previous-checkout . /new/artifact-directory
+```
+
+Playwright Test is JavaScript. Python is only the pixel-analysis/report harness
+and the existing native test runner. Use the pinned CI container for identical
+CI rendering; never raise tolerance to compare incompatible platforms.

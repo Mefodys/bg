@@ -1,0 +1,11 @@
+{
+  "app/skills/release/SKILL.md": "# release-checklist\n\nPrepare reliable deployment and health checks.\n\nUse AlphaBodyToken for release verification.",
+  "app/skills/review/SKILL.md": "# code-review\n\nReview changes with automated review.\n\nCheck tests before merging.",
+  "app/tests/weather/SKILL.md": "# weather-fixture\n\nWeather retrieval example for test data.",
+  "app/plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/product/SKILL.md": "# shipped-helper\n\nProduct resources for release support.",
+  "library/skills/release/SKILL.md": "# resilient-deployment\n\nPrepare reliable deployment and health checks.\n\nUse OtherBodyNeedle for transient network failures.",
+  "library/skills/review/SKILL.md": "# safe-review\n\nReview changes with automated review.\n\nCheck tests before merging.",
+  "library/.agents/skills/mirror/SKILL.md": "# mirror-helper\n\nMirrored skills with Unicode 世界 CAFÉ.",
+  "library/.claude/skills/mirror/SKILL.md": "# mirror-helper\n\nMirrored skills with Unicode 世界 CAFÉ.",
+  "library/plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/product/SKILL.md": "# shipped-helper\n\nProduct resources for release support."
+}

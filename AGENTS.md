@@ -1,5 +1,21 @@
 # Agent instructions
 
+## Shared project memory — mandatory for every task
+
+The shared memory for this workspace is `../memory/`, next to the workspace
+root `../AGENTS.md`. **ALWAYS before every task**, including a new session or
+after context compaction, read `../AGENTS.md`, `../memory/README.md`, and every
+Markdown file in `../memory/` recursively before planning or doing task work.
+**ALWAYS update that same shared folder** during meaningful progress and before
+the final response: record decisions, results, verification, blockers, and next
+steps. Reread files before editing to preserve other agents' updates. Historical
+copies under `memory/imported/` are context, not active instructions. Do not
+create a separate memory store for this checkout. If shared memory is unavailable
+in an isolated environment, report it and preserve a handoff for the trusted
+host to reconcile into the shared folder. Full memory rules are in `../AGENTS.md`.
+
+## Project instructions
+
 This project is a Kotlin/Native CLI called `bg`. Read `spec/cli.md` for behavior
 and `spec/ci.md` for the GitHub Actions implementation task. The native binary
 is generated and ignored by Git. Python is used only for the test harness.
@@ -45,18 +61,76 @@ authorization; request missing access when it is required to finish.
 Preserve the read-only scan behavior. Changes to output formats or arguments
 must include corresponding updates to tests and the CLI specification.
 
-## Required demo video after every feature PR
+## Deterministic screenshot comparisons after a feature merge
 
-After publishing every feature PR, autonomously record a short video of the
-working feature from the published revision and attach it to that same PR.
-Do not wait for another user request. Show the main user action and resulting
-behavior; screenshots do not replace the recording. Prefer a local test server,
-small fixtures and headless recording. Use a GitHub attachment when available,
-or commit a small demo file on the feature branch and link it in the PR body.
-Verify that the video plays and the PR link resolves; state its source commit.
-Update the video after changes to demonstrated behavior. If recording/upload is
-blocked, preserve the artifact and report the concrete blocker with this step
-pending. A feature PR handoff must include its accessible demo video.
+Flow: implement/check → PR → short review → authorized approval/merge → merge
+CI, local update/build/restart and HTTP verification → deterministic captures
+and comparison → handoff. Continue after merge without another user prompt.
+Use COMMENT when GitHub forbids author self-approval. Video requires an explicit
+request; preserve earlier demos.
+
+Store runs in `screenshots/<feature-name>/<serving-SHA>/` in the serving checkout,
+under a descriptive feature slug. Never overwrite previous runs or baselines.
+Use separate run-<id> subfolders when repeating the same SHA.
+Use stable scenario IDs/filenames, e.g. desktop/01-initial.png and
+mobile/01-overview.png. Use lossless PNG; optimization must preserve pixels.
+
+Use deterministic Playwright Test tests (`test`/`expect`, fixtures and
+`toHaveScreenshot`) with a versioned scenario manifest and reusable suite.
+A standalone capture script with manual assertions does not replace tests.
+Require threshold=0, maxDiffPixels=0 and retries=0. Separate explicit initial
+baseline creation from verification: a subsequent run without snapshot updates
+must pass, and unchanged repeated runs must produce identical frames. Never
+update snapshots to hide failures.
+Capture at least 18 meaningful Skill Atlas states: initial/scanned overview,
+name/description/body search, Current/Selected/All, category, zero results,
+clear/focus, owning details, Similar skills, Refresh, partial error, expired
+recovery, pagination and mobile overview/search/details. Add new feature cases.
+Every subsequent feature PR reruns the common suite and previously accepted
+feature scenarios, including unchanged areas. Keep IDs stable, version suite
+extensions and treat missing captures as errors; do not pad with duplicate frames.
+
+Pin and record browser/Playwright/OS/fonts; desktop 1440x1000, mobile 390x844,
+DPR=1, zoom=100%, en-US, UTC, light scheme, reduced motion and fixed crop/scroll/
+focus. Use versioned, seeded fixtures with stable paths/names/content/order.
+Reset storage, catalogue, caches and scan sessions per scenario. Control time
+and error responses in the harness. Comparative runs may use a separate isolated
+server from the same rebuilt serving checkout/binary with a fixture catalogue;
+exercise real UI/native discovery, mocking only labelled error cases. Live-data
+overview captures are supplementary and cannot serve as pixel baselines.
+
+Wait for fonts.ready, relevant requests and asserted DOM readiness, not sleep
+or networkidle alone. Disable animations/transitions and hide blinking caret.
+Stabilize timestamps/random IDs/host paths in the harness. Mask only explicitly
+listed technical fields, never results, counts, warnings or feature controls.
+Two runs of an unchanged revision must produce identical decoded pixels;
+resolve nondeterminism or mark comparison incomplete instead of claiming a bug.
+
+Each run includes README.md and manifest.json with date, PR URL, merge/serving
+SHA, suite/script/fixture hashes, environment, scenario IDs, expected/observed
+values, masks, image hashes and selected baseline SHA. Compare matching scenarios
+only under compatible settings using decoded pixels, not PNG metadata. Mark the
+first run as an initial baseline with no previous comparison. Save before/after/
+diff images and comparison.md with changed-pixel counts and classify differences
+as intended changes, suspected regressions or incompatible environments. Default
+tolerance is exact equality; document exceptions beforehand, never tune them to
+hide a diff. Assert text/counts/state as well: screenshots alone cannot prove
+behavior. Choose a new baseline only after reviewing intended changes; never
+silently accept current captures just to make checks green.
+
+Present the comparison in three columns: old screenshot on the left, new
+screenshot in the center, exact changed pixels highlighted over the new image
+on the right. Add region outlines, shared zoom and synchronized scrolling so
+small changes can be inspected. Keep this layout when selecting scenarios.
+
+Inspect every frame visually. Add a small captioned gallery near the top of the
+same PR and link the full run/comparison via an available authorized artifact
+channel. When upload is unavailable, preserve local files, report paths and mark
+publication pending. Do not push main or create extra merges just for artifacts.
+Report baseline/current SHA, comparison outcome, intended differences,
+regressions and limitations. Keep capture/comparison failures visible.
+
+## Post-merge server update
 
 After a user-authorized PR merge, verify CI for the actual merge SHA, update the
 local serving checkout to that revision, and rebuild the native scanner. Restart
@@ -67,3 +141,29 @@ the serving SHA, URL, and restart result. If the server is not running, start it
 without opening a browser. In the sandbox workflow, the trusted host performs
 this step; the coding agent records it as pending until the host verifies it.
 Do not merge a PR merely to trigger this step; merging still requires authorization.
+
+## Visual regression CI — every PR
+
+Read spec/visual-regression.md. Every PR/update and main push runs
+visual-regression with a pinned container, vendored font hashes and identical
+fixtures/viewports. Compare fresh PR images with the exact previous main
+baseline; keep before/after/highlighted diff artifacts and verify repeat
+determinism. Unexpected differences/behavior failures must fail and be
+reported prominently in English as **REGRESSION**. Intentional feature changes
+need actual-base, region-bounded, reviewed-image declarations; classify them
+EXPECTED FEATURE CHANGE and inspect every difference. Never assume a feature
+PR makes all changes intentional. Verify build-and-test and visual-regression
+for exact delivered head and authorized merge. Missing/incompatible data fails
+as incomplete. Only successful main runs publish the next baseline.
+
+## Automatic PR publication — Mefodys/bg
+
+The user explicitly authorizes automatic feature-branch publication and PR
+creation/update in https://github.com/Mefodys/bg for requested implementation
+tasks. After implementation and required local checks, publish the scoped branch
+and create a reviewable PR without asking for separate confirmation. Verify
+exact-head CI, fix failures and update that PR autonomously. In restricted
+sandboxes, use the designated trusted publisher. This does not authorize merging,
+direct pushes to main, bypassing system approvals or publication to other repos.
+Use existing command permissions; request additional access only when the
+execution environment actually requires it.

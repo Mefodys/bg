@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "time": "2026-01-01T12:00:00.000Z",
+  "fixture_root": "/private/tmp/skill-atlas-visual-v1",
+  "scenarios": [
+    {
+      "id": "desktop/01-initial",
+      "action": "initial",
+      "caption": "Initial empty application",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/02-scanned",
+      "action": "scanned",
+      "caption": "Scanned inventory and lavender search field",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/03-name",
+      "action": "name",
+      "caption": "Name search: release-checklist",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/04-description",
+      "action": "description",
+      "caption": "Description search: automated review",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/05-body",
+      "action": "body",
+      "caption": "Body-only search: AlphaBodyToken",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/06-current-miss",
+      "action": "current-miss",
+      "caption": "Current excludes a token in another repository",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/07-selected",
+      "action": "selected",
+      "caption": "Selected includes the other repository",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/08-all",
+      "action": "all",
+      "caption": "All added groups both repositories",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/09-category",
+      "action": "category",
+      "caption": "Current product category",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/10-empty",
+      "action": "empty",
+      "caption": "No matching skills",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/11-clear",
+      "action": "clear",
+      "caption": "Escape clears and retains focus",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/12-details",
+      "action": "details",
+      "caption": "Details belong to the selected library result",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/13-similar",
+      "action": "similar",
+      "caption": "Native Similar skills results",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/14-refresh",
+      "action": "refresh",
+      "caption": "Refresh discovers changed fixture content",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/15-partial",
+      "action": "partial",
+      "caption": "Failed refresh retains explicitly stale results",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/16-expired",
+      "action": "expired",
+      "caption": "Expired details offer recovery",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/17-recovered",
+      "action": "recovered",
+      "caption": "Recovery opens the owning manifest",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/18-pagination",
+      "action": "pagination",
+      "caption": "Native pagination: second page of 101 matches",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/19-mirrors",
+      "action": "mirrors",
+      "caption": "Mirrored manifest sources retained",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "desktop/20-unicode",
+      "action": "unicode",
+      "caption": "Unicode literal matching",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "id": "mobile/01-overview",
+      "action": "scanned",
+      "caption": "Mobile Filter overview",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "id": "mobile/02-search",
+      "action": "name",
+      "caption": "Mobile search and result",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "id": "mobile/03-details",
+      "action": "details",
+      "caption": "Mobile owning manifest details",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}

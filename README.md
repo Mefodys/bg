@@ -140,3 +140,13 @@ Read errors and resource limits are reported as partial comparisons. Text overla
 is not a probability of equivalent functionality. See `spec/web.md` for the
 algorithm, API, and bounds. `npm run test:web` runs Filter, Similar skills and
 multi-repository browser suites, including desktop/mobile captures under `reports/`.
+
+## Visual regression checks
+
+Every PR/update and main push runs `visual-regression`:23 deterministic
+Playwright tests with fixed fixtures/viewports and vendored fonts in a pinned
+CI image. Fresh PR screenshots are compared with the previous exact main
+baseline. Unexpected changes fail with **REGRESSION**; reviewed feature changes
+are explicitly classified. Download the `visual-comparison-SHA` artifact and
+open `comparison/gallery.html` for old/new/highlighted-diff columns.
+Details: [spec/visual-regression.md](spec/visual-regression.md).
