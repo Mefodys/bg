@@ -16,9 +16,9 @@ tests must run in the same required `build-and-test` job on PRs and after merges
 Create `.github/workflows/ci.yml` with:
 
 - Triggers for `pull_request`, pushes to `main`, and `workflow_dispatch`.
-- A job named `build-and-test` on a GitHub-hosted macOS ARM64 runner. Verify the
-  selected runner label currently provides ARM64; the implementation uses macOS
-  POSIX APIs and is not a Linux or Windows build.
+- A job named `build-and-test` with a matrix of GitHub-hosted macOS ARM64 and
+  Linux x86_64 runners. Verify each runner's architecture. Use platform-specific
+  POSIX adapters; Windows is not supported. Both matrix jobs are required.
 - Read-only repository permissions (`contents: read`). Do not require secrets.
 - A reasonable timeout and concurrency settings that cancel superseded runs
   for the same pull request or branch.
@@ -28,8 +28,8 @@ The job must perform these steps in order:
 1. Check out the repository.
 2. Set up a JDK compatible with the selected Kotlin/Native compiler and Python
    3 for the integration-test harness. Python is not a runtime dependency of bg.
-3. Install a pinned, publicly released Kotlin/Native distribution for macOS
-   ARM64 from the official JetBrains Kotlin GitHub releases. Prefer version
+3. Install a pinned, publicly released Kotlin/Native distribution for each
+   matrix platform from the official JetBrains Kotlin GitHub releases. Prefer version
    `2.4.20` to match the local build, but verify the release and archive exist;
    if unavailable, use a supported published release and document that choice.
    Never use an unpinned `latest` download.
@@ -38,7 +38,8 @@ The job must perform these steps in order:
    Do not cache the compiled project binary as a substitute for building it.
 5. Set `KONANC` to the installed compiler and run `bash build.sh`. The workflow
    must work on a clean runner without the developer's local directory layout.
-6. Verify `./bg` is an executable ARM64 Mach-O binary, then run `./bg --version`
+6. Verify `./bg` is an executable ARM64 Mach-O binary on macOS or x86_64 ELF on
+   Linux, then run `./bg --version`
    and `./bg --help` as smoke checks.
 7. Run the full suite:
 
@@ -47,13 +48,13 @@ The job must perform these steps in order:
    ```
 
 8. Verify `git diff --check` succeeds.
-9. Upload `bg` as a downloadable artifact named `bg-macos-arm64` only after the
+9. Upload `bg` as a downloadable artifact named `bg-macos-arm64` or `bg-linux-x64` only after the
    build and tests succeed. Set a bounded artifact retention period.
 
 Use supported versions of GitHub Actions. Do not suppress failed commands or
 use `continue-on-error` for build, tests, or smoke checks. Keep the full test
 output visible in the job log. The CI job must fail if no tests are discovered
-or any test is skipped; the current non-root macOS runner should run every test.
+or any test is skipped; both non-root runners should run every test.
 Add an explicit check or test runner wrapper for these conditions if necessary.
 
 ## Documentation and agent rules

@@ -153,7 +153,7 @@ private fun quote(text: String): String = buildString {
 
 private fun fileMode(path: String): Int? = memScoped {
     val info = alloc<stat>()
-    if (lstat(path, info.ptr) != 0) null else info.st_mode.toInt() and S_IFMT
+    if (lstat(path, info.ptr) != 0) null else info.st_mode.toInt() and S_IFMT.toInt()
 }
 
 private fun readManifest(path: String): String {
@@ -196,7 +196,7 @@ private class Terminal {
     private val color = interactive && getenv("NO_COLOR") == null
     val width: Int = memScoped {
         val size = alloc<winsize>()
-        val columns = if (interactive && ioctl(STDOUT_FILENO, TIOCGWINSZ, size.ptr) == 0) size.ws_col.toInt() else 0
+        val columns = if (interactive && ioctl(STDOUT_FILENO, TIOCGWINSZ.toULong(), size.ptr) == 0) size.ws_col.toInt() else 0
         (columns.takeIf { it > 0 } ?: getenv("COLUMNS")?.toKString()?.toIntOrNull() ?: 100).coerceIn(40, 160)
     }
     fun paint(text: String, code: String): String = if (color) "\u001b[${code}m$text\u001b[0m" else text
@@ -233,7 +233,7 @@ private fun scan(root: String, json: Boolean): String {
         }
         try {
             while (true) {
-                __error()!!.pointed.value = 0
+                clearErrno()
                 val entry = readdir(directory)
                 if (entry == null) {
                     if (errno != 0) warnings.add("$relative: ${strerror(errno)?.toKString()}")
@@ -248,8 +248,8 @@ private fun scan(root: String, json: Boolean): String {
                     warnings.add("$location: ${strerror(errno)?.toKString() ?: "Cannot inspect entry"}")
                     continue
                 }
-                if (mode == S_IFDIR && name !in excluded) pending.add(location)
-                if (mode != S_IFREG || name != "SKILL.md") continue
+                if (mode == S_IFDIR.toInt() && name !in excluded) pending.add(location)
+                if (mode != S_IFREG.toInt() || name != "SKILL.md") continue
                 var skillName = path.substringAfterLast('/').ifEmpty { "/" }
                 var description: String? = null
                 var content: String? = null
@@ -324,7 +324,7 @@ fun main(args: Array<String>) {
     try {
         val resolved = realpath(args[1], null)
         val root = if (resolved != null) resolved.toKString().also { free(resolved) } else null
-        if (root == null || fileMode(root) != S_IFDIR) {
+        if (root == null || fileMode(root) != S_IFDIR.toInt()) {
             diagnostic("Error: repository path is not an existing directory: ${args[1]}")
             exit(3)
         }

@@ -1,0 +1,113 @@
+name: skill-atlas-sandbox
+x-agent: &agent
+  image: skill-atlas-agent:0.1
+  platform: linux/amd64
+  build:
+    context: ..
+    dockerfile: sandbox/Dockerfile
+  user: '1001:1001'
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 512
+  mem_limit: 8g
+  cpus: 4
+  init: true
+  environment: &agent-env
+    ATLAS_MODEL: ${ATLAS_MODEL:?Set ATLAS_MODEL in sandbox/.runtime/environment}
+    ATLAS_BASE_SHA: ${ATLAS_BASE_SHA:?Set ATLAS_BASE_SHA}
+    ATLAS_GATEWAY_URL: http://gateway:8080/v1
+  stop_grace_period: 20s
+x-gateway: &gateway
+  image: skill-atlas-gateway:0.1
+  build:
+    context: ..
+    dockerfile: sandbox/gateway.Dockerfile
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 64
+  mem_limit: 256m
+  cpus: 1
+  environment:
+    ATLAS_MODEL: ${ATLAS_MODEL}
+    GATEWAY_MAX_REQUESTS: '200'
+    GATEWAY_MAX_SECONDS: '7200'
+  secrets:
+    - openai-key
+  tmpfs: [/tmp]
+services:
+  agent-filter:
+    <<: *agent
+    environment:
+      <<: *agent-env
+      ATLAS_TASK: atlas-filter
+      PUBLIC_PORT: '4174'
+    volumes:
+      - filter-workspace:/workspace
+      - filter-results:/results
+      - filter-cache:/home/agent/.konan
+      - ./.runtime/input:/input:ro
+    secrets:
+      - source: filter-token
+        target: gateway-token
+    networks: [filter-internal]
+    ports: ['127.0.0.1:4174:4173']
+    depends_on: [gateway-filter]
+  agent-similarity:
+    <<: *agent
+    environment:
+      <<: *agent-env
+      ATLAS_TASK: atlas-similar
+      PUBLIC_PORT: '4175'
+    volumes:
+      - similarity-workspace:/workspace
+      - similarity-results:/results
+      - similarity-cache:/home/agent/.konan
+      - ./.runtime/input:/input:ro
+    secrets:
+      - source: similarity-token
+        target: gateway-token
+    networks: [similarity-internal]
+    ports: ['127.0.0.1:4175:4173']
+    depends_on: [gateway-similarity]
+  gateway-filter:
+    <<: *gateway
+    secrets:
+      - openai-key
+      - source: filter-token
+        target: gateway-token
+    networks:
+      filter-internal:
+        aliases: [gateway]
+      filter-egress: {}
+  gateway-similarity:
+    <<: *gateway
+    secrets:
+      - openai-key
+      - source: similarity-token
+        target: gateway-token
+    networks:
+      similarity-internal:
+        aliases: [gateway]
+      similarity-egress: {}
+networks:
+  filter-internal:
+    internal: true
+  similarity-internal:
+    internal: true
+  filter-egress: {}
+  similarity-egress: {}
+volumes:
+  filter-workspace:
+  filter-results:
+  filter-cache:
+  similarity-workspace:
+  similarity-results:
+  similarity-cache:
+secrets:
+  openai-key:
+    file: ./.runtime/secrets/openai-key
+  filter-token:
+    file: ./.runtime/secrets/filter-token
+  similarity-token:
+    file: ./.runtime/secrets/similarity-token

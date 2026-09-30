@@ -21,8 +21,9 @@ An implementation task is complete only when:
 3. At least one test is discovered and every discovered test passes. Failures,
    errors, skipped tests, or tests that were not run do not count as success.
 4. `./bg --help`, `./bg --version`, and `git diff --check` succeed.
-5. When GitHub Actions is configured and the changes have been pushed, the
-   `build-and-test` job succeeds for the exact revision being delivered.
+5. When GitHub Actions is configured and the changes have been pushed,
+   every `build-and-test` matrix job (macOS ARM64 and Linux x86_64) succeeds for
+   the exact revision being delivered.
    After a merge, verify the `main` push run for the actual merge commit as well.
 
 Rebuild and rerun the relevant complete checks after the final code change.
@@ -44,3 +45,8 @@ authorization; request missing access when it is required to finish.
 
 Preserve the read-only scan behavior. Changes to output formats or arguments
 must include corresponding updates to tests and the CLI specification.
+
+For container-agent tasks, read `sandbox/README.md`, the assigned task prompt,
+and `spec/parallel-forms-ui.md`. Work only on the assigned branch. Export a
+clean committed result for the trusted host publisher; do not push, merge,
+access host credentials, or modify sandbox/workflow security controls.

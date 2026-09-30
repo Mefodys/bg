@@ -1,6 +1,6 @@
 # bg — Repository Skills Scanner
 
-A Kotlin/Native executable for macOS Apple Silicon. The built binary runs
+A Kotlin/Native executable for macOS Apple Silicon and Linux x86_64. The built binary runs
 without Python or a JVM. The implementation uses POSIX APIs; Windows is not
 currently supported.
 
@@ -10,7 +10,7 @@ Build with Kotlin/Native (`konanc` on PATH or `KONANC` set to its executable):
 bash build.sh
 ```
 
-The script also detects the installed macOS ARM64 2.4.20 distribution under
+The script also detects the matching installed Kotlin/Native 2.4.20 distribution under
 `~/.konan`. Output is the native binary `bg` (also `build/bg.kexe`).
 
 ```bash
@@ -73,13 +73,16 @@ scanner first, then run:
 bash web/run.sh
 ```
 
-Open http://127.0.0.1:4173 in your browser. The server runs only on loopback.
+Open http://127.0.0.1:4173 in your browser. The server runs on loopback by default.
 Use a local repository path or a detected checkout preset, search/filter the
 inventory, open a skill to read its manifests, and export JSON. Nothing is
 uploaded and repository code is never executed. Stop the server with Ctrl+C.
 Use `PORT=4174 bash web/run.sh` for another port, or set `NODE` to a Node.js
 executable if it is not on PATH. The launcher detects local Node.js 24 installs
 in the Gradle cache as a convenience. See [the web specification](spec/web.md).
+Container previews explicitly use `HOST=0.0.0.0` with `PUBLIC_PORT` set to the
+host-mapped port. Publish that port only on host loopback; Host/Origin checks
+remain enabled.
 
 HTTP tests run with `python3 tests/run.py`. For browser verification only,
 install the development dependency and Chromium:
@@ -96,16 +99,16 @@ layout. Playwright is not required to start the server.
 ## GitHub Actions
 
 `.github/workflows/ci.yml` runs on pull requests, pushes/merges to `main`, and
-manual dispatch. The `build-and-test` job uses the macOS 15 ARM64 runner,
+manual dispatch. The `build-and-test` matrix uses macOS 15 ARM64 and Ubuntu 24.04 x86_64,
 Kotlin/Native 2.4.20, JDK 21, Node.js 24, and Python 3.12. It builds from source, checks the
 native binary, runs the complete suite with `python3 tests/run.py`, and fails
 on failures, errors, skipped tests, or zero tests. Core corner-case tests use
 small checked-in fixtures; CI does not clone the external reference projects.
 
-Download `bg-macos-arm64` from the successful run's Artifacts section, unzip
-the artifact, and extract `bg-macos-arm64.tar.gz` with `tar -xzf`. The tar archive
+Download `bg-macos-arm64` or `bg-linux-x64` from the successful run's Artifacts section,
+unzip the artifact, and extract its `.tar.gz` with `tar -xzf`. The tar archive
 preserves execute permissions. Artifacts expire after 14 days. The repository
-owner can make `build-and-test` a required branch-protection check.
+owner can make both `build-and-test` matrix checks required branch-protection checks.
 
 Optional verification of read-only real checkouts:
 
@@ -115,3 +118,11 @@ python3 tests/verify_repositories.py repositories/MPS repositories/koog reposito
 
 This compares every eligible tracked `SKILL.md` with the scanner's source list
 and reports the exact repository revisions and discovery counts.
+
+## Parallel coding-agent containers
+
+See [sandbox setup and lifecycle](sandbox/README.md) and the
+[two-task plan](spec/two-agent-sandboxes-plan.md). Each agent receives its own
+checkout, branch, cache, result volume, and loopback preview. Agents export
+commits; a trusted host publisher creates separate draft PRs. Neither launch
+nor publication automatically merges a PR.

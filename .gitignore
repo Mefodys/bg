@@ -6,3 +6,4 @@ __pycache__/
 /repositories/
 /node_modules/
 /reports/web-*.png
+/sandbox/.runtime/

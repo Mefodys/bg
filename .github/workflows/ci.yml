@@ -15,14 +15,26 @@ concurrency:
 
 jobs:
   build-and-test:
-    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            architecture: arm64
+            platform: macos-aarch64
+            artifact: bg-macos-arm64
+          - runner: ubuntu-24.04
+            architecture: x86_64
+            platform: linux-x86_64
+            artifact: bg-linux-x64
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 25
     env:
       KOTLIN_VERSION: '2.4.20'
     steps:
       - uses: actions/checkout@v4
       - name: Verify runner architecture
-        run: test "$(uname -m)" = arm64
+        run: test "$(uname -m)" = '${{ matrix.architecture }}'
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -42,9 +54,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          compiler_dir="$HOME/.konan/kotlin-native-prebuilt-macos-aarch64-$KOTLIN_VERSION"
+          compiler_dir="$HOME/.konan/kotlin-native-prebuilt-${{ matrix.platform }}-$KOTLIN_VERSION"
           if [[ ! -x "$compiler_dir/bin/konanc" ]]; then
-            archive="kotlin-native-prebuilt-macos-aarch64-$KOTLIN_VERSION.tar.gz"
+            archive="kotlin-native-prebuilt-${{ matrix.platform }}-$KOTLIN_VERSION.tar.gz"
             base="https://github.com/JetBrains/kotlin/releases/download/v$KOTLIN_VERSION"
             curl --fail --location --retry 3 "$base/$archive" -o "$RUNNER_TEMP/$archive"
             curl --fail --location --retry 3 "$base/$archive.sha256" -o "$RUNNER_TEMP/$archive.sha256"
@@ -62,7 +74,11 @@ jobs:
         run: |
           test -x bg
           file bg | tee "$RUNNER_TEMP/bg-file.txt"
-          grep -E 'Mach-O.*arm64' "$RUNNER_TEMP/bg-file.txt"
+          if [[ '${{ matrix.architecture }}' == arm64 ]]; then
+            grep -E 'Mach-O.*arm64' "$RUNNER_TEMP/bg-file.txt"
+          else
+            grep -E 'ELF.*x86-64' "$RUNNER_TEMP/bg-file.txt"
+          fi
           ./bg --version
           ./bg --help
       - name: Run all tests (including corner cases)
@@ -74,17 +90,17 @@ jobs:
       - name: Install browser test tools
         run: |
           npm ci --ignore-scripts
-          npx playwright install chromium --only-shell
+          npx playwright install chromium --only-shell --with-deps
       - name: Verify web interface in browser
         run: npm run test:web
       - name: Check whitespace
         run: git diff --check
       - name: Package executable (preserve execute permission)
-        run: tar -czf build/bg-macos-arm64.tar.gz bg
+        run: tar -czf 'build/${{ matrix.artifact }}.tar.gz' bg
       - name: Upload tested executable
         uses: actions/upload-artifact@v4
         with:
-          name: bg-macos-arm64
-          path: build/bg-macos-arm64.tar.gz
+          name: ${{ matrix.artifact }}
+          path: build/${{ matrix.artifact }}.tar.gz
           if-no-files-found: error
           retention-days: 14

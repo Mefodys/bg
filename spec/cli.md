@@ -15,7 +15,8 @@ allows a caller to locate and use every skill.
 
 Implement the tool in Kotlin and compile it with Kotlin/Native to a standalone
 native executable named `bg`. It must run without Python or a JVM. The initial
-supported platform is macOS ARM64; provide a reproducible build script.
+supported platforms are macOS ARM64 and Linux x86_64; provide a reproducible
+build script and platform-specific POSIX errno adapters.
 
 The executable name is configurable by the implementer. In this document it is
 represented by `<toolname>`.

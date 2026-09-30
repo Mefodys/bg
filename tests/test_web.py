@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import select
 import shutil
+import socket
 import subprocess
 import tempfile
 import unittest
@@ -18,7 +19,7 @@ class WebTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.server = subprocess.Popen(["bash", "web/run.sh"], cwd=ROOT,
-                                      env=dict(os.environ, PORT="0"),
+                                      env=dict(os.environ, PORT="0", HOST="127.0.0.1", PUBLIC_PORT="0"),
                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         if not select.select([cls.server.stdout], [], [], 15)[0]:
             cls.server.terminate()
@@ -101,6 +102,38 @@ class WebTests(unittest.TestCase):
         self.assertEqual(self.request("/api/scan", {"path": str(self.repository)}, headers={"Origin": "https://example.com"})[0], 403)
         self.assertEqual(self.request("/", headers={"Host": "evil.example"})[0], 403)
         self.assertEqual(self.request("/", headers={"Sec-Fetch-Site": "cross-site"})[0], 403)
+
+    def test_public_port_not_allowed_on_default_loopback_server(self):
+        self.assertEqual(self.request("/", headers={"Host": "localhost:4174"})[0], 403)
+
+    def test_container_preview_allows_only_local_mapped_origins(self):
+        with socket.socket() as reservation:
+            reservation.bind(("127.0.0.1", 0))
+            port = reservation.getsockname()[1]
+        preview = subprocess.Popen(["bash", "web/run.sh"], cwd=ROOT,
+                    env=dict(os.environ, PORT=str(port), HOST="0.0.0.0", PUBLIC_PORT="4174"),
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        try:
+            self.assertTrue(select.select([preview.stdout], [], [], 15)[0], "Preview did not start")
+            self.assertEqual(preview.stdout.readline().strip(), "Skill Atlas: http://127.0.0.1:4174")
+            for mapped_host in ["127.0.0.1:4174", "localhost:4174"]:
+                request = Request(f"http://127.0.0.1:{port}/api/repositories",
+                    headers={"Host": mapped_host, "Origin": "http://" + mapped_host})
+                with urlopen(request, timeout=10) as response:
+                    self.assertEqual(response.status, 200)
+            for headers in [{"Host": "evil.example:4174"},
+                            {"Host": "localhost:4174", "Origin": "http://evil.example:4174"},
+                            {"Host": "localhost:4175"},
+                            {"Host": "localhost:4174", "Sec-Fetch-Site": "cross-site"}]:
+                with self.assertRaises(HTTPError) as failure:
+                    urlopen(Request(f"http://127.0.0.1:{port}/", headers=headers), timeout=10)
+                self.assertEqual(failure.exception.code, 403)
+                failure.exception.close()
+        finally:
+            preview.terminate()
+            preview.wait(timeout=5)
+            preview.stdout.close()
+            preview.stderr.close()
 
     def test_rejects_oversized_request(self):
         status, _ = self.request("/api/scan", {"path": "x" * 20000})

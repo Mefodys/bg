@@ -13,7 +13,11 @@ const sessions = new Map();
 const assets = new Map([['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']]]);
 let running = false;
 const port = Number(process.env.PORT ?? 4173);
+const host = process.env.HOST ?? '127.0.0.1';
+if (!['127.0.0.1', '0.0.0.0'].includes(host)) throw new Error('HOST must be 127.0.0.1 or 0.0.0.0');
+const publicPort = Number(process.env.PUBLIC_PORT ?? port);
 if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('PORT must be an integer between 0 and 65535');
+if (!Number.isInteger(publicPort) || publicPort < 0 || publicPort > 65535) throw new Error('PUBLIC_PORT must be an integer between 0 and 65535');
 try { await stat(binary); } catch { console.error('Scanner missing. Run bash build.sh first.'); process.exit(1); }
 
 function fail(status, message) { return Object.assign(new Error(message), { status }); }
@@ -36,6 +40,7 @@ const server = http.createServer(async (req, res) => {
   try {
     const address = server.address();
     const allowed = [`127.0.0.1:${address.port}`, `localhost:${address.port}`];
+    if (host === '0.0.0.0' && publicPort > 0 && publicPort <= 65535) allowed.push(`127.0.0.1:${publicPort}`, `localhost:${publicPort}`);
     if (!allowed.includes(req.headers.host)) throw fail(403, 'Untrusted host.');
     if (req.headers.origin && !allowed.map(h => `http://${h}`).includes(req.headers.origin)) throw fail(403, 'Untrusted origin.');
     if (req.headers['sec-fetch-site'] === 'cross-site') throw fail(403, 'Cross-site requests are not allowed.');
@@ -101,4 +106,4 @@ const server = http.createServer(async (req, res) => {
 });
 server.requestTimeout = 150000;
 server.on('error', error => { console.error(error.code === 'EADDRINUSE' ? `Port ${port} is occupied. Try PORT=4174 bash web/run.sh` : error.message); process.exit(1); });
-server.listen(port, '127.0.0.1', () => console.log(`Skill Atlas: http://127.0.0.1:${server.address().port}`));
+server.listen(port, host, () => console.log(`Skill Atlas: http://127.0.0.1:${publicPort || server.address().port}`));

@@ -1,0 +1,8 @@
+.git
+.idea
+bg
+build
+node_modules
+repositories
+sandbox/.runtime
+reports/*.png
