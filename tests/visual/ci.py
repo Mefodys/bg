@@ -2,9 +2,11 @@
 """Run base/head twice in one environment, then gate the exact PR difference."""
 import json,os,subprocess,sys
 from pathlib import Path
+from failure import failure_heading
 
 base,head,artifacts=map(lambda p:Path(p).resolve(),sys.argv[1:4]);tools=head/'tests/visual'
 artifacts.mkdir(parents=True,exist_ok=False)
+current_results=None
 def call(args,**kwargs):subprocess.run(args,check=True,**kwargs)
 def sha(root):return subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
 def summary(text):
@@ -25,6 +27,7 @@ try:
     for variant,root in [('base',base),('head',head)]:
         for index in (1,2):
             env={**os.environ,'VISUAL_ROOT':str(root),'VISUAL_OUTPUT':str(artifacts/f'{variant}-{index}'),'VISUAL_RESULTS':str(artifacts/f'{variant}-results-{index}'),'VISUAL_SNAPSHOTS':str(artifacts/f'{variant}-snapshots'),'VISUAL_RUN':f'run-{variant}-{index}','VISUAL_BASE_SHA':sha(base)}
+            current_results=Path(env['VISUAL_RESULTS'])/'results.json'
             # Separate ephemeral self-reference generation from the ordinary exact verification.
             call(['node','node_modules/playwright/cli.js','test','--config','playwright.visual.config.mjs','--update-snapshots=all' if index==1 else '--update-snapshots=none'],cwd=head,env=env)
         call(['python3',str(tools/'compare.py'),str(artifacts/f'{variant}-1'),str(artifacts/f'{variant}-2'),str(artifacts/f'{variant}-determinism')])
@@ -38,10 +41,12 @@ try:
     result=subprocess.run(['python3',str(tools/'analyze.py'),str(baseline),str(artifacts/'head-2'),str(artifacts/'comparison'),str(tools/'expected-changes.json')])
     if (artifacts/'comparison/comparison.json').exists():call(['python3',str(tools/'build-comparison.py'),str(artifacts/'comparison')])
     report=(artifacts/'comparison/comparison.md').read_text();summary(report)
-    if result.returncode:print('::error title=REGRESSION::Visual regression or incomplete screenshot verification; open the comparison artifact.');sys.exit(result.returncode)
+    if result.returncode:
+        title='REGRESSION' if result.returncode==1 else 'INCOMPLETE VISUAL VERIFICATION'
+        print('::error title='+title+'::Open the comparison artifact for the failed visual verification.');sys.exit(result.returncode)
 except ValueError as e:
     summary('# INCOMPLETE VISUAL VERIFICATION\n\n'+str(e)+'\n');print('::error title=INCOMPLETE VISUAL VERIFICATION::'+str(e));sys.exit(2)
 except subprocess.CalledProcessError as e:
-    heading='INCOMPLETE — NONDETERMINISTIC SCREENSHOTS' if 'compare.py' in str(e.cmd) else 'REGRESSION — PLAYWRIGHT TEST FAILURE'
+    heading=failure_heading(e.cmd,current_results)
     summary('# '+heading+'\n\nThe visual check failed. Inspect test results/traces before merging; failures are never accepted as expected feature changes.\n')
     print('::error title='+heading+'::Required visual checks failed; inspect uploaded artifacts.');sys.exit(1)

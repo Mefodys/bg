@@ -38,4 +38,23 @@ class PixelIntegrationTests(unittest.TestCase):
    for name,font in [('before','a'),('after','b')]:
     d=root/name;d.mkdir();(d/'manifest.json').write_text(json.dumps({'environment':{'font':font},'suiteHash':'s','fixtureHash':'f','scriptHash':'s'}))
    with self.assertRaisesRegex(ValueError,'INCOMPATIBLE'):analyze(root/'before',root/'after',root/'out',{})
+class FailureClassificationTests(unittest.TestCase):
+ def report(self,error=None,top_errors=None):
+  return {'errors':top_errors or [],'suites':[{'specs':[{'tests':[{'results':[{'errors':[{'message':error}] if error else []}]}]}]}]}
+ def check(self,report):
+  import tempfile,json
+  from pathlib import Path
+  from failure import failure_heading
+  with tempfile.TemporaryDirectory() as temp:
+   p=Path(temp)/'results.json';p.write_text(json.dumps(report))
+   return failure_heading(['node','playwright'],p)
+ def test_git_startup_failure_is_incomplete(self):
+  self.assertIn('INCOMPLETE',self.check(self.report(top_errors=[{'message':'git rev-parse failed'}])))
+ def test_same_revision_snapshot_failure_is_nondeterminism(self):
+  self.assertIn('NONDETERMINISTIC',self.check(self.report('expect(page).toHaveScreenshot: Screenshot comparison failed')))
+ def test_behavior_assertion_failure_is_regression(self):
+  self.assertIn('REGRESSION',self.check(self.report('Expected 1 of 8; received 0 of 8')))
+ def test_missing_result_file_is_incomplete(self):
+  from failure import failure_heading
+  self.assertIn('INCOMPLETE',failure_heading(['node','playwright']))
 if __name__=='__main__':unittest.main()

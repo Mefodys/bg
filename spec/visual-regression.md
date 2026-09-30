@@ -26,6 +26,15 @@ initial bootstrap), the previous exact revision is reconstructed in the pinned
 container; baseline-source.txt explicitly records this fallback. Never use an
 unrelated older commit. Missing/incompatible/nondeterministic captures fail.
 
+The Linux build compiles each revision's unchanged `src/Main.kt` with the same
+versioned `linux-posix-compat.kt` binding adapters. These map historical macOS
+`__error()` and integer `ioctl` signatures to their Linux POSIX equivalents;
+they contain no discovery/search logic. Current source uses portable `set_posix_errno`
+and request conversion directly. Linux also runs the strict native/HTTP suite
+as the image's unprivileged `pwuser`, so permission tests execute without skips.
+Setup/build failures report INCOMPLETE VISUAL VERIFICATION rather than claiming
+a screenshot comparison occurred or accepting a baseline.
+
 Existing fixtures/scenarios/viewports/font versions cannot change in an ordinary
 PR; CI blocks such changes pending an explicit visual-contract migration. This
 prevents removing tests or changing data to hide differences.

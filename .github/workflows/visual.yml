@@ -71,10 +71,17 @@ jobs:
           echo "KONANC=$compiler_dir/bin/konanc" >> "$GITHUB_ENV"
       - name: Build previous and current native scanners from exact revisions
         run: |
-          bash previous/build.sh
-          bash current/build.sh
+          bash current/tests/visual/build-native-linux.sh previous
+          bash current/tests/visual/build-native-linux.sh current
           previous/bg --version
           current/bg --version
+      - name: Run native and HTTP behavior tests on Linux
+        working-directory: current
+        run: |
+          checkout_owner="$(stat -c '%u:%g' .)"
+          trap 'chown -R "$checkout_owner" .' EXIT
+          chown -R pwuser:pwuser .
+          runuser -u pwuser -- env "PATH=$PATH" python3 tests/run.py
       - name: Install locked browser test tools
         working-directory: current
         run: npm ci --ignore-scripts
@@ -85,11 +92,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
-        run: python3 current/tests/visual/download-baseline.py "$REPOSITORY" "$BASE_SHA" "$GITHUB_WORKSPACE/previous-baseline"
+        run: python3 current/tests/visual/download-baseline.py "$REPOSITORY" "$BASE_SHA" previous-baseline
       - name: Playwright tests, deterministic repeats and previous/current analysis
         working-directory: current
         env:
-          VISUAL_PREVIOUS_BASELINE: ${{ github.workspace }}/previous-baseline
+          VISUAL_PREVIOUS_BASELINE: ../previous-baseline
         run: python3 tests/visual/ci.py ../previous . ../visual-artifacts
       - name: Upload old, new, highlighted differences and test results
         if: always()
@@ -97,8 +104,16 @@ jobs:
         with:
           name: visual-comparison-${{ env.HEAD_SHA }}
           path: visual-artifacts/
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 90
+      - name: Report incomplete verification when setup or build failed
+        if: failure()
+        run: |
+          if [ ! -f visual-artifacts/summary.md ]; then
+            echo '::error title=INCOMPLETE VISUAL VERIFICATION::Setup, build or native tests failed before screenshot analysis.'
+            echo '# INCOMPLETE VISUAL VERIFICATION' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Setup, build or native tests failed before screenshot analysis. Inspect the failed step; no visual baseline was accepted.' >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Save accepted main screenshots for the next PR
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
