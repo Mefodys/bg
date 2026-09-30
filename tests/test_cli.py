@@ -5,6 +5,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+import shutil
 
 CLI = Path(__file__).resolve().parents[1] / "bg"
 EXCLUDED = {".git", "node_modules", "vendor", ".venv", "venv", "dist", "build", "target", ".idea", ".vscode"}
@@ -202,6 +203,71 @@ class ScannerTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0)
         self.assertIn("Warnings:", result.stdout)
         self.assertIn("bad/SKILL.md:", result.stdout)
+
+    def all_skills(self):
+        return [skill for section in self.scan()["sections"] for skill in section["skills"]]
+
+    def test_checked_in_reference_layouts(self):
+        fixture = Path(__file__).parent / "fixtures/corner-cases"
+        shutil.copytree(fixture, self.root, dirs_exist_ok=True)
+        skills = self.all_skills()
+        self.assertEqual(len(skills), 4)
+        development = next(s for s in skills if s["name"] == "shared-skill" and s["category"] == "development")
+        self.assertEqual(development["location"], ".agents/skills/shared")
+        self.assertEqual([s["location"] for s in development["sources"]],
+                         [".agents/skills/shared", ".claude/skills/shared"])
+        self.assertFalse(development["conflict"])
+        product = next(s for s in skills if s["category"] == "product")
+        self.assertEqual(product["name"], development["name"])
+        self.assertEqual(len(product["sources"]), 1)
+        fixture_skill = next(s for s in skills if s["category"] == "test-fixture")
+        self.assertEqual(fixture_skill["name"], "weather-fixture")
+        android = next(s for s in skills if s["name"] == "android-development")
+        self.assertEqual(android["location"], "agent/skills/android")
+        self.assertEqual(android["description"], "Develop Android Studio in an unconventional skill directory.")
+        data = self.scan()
+        self.assertIn("Product skills", [s["name"] for s in data["sections"]])
+        self.assertIn("Test fixtures", [s["name"] for s in data["sections"]])
+
+    def test_mirror_line_endings_and_deterministic_canonical_location(self):
+        content = "# Same\n\nSame description.\n"
+        self.manifest(".claude/skills/shared", content.replace("\n", "\r\n"))
+        self.manifest(".agents/skills/shared", content)
+        first = self.scan()
+        self.assertEqual(first, self.scan())
+        skill = first["sections"][0]["skills"][0]
+        self.assertEqual(skill["location"], ".agents/skills/shared")
+        self.assertEqual(len(skill["sources"]), 2)
+
+    def test_conflicting_names_are_not_merged(self):
+        self.manifest(".agents/skills/shared", "# Same\n\nSame description.\n\nBody one.")
+        self.manifest(".claude/skills/shared", "# Same\n\nSame description.\n\nBody two.")
+        skills = self.all_skills()
+        self.assertEqual(len(skills), 2)
+        self.assertTrue(all(s["conflict"] for s in skills))
+        self.assertTrue(all(len(s["sources"]) == 1 for s in skills))
+        self.assertIn("Conflicting variant", self.run_cli("scan", str(self.root)).stdout)
+
+    def test_classification_boundaries_and_precedence(self):
+        for path in ["contest/skills/example", "skills/test-helper", "resources/skills/example"]:
+            self.manifest(path)
+        for path in ["src/commonTest/resources/example", "testData/skills/example",
+                     "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/tests/example"]:
+            self.manifest(path)
+        skills = self.all_skills()
+        self.assertEqual(len(skills), 6)
+        self.assertEqual(sum(s["category"] == "test-fixture" for s in skills), 3)
+        self.assertEqual(sum(s["category"] == "development" for s in skills), 3)
+        self.assertFalse(any(s["category"] == "product" for s in skills))
+
+    def test_no_name_only_or_unrelated_content_deduplication(self):
+        self.manifest(".agents/skills/first")
+        self.manifest(".claude/skills/second")
+        self.manifest("other/example")
+        skills = self.all_skills()
+        self.assertEqual(len(skills), 3)
+        self.assertTrue(all(len(s["sources"]) == 1 for s in skills))
+        self.assertTrue(all(not s["conflict"] for s in skills))
 
 
 if __name__ == "__main__":

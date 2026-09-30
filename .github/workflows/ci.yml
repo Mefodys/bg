@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    timeout-minutes: 25
+    env:
+      KOTLIN_VERSION: '2.4.20'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify runner architecture
+        run: test "$(uname -m)" = arm64
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Cache Kotlin Native
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ runner.arch }}-${{ env.KOTLIN_VERSION }}
+      - name: Install Kotlin Native
+        shell: bash
+        run: |
+          set -euo pipefail
+          compiler_dir="$HOME/.konan/kotlin-native-prebuilt-macos-aarch64-$KOTLIN_VERSION"
+          if [[ ! -x "$compiler_dir/bin/konanc" ]]; then
+            archive="kotlin-native-prebuilt-macos-aarch64-$KOTLIN_VERSION.tar.gz"
+            base="https://github.com/JetBrains/kotlin/releases/download/v$KOTLIN_VERSION"
+            curl --fail --location --retry 3 "$base/$archive" -o "$RUNNER_TEMP/$archive"
+            curl --fail --location --retry 3 "$base/$archive.sha256" -o "$RUNNER_TEMP/$archive.sha256"
+            cd "$RUNNER_TEMP"
+            checksum="$(tr -d '[:space:]' < "$archive.sha256")"
+            [[ "$checksum" =~ ^[0-9a-fA-F]{64}$ ]]
+            echo "$checksum  $archive" | shasum -a 256 -c -
+            mkdir -p "$HOME/.konan"
+            tar -xzf "$archive" -C "$HOME/.konan"
+          fi
+          echo "KONANC=$compiler_dir/bin/konanc" >> "$GITHUB_ENV"
+      - name: Build native executable
+        run: bash build.sh
+      - name: Native binary smoke checks
+        run: |
+          test -x bg
+          file bg | tee "$RUNNER_TEMP/bg-file.txt"
+          rg 'Mach-O.*arm64' "$RUNNER_TEMP/bg-file.txt"
+          ./bg --version
+          ./bg --help
+      - name: Run all tests (including corner cases)
+        run: python3 tests/run.py
+      - name: Check whitespace
+        run: git diff --check
+      - name: Package executable (preserve execute permission)
+        run: tar -czf build/bg-macos-arm64.tar.gz bg
+      - name: Upload tested executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: bg-macos-arm64
+          path: build/bg-macos-arm64.tar.gz
+          if-no-files-found: error
+          retention-days: 14

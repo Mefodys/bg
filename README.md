@@ -41,4 +41,48 @@ harness; tests invoke the compiled native binary as a separate process:
 
 ```bash
 python3 -m unittest discover -s tests -v
+python3 tests/run.py
 ```
+
+## Classification and duplicates
+
+Development skills are grouped by their top-level folder. Test fixtures are
+listed separately when a path contains `test`, `tests`, `testData`, `test-data`,
+`testdata`, `integration-tests`, or `testFixtures`, or a `src/<sourceSet>Test`
+pair (including `src/test`). Names such as `contest` and `test-helper` do not
+trigger classification. MPS bundles under
+`plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills` are product skills.
+Test classification takes precedence; a generic `resources` folder is not
+enough to classify a skill as a product resource.
+
+Matching `.agents/skills/<path>` and `.claude/skills/<path>` manifests merge only
+when their names and complete contents match after line-ending normalization.
+The `.agents` path is canonical and all locations are retained in JSON `sources`
+and the terminal's `Also:` lines. Different bodies with the same name and role
+remain separate with `conflict: true`. Product and development roles never
+merge. JSON entries add `category`, `conflict`, and `sources`; the canonical
+`location` and `manifest_path` fields remain available. Reserved section IDs
+`@test-fixtures` and `@product` display as `Test fixtures` and `Product skills`.
+
+## GitHub Actions
+
+`.github/workflows/ci.yml` runs on pull requests, pushes/merges to `main`, and
+manual dispatch. The `build-and-test` job uses the macOS 15 ARM64 runner,
+Kotlin/Native 2.4.20, JDK 21, and Python 3.12. It builds from source, checks the
+native binary, runs the complete suite with `python3 tests/run.py`, and fails
+on failures, errors, skipped tests, or zero tests. Core corner-case tests use
+small checked-in fixtures; CI does not clone the external reference projects.
+
+Download `bg-macos-arm64` from the successful run's Artifacts section, unzip
+the artifact, and extract `bg-macos-arm64.tar.gz` with `tar -xzf`. The tar archive
+preserves execute permissions. Artifacts expire after 14 days. The repository
+owner can make `build-and-test` a required branch-protection check.
+
+Optional verification of read-only real checkouts:
+
+```bash
+python3 tests/verify_repositories.py repositories/MPS repositories/koog repositories/android /path/to/kotlin
+```
+
+This compares every eligible tracked `SKILL.md` with the scanner's source list
+and reports the exact repository revisions and discovery counts.

@@ -1,0 +1,56 @@
+[
+  {
+    "repository": "https://github.com/JetBrains/MPS.git",
+    "revision": "49d37b63488a0a8e42eb0130cb867fd508f398ac",
+    "manifest_count": 114,
+    "logical_skill_count": 73,
+    "categories": {
+      "development": 41,
+      "product": 32
+    },
+    "mirrored_skills": 41,
+    "conflicting_variants": 0,
+    "warnings": [],
+    "coverage": "Every eligible tracked manifest appears exactly once in sources"
+  },
+  {
+    "repository": "https://github.com/JetBrains/koog.git",
+    "revision": "16d83270f8a7f25358ae0165466f14e70416c428",
+    "manifest_count": 4,
+    "logical_skill_count": 4,
+    "categories": {
+      "development": 2,
+      "test-fixture": 2
+    },
+    "mirrored_skills": 0,
+    "conflicting_variants": 0,
+    "warnings": [],
+    "coverage": "Every eligible tracked manifest appears exactly once in sources"
+  },
+  {
+    "repository": "https://github.com/JetBrains/android.git",
+    "revision": "4f0a5e1cb653c29f81c6b77eff885a6e81622cf4",
+    "manifest_count": 6,
+    "logical_skill_count": 6,
+    "categories": {
+      "development": 6
+    },
+    "mirrored_skills": 0,
+    "conflicting_variants": 0,
+    "warnings": [],
+    "coverage": "Every eligible tracked manifest appears exactly once in sources"
+  },
+  {
+    "repository": "git@github.com:JetBrains/kotlin.git",
+    "revision": "05d11b0de5a843d9a9ce78d0a38955147bea0563",
+    "manifest_count": 6,
+    "logical_skill_count": 6,
+    "categories": {
+      "development": 6
+    },
+    "mirrored_skills": 0,
+    "conflicting_variants": 0,
+    "warnings": [],
+    "coverage": "Every eligible tracked manifest appears exactly once in sources"
+  }
+]

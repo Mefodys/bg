@@ -45,7 +45,8 @@ the target repository.
    conventional directory such as `skills/`.
 3. A directory is a skill directory when it directly contains a regular file
    named `SKILL.md` (case-sensitive).
-4. Each `SKILL.md` represents exactly one discovered skill.
+4. Each `SKILL.md` represents one discovered source. Equivalent development
+   mirrors may be combined into one logical skill as described below.
 5. Do not follow symbolic links to directories. A symbolic link to a file named
    `SKILL.md` is not a skill manifest.
 6. Skip these directories anywhere in the tree:
@@ -92,6 +93,33 @@ Markdown must still yield a skill record using the directory-name fallback.
 
 ## 5. Output contract
 
+### Classification and duplicate handling
+
+Every entry has `category`: `development`, `test-fixture`, or `product`.
+Classify as a test fixture if a complete directory component is `test`, `tests`,
+`testData`, `test-data`, `testdata`, `integration-tests`, or `testFixtures`, or
+there is a `src/test`, `src/testFixtures`, or `src/<sourceSet>Test` pair with an
+alphanumeric/hyphen/underscore source-set prefix. This rule has highest priority.
+Otherwise classify the explicit MPS resource prefix
+`plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills` as `product`.
+All other locations are `development`; no directory allowlist applies.
+
+Combine only corresponding `.agents/skills/<path>` and `.claude/skills/<path>`
+development mirrors with identical names and full manifest text after CRLF/CR
+normalization to LF. Prefer `.agents` as the canonical source. Do not combine
+unreadable manifests, unrelated directories, or different roles. Each entry
+contains `sources`, a list of `{location, manifest_path}` objects with the
+canonical source first. If different readable manifests share a name and role,
+retain them separately with `conflict: true`; otherwise use `false`.
+
+Development sections retain their top-level folder IDs. Test fixtures and
+product skills use reserved section IDs `@test-fixtures` and `@product`, with
+display names `Test fixtures` and `Product skills`. Sort by section ID and then
+canonical manifest path. These section IDs are grouping keys, not filesystem
+paths.
+
+### Display and JSON
+
 By default, write a human-readable list to stdout: repository path, total skill
 and section counts, then a heading for each section and numbered skills. Each
 skill shows its name, a labeled repository-relative path, and a short description
@@ -130,7 +158,12 @@ Successful JSON output schema (`--json`):
           "name": "Example skill",
           "description": "A short description of the skill.",
           "location": "skills/example",
-          "manifest_path": "skills/example/SKILL.md"
+          "manifest_path": "skills/example/SKILL.md",
+          "category": "development",
+          "conflict": false,
+          "sources": [
+            {"location": "skills/example", "manifest_path": "skills/example/SKILL.md"}
+          ]
         }
       ]
     }
@@ -143,9 +176,9 @@ Requirements:
 
 - `repository` is the normalized absolute path actually scanned.
 - `sections` is always present, including when no skills are found.
-- Each section has a display `name`, its repository-relative `path`, and a
-  `skills` list. The `name` and `path` are identical in version 1, except that
-  both are `.` for the repository-root section.
+- Each section has a display `name`, a grouping ID in `path`, and a `skills`
+  list. For development skills the ID is the top-level repository-relative
+  directory; for other roles it is the reserved ID described above.
 - Every skill record includes `name`, `location`, and `description`; these are
   the required fields consumers use to display a skill list. `location` is the
   repository-relative skill directory. `manifest_path` is retained so callers

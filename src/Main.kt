@@ -3,7 +3,56 @@ import kotlinx.cinterop.*
 import platform.posix.*
 
 private val excluded = setOf(".git", "node_modules", "vendor", ".venv", "venv", "dist", "build", "target", ".idea", ".vscode")
-private data class Skill(val name: String, val description: String?, val location: String, val manifest: String)
+private data class Source(val location: String, val manifest: String)
+private data class Skill(
+    val name: String, val description: String?, val location: String, val manifest: String,
+    val category: String, val content: String?,
+    val sources: List<Source> = listOf(Source(location, manifest)), val conflict: Boolean = false,
+)
+
+private fun category(location: String): String {
+    val parts = location.split('/')
+    val tests = setOf("test", "tests", "testData", "test-data", "testdata", "integration-tests", "testFixtures")
+    if (parts.any { it in tests } || parts.windowed(2).any {
+        it[0] == "src" && (it[1] in setOf("test", "testFixtures") || it[1].matches(Regex("[A-Za-z0-9_-]+Test")))
+    }) return "test-fixture"
+    val productPrefix = "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills"
+    if (location == productPrefix || location.startsWith("$productPrefix/")) return "product"
+    return "development"
+}
+
+private fun logicalSkills(discovered: List<Skill>): List<Skill> {
+    val result = mutableListOf<Skill>()
+    val consumed = mutableSetOf<String>()
+    for (skill in discovered.sortedBy { it.manifest }) {
+        if (skill.manifest in consumed) continue
+        val mirror = if (skill.category == "development" && skill.location.startsWith(".agents/skills/"))
+            discovered.firstOrNull {
+                it.location == ".claude/skills/" + skill.location.removePrefix(".agents/skills/") &&
+                    it.name == skill.name && it.content != null && it.content == skill.content && it.category == skill.category
+            } else null
+        if (mirror != null) {
+            consumed.add(mirror.manifest)
+            result.add(skill.copy(sources = listOf(Source(skill.location, skill.manifest), Source(mirror.location, mirror.manifest))))
+        } else result.add(skill)
+    }
+    return result.map { skill -> skill.copy(conflict = result.any {
+        it.manifest != skill.manifest && it.category == skill.category && it.name == skill.name &&
+            it.content != null && skill.content != null && it.content != skill.content
+    }) }
+}
+
+private fun section(skill: Skill): String = when (skill.category) {
+    "test-fixture" -> "@test-fixtures"
+    "product" -> "@product"
+    else -> if (skill.location == ".") "." else skill.location.substringBefore('/')
+}
+
+private fun sectionName(section: String): String = when (section) {
+    "@test-fixtures" -> "Test fixtures"
+    "@product" -> "Product skills"
+    else -> section
+}
 
 private fun unquote(value: String): String = buildString {
     var i = 0
@@ -147,7 +196,7 @@ private class Terminal {
     private val color = interactive && getenv("NO_COLOR") == null
     val width: Int = memScoped {
         val size = alloc<winsize>()
-        val columns = if (interactive && ioctl(STDOUT_FILENO, TIOCGWINSZ.toULong(), size.ptr) == 0) size.ws_col.toInt() else 0
+        val columns = if (interactive && ioctl(STDOUT_FILENO, TIOCGWINSZ, size.ptr) == 0) size.ws_col.toInt() else 0
         (columns.takeIf { it > 0 } ?: getenv("COLUMNS")?.toKString()?.toIntOrNull() ?: 100).coerceIn(40, 160)
     }
     fun paint(text: String, code: String): String = if (color) "\u001b[${code}m$text\u001b[0m" else text
@@ -171,7 +220,7 @@ private fun wrap(text: String, width: Int = 84): String {
 }
 
 private fun scan(root: String, json: Boolean): String {
-    val skills = mutableListOf<Skill>()
+    val discovered = mutableListOf<Skill>()
     val warnings = mutableListOf<String>()
     val pending = mutableListOf(".")
     while (pending.isNotEmpty()) {
@@ -203,15 +252,18 @@ private fun scan(root: String, json: Boolean): String {
                 if (mode != S_IFREG || name != "SKILL.md") continue
                 var skillName = path.substringAfterLast('/').ifEmpty { "/" }
                 var description: String? = null
+                var content: String? = null
                 try {
-                    val fields = parse(readManifest(full), skillName)
+                    content = readManifest(full).replace("\r\n", "\n").replace('\r', '\n')
+                    val fields = parse(content, skillName)
                     skillName = fields.first; description = fields.second
                 } catch (error: Exception) { warnings.add("$location: ${error.message ?: "Cannot read manifest"}") }
-                skills.add(Skill(skillName, description, relative, location))
+                discovered.add(Skill(skillName, description, relative, location, category(relative), content))
             }
         } finally { closedir(directory) }
     }
-    val sections = skills.groupBy { if (it.location == ".") "." else it.location.substringBefore('/') }
+    val skills = logicalSkills(discovered)
+    val sections = skills.groupBy(::section)
     if (!json) return buildString {
         val terminal = Terminal()
         append(terminal.paint("\n  SKILL ATLAS", "1;36"))
@@ -224,7 +276,7 @@ private fun scan(root: String, json: Boolean): String {
         if (skills.isEmpty()) append("\nNo skills found.\n")
         for (section in sections.keys.sorted()) {
             val entries = sections.getValue(section).sortedBy { it.manifest }
-            append("\n  ${terminal.paint("[${visible(section)}]", "1;35")}  ${terminal.paint("${entries.size} skills", "2")}\n")
+            append("\n  ${terminal.paint("[${visible(sectionName(section))}]", "1;35")}  ${terminal.paint("${entries.size} skills", "2")}\n")
             for ((i, skill) in entries.withIndex()) {
                 val prefix = "  ${(i + 1).toString().padStart(2)} › "
                 val name = compact(skill.name, terminal.width - prefix.length - 14)
@@ -232,6 +284,8 @@ private fun scan(root: String, json: Boolean): String {
                 append("\n${terminal.paint(prefix, "2")}${terminal.paint(name, "1;36")}$gap${terminal.link("$root/${skill.manifest}")}\n")
                 append(terminal.paint(wrap(compact(skill.description ?: "No description available.", terminal.width - 8), terminal.width - 8), "37"))
                 append("\n${terminal.paint("    ${visible(skill.location)}", "2")}\n")
+                for (source in skill.sources.drop(1)) append(terminal.paint("    Also: ${visible(source.location)}\n", "2"))
+                if (skill.conflict) append(terminal.paint("    ⚠ Conflicting variant: same name, different manifest\n", "33"))
             }
         }
         if (warnings.isNotEmpty()) {
@@ -242,10 +296,12 @@ private fun scan(root: String, json: Boolean): String {
     return buildString {
         append("{\n  \"repository\": ${quote(root)},\n  \"sections\": [")
         append(sections.keys.sorted().joinToString(",") { section ->
-            "\n    {\"name\": ${quote(section)}, \"path\": ${quote(section)}, \"skills\": [" +
+            "\n    {\"name\": ${quote(sectionName(section))}, \"path\": ${quote(section)}, \"skills\": [" +
                 sections.getValue(section).sortedBy { it.manifest }.joinToString(",") { skill ->
                     "\n      {\"name\": ${quote(skill.name)}, \"description\": ${skill.description?.let(::quote) ?: "null"}, " +
-                        "\"location\": ${quote(skill.location)}, \"manifest_path\": ${quote(skill.manifest)}}"
+                        "\"location\": ${quote(skill.location)}, \"manifest_path\": ${quote(skill.manifest)}, " +
+                        "\"category\": ${quote(skill.category)}, \"conflict\": ${skill.conflict}, \"sources\": [" +
+                        skill.sources.joinToString(", ") { "{\"location\": ${quote(it.location)}, \"manifest_path\": ${quote(it.manifest)}}" } + "]}"
                 } + "\n    ]}"
         })
         append("\n  ],\n  \"warnings\": [${warnings.sorted().joinToString(", ", transform = ::quote)}]\n}")
