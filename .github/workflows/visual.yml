@@ -92,7 +92,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
-        run: python3 current/tests/visual/download-baseline.py "$REPOSITORY" "$BASE_SHA" "$GITHUB_WORKSPACE/previous-baseline"
+        run: python3 current/tests/visual/download-baseline.py "$REPOSITORY" "$BASE_SHA" previous-baseline
       - name: Playwright tests, deterministic repeats and previous/current analysis
         working-directory: current
         env:
