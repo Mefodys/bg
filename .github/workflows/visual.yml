@@ -78,6 +78,8 @@ jobs:
       - name: Run native and HTTP behavior tests on Linux
         working-directory: current
         run: |
+          checkout_owner="$(stat -c '%u:%g' .)"
+          trap 'chown -R "$checkout_owner" .' EXIT
           chown -R pwuser:pwuser .
           runuser -u pwuser -- env "PATH=$PATH" python3 tests/run.py
       - name: Install locked browser test tools
