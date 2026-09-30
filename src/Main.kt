@@ -196,7 +196,7 @@ private class Terminal {
     private val color = interactive && getenv("NO_COLOR") == null
     val width: Int = memScoped {
         val size = alloc<winsize>()
-        val columns = if (interactive && ioctl(STDOUT_FILENO, TIOCGWINSZ, size.ptr) == 0) size.ws_col.toInt() else 0
+        val columns = if (interactive && ioctl(STDOUT_FILENO, TIOCGWINSZ.convert(), size.ptr) == 0) size.ws_col.toInt() else 0
         (columns.takeIf { it > 0 } ?: getenv("COLUMNS")?.toKString()?.toIntOrNull() ?: 100).coerceIn(40, 160)
     }
     fun paint(text: String, code: String): String = if (color) "\u001b[${code}m$text\u001b[0m" else text
@@ -233,7 +233,7 @@ private fun scan(root: String, json: Boolean): String {
         }
         try {
             while (true) {
-                __error()!!.pointed.value = 0
+                set_posix_errno(0)
                 val entry = readdir(directory)
                 if (entry == null) {
                     if (errno != 0) warnings.add("$relative: ${strerror(errno)?.toKString()}")
