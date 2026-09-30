@@ -246,3 +246,24 @@ The implementation is complete when all of the following are true:
 - Searching outside the supplied repository root.
 - Validating the semantics of a skill beyond locating and lightly describing its
   `SKILL.md` manifest.
+
+## 10. Internal bounded manifest reader
+
+The local web server uses `bg --read-manifest <canonical-absolute-repository>
+<relative-SKILL.md-path> <byte-limit>`. This internal command is not a discovery
+API or a substitute for the server's scan-session allowlist. Existing public
+scan/help/version output remains unchanged.
+
+Accept a limit from 0 to 1 MiB. Write at most limit + 1 raw bytes to stdout,
+without adding a newline; the extra byte detects truncation. Reject absolute,
+empty, dot, or parent-traversing relative components and non-SKILL.md leaves.
+Open every absolute-root and relative component using descriptor-relative
+`fchdir` on pinned descriptors and `open` with `O_NOFOLLOW`, with `O_DIRECTORY`
+for directories. Working-directory changes are confined to this subprocess.
+Never follow
+symlinks, including in the repository's ancestors. Check the opened leaf with
+`fstat` and only read regular files. Do not execute repository code or modify
+files. On failure, keep stdout empty and emit a concise stderr diagnostic.
+Internal exit codes: 0 success, 2 invalid arguments, 3 symlink/containment
+rejection, 4 unavailable/non-regular/read failure. This mode requires no new
+runtime dependency and must work on the same native targets as scanning.

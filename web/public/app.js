@@ -1,3 +1,4 @@
+import { createFilter, highlight } from './filter.js';
 const $ = id => document.getElementById(id);
 let scan = null, category = 'all', manifestRequest = 0;
 const labels = { development: 'DEVELOPMENT', 'test-fixture': 'TEST FIXTURE', product: 'PRODUCT' };
@@ -5,13 +6,15 @@ function element(tag, className, text) { const node = document.createElement(tag
 async function api(url, options) { const response = await fetch(url, options); const result = await response.json(); if (!response.ok) throw new Error(result.error || 'Request failed.'); return result; }
 function message(text, error = false) { $('message').textContent = text; $('message').className = error ? 'error' : ''; }
 function allSkills() { return scan?.inventory.sections.flatMap(section => section.skills) ?? []; }
+const filter = createFilter(api, () => { if (scan) render(); });
 function render() {
   const host = $('inventory'); host.replaceChildren();
-  const query = $('search').value.toLowerCase().trim();
+  const query = filter.query();
+  const scoped = allSkills().filter(skill => category === 'all' || skill.category === category).length;
   let shown = 0;
   for (const section of scan.inventory.sections) {
     const skills = section.skills.filter(skill => (category === 'all' || skill.category === category) &&
-      [skill.name, skill.description ?? '', ...skill.sources.map(source => source.location)].join(' ').toLowerCase().includes(query));
+      filter.snippet(skill) !== null);
     if (!skills.length) continue;
     shown += skills.length;
     const title = element('h3', 'section-title', section.name.toUpperCase()); title.append(element('span', '', `${skills.length} skills`)); host.append(title);
@@ -19,7 +22,9 @@ function render() {
     for (const skill of skills) {
       const card = element('button', 'card'); card.type = 'button'; card.setAttribute('aria-label', `View ${skill.name}`);
       const top = element('div', 'card-top'); top.append(element('span', 'card-symbol', '◈'), element('span', `badge ${skill.category}`, labels[skill.category]));
-      card.append(top, element('h3', '', skill.name), element('p', '', skill.description || 'No description available.'));
+      const name = element('h3'); highlight(name, skill.name, query);
+      const preview = element('p'); highlight(preview, filter.snippet(skill), query);
+      card.append(top, name, preview);
       if (skill.sources.length > 1) card.append(element('div', 'mirror', `⧉ ${skill.sources.length} mirrored locations`));
       if (skill.conflict) card.append(element('div', 'conflict', '⚑ Conflicting variant — same name, different content'));
       const footer = element('div', 'card-footer'); const path = element('span', 'path', skill.location); path.title = skill.location; footer.append(path, element('span', 'arrow', '↗')); card.append(footer);
@@ -28,6 +33,7 @@ function render() {
     host.append(cards);
   }
   $('inventory-count').textContent = String(shown);
+  $('filter-count').textContent = `${shown} of ${scoped}`;
   if (!shown) {
     const empty = element('div', 'empty'); empty.append(element('span', 'empty-icon', '⌕'), element('h3', '', allSkills().length ? 'No matching skills.' : 'No skills found.'), element('p', '', allSkills().length ? 'Try another search or category.' : 'This repository has no eligible SKILL.md manifests.')); host.append(empty);
   }
@@ -47,7 +53,6 @@ function details(skill) {
 }
 $('close-detail').addEventListener('click', () => { manifestRequest++; $('detail').close(); });
 $('source-select').addEventListener('change', loadManifest);
-$('search').addEventListener('input', () => { if (scan) render(); });
 document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
   category = button.dataset.category;
   document.querySelectorAll('.filter').forEach(item => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-pressed', String(active)); });
@@ -63,7 +68,7 @@ $('scan-form').addEventListener('submit', async event => {
     $('count-mirrors').textContent = skills.filter(skill => skill.sources.length > 1).length;
     $('count-conflicts').textContent = skills.filter(skill => skill.conflict).length;
     $('inventory-caption').textContent = scan.inventory.repository; $('download').disabled = false;
-    message(scan.inventory.warnings.length ? `Scanner warnings: ${scan.inventory.warnings.join(' · ')}` : ''); render();
+    message(scan.inventory.warnings.length ? `Scanner warnings: ${scan.inventory.warnings.join(' · ')}` : ''); filter.load(scan);
   } catch (error) { message(error.message, true); }
   finally { button.disabled = false; button.textContent = 'Scan repository ↗'; }
 });
