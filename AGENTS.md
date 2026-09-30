@@ -167,3 +167,26 @@ sandboxes, use the designated trusted publisher. This does not authorize merging
 direct pushes to main, bypassing system approvals or publication to other repos.
 Use existing command permissions; request additional access only when the
 execution environment actually requires it.
+
+## Mandatory Claude CLI review after preparing a PR
+
+After preparing/publishing every requested implementation PR, automatically run
+Claude CLI for an independent read-only review. Use existing Central auth,
+latest `sonnet` alias and explicit `--effort medium`; check version/help first.
+Pass a UTF-8 prompt through stdin with PR URL, exact base/head SHA, saved diff,
+requirements and actual checks. Restrict tools to Read/Glob/Grep; never bypass
+permissions, change authentication or launch further agents. Codex owns edits
+and shared-memory updates. Save output/exit status/session ID/reported model,
+assess findings, fix confirmed problems and repeat for the final changed head.
+Record exact-head review in the PR and shared memory before authorized merge;
+unavailable review is incomplete. Review does not replace CI or merge permission.
+This standing authorization covers PR review, not unrelated specs or delegated
+implementation.
+
+If CI or review reports **REGRESSION**, never approve or merge the PR. Post
+evidence, affected scenarios/behavior and blocking status in the PR and wait for
+a human decision there. Never relabel a regression as expected, update its
+baseline or bypass failures to get approval. Verify requested feature differences
+against their exact scope; unexpected changes remain blocked. Regression
+acceptance/merge requires an explicit human decision in the PR, any necessary
+corrections and successful exact-head checks/review.
