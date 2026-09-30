@@ -3,7 +3,7 @@
 ## 1. Purpose
 
 Build a command-line tool that scans the entire repository tree for agent skills
-and prints a machine-readable, sectioned inventory of every skill it finds. The
+and prints a human-readable, sectioned inventory of every skill it finds. The
 tool is intended to be run by humans and automation, including coding agents.
 
 A **skill** is a directory containing a `SKILL.md` manifest. A skill may also
@@ -13,13 +13,17 @@ allows a caller to locate and use every skill.
 
 ## 2. Command interface
 
+Implement the tool in Kotlin and compile it with Kotlin/Native to a standalone
+native executable named `bg`. It must run without Python or a JVM. The initial
+supported platform is macOS ARM64; provide a reproducible build script.
+
 The executable name is configurable by the implementer. In this document it is
 represented by `<toolname>`.
 
 The required command is:
 
 ```text
-<toolname> scan <repository-path>
+<toolname> scan <repository-path> [--json]
 ```
 
 Examples:
@@ -64,12 +68,15 @@ the target repository.
 
 Read every discovered `SKILL.md` as UTF-8 text. Extract metadata as follows:
 
-- `name`: the first Markdown level-1 heading (`# Heading`). Remove the leading
+- `name`: prefer the literal `name` field in an opening `---` front-matter
+  block. Otherwise use the first Markdown level-1 heading (`# Heading`). Remove the leading
   `#` and surrounding whitespace. If no level-1 heading exists, use the skill
   directory's base name.
-- `description`: the first non-empty paragraph after the level-1 heading. Stop
+- `description`: prefer the literal `description` front-matter field. Otherwise
+  use the first non-empty paragraph after the level-1 heading. Stop
   at the next heading, list, fenced code block, or blank-line-separated block.
-  If it cannot be determined, return `null`.
+  If it cannot be determined, return `null`. Normalize whitespace and limit the
+  result to 240 characters, including a trailing `...` when truncated.
 - `manifest_path`: the path to `SKILL.md`, relative to the repository root,
   normalized with forward slashes.
 - `skill_path`: the manifest's parent directory, relative to the repository
@@ -77,13 +84,30 @@ Read every discovered `SKILL.md` as UTF-8 text. Extract metadata as follows:
   repository root.
 
 The parser must be deliberately lightweight: it must not execute code, evaluate
-front matter, or require a specific Markdown library. Invalid or unusual
+front matter as executable data, or require a specific Markdown library. Support
+plain, quoted, and indented multiline literal metadata values; ignore tags,
+anchors, aliases, and structured values. Ignore headings inside fenced code
+blocks or front matter. Invalid or unusual
 Markdown must still yield a skill record using the directory-name fallback.
 
 ## 5. Output contract
 
-Write one JSON document to standard output and nothing else on a successful
-scan. Use UTF-8 and terminate the document with a newline. Paths in JSON use
+By default, write a human-readable list to stdout: repository path, total skill
+and section counts, then a heading for each section and numbered skills. Each
+skill shows its name, a labeled repository-relative path, and a short description
+wrapped at word boundaries to 84 characters plus four spaces of indentation.
+Use `No description available.` when no description exists. Print
+`No skills found.` for an empty scan and a separate `Warnings:` block when
+warnings exist. In an interactive terminal, use colored headings and names,
+aligned `SKILL.md` hyperlinks (OSC 8 file URLs), and one-line description previews
+truncated to the terminal width. Show each skill's location below its description.
+Detect terminal width, defaulting to 100 columns. Redirected output must omit
+all ANSI sequences and hyperlinks. Honor `NO_COLOR` for colors. JSON output
+must never contain terminal formatting.
+
+With `--json` after the repository path, write one JSON document to standard
+output and nothing else on a successful scan. Use UTF-8 and terminate either
+output format with a newline. Paths in JSON use
 forward slashes on every platform. Return skills as a list grouped into
 sections. A section corresponds to the first path component of `skill_path`:
 for example, `skills/review` belongs to the `skills` section and
@@ -92,7 +116,7 @@ repository root belongs to the `.` section. Sort sections by `path` ascending,
 sort skills in each section by `manifest_path` ascending, and sort `warnings`
 lexicographically.
 
-Successful output schema:
+Successful JSON output schema (`--json`):
 
 ```json
 {
@@ -170,7 +194,8 @@ The implementation is complete when all of the following are true:
 1. `<toolname> scan <path>` finds every eligible `SKILL.md` recursively.
 2. It excludes manifests under every directory listed in the discovery rules.
 3. It does not traverse directory symlinks.
-4. It produces valid, deterministic JSON matching the output contract.
+4. It produces a readable sectioned list by default and valid, deterministic
+   JSON matching the output contract with `--json`.
 5. It returns every discovered skill in a sectioned list, with its name,
    repository-relative location, and short description.
 6. It succeeds with an empty `sections` list when no skills exist.

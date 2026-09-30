@@ -1,0 +1,48 @@
+{
+  "repository": "/Users/anton.mefodichev/work/GIT/kotlin",
+  "sections": [
+    {
+      "name": ".claude",
+      "path": ".claude",
+      "skills": [
+        {
+          "name": "analysis-api-create-cherry-pick-issue",
+          "description": "Create a KTIJ cherry-pick tracking issue for a KT fix that needs to be cherry-picked to an IntelliJ branch. Use when cherry-picking Analysis API fixes.",
+          "location": ".claude/skills/analysis-api-create-cherry-pick-issue",
+          "manifest_path": ".claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md"
+        },
+        {
+          "name": "analysis-api-mark-internal-apis",
+          "description": "Drive the per-module internal-API codebase test, then refine the suggested annotations down to `internal` (or up to `@KaImplementationDetail`) based on actual external usage",
+          "location": ".claude/skills/analysis-api-mark-internal-apis",
+          "manifest_path": ".claude/skills/analysis-api-mark-internal-apis/SKILL.md"
+        },
+        {
+          "name": "build-bump-gradle-version",
+          "description": "Bumps the Gradle wrapper/distribution version that BUILDS the Kotlin project itself — the version behind `./gradlew`, defined by `gradle/wrapper/gradle-wrapper.properties`. Covers the wrapper regeneration and the version-specific fallout...",
+          "location": ".claude/skills/build-bump-gradle-version",
+          "manifest_path": ".claude/skills/build-bump-gradle-version/SKILL.md"
+        },
+        {
+          "name": "build-tools-bump-gradle-api",
+          "description": "Bumps the Gradle API version that Kotlin Gradle plugins are compiled against in the Kotlin compiler repository. Use this skill whenever the user asks to upgrade, bump, or update the Gradle compile API version, Gradle plugin API version,...",
+          "location": ".claude/skills/build-tools-bump-gradle-api",
+          "manifest_path": ".claude/skills/build-tools-bump-gradle-api/SKILL.md"
+        },
+        {
+          "name": "build-tools-bump-gradle-in-tests",
+          "description": "Bump the maximum supported Gradle version in the `kotlin-gradle-plugin-integration-tests` project. Use this whenever the user asks to bump Gradle in integration tests, add a new Gradle X.Y.Z to the test matrix, update `MAX_SUPPORTED` Gra...",
+          "location": ".claude/skills/build-tools-bump-gradle-in-tests",
+          "manifest_path": ".claude/skills/build-tools-bump-gradle-in-tests/SKILL.md"
+        },
+        {
+          "name": "minimize-repro-for-diagnostic-test",
+          "description": "Makes a minimal reproduction of a Frontend-related bug as a diagnostic test",
+          "location": ".claude/skills/minimize-repro-for-diagnostic-test",
+          "manifest_path": ".claude/skills/minimize-repro-for-diagnostic-test/SKILL.md"
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}
