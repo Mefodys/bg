@@ -85,7 +85,7 @@ delivered revision. Report the local URL, test results, and hosted CI status.
 
 ## Filter and full-manifest search
 
-The existing Search skills control lives in a Filter panel, with an outlined
+The existing Search skills control lives in a panel titled **Filter1**, with an outlined
 filter icon, compact accessible result buttons, a clear button, and a live
 `matches of category-total` pill. The denominator counts logical skills in the
 selected category before text filtering, so mirrors count once. Changing the
