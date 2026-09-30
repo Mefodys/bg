@@ -24,6 +24,7 @@ def load(name):
 
 gateway = load("gateway")
 publisher = load("publish")
+sbx_publisher = load("sbx-publish")
 
 
 class GatewayTests(unittest.TestCase):
@@ -89,6 +90,16 @@ class GatewayTests(unittest.TestCase):
 
 
 class PublisherTests(unittest.TestCase):
+    def test_sbx_publisher_scope_and_exact_revision(self):
+        for file in ["web/filter.js", "tests/test_filter.py", "spec/filter.md", "README.md"]:
+            self.assertTrue(sbx_publisher.allowed_file(file))
+        for file in ["web/../.github/ci.yml", "/web/file.js", "web/evil\nname.js", "sandbox/tool.py"]:
+            self.assertFalse(sbx_publisher.allowed_file(file))
+        self.assertEqual(sbx_publisher.require_sha("a" * 40), "a" * 40)
+        for value in ["HEAD", "main", "a" * 39, "a" * 40 + ";push"]:
+            with self.assertRaises(ValueError):
+                sbx_publisher.require_sha(value)
+
     def test_valid_assigned_branch(self):
         publisher.validate_metadata({"task": "atlas-filter", "branch": "agent/skill-filter",
                                      "base_sha": "a" * 40, "head_sha": "b" * 40}, "atlas-filter")

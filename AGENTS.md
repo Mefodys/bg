@@ -50,6 +50,12 @@ For container-agent tasks, read `sandbox/README.md`, the assigned task prompt,
 and `spec/parallel-forms-ui.md`. Work only on the assigned branch. Export a
 clean committed result for the trusted host publisher; do not push, merge,
 access host credentials, or modify sandbox/workflow security controls.
+For the user-authorized sbx automatic-push workflow, the controlled publisher
+inside the sandbox (`sandbox/sbx-publish.py`) commits reviewed feature files
+and pushes only the assigned branch after final-revision verification. Its
+own repository-scoped deploy key is provisioned after sandbox creation, never
+baked into the template. Model commands must not invoke arbitrary pushes or
+merge PRs; personal host credentials remain unavailable.
 When Codex's workspace-write policy protects `.git`, leave a reviewable diff:
 the trusted host may create the scoped commit after review. Never bypass the
 policy to commit. On ARM64 Linux, the host cross-builds the final source with

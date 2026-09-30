@@ -31,9 +31,18 @@ The ARM64 worker cannot host the Linux x86_64 Kotlin compiler. Use the existing
 the complete suite in ARM64 sbx. After the final edit, cross-build that exact
 source again and verify both the source SHA and native tests before publication.
 Model commands retain `workspace-write`; a trusted host process reviews the
-feature-only diff and creates the commit in the sandbox, then exports its bundle.
-GitHub keys stay on the host. Import `input/base.bundle` into the publisher before
-the feature bundle when infrastructure commits are not yet on remote main.
+feature-only diff. At the user's request, `sbx-publish.py` runs inside the sandbox
+to commit that diff and automatically push the verified exact revision to its
+assigned feature branch. Provision an independent Ed25519 deploy key per task,
+register it only on `Mefodys/bg`, allow GitHub SSH egress, and pin GitHub's host
+key from the official API. Never bake private keys into templates or forward
+the host SSH agent. A write deploy key is repository-scoped, not branch-scoped;
+the publisher checks branch/SHA/file scope and never force-pushes or pushes main.
+Run `--commit`, perform the final build and tests, then `--push --verified-sha`
+with that exact SHA. PR creation and CI log retrieval use the host's GitHub CLI
+automatically; SSH keys alone cannot authorize GitHub REST API requests.
+The older host-publisher alternative imports `input/base.bundle` before the
+feature bundle when infrastructure commits are not yet on remote main.
 
 `sbx-codex.sh` adapts the supplied Claude/Central example for **Codex only**.
 It uses `/wire/<token>/codex/openai/v1`, passes the token by environment-variable
