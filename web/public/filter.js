@@ -1,7 +1,7 @@
 // Literal matching with original-text offsets, including case folds that expand.
-export function ranges(text, query, firstOnly = false) {
+export function ranges(text, query, firstOnly = false, folded = text.toLowerCase()) {
   if (!query) return [];
-  const folded = text.toLowerCase(), needle = query.toLowerCase();
+  const needle = query.toLowerCase();
   const starts = [], ends = [];
   // Ordinary case folds keep UTF-16 offsets, avoiding per-character index arrays.
   if (folded.length !== text.length) {
@@ -42,6 +42,28 @@ export function snippet(skill, sources, query) {
   }
   return null;
 }
+// Fold source bodies once per snapshot. All records retain original text for
+// snippets/highlights; shared mirror sources are not copied for each skill.
+export function createMatcher(index) {
+  const sources = new Map(), fields = new WeakMap();
+  for (const source of index.sources) sources.set(source.path, { text: source.content, folded: source.content.toLowerCase() });
+  const field = text => ({ text, folded: text.toLowerCase() });
+  return (skill, query) => {
+    if (!query) return skill.description || 'No description available.';
+    if (!fields.has(skill)) fields.set(skill, [field(skill.name), field(skill.description || ''),
+      ...skill.sources.map(s => sources.get(s.manifest_path)).filter(Boolean),
+      ...skill.sources.flatMap(s => [field(s.location), field(s.manifest_path)])]);
+    const needle = query.toLowerCase();
+    for (const value of fields.get(skill)) {
+      if (!value.folded.includes(needle)) continue;
+      // Only the matched field needs original Unicode offsets.
+      const match = ranges(value.text, query, true, value.folded)[0];
+      const start = Math.max(0, match[0] - 55), end = Math.min(value.text.length, Math.max(match[1] + 100, start + 180));
+      return (start ? '…' : '') + value.text.slice(start, end) + (end < value.text.length ? '…' : '');
+    }
+    return null;
+  };
+}
 export function createFilter(api, render) {
   const input = document.getElementById('search'), clear = document.getElementById('clear-search'), status = document.getElementById('index-status');
   let sources = new Map(), generation = 0;
@@ -61,7 +83,8 @@ export function createFilter(api, render) {
         const issues = result.sources.filter(s => s.error || s.truncated);
         status.textContent = issues.length ? `Partial search index: ${issues.map(s => `${s.path}: ${s.error || 'truncated at size limit'}`).join(' · ')}` : 'Full-manifest search ready.';
         update();
-      } catch (error) { if (current === generation) { status.textContent = `Full-manifest search unavailable: ${error.message} Metadata search remains available.`; update(); } }
+        return result;
+      } catch (error) { if (current === generation) { status.textContent = `Full-manifest search unavailable: ${error.message} Metadata search remains available.`; update(); } return { sources: [], unavailable: true }; }
     }
   };
 }
