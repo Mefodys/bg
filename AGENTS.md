@@ -155,3 +155,15 @@ EXPECTED FEATURE CHANGE and inspect every difference. Never assume a feature
 PR makes all changes intentional. Verify build-and-test and visual-regression
 for exact delivered head and authorized merge. Missing/incompatible data fails
 as incomplete. Only successful main runs publish the next baseline.
+
+## Automatic PR publication — Mefodys/bg
+
+The user explicitly authorizes automatic feature-branch publication and PR
+creation/update in https://github.com/Mefodys/bg for requested implementation
+tasks. After implementation and required local checks, publish the scoped branch
+and create a reviewable PR without asking for separate confirmation. Verify
+exact-head CI, fix failures and update that PR autonomously. In restricted
+sandboxes, use the designated trusted publisher. This does not authorize merging,
+direct pushes to main, bypassing system approvals or publication to other repos.
+Use existing command permissions; request additional access only when the
+execution environment actually requires it.
