@@ -1,0 +1,18 @@
+{
+  "license": "SIL OFL 1.1",
+  "source": "google/fonts and Google Fonts Noto Sans SC \u4e16\u754c subset",
+  "files": [
+    {
+      "name": "NotoSans.ttf",
+      "sha256": "bfb7bb691513f12e734dc346c03a03f784912432d7e3fa8e56efcf906fe86b3d"
+    },
+    {
+      "name": "NotoSansMono.ttf",
+      "sha256": "2cb2adb378a8f574213e23df697050b83c54c27df465a2015552740b2769a081"
+    },
+    {
+      "name": "NotoSansSC-subset.ttf",
+      "sha256": "e6c29fbf8cc2345edba6984a34c01ce216bd0aaea079d5792eefd40201697327"
+    }
+  ]
+}

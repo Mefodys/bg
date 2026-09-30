@@ -2,6 +2,12 @@
   "name": "bg-skill-atlas",
   "private": true,
   "type": "module",
-  "scripts": { "test:web": "node tests/web_all.mjs" },
-  "devDependencies": { "playwright": "1.63.0" }
+  "scripts": {
+    "test:web": "node tests/web_all.mjs",
+    "test:visual": "playwright test --config playwright.visual.config.mjs --update-snapshots=none",
+    "test:visual:analysis": "python3 tests/visual/test_analysis.py"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
 }

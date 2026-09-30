@@ -121,3 +121,10 @@ gh run view <run-id> --repo Mefodys/bg --log-failed
 
 The final report must include the verified commit SHA, workflow run URL, job
 conclusions, local test count and results, and any fixes made after CI failures.
+
+## Visual regression CI
+
+See [visual-regression.md](visual-regression.md). A separate pinned Linux
+rendering job compares previous/current screenshots on every PR/update and
+main push; existing native build-and-test remains on macOS ARM64. Verify both
+checks for exact PR/merge revisions.

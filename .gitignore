@@ -6,3 +6,6 @@ __pycache__/
 /repositories/
 /node_modules/
 /reports/web-*.png
+
+/reports/visual/
+/screenshots/
