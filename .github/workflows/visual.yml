@@ -77,7 +77,9 @@ jobs:
           current/bg --version
       - name: Run native and HTTP behavior tests on Linux
         working-directory: current
-        run: python3 tests/run.py
+        run: |
+          chown -R pwuser:pwuser .
+          runuser -u pwuser -- env "PATH=$PATH" python3 tests/run.py
       - name: Install locked browser test tools
         working-directory: current
         run: npm ci --ignore-scripts
