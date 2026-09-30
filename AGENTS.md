@@ -45,6 +45,19 @@ authorization; request missing access when it is required to finish.
 Preserve the read-only scan behavior. Changes to output formats or arguments
 must include corresponding updates to tests and the CLI specification.
 
+## Required demo video after every feature PR
+
+After publishing every feature PR, autonomously record a short video of the
+working feature from the published revision and attach it to that same PR.
+Do not wait for another user request. Show the main user action and resulting
+behavior; screenshots do not replace the recording. Prefer a local test server,
+small fixtures and headless recording. Use a GitHub attachment when available,
+or commit a small demo file on the feature branch and link it in the PR body.
+Verify that the video plays and the PR link resolves; state its source commit.
+Update the video after changes to demonstrated behavior. If recording/upload is
+blocked, preserve the artifact and report the concrete blocker with this step
+pending. A feature PR handoff must include its accessible demo video.
+
 After a user-authorized PR merge, verify CI for the actual merge SHA, update the
 local serving checkout to that revision, and rebuild the native scanner. Restart
 the existing Skill Atlas web server from the updated checkout using its current
