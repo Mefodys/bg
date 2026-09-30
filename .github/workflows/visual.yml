@@ -96,7 +96,7 @@ jobs:
       - name: Playwright tests, deterministic repeats and previous/current analysis
         working-directory: current
         env:
-          VISUAL_PREVIOUS_BASELINE: ${{ github.workspace }}/previous-baseline
+          VISUAL_PREVIOUS_BASELINE: ../previous-baseline
         run: python3 tests/visual/ci.py ../previous . ../visual-artifacts
       - name: Upload old, new, highlighted differences and test results
         if: always()
