@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "feature": "skill-tags",
+  "createdAt": "2026-10-01T10:05:22.574Z",
+  "servingSHA": "6dba9d250d0de5d4a9826e4bcf2e951877b567b0",
+  "mergeSHA": "6dba9d250d0de5d4a9826e4bcf2e951877b567b0",
+  "baselineSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "prURL": "https://github.com/Mefodys/bg/pull/17",
+  "testRunner": "Playwright Test",
+  "capture": "Isolated native server with versioned tag fixtures; initial self-reference is not a cross-revision acceptance.",
+  "environment": {
+    "browser": "153.0.8010.12",
+    "browserExecutable": null,
+    "browserHash": null,
+    "playwright": "1.63.0",
+    "os": "PRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.4 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "image": "mcr.microsoft.com/playwright:v1.63.0-noble@sha256:bc6ab0d6d44ff4826e4cb8c1e6d801e185bfc42bb0753f8e2a30efc70db054c7",
+    "fonts": {
+      "license": "SIL OFL 1.1",
+      "source": "google/fonts and Google Fonts Noto Sans SC 世界 subset",
+      "files": [
+        {
+          "name": "NotoSans.ttf",
+          "sha256": "bfb7bb691513f12e734dc346c03a03f784912432d7e3fa8e56efcf906fe86b3d"
+        },
+        {
+          "name": "NotoSansMono.ttf",
+          "sha256": "2cb2adb378a8f574213e23df697050b83c54c27df465a2015552740b2769a081"
+        },
+        {
+          "name": "NotoSansSC-subset.ttf",
+          "sha256": "e6c29fbf8cc2345edba6984a34c01ce216bd0aaea079d5792eefd40201697327"
+        }
+      ]
+    },
+    "arch": "x64",
+    "node": "v24.9.0",
+    "dpr": 1,
+    "zoom": 100,
+    "locale": "en-US",
+    "timezone": "UTC",
+    "colorScheme": "light",
+    "reducedMotion": true,
+    "fixedTime": "2026-01-01T12:00:00.000Z",
+    "fixtureRoot": "/private/tmp/skill-atlas-tags-visual-v1",
+    "normalization": [
+      "API scanned_at fixed to fixture time"
+    ],
+    "masks": []
+  },
+  "suiteHash": "9b31071c309cf5ad522cf5d1553c22ba9a8802d8c41714e145b50e09cfac3727",
+  "fixtureHash": "3c696501ab4aa3b709db259873f38ca98d31570e163ce5e00c4a0676fc38bc2e",
+  "scriptHash": "ee3f60c85cf38b335807b4765e60f6b95467c4f9281a8145c231e4553eefa9b4",
+  "binaryHash": "084aaeeaea46236086b7f96630c955f1ccddd893d6fc023c3bff60cb6437a792",
+  "scenarios": [
+    {
+      "id": "desktop/01-query",
+      "action": "query",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/01-query.png",
+      "sha256": "68f3a55361eb5d2ac4c3f0682475d86a150840e9bed6619a5a4ac4a9a6e4ac14",
+      "observed": {
+        "count": "90 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 972
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/02-task",
+      "action": "task",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/02-task.png",
+      "sha256": "8dbd12933710994f3610baac3520ef41120fd4e3dc147c00016d004d017bd2c2",
+      "observed": {
+        "count": "12 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing"
+        ],
+        "scrollY": 972
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/03-task-focus",
+      "action": "task-focus",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/03-task-focus.png",
+      "sha256": "791742ecd78f05c3b7cfa692773d0dfa49e038c63fcd0cac096320283eff3e8b",
+      "observed": {
+        "count": "3 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 972
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/04-unclassified",
+      "action": "unclassified",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/04-unclassified.png",
+      "sha256": "f34bf3f6dc274aaf0530cd9b82b86435c3c66d7bd4adafc5abec16c93e57c490",
+      "observed": {
+        "count": "1 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification · Semantic selections suspended; turn off Unclassified only to restore them.",
+        "query": "",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 798
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/05-changed",
+      "action": "changed",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/05-changed.png",
+      "sha256": "c78ac92795c737e3143c7e9c4b06267028b54a438480ed42cd75ec5870755e3d",
+      "observed": {
+        "count": "1 of 121",
+        "coverage": "119 of 121 loaded skills classified · Needs classification",
+        "query": "Changedbody",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 720
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/06-owning-details",
+      "action": "details",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/06-owning-details.png",
+      "sha256": "34cb4bb87a04173579948e916620d36d4687558e516695869dd62e3e6a2fef3d",
+      "observed": {
+        "count": "1 of 122",
+        "coverage": "121 of 122 loaded skills classified · Needs classification",
+        "query": "Ownerneedle",
+        "dialog": true,
+        "selected": [],
+        "scrollY": 962
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/07-zero-results",
+      "action": "zero",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/07-zero-results.png",
+      "sha256": "0e262b75f84fc18a66629c8d69b74c2edc2fa21f381e072e04b5c8aa0dc115c1",
+      "observed": {
+        "count": "0 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "otherneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 889
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/08-clear-query",
+      "action": "clear",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/08-clear-query.png",
+      "sha256": "ad3a8989d7057db0d7314bf2b930a74d298b84e47d5d5436416c1418dc521b8b",
+      "observed": {
+        "count": "3 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 972
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/09-similar",
+      "action": "similar",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/09-similar.png",
+      "sha256": "33515bd5c6e6e270887a9948056cad997884105784af701bd83d3d3b9dc4ca43",
+      "observed": {
+        "count": "90 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 662
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "desktop/10-unavailable",
+      "action": "unavailable",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/10-unavailable.png",
+      "sha256": "73c7ca59ae2f0e708e2a8f66822322690b0e947e38d6a8ebd71066949a238282",
+      "observed": {
+        "count": "90 of 121",
+        "coverage": "Tagging unavailable: Tagging unavailable: Expected property name or '}' in JSON at position 1 (line 1 column 2)",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 972
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "mobile/01-facets",
+      "action": "task-focus",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mobile/01-facets.png",
+      "sha256": "723367b51511ff926f29571a43f68f9459b348e827f568661fb25ba1634badb9",
+      "observed": {
+        "count": "3 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 1289
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    },
+    {
+      "id": "mobile/02-details",
+      "action": "details",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mobile/02-details.png",
+      "sha256": "432a818b8f1288cf4a67f3e537eac15f40b3f437a4e47136b2f1027efe9abe12",
+      "observed": {
+        "count": "1 of 122",
+        "coverage": "121 of 122 loaded skills classified · Needs classification",
+        "query": "Ownerneedle",
+        "dialog": true,
+        "selected": [],
+        "scrollY": 2032
+      },
+      "assertions": "Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed."
+    }
+  ]
+}

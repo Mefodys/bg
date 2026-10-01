@@ -1,0 +1,141 @@
+{
+  "kind": "same-revision determinism verification",
+  "beforeSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "afterSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "exactMatch": true,
+  "threshold": 0,
+  "scenarios": [
+    {
+      "id": "desktop/01-query",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "7a50f68ecd61c5c460ea1a57782ad7bf2c10629860cfd4d335b41574e3da20d8",
+      "afterPixelSHA256": "7a50f68ecd61c5c460ea1a57782ad7bf2c10629860cfd4d335b41574e3da20d8",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/01-query.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/01-query.png",
+      "diff": "desktop/01-query.png"
+    },
+    {
+      "id": "desktop/02-task",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "89a07663be2794a3fc3744460439271c148877a8e8fe9c8fe81f20ac8b9f193e",
+      "afterPixelSHA256": "89a07663be2794a3fc3744460439271c148877a8e8fe9c8fe81f20ac8b9f193e",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/02-task.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/02-task.png",
+      "diff": "desktop/02-task.png"
+    },
+    {
+      "id": "desktop/03-task-focus",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "73642c2b5b7e0b7dd4f46404281b94dd3dd37a3fb47c02e35d757b2a1b311eb4",
+      "afterPixelSHA256": "73642c2b5b7e0b7dd4f46404281b94dd3dd37a3fb47c02e35d757b2a1b311eb4",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/03-task-focus.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/03-task-focus.png",
+      "diff": "desktop/03-task-focus.png"
+    },
+    {
+      "id": "desktop/04-unclassified",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "908cf95f4d129009146bb1fd8ab6c219c883685c7adf8913574c2cb3b2822528",
+      "afterPixelSHA256": "908cf95f4d129009146bb1fd8ab6c219c883685c7adf8913574c2cb3b2822528",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/04-unclassified.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/04-unclassified.png",
+      "diff": "desktop/04-unclassified.png"
+    },
+    {
+      "id": "desktop/05-changed",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "b19ee636904ac830ba22a375455f8ea1a0ccd2412d292b7168223d250f894fd0",
+      "afterPixelSHA256": "b19ee636904ac830ba22a375455f8ea1a0ccd2412d292b7168223d250f894fd0",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/05-changed.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/05-changed.png",
+      "diff": "desktop/05-changed.png"
+    },
+    {
+      "id": "desktop/06-owning-details",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "e588a66b78857c42e0318cdae4380f79f31bf80636f946f8882d4607d9aa86f3",
+      "afterPixelSHA256": "e588a66b78857c42e0318cdae4380f79f31bf80636f946f8882d4607d9aa86f3",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/06-owning-details.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/06-owning-details.png",
+      "diff": "desktop/06-owning-details.png"
+    },
+    {
+      "id": "desktop/07-zero-results",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "8ce9c8bc0bb3ae5c46d60d9d0305dbc41c4e498b4efbeffece9535e480cfb0ae",
+      "afterPixelSHA256": "8ce9c8bc0bb3ae5c46d60d9d0305dbc41c4e498b4efbeffece9535e480cfb0ae",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/07-zero-results.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/07-zero-results.png",
+      "diff": "desktop/07-zero-results.png"
+    },
+    {
+      "id": "desktop/08-clear-query",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "62b9cf9b7a2fd8f7e75e0cc99a08178bfe41347febbfdae123152d9008f7674b",
+      "afterPixelSHA256": "62b9cf9b7a2fd8f7e75e0cc99a08178bfe41347febbfdae123152d9008f7674b",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/08-clear-query.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/08-clear-query.png",
+      "diff": "desktop/08-clear-query.png"
+    },
+    {
+      "id": "desktop/09-similar",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "281179e52080b3e4a919856f55120f23d6a7857030eacb0b032a00f018edfcb4",
+      "afterPixelSHA256": "281179e52080b3e4a919856f55120f23d6a7857030eacb0b032a00f018edfcb4",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/09-similar.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/09-similar.png",
+      "diff": "desktop/09-similar.png"
+    },
+    {
+      "id": "desktop/10-unavailable",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "3c95f417fa7a163e2ee39c3cde2df87dc7ed2a15e27770fa559d64bb9b771297",
+      "afterPixelSHA256": "3c95f417fa7a163e2ee39c3cde2df87dc7ed2a15e27770fa559d64bb9b771297",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/desktop/10-unavailable.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/desktop/10-unavailable.png",
+      "diff": "desktop/10-unavailable.png"
+    },
+    {
+      "id": "mobile/01-facets",
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "beforePixelSHA256": "b70c33c3fe5a41b33145a446e6fdfd8c49ecd08c19497afa2483b60b9aa2114c",
+      "afterPixelSHA256": "b70c33c3fe5a41b33145a446e6fdfd8c49ecd08c19497afa2483b60b9aa2114c",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/mobile/01-facets.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/mobile/01-facets.png",
+      "diff": "mobile/01-facets.png"
+    },
+    {
+      "id": "mobile/02-details",
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "beforePixelSHA256": "759b9f44339fe6db246e2ab63b552f5ee4b754d2ba44776d9797ba46734d582c",
+      "afterPixelSHA256": "759b9f44339fe6db246e2ab63b552f5ee4b754d2ba44776d9797ba46734d582c",
+      "observedStateMatches": true,
+      "before": "/__w/bg/bg/visual-artifacts/tags-base-1/mobile/02-details.png",
+      "after": "/__w/bg/bg/visual-artifacts/tags-base-2/mobile/02-details.png",
+      "diff": "mobile/02-details.png"
+    }
+  ]
+}

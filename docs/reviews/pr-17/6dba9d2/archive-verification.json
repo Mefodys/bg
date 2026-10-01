@@ -1,0 +1,8 @@
+{
+  "base": "b911ff2b7392d8b69c9642048f5bcef9821a6265",
+  "after": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "archiveSHA256": "d9d87400f2b330ca153626daf134349e2a7306ba6ca02528265c549dcf5b5f90",
+  "reviewedImageHashes": 23,
+  "scrollYOnlyDifferences": 18,
+  "activeExpectations": "empty, byte-identical to actual PR base"
+}

@@ -1,0 +1,98 @@
+{
+  "comparison": {
+    "status": "NO REGRESSION",
+    "states": 23,
+    "changedPixels": 0,
+    "DOM": "exact"
+  },
+  "tags-comparison": {
+    "status": "NO REGRESSION",
+    "states": 12,
+    "changedPixels": 0,
+    "DOM": "exact"
+  },
+  "base-determinism": {
+    "states": 23,
+    "exactMatch": true
+  },
+  "head-determinism": {
+    "states": 23,
+    "exactMatch": true
+  },
+  "tags-base-determinism": {
+    "states": 12,
+    "exactMatch": true
+  },
+  "tags-head-determinism": {
+    "states": 12,
+    "exactMatch": true
+  },
+  "base-results-1": {
+    "startTime": "2026-10-01T09:58:14.348Z",
+    "duration": 31638.149999999998,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "base-results-2": {
+    "startTime": "2026-10-01T09:58:46.645Z",
+    "duration": 28311.740999999998,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "head-results-1": {
+    "startTime": "2026-10-01T10:00:11.354Z",
+    "duration": 31943.199,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "head-results-2": {
+    "startTime": "2026-10-01T10:00:43.951Z",
+    "duration": 28050.643,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tags-base-1": {
+    "startTime": "2026-10-01T10:03:03.696Z",
+    "duration": 28595.707000000002,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tags-base-2": {
+    "startTime": "2026-10-01T10:03:32.942Z",
+    "duration": 26373.551,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tags-head-1": {
+    "startTime": "2026-10-01T10:04:27.790Z",
+    "duration": 28114.107,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tags-head-2": {
+    "startTime": "2026-10-01T10:04:56.530Z",
+    "duration": 26118.61,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "totalPlaywrightPassed": 140,
+  "base": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "head": "6dba9d250d0de5d4a9826e4bcf2e951877b567b0",
+  "baselineSource": "Previous revision reconstructed from exact base SHA; no retained accepted CI artifact was available.\n"
+}
