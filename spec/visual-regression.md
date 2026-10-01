@@ -114,3 +114,15 @@ accepted scenarios fail as incomplete. Initial self-reference is never a main
 acceptance; only an actual successful main run publishes the next baseline.
 Tag expectations require the same exact-base/pixel/region review in
 `tests/visual/tag-expected-changes.json`; they cannot waive behaviour failures.
+
+## Additive feature scenarios
+
+`tests/visual/features.py` renders every established feature spec twice at the
+exact base revision, then verifies the head revision against those base locator
+snapshots twice with zero tolerance and no retries. A newly added spec is an
+explicit initial candidate: it creates a self-reference once and immediately
+verifies an ordinary second run. After that spec reaches main, its stable path
+is part of the reconstructed exact-base comparison for every later PR. Removing
+an established feature spec is incompatible and fails. This gate supplements
+the common and tag comparisons and preserves traces, videos and snapshots in
+the visual comparison artifact.

@@ -36,6 +36,10 @@ export class GitHubScanner {
     if (!endpoint.startsWith('/') || endpoint.startsWith('//')) throw fail(400, 'Invalid API endpoint.');
     for (let attempt = 0; attempt < 4; attempt++) {
       signal.throwIfAborted();
+      if (this.throttled && Date.now() >= this.throttledUntil) {
+        this.throttled = false;
+        this.nextRequest = 0;
+      }
       const now = Date.now(), at = Math.max(now, this.nextRequest, this.throttledUntil);
       this.nextRequest = at + (this.throttled ? 1000 : 0);
       if (at > now) await delay(at-now, undefined, {signal});
@@ -143,7 +147,11 @@ export class GitHubScanner {
     for(const entry of entries) { safePath(entry.path); sha(entry.sha); }
     const input=entries.map(e=>e.mode+'\t'+JSON.stringify(e.path)+'\n').join('');
     const selection = await new Promise((resolve,reject)=> {
-      const child=execFile(this.binary,['--select-manifests'],{signal,maxBuffer:this.limits.repositoryBytes},(error,stdout)=>error?reject(fail(502,'Native manifest selection failed.')):resolve(stdout));
+      const child=execFile(this.binary,['--select-manifests'],{signal,maxBuffer:this.limits.repositoryBytes},(error,stdout,stderr)=>{
+        if (!error) { resolve(stdout); return; }
+        const diagnostic=String(stderr || '').trim().replace(/\s+/g,' ').slice(0,200);
+        reject(fail(502,'Native manifest selection failed'+(diagnostic?': '+diagnostic:'.')));
+      });
       child.stdin.on('error',()=>{}); child.stdin.end(input);
     });
     const selected=selection.trim()?selection.trim().split('\n').map(v=>JSON.parse(v)):[];
@@ -168,7 +176,7 @@ export class GitHubScanner {
       const {stdout}=await execute(this.binary,['scan',directory,'--json'],{signal,timeout:120000,maxBuffer:16*1024*1024});
       metrics.native_scans++;
       const inventory=JSON.parse(stdout);inventory.repository=repo.full_name;inventory.warnings.push(...warnings);
-      const result={full_name:repo.full_name,url:'https://github.com/'+repo.full_name,commit_sha:commit,inventory,sources,partial:inventory.warnings.length>0,cached:false};
+      const result={full_name:repo.full_name,url:'https://github.com/'+repo.full_name,commit_sha:commit,inventory,sources,partial:warnings.length>0,cached:false};
       await this.remember(key,result);return result;
     } finally { await rm(temporary,{recursive:true,force:true}); }
   }
@@ -196,7 +204,6 @@ export class GitHubScanner {
     let next=0;
     await Promise.all(Array.from({length:options.concurrency},async()=>{
       while(next<repos.length && !signal.aborted) {
-        if(this.throttled) await delay(1000,undefined,{signal}).catch(()=>{});
         if(signal.aborted) break;
         if(next>=repos.length) break;
         const repo=repos[next++];let item;

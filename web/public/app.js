@@ -2,6 +2,7 @@ import { createTags } from './tags.js';
 import { createSimilarity } from './similarity.js';
 import { createFilter, highlight } from './filter.js';
 import { createSearchScope } from './search-scope.js';
+import { createFavorites } from './favorites.js';
 const $ = id => document.getElementById(id);
 let scan = null, category = 'all', manifestRequest = 0, detailOwner = null, detailSkill = null, page = 0;
 const labels = { development: 'DEVELOPMENT', 'test-fixture': 'TEST FIXTURE', product: 'PRODUCT' };
@@ -13,6 +14,17 @@ const tags = createTags(api, () => { if (scan) { page = 0; render(); } });
 const similarity = createSimilarity(api, tags);
 const filter = createFilter(api, () => { page = 0; render(); });
 const scope = createSearchScope(api, () => { page = 0; render(); });
+const favorites = createFavorites({ getItem: key => localStorage.getItem(key), setItem: (key, value) => localStorage.setItem(key, value) }, () => { page = 0; render(); updateDetailStar(); }, text => { $('favorites-status').textContent = text; });
+window.addEventListener('storage', event => favorites.sync(event));
+function setStar(button, owner, skill) {
+  const selected = favorites.has(owner, skill);
+  button.textContent = selected ? '★' : '☆';
+  button.setAttribute('aria-pressed', String(selected));
+  button.setAttribute('aria-label', `${selected ? 'Remove from' : 'Add to'} favorites: ${skill.name}`);
+  button.title = selected ? 'Remove from favorites' : 'Add to favorites';
+}
+function updateDetailStar() { if (detailOwner && detailSkill) setStar($('detail-star'), detailOwner, detailSkill); }
+$('detail-star').addEventListener('click', () => favorites.toggle(detailOwner, detailSkill));
 function render() {
   const host = $('inventory'); host.replaceChildren();
   const query = filter.query();
@@ -22,7 +34,7 @@ function render() {
   const allRecords = snapshots.flatMap(owner => owner.inventory.sections.flatMap(s => s.skills).filter(k => category === 'all' || k.category === category).map(skill => tags.assignment(owner, skill)));
   const queryRecords = groups.flatMap(g => g.sections.flatMap(s => s.skills.map(({skill}) => tags.assignment(g.owner, skill))));
   tags.update(queryRecords, allRecords, snapshots);
-  for (const group of groups) for (const section of group.sections) section.skills = section.skills.filter(({skill}) => tags.matches(tags.assignment(group.owner, skill)));
+  for (const group of groups) for (const section of group.sections) section.skills = section.skills.filter(({skill}) => tags.matches(tags.assignment(group.owner, skill))).sort((a, b) => Number(favorites.has(group.owner, b.skill)) - Number(favorites.has(group.owner, a.skill)));
   const shown = groups.reduce((sum, group) => sum + group.sections.reduce((n, section) => n + section.skills.length, 0), 0);
   page = Math.min(page, Math.max(0, Math.ceil(shown / 100) - 1));
   let offset = 0;
@@ -37,6 +49,7 @@ function render() {
       const title = element('h3', 'section-title', section.name.toUpperCase()); title.append(element('span', '', `${skills.length} skills`)); host.append(title);
       const cards = element('div', 'cards');
       for (const { skill, preview: text } of visible) {
+        const wrapper = element('div', 'skill-card skill-result');
         const card = element('button', 'card'); card.type = 'button'; card.setAttribute('aria-label', `View ${skill.name}`);
         card.dataset.repository = owner.repository.repository_id; card.dataset.scan = owner.scan_id; card.dataset.manifest = skill.manifest_path;
         const top = element('div', 'card-top'); top.append(element('span', 'card-symbol', '◈'), element('span', `badge ${skill.category}`, labels[skill.category]));
@@ -47,7 +60,14 @@ function render() {
         if (skill.sources.length > 1) card.append(element('div', 'mirror', `⧉ ${skill.sources.length} mirrored locations`));
         if (skill.conflict) card.append(element('div', 'conflict', '⚑ Conflicting variant — same name, different content'));
         const footer = element('div', 'card-footer'); const location = element('span', 'path', skill.location); location.title = skill.location; footer.append(location, element('span', 'arrow', '↗')); card.append(footer);
-        card.addEventListener('click', () => details(skill, owner)); const wrapper = element('div', 'skill-card'); wrapper.append(card, tags.badges(tags.assignment(owner, skill))); cards.append(wrapper);
+        if (favorites.has(owner, skill)) footer.prepend(element('span', 'pinned', 'Pinned'));
+        const star = element('button', 'star-button'); star.type = 'button'; setStar(star, owner, skill);
+        star.addEventListener('click', () => {
+          favorites.toggle(owner, skill);
+          const replacement = [...host.querySelectorAll('.card')].find(node => node.dataset.repository === owner.repository.repository_id && node.dataset.manifest === skill.manifest_path);
+          replacement?.parentElement.querySelector('.star-button').focus();
+        });
+        card.addEventListener('click', () => details(skill, owner)); wrapper.append(card, star, tags.badges(tags.assignment(owner, skill))); cards.append(wrapper);
       }
       host.append(cards);
     }
@@ -75,6 +95,7 @@ async function loadManifest() {
 }
 function details(skill, owner) {
   detailOwner = owner; detailSkill = skill;
+  updateDetailStar();
   $('detail-tags').replaceChildren(tags.badges(tags.assignment(owner, skill), false));
   similarity.select(skill, owner);
   $('detail-repository').textContent = `${owner.repository.name} · ${owner.repository.path}`;

@@ -151,6 +151,9 @@ panel; it does not consume local catalogue entries or masquerade as a local scan
 Its endpoints, limits, credential handling and partial states are specified in
 [github-organization.md](github-organization.md).
 
+Persistent star toggles and pinned ordering are specified in
+[starred-skills.md](starred-skills.md). They preserve scan/export data.
+
 The Similar skills panel sits beside Filter on wide screens and stacks on narrow
 screens. Selecting a detail result also selects it for comparison; the selected
 skill dropdown can replace it independently. Scan success resets selection and

@@ -34,10 +34,12 @@ in the selector protocol; path traversal and NUL paths fail that repository.
 
 Use a bounded worker pool (default 4) and shared request pacing. Rate-limit
 responses honor Retry-After or reset times plus jitter, serialize queued requests
-after throttling, and reduce concurrency. Retry only transient/rate-limit failures,
+after throttling, and restore ordinary concurrency after the wait expires. Retry only transient/rate-limit failures,
 at most three retries. A deadline interrupts waits, requests and native children.
 Repository failures continue independently and make the result explicitly partial.
 Enumeration failure preserves completed data and also marks partial coverage.
+Native content warnings remain visible in each inventory but do not claim that
+repository enumeration was incomplete or prevent immutable-result caching.
 
 Cache immutable inventories and manifest text by repository ID + commit SHA in
 a bounded process cache. Coalesce identical Git blob requests by content SHA
@@ -52,7 +54,8 @@ permissions; document removal and do not include it in Git or demo artifacts.
 
 ## Limits and APIs
 
-One organization job at a time, up to 10,000 repositories, 250,000 tree entries
+One organization job at a time, independently of local scan/comparison work, up
+to 10,000 repositories, 250,000 tree entries
 per repository, 512 manifests/8 MiB per repository, 1 MiB per manifest, 64 MiB
 retained results, 32 MiB per API response, and a 10 minute whole-job deadline.
 Every limit reports omissions and partial coverage. Catalogue/session limits for
@@ -62,7 +65,8 @@ warnings; never expose temporary host paths. Remote results remain separate from
 local scan sessions and Similar skills until explicitly supported.
 
 POST /api/github/scans starts a job. GET /api/github/scans/:id returns bounded
-progress/results, DELETE cancels it. Retain at most two jobs. Host/Origin, request
+progress without manifest bodies while running and the complete bounded result
+once settled; DELETE cancels it. Retain at most two jobs. Host/Origin, request
 size and static-asset restrictions apply to all endpoints. CLI progress streams
 to stderr while --json writes one final document to stdout; interrupted/partial
 scans return a nonzero exit code and keep their usable partial results.

@@ -15,6 +15,7 @@ export async function createFixture(options={}) {
   }
   await collect(path.resolve(import.meta.dirname,'fixtures/corner-cases'));
   files.set('skills/世界\nextra/SKILL.md',Buffer.from('# Unicode\n\nDeepBodyToken <script>window.remoteExecuted=true</script>'));
+  if(options.invalidUtf8)files.set('skills/invalid/SKILL.md',Buffer.from([0xff]));
   for(let i=0;i<(options.unrelated || 0);i++)files.set(`source/${i}.txt`,Buffer.from('Unrelated source code. '.repeat(800)));
   const entries=[];
   for(const [name,bytes] of files){const hash=createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');blobs.set(hash,bytes);entries.push({path:name,mode:'100644',type:'blob',sha:hash,size:bytes.length});}

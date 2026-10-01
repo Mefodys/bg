@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { mkdtemp, rm, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp, rm, mkdir, writeFile, chmod } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { GitHubScanner, githubLimits, organization, scanOptions } from '../web/github.mjs';
 import { createFixture } from './github-fixture.mjs';
@@ -54,11 +54,25 @@ test('disk cache is private, versioned and reused by a new scanner',async()=>{
   finally{await rm(directory,{recursive:true,force:true});}
 });
 test('rate limits retry and ordinary access errors are explicit partial results',async()=>{
-  const first=await setup({rate:true});assert.equal((await first.scanner.scan(options)).partial,false);
+  const first=await setup({rate:true});assert.equal((await first.scanner.scan(options)).partial,false);assert.equal(first.scanner.throttled,false,'Expired rate-limit pacing must not latch for the process lifetime.');
   const second=await setup({fail:true});const partial=await second.scanner.scan(options);assert.equal(partial.partial,true);assert.match(partial.repositories.find(r=>r.error).error,/404/);assert.equal(partial.repositories.length,3);
   const third=await setup({count:105,enumerationFailure:true});const incomplete=await third.scanner.scan(options);assert.equal(incomplete.partial,true);assert.equal(incomplete.repositories.length,100);
   const fourth=await setup({transient:true});assert.equal((await fourth.scanner.scan(options)).partial,false);
   const fifth=await setup({redirect:true});assert.equal((await fifth.scanner.scan(options)).partial,true);
+});
+test('content warnings do not claim incomplete coverage or disable immutable caching',async()=>{
+  const {scanner}=await setup({invalidUtf8:true});const result=await scanner.scan(options);
+  const repository=result.repositories.find(item=>item.full_name==='demo/r0');
+  assert.equal(result.partial,false);assert.equal(repository.partial,false);assert.ok(repository.inventory.warnings.length>0);
+  const warm=await scanner.scan(options);assert.equal(warm.metrics.cache_hits,1);
+});
+test('native selector diagnostics survive repository failure reporting',async()=>{
+  const {scanner}=await setup();const directory=await mkdtemp('/tmp/bg-selector-');const selector=path.join(directory,'selector');
+  try{
+    await writeFile(selector,'#!/usr/bin/env node\nconsole.error("Unsafe Git tree path: bad/SKILL.md");process.exit(2);\n');await chmod(selector,0o700);scanner.binary=selector;
+    const result=await scanner.scan(options);assert.equal(result.partial,true);
+    assert.match(result.repositories.find(item=>item.error).error,/Unsafe Git tree path: bad\/SKILL\.md/);
+  }finally{await rm(directory,{recursive:true,force:true});}
 });
 test('unsafe paths, corrupted blobs and response/source/result limits fail visibly',async()=>{
   for(const config of [{unsafe:true},{corrupt:true}]){const {scanner}=await setup(config);assert.equal((await scanner.scan(options)).partial,true);}
