@@ -6,7 +6,7 @@ const request = data => ({method:'POST',headers:{'Content-Type':'application/jso
 function render() {
   const result=job?.result, query=$('github-search').value.trim().toLowerCase(), category=$('github-category').value;
   $('github-status').textContent=job ? `${job.progress.completed} of ${job.progress.discovered} repositories · ${job.state}${result?.partial?' · Partial coverage':''}${job.error?' · '+job.error:''}` : '';
-  $('github-cancel').disabled=job?.state!=='running';$('github-submit').disabled=job?.state==='running';$('github-export').disabled=!result;
+  $('github-cancel').disabled=job?.state!=='running';$('github-submit').disabled=job?.state==='running';$('github-export').disabled=!result||job?.state==='running';
   const host=$('github-results');host.replaceChildren();if(!result)return;
   const warnings=[...result.warnings,...result.repositories.flatMap(repo=>repo.error?[repo.full_name+': '+repo.error]:(repo.inventory?.warnings || []).map(w=>repo.full_name+': '+w))];
   $('github-warnings').textContent=warnings.join('\n');
@@ -22,7 +22,7 @@ function render() {
     button.addEventListener('click',()=>{
       $('github-detail-name').textContent=skill.name;$('github-detail-repository').textContent=repo.full_name+' · '+repo.commit_sha;
       $('github-detail-sources').replaceChildren(...skill.sources.map(source=>{const option=node('option',source.manifest_path);option.value=source.manifest_path;return option;}));
-      const show=()=>{const relative=$('github-detail-sources').value;$('github-detail-content').textContent=repo.sources.find(s=>s.path===relative)?.content || 'Manifest unavailable.';$('github-detail-link').href=repo.url+'/blob/'+repo.commit_sha+'/'+relative.split('/').map(encodeURIComponent).join('/');};
+      const show=()=>{const relative=$('github-detail-sources').value;$('github-detail-content').textContent=(repo.sources || []).find(s=>s.path===relative)?.content || 'Manifest unavailable.';$('github-detail-link').href=repo.url+'/blob/'+repo.commit_sha+'/'+relative.split('/').map(encodeURIComponent).join('/');};
       $('github-detail-sources').onchange=show;show();$('github-detail').showModal();
     });host.append(button);
   }

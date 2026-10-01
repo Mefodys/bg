@@ -103,7 +103,7 @@ jobs:
         run: python3 tests/visual/ci.py ../previous . ../visual-artifacts
       - name: Report bounded visual review metadata
         if: always()
-        run: python3 current/tests/visual/report-metadata.py visual-artifacts/comparison/comparison.json visual-artifacts/tags-comparison/comparison.json
+        run: python3 current/tests/visual/report-metadata.py visual-artifacts/comparison/comparison.json visual-artifacts/tags-comparison/comparison.json feature-artifacts/comparison/comparison.json
       - name: Upload old, new, highlighted differences and test results
         if: always()
         uses: actions/upload-artifact@v4
