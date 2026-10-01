@@ -30,6 +30,7 @@ def contract():
             before,after=base/name,head/name
             if not before.is_file() or not after.is_file():raise ValueError('MISSING VISUAL CONTRACT MIGRATION FILE: '+name)
             digest=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
+            if expected['beforeSHA256']==expected['afterSHA256']:raise ValueError('NO-OP VISUAL CONTRACT MIGRATION FILE: '+name)
             if digest(before)!=expected['beforeSHA256'] or digest(after)!=expected['afterSHA256']:raise ValueError('STALE VISUAL CONTRACT MIGRATION HASH: '+name)
     for name in ['fixtures.json','scenarios.json','fonts/manifest.json']:
         if (old/name).read_bytes()!=(tools/name).read_bytes():raise ValueError('INCOMPATIBLE TEST CONTRACT: fixtures, viewports or font versions changed: '+name)
@@ -52,7 +53,7 @@ try:
         call(['python3',str(tools/'compare.py'),str(previous),str(baseline),str(artifacts/'previous-baseline-verification')])
         baseline=previous
     else:
-        reason='an explicitly hash-bound visual contract migration is active' if migration else 'no retained accepted CI artifact was available'
+        reason=('an explicitly hash-bound visual contract migration is active for '+', '.join(json.loads((tools/'contract-migration.json').read_text())['files']) if migration else 'no retained accepted CI artifact was available')
         (artifacts/'baseline-source.txt').write_text('Previous revision reconstructed from exact base SHA; '+reason+'.\n')
     result=subprocess.run(['python3',str(tools/'analyze.py'),str(baseline),str(artifacts/'head-2'),str(artifacts/'comparison'),str(tools/'expected-changes.json')])
     if (artifacts/'comparison/comparison.json').exists():call(['python3',str(tools/'build-comparison.py'),str(artifacts/'comparison')])

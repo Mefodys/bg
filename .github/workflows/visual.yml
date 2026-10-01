@@ -92,7 +92,12 @@ jobs:
         id: feature_visual
         continue-on-error: true
         working-directory: current
-        run: python3 tests/visual/features.py ../previous . ../feature-artifacts
+        run: |
+          set +e
+          python3 tests/visual/features.py ../previous . ../feature-artifacts
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
       - name: Retrieve previous accepted main screenshots
         env:
           GH_TOKEN: ${{ github.token }}
@@ -104,7 +109,12 @@ jobs:
         working-directory: current
         env:
           VISUAL_PREVIOUS_BASELINE: ../previous-baseline
-        run: python3 tests/visual/ci.py ../previous . ../visual-artifacts
+        run: |
+          set +e
+          python3 tests/visual/ci.py ../previous . ../visual-artifacts
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit "$status"
       - name: Report bounded visual review metadata
         if: always()
         run: python3 current/tests/visual/report-metadata.py visual-artifacts/comparison/comparison.json visual-artifacts/tags-comparison/comparison.json feature-artifacts/comparison/comparison.json
@@ -123,13 +133,20 @@ jobs:
         env:
           FEATURE_OUTCOME: ${{ steps.feature_visual.outcome }}
           INHERITED_OUTCOME: ${{ steps.inherited_visual.outcome }}
+          FEATURE_STATUS: ${{ steps.feature_visual.outputs.status }}
+          INHERITED_STATUS: ${{ steps.inherited_visual.outputs.status }}
         run: |
-          if [ "$FEATURE_OUTCOME" != success ]; then
-            echo '::error title=REGRESSION::Additive feature visual verification failed.'
-          fi
-          if [ "$INHERITED_OUTCOME" != success ]; then
-            echo '::error title=REGRESSION::Common or tag visual verification failed.'
-          fi
+          classify() {
+            name=$1 outcome=$2 status=$3
+            if [ "$outcome" = success ]; then return; fi
+            if [ "$outcome" = failure ] && [ "$status" = 1 ]; then
+              echo "::error title=REGRESSION::$name visual verification failed."
+            else
+              echo "::error title=INCOMPLETE VISUAL VERIFICATION::$name visual verification did not complete (outcome: ${outcome:-none}, status: ${status:-none})."
+            fi
+          }
+          classify 'Additive feature' "$FEATURE_OUTCOME" "$FEATURE_STATUS"
+          classify 'Common or tag' "$INHERITED_OUTCOME" "$INHERITED_STATUS"
           [ "$FEATURE_OUTCOME" = success ] && [ "$INHERITED_OUTCOME" = success ]
       - name: Report incomplete verification when setup or build failed
         if: failure()

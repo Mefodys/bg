@@ -48,7 +48,8 @@ becomes inactive after it reaches both sides of the next comparison.
 Feature and inherited visual gates run independently so either failure cannot
 hide the other's evidence. CI uploads and reports both results, then fails the
 job unless both step outcomes succeeded; a failed gate can never publish a main
-baseline.
+baseline. Exit status 1 is reported as REGRESSION; missing, skipped or status 2
+verification is reported as INCOMPLETE VISUAL VERIFICATION.
 
 ## Classification and review
 
