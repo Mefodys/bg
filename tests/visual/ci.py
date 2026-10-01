@@ -87,7 +87,7 @@ try:
             current=artifacts/'tags-head-2'
             if len(variants)==2:
                 tag_baseline=artifacts/'tags-base-2'
-                if (previous/'tags/manifest.json').exists():
+                if (previous/'tags/manifest.json').exists() and not migration:
                     validate_tag_capture(previous/'tags',expected_ids)
                     call(['python3',str(tools/'compare.py'),str(previous/'tags'),str(tag_baseline),str(artifacts/'tags-previous-baseline-verification')])
                     tag_baseline=previous/'tags'
