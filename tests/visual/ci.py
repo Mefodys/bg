@@ -3,6 +3,7 @@
 import json,os,subprocess,sys
 from pathlib import Path
 from failure import failure_heading
+from tag_capture import validate_tag_capture
 
 base,head,artifacts=map(lambda p:Path(p).resolve(),sys.argv[1:4]);tools=head/'tests/visual'
 artifacts.mkdir(parents=True,exist_ok=False)
@@ -41,9 +42,55 @@ try:
     result=subprocess.run(['python3',str(tools/'analyze.py'),str(baseline),str(artifacts/'head-2'),str(artifacts/'comparison'),str(tools/'expected-changes.json')])
     if (artifacts/'comparison/comparison.json').exists():call(['python3',str(tools/'build-comparison.py'),str(artifacts/'comparison')])
     report=(artifacts/'comparison/comparison.md').read_text();summary(report)
-    if result.returncode:
-        title='REGRESSION' if result.returncode==1 else 'INCOMPLETE VISUAL VERIFICATION'
-        print('::error title='+title+'::Open the comparison artifact for the failed visual verification.');sys.exit(result.returncode)
+    common_status=result.returncode
+    if common_status:
+        title='REGRESSION' if common_status==1 else 'INCOMPLETE VISUAL VERIFICATION'
+        print('::error title='+title+'::Open the comparison artifact for the failed visual verification.')
+    # Preserve inherited base/head evidence even if the additive feature suite fails.
+    tag_status=0
+    if (head/'playwright.tags.config.mjs').exists():
+        try:
+            tag_contract=json.loads((tools/'tag-scenarios.json').read_text())
+            expected_ids={row[0] for row in tag_contract['scenarios']}
+            if len(expected_ids)!=len(tag_contract['scenarios']) or not expected_ids:raise ValueError('Invalid tag scenario contract')
+            variants=[('tags-head',head)]
+            if (base/'playwright.tags.config.mjs').exists():
+                for name in ['tests/visual/tag-scenarios.json','tests/tag-fixtures.mjs','tests/tag-taxonomy.json']:
+                    if (base/name).read_bytes()!=(head/name).read_bytes():raise ValueError('INCOMPATIBLE TAG CONTRACT: '+name)
+                variants.insert(0,('tags-base',base))
+            for variant,root in variants:
+                for index in (1,2):
+                    target=artifacts/f'{variant}-{index}'
+                    env={**os.environ,'TAG_VISUAL_ROOT':str(root),'TAG_VISUAL_OUTPUT':str(target),'TAG_VISUAL_SNAPSHOTS':str(artifacts/f'{variant}-snapshots'),'VISUAL_BASE_SHA':sha(base)}
+                    current_results=target/'results.json'
+                    call(['node','node_modules/playwright/cli.js','test','--config','playwright.tags.config.mjs','--update-snapshots=all' if index==1 else '--update-snapshots=none'],cwd=head,env=env)
+                    validate_tag_capture(target,expected_ids)
+                call(['python3',str(tools/'compare.py'),str(artifacts/f'{variant}-1'),str(artifacts/f'{variant}-2'),str(artifacts/f'{variant}-determinism')])
+            count=len(expected_ids)
+            (artifacts/'tags-determinism.txt').write_text(f'{count}/{count} tag scenarios repeated with exact decoded pixels and DOM; ordinary snapshot verification passed.\n')
+            current=artifacts/'tags-head-2'
+            if len(variants)==2:
+                tag_baseline=artifacts/'tags-base-2'
+                if (previous/'tags/manifest.json').exists():
+                    validate_tag_capture(previous/'tags',expected_ids)
+                    call(['python3',str(tools/'compare.py'),str(previous/'tags'),str(tag_baseline),str(artifacts/'tags-previous-baseline-verification')])
+                    tag_baseline=previous/'tags'
+                tag_status=subprocess.run(['python3',str(tools/'analyze.py'),str(tag_baseline),str(current),str(artifacts/'tags-comparison'),str(tools/'tag-expected-changes.json')]).returncode
+                if (artifacts/'tags-comparison/comparison.json').exists():call(['python3',str(tools/'build-comparison.py'),str(artifacts/'tags-comparison')])
+                report+='\n'+(artifacts/'tags-comparison/comparison.md').read_text()
+            else:
+                report+='\n## Tag suite: initial candidate\n\nNo previous tag-feature revision exists. Exact repeat is verified; these captures are not an accepted main baseline.\n'
+            # Only the actual successful main workflow uploads head-2 as its next baseline.
+            import shutil
+            shutil.copytree(current,artifacts/'head-2/tags')
+        except subprocess.CalledProcessError as e:
+            title=failure_heading(e.cmd,current_results);tag_status=1 if title.startswith('REGRESSION') else 2
+            report+='\n# '+title+'\n\nTag checks failed; inherited comparison evidence is preserved. Inspect tag traces/results.\n'
+        except (ValueError,AssertionError,KeyError,FileNotFoundError) as e:
+            tag_status=2;report+='\n# INCOMPLETE VISUAL VERIFICATION\n\nTag checks: '+str(e)+'\n'
+        if tag_status:print('::error title='+('REGRESSION' if tag_status==1 else 'INCOMPLETE VISUAL VERIFICATION')+'::Tag verification failed; inherited comparison is retained.')
+    summary(report)
+    sys.exit(1 if 1 in (common_status,tag_status) else max(common_status,tag_status))
 except ValueError as e:
     summary('# INCOMPLETE VISUAL VERIFICATION\n\n'+str(e)+'\n');print('::error title=INCOMPLETE VISUAL VERIFICATION::'+str(e));sys.exit(2)
 except subprocess.CalledProcessError as e:
