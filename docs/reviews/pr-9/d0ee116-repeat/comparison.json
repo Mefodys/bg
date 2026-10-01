@@ -1,0 +1,12 @@
+{
+  "kind": "same-head repeat instability",
+  "status": "INCOMPLETE — NONDETERMINISTIC SCREENSHOTS",
+  "beforeSHA": "d0ee116384ada82b51c85368aa0a0abd0fbbbb64",
+  "afterSHA": "d0ee116384ada82b51c85368aa0a0abd0fbbbb64",
+  "scenarios": [
+    {
+      "id": "desktop/17-recovered",
+      "changedPixels": 6906
+    }
+  ]
+}
