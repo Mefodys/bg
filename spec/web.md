@@ -37,8 +37,9 @@ them.
   requests, runtime dependencies, or theme switcher.
 - Panels, cards, inputs, counters, badges, progress bars, pagination, and the
   details dialog share tight 3–4px radii, crisp one-pixel borders, and
-  command-prompt-inspired decorative label prefixes added through CSS
-  `::before` content, never through the accessible text.
+  command-prompt-inspired label prefixes added through CSS `::before` content.
+  They leave the DOM and `textContent` unchanged but, like all generated
+  content, form part of the accessible name.
 - Subtle static grid texture on the sidebar, workspace, and dialog, and subtle
   static scanlines on console surfaces, manifest `pre` blocks, and empty states.
   Textures are background images on the element itself, so they can never
@@ -49,8 +50,10 @@ them.
   lavender treatment.
 - The system covers every state: empty, loading, error, partial, stale/expired,
   pagination, comparison results, and the 390px mobile layout.
-- Keyboard focus stays visible through a 3px phosphor `:focus-visible` outline
-  on every interactive element, including textareas and `summary`.
+- Keyboard focus stays visible on every interactive element: normally through
+  a 3px phosphor `:focus-visible` outline. The scan-row and search inputs
+  suppress their own outline and show focus on the enclosing console frame via
+  `:focus-within`; any new control inside a console frame must keep one method.
 - Decorative motion is absent. The only transitions are result-card border and
   background colors, and they are disabled under `prefers-reduced-motion`.
 - `color-scheme: dark` keeps native selects, checkboxes, progress bars, and
@@ -179,6 +182,14 @@ Expired detail sessions offer a refresh action and validate the skill again.
 
 ## Similar skills
 
+GitHub organization discovery has its own bounded jobs/results/search/details
+panel; it does not consume local catalogue entries or masquerade as a local scan.
+Its endpoints, limits, credential handling and partial states are specified in
+[github-organization.md](github-organization.md).
+
+Persistent star toggles and pinned ordering are specified in
+[starred-skills.md](starred-skills.md). They preserve scan/export data.
+
 The Similar skills panel sits beside Filter on wide screens and stacks on narrow
 screens. Selecting a detail result also selects it for comparison; the selected
 skill dropdown can replace it independently. Scan success resets selection and
@@ -237,3 +248,33 @@ Tests include formula/Unicode/full-body scoring, empty/identical/disjoint/partia
 texts, stable corpus order/ties, canonical mirror aliases, roles/product boundaries,
 realpath aliases, source allowlists/expiry/symlinks, missing target sources,
 invalid paths, count/byte limits, and API/keyboard/browser/mobile states.
+
+### Semantic tags and facets
+
+Implemented contract: [skill-tags.md](skill-tags.md), with the complete initial
+[classification audit](skill-tags-audit.md). Atlas ships 89 reviewed logical
+assignments and 43 semantic tags for the four reference presets. `GET /api/tags`
+returns definitions/version/catalogue digest. Scans, indices and snapshots carry
+`tagging` coverage/assignments, and Similar skills targets carry owning tags.
+Complete native reads compute SHA-256 over raw line-ending-normalized bytes.
+Bound focused scans prepare their index once; unbound scans show Needs
+classification and retain on-demand body indexing. Runtime joins never use names
+or inferred remotes. Changed, unknown or unreadable hashes have no active tags.
+
+Tags narrow literal search using OR within Task/Focus/Platform, AND between
+groups. Counts cover all pages. Unclassified only suspends semantic selections;
+Clear tags and Clear search operate independently. Separate buttons activate
+facets and open owning details. Download tagged inventory exports the focused
+inventory and its classification envelope; native Export JSON stays unchanged.
+
+Trusted process configuration may provide `BG_REFERENCE_ROOTS` (a JSON file
+with exactly the four reference_key/absolute path entries) and `BG_TAG_DATA_DIR`
+(an absolute metadata directory). Defaults use the existing reference presets
+and committed web/data. These are administrator configuration, never request
+fields. Catalogue changes require server restart and owned snapshot refresh.
+Invalid metadata preserves literal search with a visible classification warning;
+/api/tags returns 503. Source repositories and manifests remain read-only.
+
+Reference roots bind once at process start. A preset that becomes available later
+requires a server restart before tags can be confirmed. Duplicate reference
+realpaths are rejected, including aliases resolving to different reference keys.

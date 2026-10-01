@@ -39,6 +39,17 @@ Existing fixtures/scenarios/viewports/font versions cannot change in an ordinary
 PR; CI blocks such changes pending an explicit visual-contract migration. This
 prevents removing tests or changing data to hide differences.
 
+A visual harness migration must use `tests/visual/contract-migration.json` to
+bind its reason, exact base SHA, changed file paths and before/after file hashes.
+For that one base-to-head transition CI reconstructs the exact base with the new
+harness instead of comparing an incompatible retained artifact. The declaration
+becomes inactive after it reaches both sides of the next comparison.
+
+Feature and inherited visual gates run independently so either failure cannot
+hide the other's evidence. CI uploads and reports both results, then fails the
+job unless both step outcomes succeeded; a failed gate can never publish a main
+baseline.
+
 ## Classification and review
 
 Undeclared differences fail with **REGRESSION** in a large job summary heading
@@ -73,6 +84,9 @@ semantics. Defects inside a declared region still need reviewer analysis.
 Every run uploads `visual-comparison-<headSHA>` with before/after/diff PNGs,
 comparison.json/.md, three-column gallery.html with synchronized zoom/scroll,
 Playwright results/traces and repeat-determinism reports. All labels are English.
+The job log also prints bounded JSON metadata for changed scenarios: exact base
+and head SHAs, decoded after-pixel hashes, observed DOM state and changed-pixel
+bounds. It never embeds screenshots or accepts those changes automatically.
 Download/unzip and open comparison/gallery.html; inline PR uploads are not claimed.
 Only a successful main push publishes `visual-baseline-<mergeSHA>` for the next PR.
 A green PR result does not replace checking the actual merge SHA.
@@ -89,3 +103,48 @@ python3 tests/visual/ci.py /previous-checkout . /new/artifact-directory
 Playwright Test is JavaScript. Python is only the pixel-analysis/report harness
 and the existing native test runner. Use the pinned CI container for identical
 CI rendering; never raise tolerance to compare incompatible platforms.
+
+## Additive tag feature scenarios
+
+`playwright.tags.config.mjs` runs twelve additional deterministic Playwright Test
+states against native fixture scans and a fixed reviewed fixture catalogue. It
+covers query90 → Testing12 → Testing+Agent evaluations3, unclassified suspension,
+changed hashes, owning details and mobile facets/details. The common 23 scenario
+IDs, fixtures and previous/current exact comparison remain unchanged. CI captures
+the feature suite twice: explicit self-reference generation then verification
+without snapshot updates, with zero tolerance/retries. Its images/results are
+inside `tags-head-1`, `tags-head-2`, `tags-head-snapshots` in the same comparison artifact.
+This additive suite proves feature behavior and repeat determinism; it does not
+replace or waive the existing baseline-to-head visual comparison.
+
+The inherited comparison runs before the additive suite, so a tag failure cannot
+hide its old/new/diff evidence. Versioned tag scenario/fixture/font contracts,
+README and manifests record environment, revisions, image and code hashes,
+assertions and observations. CI requires the exact scenario/PNG/JSON set and
+compares decoded pixels plus DOM on the repeat. When the base has tag support,
+it also replays that exact revision and compares with the retained main tag
+baseline (`head-2/tags`), or explicitly reconstructed base captures. Missing
+accepted scenarios fail as incomplete. Initial self-reference is never a main
+acceptance; only an actual successful main run publishes the next baseline.
+Tag expectations require the same exact-base/pixel/region review in
+`tests/visual/tag-expected-changes.json`; they cannot waive behaviour failures.
+
+## Additive feature scenarios
+
+`tests/visual/features.py` renders every established feature spec twice at the
+exact base revision, then verifies the head revision against those base locator
+snapshots twice with zero tolerance and no retries. A newly added spec is an
+explicit initial candidate: it creates a self-reference once and immediately
+verifies an ordinary second run. After that spec reaches main, its stable path
+is part of the reconstructed exact-base comparison for every later PR. Removing
+an established feature spec is incompatible and fails. This gate supplements
+the common and tag comparisons and preserves traces, videos and snapshots in
+the visual comparison artifact.
+
+An intentional change to an established locator screenshot must be declared in
+`tests/visual/feature-expected-changes.json`. The declaration is keyed by the
+snapshot path and binds the exact base SHA, a review reason and the decoded
+after-image SHA256. Undeclared images, stale declarations, missing snapshots,
+dimension changes and behavior assertion failures block the workflow. CI prints
+bounded comparison metadata and retains base, head and highlighted-difference
+images for review.

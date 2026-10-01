@@ -112,7 +112,45 @@ skills. Statistics and JSON export describe the focused repository. Search shows
 100 results per page, with counts for all matches. See the complete
 [multi-repository search specification](spec/multi-repository-filter.md).
 
+## Scan a GitHub organization
+
+Open **Scan a GitHub organization**, enter `github.com/JetBrains`, and scan
+default branches across all visible repositories. Results stream by repository;
+search includes manifest bodies, category selection and pinned-commit details.
+Cancel stops pending requests/native work. Warnings and partial coverage remain
+visible. Remote results have their own JSON export and do not replace local
+statistics or enter the 64-entry local catalogue.
+
+```bash
+BG_GITHUB_TOKEN=... node web/github-cli.mjs scan-org JetBrains --json
+node web/github-cli.mjs scan-org github.com/JetBrains --cache-dir /private/path/bg-cache
+node web/github-cli.mjs scan-org JetBrains --refresh --concurrency 4 --no-archived --no-forks
+```
+
+Set `BG_GITHUB_TOKEN` on the server (or use `GH_TOKEN`) for higher limits/private
+repository visibility; never paste it into the browser. Without a token only
+public data visible to GitHub's API is available. Forks and archived projects are
+included by default. CLI progress uses stderr; JSON is one final stdout document.
+In environments requiring HTTP(S)_PROXY, enable Node's proxy support with
+`NODE_USE_ENV_PROXY=1`. Production requests still target only api.github.com.
+Exit 1 means a usable partial/cancelled scan, exit 2 invalid input/fatal setup.
+CLI cache is opt-in, private to its owner and contains private manifest text when
+authorized; remove that cache directory to clear it. The server cache is bounded
+and lasts until restart. Refresh bypasses cached results.
+
+The algorithm fetches Git trees, falls back to complete nonrecursive traversal
+when truncated, and downloads only manifests selected by the native scanner.
+It never downloads history or runs repository code. Rate-limit responses pause
+requests and reduce request throughput; limits/deadlines cannot be hidden as
+complete coverage. See [contract, risks and tests](spec/github-organization.md)
+and [performance evidence](reports/github-performance.md).
+
 ## GitHub Actions
+
+Star a result or the open details view to pin it first within its repository
+section. Favorites persist in this browser at the same server origin; they still
+respect search/category/scope filters. Missing skills do not create stale cards.
+See [starred skills](spec/starred-skills.md) for identity and storage behavior.
 
 `.github/workflows/ci.yml` runs on pull requests, pushes/merges to `main`, and
 manual dispatch. The `build-and-test` job uses the macOS 15 ARM64 runner,
@@ -156,3 +194,19 @@ baseline. Unexpected changes fail with **REGRESSION**; reviewed feature changes
 are explicitly classified. Download the `visual-comparison-SHA` artifact and
 open `comparison/gallery.html` for old/new/highlighted-diff columns.
 Details: [spec/visual-regression.md](spec/visual-regression.md).
+
+### Skill tags
+
+Skill Atlas includes a reviewed catalogue for all 89 logical skills in MPS,
+Koog, Android and Kotlin: 43 Task/Focus/Platform tags. Open **Tags** in Filter
+to narrow text matches. Values in one group use OR; groups use AND. Query and
+tag clearing are separate. Every row/details/Similar skills target shows its
+classification, including **Needs classification** for changed or unbound
+manifests. Metadata lives in Atlas; scanned repositories are never modified.
+
+`node tools/skill-tags.mjs --check` validates the committed catalogue/ledger
+without external checkouts. `--prepare /tmp/tags.json` computes bounded full-text
+similarity evidence for maintenance; `--verify /tmp/tags.json` also checks
+current reference-source coverage. See [tag contract](spec/skill-tags.md) and
+[classification audit](spec/skill-tags-audit.md) for identity, hash lifecycle,
+trusted reference configuration and all initial assignments. No runtime LLM.

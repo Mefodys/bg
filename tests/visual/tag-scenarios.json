@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "scenarios": [
+    [
+      "desktop/01-query",
+      "query",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/02-task",
+      "task",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/03-task-focus",
+      "task-focus",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/04-unclassified",
+      "unclassified",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/05-changed",
+      "changed",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/06-owning-details",
+      "details",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/07-zero-results",
+      "zero",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/08-clear-query",
+      "clear",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/09-similar",
+      "similar",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "desktop/10-unavailable",
+      "unavailable",
+      {
+        "width": 1440,
+        "height": 1000
+      }
+    ],
+    [
+      "mobile/01-facets",
+      "task-focus",
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    [
+      "mobile/02-details",
+      "details",
+      {
+        "width": 390,
+        "height": 844
+      }
+    ]
+  ]
+}

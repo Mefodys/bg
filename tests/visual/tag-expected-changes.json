@@ -1,0 +1,454 @@
+{
+  "baseSHA": "1740c13ff110aa3ec261f1d75b6e889df57336e8",
+  "changes": [
+    {
+      "scenario": "desktop/01-query",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "9aa115afe9b357ad70a9880f354a16acf3c077bf97acff70b1a8d5c7af101f47",
+      "regions": [
+        {
+          "x": 349,
+          "y": 806,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 433,
+          "y": 806,
+          "width": 2,
+          "height": 2
+        },
+        {
+          "x": 350,
+          "y": 824,
+          "width": 1,
+          "height": 2
+        }
+      ],
+      "observedAfter": {
+        "count": "90 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 1050
+      }
+    },
+    {
+      "scenario": "desktop/02-task",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "f2011ad1a2a739a1bd02f14ba8a56a6025435e3729c01e9cc1b2bfe195d4612d",
+      "regions": [
+        {
+          "x": 350,
+          "y": 732,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 336,
+          "y": 982,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 387,
+          "y": 981,
+          "width": 10,
+          "height": 7
+        },
+        {
+          "x": 443,
+          "y": 981,
+          "width": 10,
+          "height": 7
+        },
+        {
+          "x": 559,
+          "y": 981,
+          "width": 12,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "12 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing"
+        ],
+        "scrollY": 1050
+      }
+    },
+    {
+      "scenario": "desktop/03-task-focus",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "fa101b59afc31b0ec2bb7f7c4763afc755b4815e9eeab18574d4082c1c55fd83",
+      "regions": [
+        {
+          "x": 499,
+          "y": 293,
+          "width": 10,
+          "height": 8
+        },
+        {
+          "x": 350,
+          "y": 732,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 336,
+          "y": 982,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 387,
+          "y": 981,
+          "width": 10,
+          "height": 7
+        },
+        {
+          "x": 443,
+          "y": 981,
+          "width": 10,
+          "height": 7
+        },
+        {
+          "x": 559,
+          "y": 981,
+          "width": 12,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "3 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 1050
+      }
+    },
+    {
+      "scenario": "desktop/04-unclassified",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "56a4c827978a24a33f4a915b0e2c57f293eb669fb898c5577e79feb964307535",
+      "regions": [
+        {
+          "x": 321,
+          "y": 900,
+          "width": 9,
+          "height": 5
+        },
+        {
+          "x": 794,
+          "y": 900,
+          "width": 9,
+          "height": 5
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification · Semantic selections suspended; turn off Unclassified only to restore them.",
+        "query": "",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 876
+      }
+    },
+    {
+      "scenario": "desktop/05-changed",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "844e8b8abbcb9b484cbdba46c757062305a49bad1d8b44f5e0ec7574543512a4",
+      "regions": [
+        {
+          "x": 386,
+          "y": 42,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 42,
+          "width": 4,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 121",
+        "coverage": "119 of 121 loaded skills classified · Needs classification",
+        "query": "Changedbody",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 798
+      }
+    },
+    {
+      "scenario": "desktop/06-owning-details",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "f378770541c61a4b247039eb45553ca98c146f9b4d0ff39dc5185d0bd3d92cd6",
+      "regions": [
+        {
+          "x": 344,
+          "y": 750,
+          "width": 1,
+          "height": 1
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 122",
+        "coverage": "121 of 122 loaded skills classified · Needs classification",
+        "query": "Ownerneedle",
+        "dialog": true,
+        "selected": [],
+        "scrollY": 1040
+      }
+    },
+    {
+      "scenario": "desktop/07-zero-results",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "dd56832e59ea6642a8d1a903f3a55394108228ecadec4a211cdcfefe0b5c2309",
+      "regions": [
+        {
+          "x": 499,
+          "y": 376,
+          "width": 10,
+          "height": 8
+        },
+        {
+          "x": 338,
+          "y": 879,
+          "width": 1,
+          "height": 1
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "otherneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 967
+      }
+    },
+    {
+      "scenario": "desktop/08-clear-query",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "82d79c29b17a311b985e9713d2b091774537a6acec265e8f06b0b4e78061ed54",
+      "regions": [
+        {
+          "x": 499,
+          "y": 293,
+          "width": 10,
+          "height": 8
+        },
+        {
+          "x": 350,
+          "y": 732,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 336,
+          "y": 982,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 387,
+          "y": 981,
+          "width": 10,
+          "height": 7
+        },
+        {
+          "x": 443,
+          "y": 981,
+          "width": 10,
+          "height": 7
+        },
+        {
+          "x": 559,
+          "y": 981,
+          "width": 12,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "3 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 1050
+      }
+    },
+    {
+      "scenario": "desktop/09-similar",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "a2536c3d15a0c1007f0a2b085ca514dcd572916105b8b94fc48393c1ac8369c8",
+      "regions": [
+        {
+          "x": 328,
+          "y": 13,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 21,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 21,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 100,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 100,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 528,
+          "width": 4,
+          "height": 7
+        },
+        {
+          "x": 1364,
+          "y": 528,
+          "width": 5,
+          "height": 8
+        },
+        {
+          "x": 857,
+          "y": 784,
+          "width": 4,
+          "height": 3
+        },
+        {
+          "x": 1388,
+          "y": 783,
+          "width": 4,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "90 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 740
+      }
+    },
+    {
+      "scenario": "desktop/10-unavailable",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "2e3262832f70bd9fb90f4b0c9bb2b723fe0525a1ab0249e8d73d39289e60ac27",
+      "regions": [
+        {
+          "x": 339,
+          "y": 220,
+          "width": 5,
+          "height": 4
+        },
+        {
+          "x": 780,
+          "y": 219,
+          "width": 5,
+          "height": 5
+        },
+        {
+          "x": 337,
+          "y": 549,
+          "width": 4,
+          "height": 6
+        },
+        {
+          "x": 449,
+          "y": 550,
+          "width": 3,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "90 of 121",
+        "coverage": "Tagging unavailable: Tagging unavailable: Expected property name or '}' in JSON at position 1 (line 1 column 2)",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [],
+        "scrollY": 1050
+      }
+    },
+    {
+      "scenario": "mobile/01-facets",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "00e2cdb25163fcc20d466f6f47824cd951edc4ae06632ac303a4a5dc0c5587b8",
+      "regions": [
+        {
+          "x": 66,
+          "y": 231,
+          "width": 8,
+          "height": 8
+        }
+      ],
+      "observedAfter": {
+        "count": "3 of 121",
+        "coverage": "120 of 121 loaded skills classified · Needs classification",
+        "query": "testneedle",
+        "dialog": false,
+        "selected": [
+          "task:testing",
+          "focus:agent-evals"
+        ],
+        "scrollY": 1357
+      }
+    },
+    {
+      "scenario": "mobile/02-details",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "fa1653f361620463cd6cd718141e56e74f5e9d0c71697598c2ba4fb2a52595a6",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 122",
+        "coverage": "121 of 122 loaded skills classified · Needs classification",
+        "query": "Ownerneedle",
+        "dialog": true,
+        "selected": [],
+        "scrollY": 2100
+      }
+    }
+  ]
+}

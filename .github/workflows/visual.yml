@@ -88,24 +88,49 @@ jobs:
       - name: Test regression classification
         working-directory: current
         run: python3 tests/visual/test_analysis.py
+      - name: Verify added feature scenarios with exact repeated frames
+        id: feature_visual
+        continue-on-error: true
+        working-directory: current
+        run: python3 tests/visual/features.py ../previous . ../feature-artifacts
       - name: Retrieve previous accepted main screenshots
         env:
           GH_TOKEN: ${{ github.token }}
           REPOSITORY: ${{ github.repository }}
         run: python3 current/tests/visual/download-baseline.py "$REPOSITORY" "$BASE_SHA" previous-baseline
       - name: Playwright tests, deterministic repeats and previous/current analysis
+        id: inherited_visual
+        continue-on-error: true
         working-directory: current
         env:
           VISUAL_PREVIOUS_BASELINE: ../previous-baseline
         run: python3 tests/visual/ci.py ../previous . ../visual-artifacts
+      - name: Report bounded visual review metadata
+        if: always()
+        run: python3 current/tests/visual/report-metadata.py visual-artifacts/comparison/comparison.json visual-artifacts/tags-comparison/comparison.json feature-artifacts/comparison/comparison.json
       - name: Upload old, new, highlighted differences and test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: visual-comparison-${{ env.HEAD_SHA }}
-          path: visual-artifacts/
+          path: |
+            visual-artifacts/
+            feature-artifacts/
           if-no-files-found: warn
           retention-days: 90
+      - name: Enforce every visual gate after preserving evidence
+        if: always()
+        env:
+          FEATURE_OUTCOME: ${{ steps.feature_visual.outcome }}
+          INHERITED_OUTCOME: ${{ steps.inherited_visual.outcome }}
+        run: |
+          if [ "$FEATURE_OUTCOME" != success ]; then
+            echo '::error title=REGRESSION::Additive feature visual verification failed.'
+          fi
+          if [ "$INHERITED_OUTCOME" != success ]; then
+            echo '::error title=REGRESSION::Common or tag visual verification failed.'
+          fi
+          [ "$FEATURE_OUTCOME" = success ] && [ "$INHERITED_OUTCOME" = success ]
       - name: Report incomplete verification when setup or build failed
         if: failure()
         run: |

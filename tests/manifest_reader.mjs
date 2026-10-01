@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
-import { readManifestText } from '../web/manifests.mjs';
+import { readManifestText, manifestDigest } from '../web/manifests.mjs';
 
 for (const replacement of ['parent', 'repository', 'ancestor', 'leaf']) {
   test(`reject ${replacement} symlink swapped after realpath and before native open`, async () => {
@@ -46,8 +46,8 @@ test('bounded bytes and incomplete trailing UTF-8 remain compatible', async () =
   const root = await fs.realpath(temporary);
   try {
     await fs.writeFile(path.join(root, 'SKILL.md'), 'A世界');
-    assert.deepEqual(await readManifestText(root, 'SKILL.md', 3), { content: 'A', truncated: true, bytes: 3 });
-    assert.deepEqual(await readManifestText(root, 'SKILL.md', 7), { content: 'A世界', truncated: false, bytes: 7 });
-    assert.deepEqual(await readManifestText(root, 'SKILL.md', 0), { content: '', truncated: true, bytes: 0 });
+    assert.deepEqual(await readManifestText(root, 'SKILL.md', 3), { content: 'A', truncated: true, bytes: 3, manifest_sha256: null });
+    assert.deepEqual(await readManifestText(root, 'SKILL.md', 7), { content: 'A世界', truncated: false, bytes: 7, manifest_sha256: manifestDigest(Buffer.from('A世界')) });
+    assert.deepEqual(await readManifestText(root, 'SKILL.md', 0), { content: '', truncated: true, bytes: 0, manifest_sha256: null });
   } finally { await fs.rm(root, { recursive: true, force: true }); }
 });
