@@ -1,1 +1,3772 @@
-{"baseSHA":null,"changes":[]}
+{
+  "baseSHA": "b911ff2b7392d8b69c9642048f5bcef9821a6265",
+  "changes": [
+    {
+      "scenario": "desktop/01-initial",
+      "reason": "Reviewed tag feature: added tagged-inventory export action moves Export JSON left; no other initial-screen pixels change. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69.",
+      "afterPixelSHA256": "4d415f2e4aef98af1989360f400bf20c13bad98539cd7ecd80acbba88b2da226",
+      "regions": [
+        {
+          "x": 1133,
+          "y": 544,
+          "width": 258,
+          "height": 32
+        },
+        {
+          "x": 1131,
+          "y": 576,
+          "width": 262,
+          "height": 32
+        },
+        {
+          "x": 1133,
+          "y": 608,
+          "width": 257,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/02-scanned",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69.",
+      "afterPixelSHA256": "7b1f25ccf640c2537af9bcf31f01f113e4d43e5d12f16776de879bc7485195b1",
+      "regions": [
+        {
+          "x": 336,
+          "y": 320,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 352,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 384,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 416,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 448,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 480,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 512,
+          "width": 440,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 544,
+          "width": 117,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 435,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 608,
+          "width": 440,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 640,
+          "width": 420,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 436,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 704,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 424,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 768,
+          "width": 439,
+          "height": 32
+        },
+        {
+          "x": 340,
+          "y": 800,
+          "width": 433,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 832,
+          "width": 100,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 864,
+          "width": 423,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 896,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 928,
+          "width": 490,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 960,
+          "width": 554,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 992,
+          "width": 554,
+          "height": 8
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/03-name",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 241 to 347; all other observed fields unchanged.",
+      "afterPixelSHA256": "bfc4f0479f15fc31e42710438efc233296bbcf0f08babd7104f577c16184558f",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 32,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 64,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 96,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 128,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 291,
+          "y": 160,
+          "width": 1104,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 224,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 256,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 286,
+          "y": 288,
+          "width": 1116,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 320,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 352,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 384,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 416,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 480,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 576,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 608,
+          "width": 1050,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 640,
+          "width": 1032,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1034,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 704,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 736,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 832,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 297,
+          "y": 896,
+          "width": 1096,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 347,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/04-description",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 238 to 344; all other observed fields unchanged.",
+      "afterPixelSHA256": "571ce2adb164c74cc9981d2cf701479ae81de1ebed5751158fe951cce60110da",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 32,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 64,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 96,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 128,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 290,
+          "y": 160,
+          "width": 1106,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 224,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 256,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 286,
+          "y": 288,
+          "width": 1116,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 320,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 352,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 384,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 416,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 512,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 576,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 608,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 640,
+          "width": 1030,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1034,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 704,
+          "width": 1034,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 736,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 832,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 298,
+          "y": 896,
+          "width": 1097,
+          "height": 32
+        },
+        {
+          "x": 823,
+          "y": 928,
+          "width": 1,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "automated review",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 344,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/05-body",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 260 to 366; all other observed fields unchanged.",
+      "afterPixelSHA256": "fe18949bdb813fcccd94097801f6284ab23a6a984b20bb594a5640743daaf02a",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 32,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 64,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 96,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 128,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 160,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 224,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 256,
+          "width": 1112,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 288,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 320,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 352,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 384,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 480,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 576,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 608,
+          "width": 941,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 640,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1034,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 704,
+          "width": 1034,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 832,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 1065,
+          "height": 32
+        },
+        {
+          "x": 321,
+          "y": 896,
+          "width": 482,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "AlphaBodyToken",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 366,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/06-current-miss",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 346 to 416; all other observed fields unchanged.",
+      "afterPixelSHA256": "5861d6a3e9e7393773127f50616dcedd7f23df8134b816488b0252d4d743be00",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 32,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 64,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 96,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 128,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 160,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 1101,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 224,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 256,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 288,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 320,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 352,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 384,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 512,
+          "width": 682,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 544,
+          "width": 995,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 477,
+          "y": 608,
+          "width": 892,
+          "height": 32
+        },
+        {
+          "x": 879,
+          "y": 640,
+          "width": 490,
+          "height": 32
+        },
+        {
+          "x": 845,
+          "y": 672,
+          "width": 558,
+          "height": 32
+        },
+        {
+          "x": 845,
+          "y": 704,
+          "width": 558,
+          "height": 32
+        },
+        {
+          "x": 845,
+          "y": 736,
+          "width": 558,
+          "height": 32
+        },
+        {
+          "x": 846,
+          "y": 768,
+          "width": 556,
+          "height": 32
+        },
+        {
+          "x": 298,
+          "y": 896,
+          "width": 528,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 4",
+        "query": "OtherBodyNeedle",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 416,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/07-selected",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 554 to 637; all other observed fields unchanged.",
+      "afterPixelSHA256": "5af3bfab8422a319efa2d41fda8ff12061519c40444f0c10b3c78280ff55f713",
+      "regions": [
+        {
+          "x": 286,
+          "y": 0,
+          "width": 1116,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 32,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 64,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 96,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 128,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 160,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 192,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 224,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 256,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 288,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 320,
+          "width": 1014,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 352,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 384,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1086,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1086,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1086,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1086,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1062,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 608,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 640,
+          "width": 209,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 207,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 704,
+          "width": 100,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 405,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 405,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 832,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 864,
+          "width": 490,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 896,
+          "width": 554,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 928,
+          "width": 554,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 960,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 305,
+          "y": 992,
+          "width": 1088,
+          "height": 8
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "selected",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 637,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/08-all",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69.",
+      "afterPixelSHA256": "46495fd4ba81e01e524955241a1b551f9f0d1342b8ced6272d506da7c5833550",
+      "regions": [
+        {
+          "x": 336,
+          "y": 384,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 416,
+          "width": 453,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 448,
+          "width": 450,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 480,
+          "width": 193,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 512,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 544,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 348,
+          "y": 576,
+          "width": 427,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 608,
+          "width": 424,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 640,
+          "width": 440,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 672,
+          "width": 424,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 704,
+          "width": 435,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 736,
+          "width": 329,
+          "height": 32
+        },
+        {
+          "x": 337,
+          "y": 768,
+          "width": 438,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 424,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 832,
+          "width": 436,
+          "height": 32
+        },
+        {
+          "x": 348,
+          "y": 864,
+          "width": 87,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 896,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 928,
+          "width": 321,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 960,
+          "width": 439,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 992,
+          "width": 437,
+          "height": 8
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/09-category",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 217 to 323; all other observed fields unchanged.",
+      "afterPixelSHA256": "ee627b1511f6c33ab872189a738f5303b69308289e375b463c652a561a65b48d",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 32,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 64,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 96,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 128,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 160,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 224,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 256,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 288,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 320,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 352,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 384,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 416,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 448,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 512,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 576,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 608,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 640,
+          "width": 1014,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 672,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 704,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 736,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 768,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 832,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 896,
+          "width": 1066,
+          "height": 32
+        },
+        {
+          "x": 297,
+          "y": 928,
+          "width": 1070,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 1",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 323,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/10-empty",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 346 to 416; all other observed fields unchanged.",
+      "afterPixelSHA256": "bb6fc959ece6773340ec5c3c059cadb748648e2e28993757c932a14ad59387f7",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 32,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 64,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 96,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 128,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 160,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 1101,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 224,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 256,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 288,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 320,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 352,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 384,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 512,
+          "width": 682,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 544,
+          "width": 995,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 477,
+          "y": 608,
+          "width": 892,
+          "height": 32
+        },
+        {
+          "x": 879,
+          "y": 640,
+          "width": 490,
+          "height": 32
+        },
+        {
+          "x": 845,
+          "y": 672,
+          "width": 558,
+          "height": 32
+        },
+        {
+          "x": 845,
+          "y": 704,
+          "width": 558,
+          "height": 32
+        },
+        {
+          "x": 845,
+          "y": 736,
+          "width": 558,
+          "height": 32
+        },
+        {
+          "x": 846,
+          "y": 768,
+          "width": 556,
+          "height": 32
+        },
+        {
+          "x": 298,
+          "y": 896,
+          "width": 528,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 4",
+        "query": "missing-visual-token",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 416,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/11-clear",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69.",
+      "afterPixelSHA256": "7b1f25ccf640c2537af9bcf31f01f113e4d43e5d12f16776de879bc7485195b1",
+      "regions": [
+        {
+          "x": 336,
+          "y": 320,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 352,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 384,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 416,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 448,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 480,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 512,
+          "width": 440,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 544,
+          "width": 117,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 435,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 608,
+          "width": 440,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 640,
+          "width": 420,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 436,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 704,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 424,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 768,
+          "width": 439,
+          "height": 32
+        },
+        {
+          "x": 340,
+          "y": 800,
+          "width": 433,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 832,
+          "width": 100,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 864,
+          "width": 423,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 896,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 928,
+          "width": 490,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 960,
+          "width": 554,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 992,
+          "width": 554,
+          "height": 8
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/12-details",
+      "reason": "Reviewed tag feature: details classification badge/reason expands and recenters dialog; taller tag-enriched inventory changes scrolled background geometry. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 408 to 512; all other observed fields unchanged.",
+      "afterPixelSHA256": "8d02679a030f83d195b3f4e19bdd681cd4478c2489d0353f979872172dac230d",
+      "regions": [
+        {
+          "x": 289,
+          "y": 0,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 32,
+          "width": 1112,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 64,
+          "width": 1113,
+          "height": 32
+        },
+        {
+          "x": 286,
+          "y": 96,
+          "width": 1111,
+          "height": 32
+        },
+        {
+          "x": 291,
+          "y": 128,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 160,
+          "width": 1115,
+          "height": 32
+        },
+        {
+          "x": 249,
+          "y": 192,
+          "width": 1150,
+          "height": 32
+        },
+        {
+          "x": 222,
+          "y": 224,
+          "width": 1177,
+          "height": 32
+        },
+        {
+          "x": 209,
+          "y": 256,
+          "width": 1190,
+          "height": 32
+        },
+        {
+          "x": 202,
+          "y": 288,
+          "width": 1172,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 320,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 352,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 384,
+          "width": 1137,
+          "height": 32
+        },
+        {
+          "x": 325,
+          "y": 416,
+          "width": 1049,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 448,
+          "width": 1041,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 480,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 512,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 544,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 344,
+          "y": 576,
+          "width": 1055,
+          "height": 32
+        },
+        {
+          "x": 241,
+          "y": 608,
+          "width": 1158,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 640,
+          "width": 1162,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 672,
+          "width": 1201,
+          "height": 32
+        },
+        {
+          "x": 201,
+          "y": 704,
+          "width": 1198,
+          "height": 32
+        },
+        {
+          "x": 206,
+          "y": 736,
+          "width": 1028,
+          "height": 32
+        },
+        {
+          "x": 215,
+          "y": 768,
+          "width": 1010,
+          "height": 32
+        },
+        {
+          "x": 233,
+          "y": 800,
+          "width": 974,
+          "height": 32
+        },
+        {
+          "x": 272,
+          "y": 832,
+          "width": 896,
+          "height": 32
+        },
+        {
+          "x": 327,
+          "y": 864,
+          "width": 454,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 512,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/13-similar",
+      "reason": "Reviewed tag feature: Tags disclosure, inventory badges and Similar skills classification badges/reasons increase panel heights. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69.",
+      "afterPixelSHA256": "7dafc1fe5b106bd7b3548b89adf07a564ccd17dc5d3aefd16141110bd2997282",
+      "regions": [
+        {
+          "x": 336,
+          "y": 320,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 352,
+          "width": 452,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 384,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 416,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 448,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 480,
+          "width": 412,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 512,
+          "width": 937,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 544,
+          "width": 1016,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1017,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 608,
+          "width": 1018,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 640,
+          "width": 1004,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1017,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 704,
+          "width": 1004,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 1003,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 768,
+          "width": 1017,
+          "height": 32
+        },
+        {
+          "x": 340,
+          "y": 800,
+          "width": 1063,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 832,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 864,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 896,
+          "width": 1054,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 928,
+          "width": 1085,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 960,
+          "width": 554,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 992,
+          "width": 554,
+          "height": 8
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/14-refresh",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 389 to 493; all other observed fields unchanged.",
+      "afterPixelSHA256": "12eacdb371147ff912fa614b2026efaa5d2f671242edc74e0b0181be3a6cb7be",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 32,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 64,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 96,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 288,
+          "y": 128,
+          "width": 1112,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 160,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 192,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 224,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 256,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 288,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 320,
+          "y": 320,
+          "width": 1049,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 352,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 384,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 961,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 608,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 640,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 704,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 411,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 832,
+          "width": 439,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 434,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "RefreshBodyToken",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 493,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/15-partial",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 408 to 512; all other observed fields unchanged.",
+      "afterPixelSHA256": "63789d0123ef354c8af6e5a0f864eaaa7169b32b9db24080a824a1b96c6d132e",
+      "regions": [
+        {
+          "x": 292,
+          "y": 0,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 32,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 64,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 96,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 128,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 160,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 192,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 224,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 256,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 288,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 320,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 352,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 384,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1014,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 608,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 640,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 704,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 1029,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 405,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 832,
+          "width": 439,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 434,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8 \u00b7 Partial",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 512,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/16-expired",
+      "reason": "Reviewed tag feature: details classification badge/reason expands and recenters dialog; taller tag-enriched inventory changes scrolled background geometry. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 408 to 512; all other observed fields unchanged.",
+      "afterPixelSHA256": "95248177b26ac3d2d71dd28659692c6edc1f2b11e630462165d90003c598bd4d",
+      "regions": [
+        {
+          "x": 289,
+          "y": 0,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 32,
+          "width": 1112,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 64,
+          "width": 1113,
+          "height": 32
+        },
+        {
+          "x": 286,
+          "y": 96,
+          "width": 1111,
+          "height": 32
+        },
+        {
+          "x": 291,
+          "y": 128,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 160,
+          "width": 1115,
+          "height": 32
+        },
+        {
+          "x": 262,
+          "y": 192,
+          "width": 1137,
+          "height": 32
+        },
+        {
+          "x": 229,
+          "y": 224,
+          "width": 1170,
+          "height": 32
+        },
+        {
+          "x": 213,
+          "y": 256,
+          "width": 1186,
+          "height": 32
+        },
+        {
+          "x": 204,
+          "y": 288,
+          "width": 1170,
+          "height": 32
+        },
+        {
+          "x": 201,
+          "y": 320,
+          "width": 1173,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 352,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 384,
+          "width": 1137,
+          "height": 32
+        },
+        {
+          "x": 256,
+          "y": 416,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 448,
+          "width": 1041,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 480,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 512,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 544,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 576,
+          "width": 1075,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 608,
+          "width": 1162,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 640,
+          "width": 1201,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 672,
+          "width": 1201,
+          "height": 32
+        },
+        {
+          "x": 201,
+          "y": 704,
+          "width": 1198,
+          "height": 32
+        },
+        {
+          "x": 208,
+          "y": 736,
+          "width": 1024,
+          "height": 32
+        },
+        {
+          "x": 219,
+          "y": 768,
+          "width": 1002,
+          "height": 32
+        },
+        {
+          "x": 242,
+          "y": 800,
+          "width": 956,
+          "height": 32
+        },
+        {
+          "x": 298,
+          "y": 832,
+          "width": 844,
+          "height": 32
+        },
+        {
+          "x": 327,
+          "y": 864,
+          "width": 454,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 512,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/17-recovered",
+      "reason": "Reviewed tag feature: details classification badge/reason expands and recenters dialog; taller tag-enriched inventory changes scrolled background geometry. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 408 to 512; all other observed fields unchanged.",
+      "afterPixelSHA256": "8d02679a030f83d195b3f4e19bdd681cd4478c2489d0353f979872172dac230d",
+      "regions": [
+        {
+          "x": 289,
+          "y": 0,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 32,
+          "width": 1112,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 64,
+          "width": 1113,
+          "height": 32
+        },
+        {
+          "x": 286,
+          "y": 96,
+          "width": 1111,
+          "height": 32
+        },
+        {
+          "x": 291,
+          "y": 128,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 160,
+          "width": 1115,
+          "height": 32
+        },
+        {
+          "x": 249,
+          "y": 192,
+          "width": 1150,
+          "height": 32
+        },
+        {
+          "x": 222,
+          "y": 224,
+          "width": 1177,
+          "height": 32
+        },
+        {
+          "x": 209,
+          "y": 256,
+          "width": 1190,
+          "height": 32
+        },
+        {
+          "x": 202,
+          "y": 288,
+          "width": 1172,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 320,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 352,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 384,
+          "width": 1137,
+          "height": 32
+        },
+        {
+          "x": 325,
+          "y": 416,
+          "width": 1049,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 448,
+          "width": 1041,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 480,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 512,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 544,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 344,
+          "y": 576,
+          "width": 1055,
+          "height": 32
+        },
+        {
+          "x": 241,
+          "y": 608,
+          "width": 1158,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 640,
+          "width": 1162,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 672,
+          "width": 1201,
+          "height": 32
+        },
+        {
+          "x": 201,
+          "y": 704,
+          "width": 1198,
+          "height": 32
+        },
+        {
+          "x": 206,
+          "y": 736,
+          "width": 1028,
+          "height": 32
+        },
+        {
+          "x": 215,
+          "y": 768,
+          "width": 1010,
+          "height": 32
+        },
+        {
+          "x": 233,
+          "y": 800,
+          "width": 974,
+          "height": 32
+        },
+        {
+          "x": 272,
+          "y": 832,
+          "width": 896,
+          "height": 32
+        },
+        {
+          "x": 327,
+          "y": 864,
+          "width": 454,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 512,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/18-pagination",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 417 to 521; all other observed fields unchanged.",
+      "afterPixelSHA256": "f56602968d8bd8668e9218ebf50ed7db2a2f4c0a0e46b14b03230bae021a570f",
+      "regions": [
+        {
+          "x": 292,
+          "y": 0,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 32,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 64,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 290,
+          "y": 96,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 128,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 160,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 192,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 224,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 256,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 319,
+          "y": 288,
+          "width": 1050,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 320,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 352,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 384,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1014,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 544,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 608,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 640,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 672,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 704,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 736,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 768,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 800,
+          "width": 437,
+          "height": 32
+        },
+        {
+          "x": 338,
+          "y": 832,
+          "width": 448,
+          "height": 32
+        },
+        {
+          "x": 338,
+          "y": 864,
+          "width": 1,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "101 of 109",
+        "query": "PaginationNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 521,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/19-mirrors",
+      "reason": "Reviewed tag feature: details classification badge/reason expands and recenters dialog; taller tag-enriched inventory changes scrolled background geometry. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 385 to 489; all other observed fields unchanged.",
+      "afterPixelSHA256": "4b0d3adbfaa88a939565d4e2a9bf28a1dcae991b032679fb92186474708a7da9",
+      "regions": [
+        {
+          "x": 289,
+          "y": 0,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 289,
+          "y": 32,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 64,
+          "width": 1113,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 96,
+          "width": 1113,
+          "height": 32
+        },
+        {
+          "x": 289,
+          "y": 128,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 284,
+          "y": 160,
+          "width": 1115,
+          "height": 32
+        },
+        {
+          "x": 281,
+          "y": 192,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 236,
+          "y": 224,
+          "width": 1163,
+          "height": 32
+        },
+        {
+          "x": 216,
+          "y": 256,
+          "width": 1183,
+          "height": 32
+        },
+        {
+          "x": 206,
+          "y": 288,
+          "width": 1168,
+          "height": 32
+        },
+        {
+          "x": 201,
+          "y": 320,
+          "width": 1173,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 352,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 384,
+          "width": 1176,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 416,
+          "width": 1137,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 448,
+          "width": 1050,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 480,
+          "width": 1015,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 512,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 324,
+          "y": 544,
+          "width": 1051,
+          "height": 32
+        },
+        {
+          "x": 278,
+          "y": 576,
+          "width": 1097,
+          "height": 32
+        },
+        {
+          "x": 237,
+          "y": 608,
+          "width": 1162,
+          "height": 32
+        },
+        {
+          "x": 198,
+          "y": 640,
+          "width": 1201,
+          "height": 32
+        },
+        {
+          "x": 201,
+          "y": 672,
+          "width": 1198,
+          "height": 32
+        },
+        {
+          "x": 204,
+          "y": 704,
+          "width": 1195,
+          "height": 32
+        },
+        {
+          "x": 211,
+          "y": 736,
+          "width": 1186,
+          "height": 32
+        },
+        {
+          "x": 225,
+          "y": 768,
+          "width": 990,
+          "height": 32
+        },
+        {
+          "x": 253,
+          "y": 800,
+          "width": 934,
+          "height": 32
+        },
+        {
+          "x": 328,
+          "y": 832,
+          "width": 748,
+          "height": 32
+        },
+        {
+          "x": 327,
+          "y": 864,
+          "width": 454,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "mirror-helper",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 489,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/20-unicode",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 385 to 489; all other observed fields unchanged.",
+      "afterPixelSHA256": "d29a480cd9ff0401ed5807059ed977f1d6969dec26b63a7021e745fac3aa9fe5",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 32,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 64,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 292,
+          "y": 96,
+          "width": 1102,
+          "height": 32
+        },
+        {
+          "x": 290,
+          "y": 128,
+          "width": 1108,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 160,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 192,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 224,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 285,
+          "y": 256,
+          "width": 1118,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 288,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 319,
+          "y": 320,
+          "width": 1050,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 352,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 316,
+          "y": 384,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 416,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 448,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 480,
+          "width": 1014,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 512,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 317,
+          "y": 544,
+          "width": 1052,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 576,
+          "width": 1033,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 608,
+          "width": 1067,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 640,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 672,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 335,
+          "y": 704,
+          "width": 1068,
+          "height": 32
+        },
+        {
+          "x": 348,
+          "y": 736,
+          "width": 1053,
+          "height": 32
+        },
+        {
+          "x": 348,
+          "y": 768,
+          "width": 419,
+          "height": 32
+        },
+        {
+          "x": 349,
+          "y": 800,
+          "width": 426,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 832,
+          "width": 439,
+          "height": 32
+        },
+        {
+          "x": 336,
+          "y": 864,
+          "width": 434,
+          "height": 32
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "\u4e16\u754c",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 489,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "mobile/01-overview",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 877 to 895; all other observed fields unchanged.",
+      "afterPixelSHA256": "4d1d065c745cdfe7fdba323cfd656bb4f5e3ddd36021e2876821b6f7c5cb029c",
+      "regions": [
+        {
+          "x": 46,
+          "y": 352,
+          "width": 298,
+          "height": 32
+        },
+        {
+          "x": 46,
+          "y": 384,
+          "width": 298,
+          "height": 32
+        },
+        {
+          "x": 46,
+          "y": 416,
+          "width": 144,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 448,
+          "width": 259,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 480,
+          "width": 290,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 512,
+          "width": 280,
+          "height": 32
+        },
+        {
+          "x": 45,
+          "y": 544,
+          "width": 295,
+          "height": 32
+        },
+        {
+          "x": 46,
+          "y": 576,
+          "width": 261,
+          "height": 32
+        },
+        {
+          "x": 46,
+          "y": 608,
+          "width": 154,
+          "height": 32
+        },
+        {
+          "x": 45,
+          "y": 640,
+          "width": 273,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 672,
+          "width": 290,
+          "height": 32
+        },
+        {
+          "x": 49,
+          "y": 704,
+          "width": 151,
+          "height": 32
+        },
+        {
+          "x": 45,
+          "y": 736,
+          "width": 273,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 768,
+          "width": 290,
+          "height": 32
+        },
+        {
+          "x": 49,
+          "y": 800,
+          "width": 285,
+          "height": 32
+        },
+        {
+          "x": 46,
+          "y": 832,
+          "width": 268,
+          "height": 12
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 895,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "mobile/02-search",
+      "reason": "Reviewed tag feature: Tags disclosure and classification badges increase inventory height; existing scroll-to-filter behavior changes visible page layout. Search counts, owning results and observed state remain unchanged. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 877 to 895; all other observed fields unchanged.",
+      "afterPixelSHA256": "d4d3a651ca8c3b68908479d4dc298e5f54b523a3dde91e907ce9430ca4dc1e9c",
+      "regions": [
+        {
+          "x": 45,
+          "y": 352,
+          "width": 299,
+          "height": 32
+        },
+        {
+          "x": 46,
+          "y": 384,
+          "width": 298,
+          "height": 32
+        },
+        {
+          "x": 45,
+          "y": 416,
+          "width": 177,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 448,
+          "width": 172,
+          "height": 32
+        },
+        {
+          "x": 50,
+          "y": 480,
+          "width": 290,
+          "height": 32
+        },
+        {
+          "x": 13,
+          "y": 512,
+          "width": 364,
+          "height": 32
+        },
+        {
+          "x": 13,
+          "y": 544,
+          "width": 364,
+          "height": 32
+        },
+        {
+          "x": 12,
+          "y": 576,
+          "width": 366,
+          "height": 32
+        },
+        {
+          "x": 11,
+          "y": 608,
+          "width": 368,
+          "height": 32
+        },
+        {
+          "x": 11,
+          "y": 640,
+          "width": 368,
+          "height": 32
+        },
+        {
+          "x": 11,
+          "y": 672,
+          "width": 368,
+          "height": 32
+        },
+        {
+          "x": 11,
+          "y": 704,
+          "width": 368,
+          "height": 32
+        },
+        {
+          "x": 37,
+          "y": 736,
+          "width": 316,
+          "height": 32
+        },
+        {
+          "x": 37,
+          "y": 768,
+          "width": 316,
+          "height": 32
+        },
+        {
+          "x": 37,
+          "y": 800,
+          "width": 316,
+          "height": 32
+        },
+        {
+          "x": 37,
+          "y": 832,
+          "width": 316,
+          "height": 12
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 895,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "mobile/03-details",
+      "reason": "Reviewed tag feature: details classification badge/reason expands and recenters dialog; taller tag-enriched inventory changes scrolled background geometry. Human merge decision recorded in PR9 comment5928790109; exact Linux main image matches reviewed PR head3d74d69. Reviewed scrollY change: 1095 to 1175; all other observed fields unchanged.",
+      "afterPixelSHA256": "1399cf656c1473abfe06cc5add8f4c0d221d81301351bd891e73702785b6d78c",
+      "regions": [
+        {
+          "x": 27,
+          "y": 0,
+          "width": 336,
+          "height": 32
+        },
+        {
+          "x": 27,
+          "y": 32,
+          "width": 336,
+          "height": 32
+        },
+        {
+          "x": 1,
+          "y": 64,
+          "width": 388,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 96,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 128,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 160,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 192,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 224,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 256,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 288,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 48,
+          "y": 320,
+          "width": 265,
+          "height": 32
+        },
+        {
+          "x": 48,
+          "y": 352,
+          "width": 254,
+          "height": 32
+        },
+        {
+          "x": 48,
+          "y": 384,
+          "width": 294,
+          "height": 32
+        },
+        {
+          "x": 48,
+          "y": 416,
+          "width": 294,
+          "height": 32
+        },
+        {
+          "x": 48,
+          "y": 448,
+          "width": 294,
+          "height": 32
+        },
+        {
+          "x": 48,
+          "y": 480,
+          "width": 294,
+          "height": 32
+        },
+        {
+          "x": 68,
+          "y": 512,
+          "width": 216,
+          "height": 32
+        },
+        {
+          "x": 2,
+          "y": 544,
+          "width": 386,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 576,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 608,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 640,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 672,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 704,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 736,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 768,
+          "width": 390,
+          "height": 32
+        },
+        {
+          "x": 27,
+          "y": 800,
+          "width": 331,
+          "height": 32
+        },
+        {
+          "x": 28,
+          "y": 832,
+          "width": 329,
+          "height": 12
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 1175,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    }
+  ]
+}
