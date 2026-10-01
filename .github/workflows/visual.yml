@@ -98,27 +98,6 @@ jobs:
         env:
           VISUAL_PREVIOUS_BASELINE: ../previous-baseline
         run: python3 tests/visual/ci.py ../previous . ../visual-artifacts
-      # TEMPORARY review relay, removed before this PR is delivered. The review
-      # sandbox cannot reach artifact blob storage, so the reviewed frames and
-      # their exact hashes are relayed through the reachable job log. It only
-      # reads what the analysis already produced and gates nothing.
-      - name: Relay comparison data and reviewed frames to the job log
-        if: always()
-        run: |
-          python3 - <<'PY'
-          import base64, json
-          from pathlib import Path
-          root = Path('visual-artifacts')
-          for name in ['comparison/comparison.json', 'head-2/manifest.json']:
-              path = root / name
-              print('<<<JSON ' + name + '>>> ' + (json.dumps(json.loads(path.read_text()), separators=(',', ':')) if path.exists() else 'MISSING'), flush=True)
-          for png in sorted((root / 'head-2').rglob('*.png')):
-              data = base64.b64encode(png.read_bytes()).decode()
-              print('<<<PNG ' + png.relative_to(root / 'head-2').as_posix() + ' ' + str(len(data)) + '>>>', flush=True)
-              for at in range(0, len(data), 180):
-                  print('B64 ' + data[at:at+180], flush=True)
-          print('<<<RELAY END>>>', flush=True)
-          PY
       - name: Upload old, new, highlighted differences and test results
         if: always()
         uses: actions/upload-artifact@v4

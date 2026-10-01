@@ -1,1 +1,512 @@
-{"baseSHA":null,"changes":[]}
+{
+  "baseSHA": "b911ff2b7392d8b69c9642048f5bcef9821a6265",
+  "note": "Issue #13 restyles every surface, so each frame changes across the full viewport; the declared region is the whole frame and the reviewed after-image hash pins the exact inspected pixels. observedAfter records the intentional searchBackground and bodyFont changes. All 23 frames were inspected individually.",
+  "changes": [
+    {
+      "scenario": "desktop/01-initial",
+      "reason": "Terminal theme applied to the whole shell: near-black canvas, phosphor/cyan accents, monospace stack, tight radii and static grid texture (issue #13).",
+      "afterPixelSHA256": "613d3450bc4cb127867deaa805d6d27790fbfcd02d11f9aa7a6ae66b2bbd25f3",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 0",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 0,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/02-scanned",
+      "reason": "Terminal theme applied to the scanned overview, counters, result cards, badges and the Filter/Similar skills panels (issue #13).",
+      "afterPixelSHA256": "c0a24132c76d1128744d22c20c56cb1c7e11c62177ba5be77dd8f9edd65a4b70",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 631,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/03-name",
+      "reason": "Terminal theme applied to name-search results; highlights are now amber marks on near-black text (issue #13).",
+      "afterPixelSHA256": "41d8fac612d5a42345deccd6ff3f169a1a0f54865260b2632ee1009cb611a96d",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 227,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/04-description",
+      "reason": "Terminal theme applied to description-search results and amber highlights (issue #13).",
+      "afterPixelSHA256": "75dfc69617474c3952207ac4be697179fc0520c5d27ed26629bb7d348f5b125d",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "automated review",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 224,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/05-body",
+      "reason": "Terminal theme applied to body-search results and amber highlights (issue #13).",
+      "afterPixelSHA256": "4dda5768ad2ccbada3bb83ca0005ce120d2e699711f77f92703fd6c1fd97933e",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "AlphaBodyToken",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 245,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/06-current-miss",
+      "reason": "Terminal theme applied to the current-repository zero-result state (issue #13).",
+      "afterPixelSHA256": "d2be471c1911791467914f578a265003171e7fb0b0b70523e55577a2e94c9ccd",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 4",
+        "query": "OtherBodyNeedle",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 333,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/07-selected",
+      "reason": "Terminal theme applied to the repository selection fieldset and phosphor checkboxes (issue #13).",
+      "afterPixelSHA256": "299ace496a5f15d0cd9ae610a94d636c319b69d8b2cb6f0bb2270356be74080f",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "selected",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 549,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/08-all",
+      "reason": "Terminal theme applied to grouped all-repository results and repository headings (issue #13).",
+      "afterPixelSHA256": "f391683aa23ddc51899f4a1411af246ade1eca4ad35d24f8ee2a4a08906181c9",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "8 of 8",
+        "query": "",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 631,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/09-category",
+      "reason": "Terminal theme applied to the category switch and its active state (issue #13).",
+      "afterPixelSHA256": "27fa7def65105c7ec6d4259ea556b1b08015e5dc55971775336b64b9a119b07a",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 1",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 224,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/10-empty",
+      "reason": "Terminal theme applied to the no-matches empty state: dashed console frame and scanlines (issue #13).",
+      "afterPixelSHA256": "e93a73f03d4e4aa26fd281c9d2875813a9db911487bc3b4ba26f81ed913b9e23",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 4",
+        "query": "missing-visual-token",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 333,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/11-clear",
+      "reason": "Terminal theme applied after clearing the query (issue #13).",
+      "afterPixelSHA256": "c0a24132c76d1128744d22c20c56cb1c7e11c62177ba5be77dd8f9edd65a4b70",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 631,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/12-details",
+      "reason": "Terminal theme applied to the details dialog, its backdrop and the manifest block (issue #13).",
+      "afterPixelSHA256": "bbc2b892e41c753797c58dd5b49c90096168429f96cc1472f59f49137a67251e",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 408,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/13-similar",
+      "reason": "Terminal theme applied to Similar skills rows, phosphor progress meters and scores (issue #13).",
+      "afterPixelSHA256": "ba53f7ef5ef3dee6bbccfc56a78520c098062bd6f7000efd70ce82a89dd2776d",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 631,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/14-refresh",
+      "reason": "Terminal theme applied to refreshed cross-repository results (issue #13).",
+      "afterPixelSHA256": "e595e530524dd53e44ae3603fc57f36c60271f77d5c871a1dbfe91cf9caf99f2",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "RefreshBodyToken",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 408,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/15-partial",
+      "reason": "Terminal theme applied to the stale/partial state; the Search in select now takes the full row so \"All added repositories\" is no longer clipped (issue #13).",
+      "afterPixelSHA256": "48c90fbb45149e42c9692904959dea405b8e431e1c57b520637a9eb39aaa33b2",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8 \u00b7 Partial",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 408,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/16-expired",
+      "reason": "Terminal theme applied to the expired-details recovery state (issue #13).",
+      "afterPixelSHA256": "decadd94b7b8894d8ec20a8f66475f2fbc985284532bc0c8ee2bdb408f851b6b",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 408,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/17-recovered",
+      "reason": "Terminal theme applied to the recovered manifest view (issue #13).",
+      "afterPixelSHA256": "5d44244b154663da26d0999368198b0ee7694fde7e9b85b6723a3cd1f06c30a4",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 381,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/18-pagination",
+      "reason": "Terminal theme applied to pagination controls and their disabled state (issue #13).",
+      "afterPixelSHA256": "e4cd9ca98ad02926eaf10d586a6df5e4b658930f8faaa4b2f79f9a6c4840885c",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "101 of 109",
+        "query": "PaginationNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 417,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/19-mirrors",
+      "reason": "Terminal theme applied to mirrored-source details (issue #13).",
+      "afterPixelSHA256": "2d5b66eff8236c35d893781247324fc9f04c26718b255d278a9f3b6836026eb4",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "mirror-helper",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 377,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "desktop/20-unicode",
+      "reason": "Terminal theme applied to Unicode matching and amber highlights (issue #13).",
+      "afterPixelSHA256": "0bafb4338a427616a3fa50cf1153ea501622346de51fc56bb17bff875acbb15b",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "\u4e16\u754c",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 405,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "mobile/01-overview",
+      "reason": "Terminal theme applied to the 390px overview; monospace category labels wrap onto a second row instead of clipping (issue #13).",
+      "afterPixelSHA256": "45763790638f4b854dc9a0e4a70e6a9fb805730952ce29699db55b5d2644c807",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 931,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "mobile/02-search",
+      "reason": "Terminal theme applied to the 390px search result and amber highlights (issue #13).",
+      "afterPixelSHA256": "688a7eace977a0de539a76f4fc752fc8cf810027a6c377bec05d95a4d8ffbe9c",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 931,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    },
+    {
+      "scenario": "mobile/03-details",
+      "reason": "Terminal theme applied to the 390px details dialog (issue #13).",
+      "afterPixelSHA256": "d04b35bb716d55f0a9e763f53ef505d31c04e70d29e2d9941a927e1c643e6351",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 1170,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
+      }
+    }
+  ]
+}
