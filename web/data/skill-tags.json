@@ -1,0 +1,1764 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 1,
+  "assignments": [
+    {
+      "repository_key": "android",
+      "category": "development",
+      "manifest_path": "agent/skills/android-studio-development/SKILL.md",
+      "source_aliases": [
+        "agent/skills/android-studio-development/SKILL.md"
+      ],
+      "manifest_sha256": "19a1c3cb126256cc33e54f38a6ba5908cd1523d0cadafc6d37008f8088a85083",
+      "taxonomy_version": 1,
+      "primary_task": "task:ide-integration",
+      "tag_ids": [
+        "task:ide-integration",
+        "task:build-ci",
+        "task:testing",
+        "focus:ide-plugins",
+        "platform:android-studio",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Guides Android Studio plugin development, with explicit testing and build-system workflows."
+    },
+    {
+      "repository_key": "android",
+      "category": "development",
+      "manifest_path": "agent/skills/android-studio-diagnostics-analysis/SKILL.md",
+      "source_aliases": [
+        "agent/skills/android-studio-diagnostics-analysis/SKILL.md"
+      ],
+      "manifest_sha256": "f0fb4a27e96d24492fb2dfe50db89973fc4e3ecbd3f76ed1a07e35231f78db2f",
+      "taxonomy_version": 1,
+      "primary_task": "task:debugging",
+      "tag_ids": [
+        "task:debugging",
+        "focus:performance",
+        "platform:android-studio",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Diagnoses UI freezes and contention from diagnostic logs/thread dumps."
+    },
+    {
+      "repository_key": "android",
+      "category": "development",
+      "manifest_path": "agent/skills/android-studio-evals/SKILL.md",
+      "source_aliases": [
+        "agent/skills/android-studio-evals/SKILL.md"
+      ],
+      "manifest_sha256": "94227ec16c15648e40102acc91df7139df6331466feca328c4e0fb2ef697d5de",
+      "taxonomy_version": 1,
+      "primary_task": "task:testing",
+      "tag_ids": [
+        "task:testing",
+        "focus:agent-evals",
+        "platform:android-studio"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors agent evaluation scenarios, prompts and verification logic."
+    },
+    {
+      "repository_key": "android",
+      "category": "development",
+      "manifest_path": "agent/skills/jewel-swing-interop/SKILL.md",
+      "source_aliases": [
+        "agent/skills/jewel-swing-interop/SKILL.md"
+      ],
+      "manifest_sha256": "d1b65e3aac754f09ca412aa4aff57b2c9881210a5eb563753231f05767b37721",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:desktop-ui",
+        "platform:compose-jewel",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Builds Compose/Jewel interfaces or hosts them in Swing/IntelliJ plugins."
+    },
+    {
+      "repository_key": "android",
+      "category": "development",
+      "manifest_path": "agent/skills/jewel-ui/SKILL.md",
+      "source_aliases": [
+        "agent/skills/jewel-ui/SKILL.md"
+      ],
+      "manifest_sha256": "53a2b89bc7cd0c9fe0cb5f00b8441182c515b0f842708a71e360df341f0ea3b4",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:desktop-ui",
+        "platform:compose-jewel",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Builds Compose/Jewel interfaces or hosts them in Swing/IntelliJ plugins."
+    },
+    {
+      "repository_key": "android",
+      "category": "development",
+      "manifest_path": "agent/skills/writing-lint-checks/SKILL.md",
+      "source_aliases": [
+        "agent/skills/writing-lint-checks/SKILL.md"
+      ],
+      "manifest_sha256": "3cb4b1d80ea75206e3616f5ee92c764806759bb692b2be0928d18635a4827fc3",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-quality",
+      "tag_ids": [
+        "task:code-quality",
+        "platform:android-studio"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Creates lint detectors; tests verify detector behavior but the primary purpose is code inspection."
+    },
+    {
+      "repository_key": "koog",
+      "category": "development",
+      "manifest_path": ".claude/skills/add-java-code-snippets-in-docs/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+      ],
+      "manifest_sha256": "7252e23216f50ef44215bb4c8563254ba293dbbdf280b0a774a770c91f7f6d3d",
+      "taxonomy_version": 1,
+      "primary_task": "task:documentation-knowledge",
+      "tag_ids": [
+        "task:documentation-knowledge",
+        "focus:documentation",
+        "platform:kotlin"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Adds Java documentation tabs beside Kotlin examples; verification is incidental."
+    },
+    {
+      "repository_key": "koog",
+      "category": "development",
+      "manifest_path": ".claude/skills/split-jvm-nonjvm/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/split-jvm-nonjvm/SKILL.md"
+      ],
+      "manifest_sha256": "2fc3b537f36aaec545bec6c371eb75e81263be1720966456d17b443dd7aa9128",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "focus:dependencies",
+        "platform:kotlin",
+        "platform:kotlin-multiplatform"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Splits common source-set classes into JVM/non-JVM implementations."
+    },
+    {
+      "repository_key": "koog",
+      "category": "test-fixture",
+      "manifest_path": "integration-tests/src/jvmTest/resources/skills/arithmetic-evaluator/SKILL.md",
+      "source_aliases": [
+        "integration-tests/src/jvmTest/resources/skills/arithmetic-evaluator/SKILL.md"
+      ],
+      "manifest_sha256": "b629fbec4ded3ac54f9023a9a1676c31673854e8d42cd8a1a2fe6cbfba7b610d",
+      "taxonomy_version": 1,
+      "primary_task": "task:calculations",
+      "tag_ids": [
+        "task:calculations"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Evaluates numeric expressions; fixture role is separate from purpose."
+    },
+    {
+      "repository_key": "koog",
+      "category": "test-fixture",
+      "manifest_path": "integration-tests/src/jvmTest/resources/skills/weather-retrieval/SKILL.md",
+      "source_aliases": [
+        "integration-tests/src/jvmTest/resources/skills/weather-retrieval/SKILL.md"
+      ],
+      "manifest_sha256": "e4d1247f60ac8f4cee1f2b8c172ad5f537b15c3b002bcd18a0ceca9db1657ce7",
+      "taxonomy_version": 1,
+      "primary_task": "task:weather",
+      "tag_ids": [
+        "task:weather"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Retrieves weather for a location; fixture role is separate from purpose."
+    },
+    {
+      "repository_key": "kotlin",
+      "category": "development",
+      "manifest_path": ".claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md"
+      ],
+      "manifest_sha256": "817595045e413d27d4a6d17b0846f7bda96c8d9f46b5b2e12262888c40444986",
+      "taxonomy_version": 1,
+      "primary_task": "task:version-control-release",
+      "tag_ids": [
+        "task:version-control-release",
+        "focus:release-tracking",
+        "platform:kotlin",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Creates release-branch cherry-pick tracking issues for Analysis API fixes."
+    },
+    {
+      "repository_key": "kotlin",
+      "category": "development",
+      "manifest_path": ".claude/skills/analysis-api-mark-internal-apis/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/analysis-api-mark-internal-apis/SKILL.md"
+      ],
+      "manifest_sha256": "20d02f08d760ab41d4abcb3e20fe1b76684afa2985d62664c58a86c3a5343f5e",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-quality",
+      "tag_ids": [
+        "task:code-quality",
+        "focus:api-design",
+        "platform:kotlin"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Refines internal API visibility using usage evidence; codebase tests support API hygiene."
+    },
+    {
+      "repository_key": "kotlin",
+      "category": "development",
+      "manifest_path": ".claude/skills/build-bump-gradle-version/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/build-bump-gradle-version/SKILL.md"
+      ],
+      "manifest_sha256": "71bd16608f7bf334367c181eeefb88fab37fbc7c8a4b32ab2c9a0e1607081cb2",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:gradle",
+        "focus:dependencies",
+        "platform:kotlin"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Upgrades the wrapper or compile API and resolves build compatibility fallout."
+    },
+    {
+      "repository_key": "kotlin",
+      "category": "development",
+      "manifest_path": ".claude/skills/build-tools-bump-gradle-api/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/build-tools-bump-gradle-api/SKILL.md"
+      ],
+      "manifest_sha256": "60cc1f838b7a163b74629063083b0c0bdfd0439bc258124f5ecd53c90085c493",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:gradle",
+        "focus:dependencies",
+        "platform:kotlin"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Upgrades the wrapper or compile API and resolves build compatibility fallout."
+    },
+    {
+      "repository_key": "kotlin",
+      "category": "development",
+      "manifest_path": ".claude/skills/build-tools-bump-gradle-in-tests/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/build-tools-bump-gradle-in-tests/SKILL.md"
+      ],
+      "manifest_sha256": "c84edbc12afccd7762d97b3070e3919b36bd46a2943810e899807732aa47cb56",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "task:testing",
+        "focus:gradle",
+        "focus:integration-tests",
+        "platform:kotlin"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Maintains the supported Gradle integration-test matrix, not the project wrapper."
+    },
+    {
+      "repository_key": "kotlin",
+      "category": "development",
+      "manifest_path": ".claude/skills/minimize-repro-for-diagnostic-test/SKILL.md",
+      "source_aliases": [
+        ".claude/skills/minimize-repro-for-diagnostic-test/SKILL.md"
+      ],
+      "manifest_sha256": "c5b3d8a31c947f4aa39ce7055542bb2504d7abe71aad069ab65fa55237481586",
+      "taxonomy_version": 1,
+      "primary_task": "task:testing",
+      "tag_ids": [
+        "task:testing",
+        "focus:compiler-diagnostics",
+        "platform:kotlin"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Minimizes compiler bug reproductions into diagnostic test data."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/actions/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/actions/SKILL.md",
+        ".claude/skills/actions/SKILL.md"
+      ],
+      "manifest_sha256": "6c2c742437cb95ff0cc475ec3f8f7c02f4a388a1dc1b04efc9ae565a5596e69e",
+      "taxonomy_version": 1,
+      "primary_task": "task:ide-integration",
+      "tag_ids": [
+        "task:ide-integration",
+        "focus:ide-plugins",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors host IDE actions, feature flags or plugin extensions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/bugfix-workflow/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/bugfix-workflow/SKILL.md",
+        ".claude/skills/bugfix-workflow/SKILL.md"
+      ],
+      "manifest_sha256": "02add1b58ac90afaf09c90f8d8c5ef0e450717bbb957953f41b002eabefb1179",
+      "taxonomy_version": 1,
+      "primary_task": "task:debugging",
+      "tag_ids": [
+        "task:debugging",
+        "task:build-ci",
+        "focus:ci",
+        "platform:mps",
+        "platform:teamcity"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Issue-driven investigation, implementation and explicit TeamCity validation workflow."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/code-style/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/code-style/SKILL.md",
+        ".claude/skills/code-style/SKILL.md"
+      ],
+      "manifest_sha256": "f7162ba66f5709e9f300d71396824ec7c668834630ed9cc83d727e9f7eb1df60",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-quality",
+      "tag_ids": [
+        "task:code-quality",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Reviews style or creates structural inspections rather than executing tests."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/commits/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/commits/SKILL.md",
+        ".claude/skills/commits/SKILL.md"
+      ],
+      "manifest_sha256": "b11e9232da3d8c5d3f154c926bb0a3a45510b0088a0d5e055425a2711669b94f",
+      "taxonomy_version": 1,
+      "primary_task": "task:version-control-release",
+      "tag_ids": [
+        "task:version-control-release",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Prepares and reviews repository commit messages."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/debugging/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/debugging/SKILL.md",
+        ".claude/skills/debugging/SKILL.md"
+      ],
+      "manifest_sha256": "5e55cb1cdd6233870dd983c698d75524834a0607753ef2b85346c9b015356a73",
+      "taxonomy_version": 1,
+      "primary_task": "task:debugging",
+      "tag_ids": [
+        "task:debugging",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Investigates IDE failures using logs and exception diagnostics."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-accessories/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-accessories/SKILL.md",
+        ".claude/skills/mps-aspect-accessories/SKILL.md"
+      ],
+      "manifest_sha256": "15ab01a68202b2ca6e4c286d200307c455a7149f2db2cd75cf21c564e6848fde",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Configures module/model dependencies, languages, devkits or accessory content."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-actions/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-actions/SKILL.md",
+        ".claude/skills/mps-aspect-actions/SKILL.md"
+      ],
+      "manifest_sha256": "501a3ed8189d015ec977536e85d47743cd79c2b14832c8bdb8380362729bad3c",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines the language actions aspect: concept node factories and copy/paste handlers, rather than editing arbitrary model instances."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-behavior/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-behavior/SKILL.md",
+        ".claude/skills/mps-aspect-behavior/SKILL.md"
+      ],
+      "manifest_sha256": "023217b1082f5cba0326c5b79c1834cf95a94f338e16358664a78b7937c81b5c",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-constraints/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-constraints/SKILL.md",
+        ".claude/skills/mps-aspect-constraints/SKILL.md"
+      ],
+      "manifest_sha256": "a07ea96d4b039d489505cbf836060a8ed8ebe5f7b60c5dec3c4f3c63b1fb3d3f",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:constraints-scopes",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines property/placement constraints and reference scopes."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-dataflow/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-dataflow/SKILL.md",
+        ".claude/skills/mps-aspect-dataflow/SKILL.md"
+      ],
+      "manifest_sha256": "bbb0f5662a666d94304fa1d04577fe133b7ce390bfc9ed0b928e41fe2cb63b5b",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:dataflow",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines or diagnoses dataflow builders for reachability and variable-use analysis."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md",
+        ".claude/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md"
+      ],
+      "manifest_sha256": "ecbf4509e53e5ed3acdbec9a749cd239b45211342aec018d4ba948a11bf13347",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines editor layouts, completion/keymaps or Alt+Enter intentions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-editor/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-editor/SKILL.md",
+        ".claude/skills/mps-aspect-editor/SKILL.md"
+      ],
+      "manifest_sha256": "b851c1bc27c79464be2e3dee7271afce7c9b9747adb196f67c737231910cf7b7",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines editor layouts, completion/keymaps or Alt+Enter intentions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-generation-plan/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-generation-plan/SKILL.md",
+        ".claude/skills/mps-aspect-generation-plan/SKILL.md"
+      ],
+      "manifest_sha256": "41cea9fbdfeb10f2cc4a6444192cd68e9dee17d95bde331b773adba45957ca50",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-generation",
+      "tag_ids": [
+        "task:code-generation",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors generator rules/plans or concept-to-text serialization."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-generator/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-generator/SKILL.md",
+        ".claude/skills/mps-aspect-generator/SKILL.md"
+      ],
+      "manifest_sha256": "7c6672bffd62e26d954ec68623b7ed2624e89260e29440b9cda402cedb379661",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-generation",
+      "tag_ids": [
+        "task:code-generation",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors generator rules/plans or concept-to-text serialization."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-intentions/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-intentions/SKILL.md",
+        ".claude/skills/mps-aspect-intentions/SKILL.md"
+      ],
+      "manifest_sha256": "e0639b536b575040154821001c82ddc62dc7d4464163fc91f701e99ca7f5117f",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines editor layouts, completion/keymaps or Alt+Enter intentions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-migrations/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-migrations/SKILL.md",
+        ".claude/skills/mps-aspect-migrations/SKILL.md"
+      ],
+      "manifest_sha256": "3cfaa74b3c8e54dd19fa04bf3384bc929e4a58ca75a5d450be2f0eea678b9588",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:migrations",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Transforms user models after versioned language changes."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-structure-concepts/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-structure-concepts/SKILL.md",
+        ".claude/skills/mps-aspect-structure-concepts/SKILL.md"
+      ],
+      "manifest_sha256": "3b0977b1088c6278b466997823c1addc7f9a38068d172802509e49482a5e8d33",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-textgen/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-textgen/SKILL.md",
+        ".claude/skills/mps-aspect-textgen/SKILL.md"
+      ],
+      "manifest_sha256": "17ac9ec20ec3312676284ece448175142f094f8027d97b4f93fc98a75d697dac",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-generation",
+      "tag_ids": [
+        "task:code-generation",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors generator rules/plans or concept-to-text serialization."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-aspect-typesystem/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-aspect-typesystem/SKILL.md",
+        ".claude/skills/mps-aspect-typesystem/SKILL.md"
+      ],
+      "manifest_sha256": "1a55a64ffa5f5a20adb64c042b94aa5b5ff4fe3da462fccdf4287dae1fac1476",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:typesystem",
+        "focus:compiler-diagnostics",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors inference and checking rules; routine validation does not make this a testing workflow."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-baselanguage/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-baselanguage/SKILL.md",
+        ".claude/skills/mps-baselanguage/SKILL.md"
+      ],
+      "manifest_sha256": "11ccc47931abecf2db28fd890466d2a6d0e3d9c10d33a6780139793f5d7d1fac",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-build-language/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-build-language/SKILL.md",
+        ".claude/skills/mps-build-language/SKILL.md"
+      ],
+      "manifest_sha256": "34580de2b913df5877a4496c0567bec6dbd3779e81a51bdb39e785a7c2b0d742",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors packaging/build pipelines and distribution wiring."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-console/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-console/SKILL.md",
+        ".claude/skills/mps-console/SKILL.md"
+      ],
+      "manifest_sha256": "98dd5256c48de6f51c5bf938d7051d4eb193f0fa0582db83db23aa4329f51545",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-distribution-build/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-distribution-build/SKILL.md",
+        ".claude/skills/mps-distribution-build/SKILL.md"
+      ],
+      "manifest_sha256": "44a56395b6c2e739092d71b4853e17a68256ab5e2207df34a9960981404d9d21",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors packaging/build pipelines and distribution wiring."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-dsl-memory/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-dsl-memory/SKILL.md",
+        ".claude/skills/mps-dsl-memory/SKILL.md"
+      ],
+      "manifest_sha256": "ccda58f2f80460fae65468e06fd6840e28061fff44cbed7714478e877d1cbf62",
+      "taxonomy_version": 1,
+      "primary_task": "task:documentation-knowledge",
+      "tag_ids": [
+        "task:documentation-knowledge",
+        "focus:documentation",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Creates or refreshes reusable DSL knowledge skills after discovery."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-ide-plugin/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-ide-plugin/SKILL.md",
+        ".claude/skills/mps-ide-plugin/SKILL.md"
+      ],
+      "manifest_sha256": "30843bc4733f4448b53eb424688613f6e4cb8a7005f2f626f4e95af131c18bd9",
+      "taxonomy_version": 1,
+      "primary_task": "task:ide-integration",
+      "tag_ids": [
+        "task:ide-integration",
+        "focus:ide-plugins",
+        "platform:intellij",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors host IDE actions, feature flags or plugin extensions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-lang-core-xml/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-lang-core-xml/SKILL.md",
+        ".claude/skills/mps-lang-core-xml/SKILL.md"
+      ],
+      "manifest_sha256": "f0d805f9aa37d5ed769da88300caced087b4f58dd1bb95890f3f22cc68329b95",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "task:code-generation",
+        "focus:models-ast",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors XML model roots and explicitly supports XML-generating templates."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-language-analysis/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-language-analysis/SKILL.md",
+        ".claude/skills/mps-language-analysis/SKILL.md"
+      ],
+      "manifest_sha256": "e59f09fef379a23c02dce37dcf3252cd1d913060e341e925875dac30f242a361",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-language-aspects-overview/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-language-aspects-overview/SKILL.md",
+        ".claude/skills/mps-language-aspects-overview/SKILL.md"
+      ],
+      "manifest_sha256": "84bd42375e85bac57d2518ef6c890a2fded4394c27d8da89e640c4c471f6710c",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-language-inheritance/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-language-inheritance/SKILL.md",
+        ".claude/skills/mps-language-inheritance/SKILL.md"
+      ],
+      "manifest_sha256": "b18273e65cb0c11b0600b7be432aaaa9b2b723343e633d1dc9b5ca62f40b7980",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:language-composition",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Analyzes or composes language/concept hierarchies and module extension boundaries."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-language-modularity/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-language-modularity/SKILL.md",
+        ".claude/skills/mps-language-modularity/SKILL.md"
+      ],
+      "manifest_sha256": "bcba04ac0fc227b6d00609cfaa5f0e7de57ba4d17c300100a8876c82fe0c1579",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:language-composition",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Analyzes or composes language/concept hierarchies and module extension boundaries."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-mcp-workflow/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-mcp-workflow/SKILL.md",
+        ".claude/skills/mps-mcp-workflow/SKILL.md"
+      ],
+      "manifest_sha256": "6fc7df276b71f9724fb8e63d777ed3acc6242ad810cb7f8237e39b1c8dccd668",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-model-manipulation/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-model-manipulation/SKILL.md",
+        ".claude/skills/mps-model-manipulation/SKILL.md"
+      ],
+      "manifest_sha256": "79a2dbf8f18bf39f3788f94d21f9f537c1fc47cef6f2a3db65318e86018f695d",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-node-editing/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-node-editing/SKILL.md",
+        ".claude/skills/mps-node-editing/SKILL.md"
+      ],
+      "manifest_sha256": "71a4dddac4046fb6d1a928db2d0f64657f3ade50f9e80cbd2aff631655db9b37",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-project-management/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-project-management/SKILL.md",
+        ".claude/skills/mps-project-management/SKILL.md"
+      ],
+      "manifest_sha256": "0dc6182f7efb25729f6b160ce1249d7d1731236aee72b97296118ad58c3e4a36",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Configures module/model dependencies, languages, devkits or accessory content."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-quotations/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-quotations/SKILL.md",
+        ".claude/skills/mps-quotations/SKILL.md"
+      ],
+      "manifest_sha256": "6a9ff0cb3ca09f65bbcfb0313ed73151547ad6df7c3cba1a4ee718b6505f82b4",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-run-configurations/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-run-configurations/SKILL.md",
+        ".claude/skills/mps-run-configurations/SKILL.md"
+      ],
+      "manifest_sha256": "2291e9b8c0a30f2baf80c8bb348300c411f4fec13c59cbdaafdf210fd0a3fa48",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "task:testing",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Creates/reuses run configurations to launch roots; test execution is an explicitly supported secondary workflow."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/mps-tests/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/mps-tests/SKILL.md",
+        ".claude/skills/mps-tests/SKILL.md"
+      ],
+      "manifest_sha256": "3d659bcecec909d6a4da117f54e788d7d84dbf4c23125de2616b9233784a6cb1",
+      "taxonomy_version": 1,
+      "primary_task": "task:testing",
+      "tag_ids": [
+        "task:testing",
+        "focus:unit-tests",
+        "focus:editor-behaviour",
+        "focus:generators",
+        "focus:migrations",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors and runs NodesTestCase, EditorTestCase, MigrationTestCase and BTestCase tests."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/registry/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/registry/SKILL.md",
+        ".claude/skills/registry/SKILL.md"
+      ],
+      "manifest_sha256": "b66817aaf19728248167276dbb93d48d11b46df18e9986b04d12a7969c25e51c",
+      "taxonomy_version": 1,
+      "primary_task": "task:ide-integration",
+      "tag_ids": [
+        "task:ide-integration",
+        "focus:ide-plugins",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Authors host IDE actions, feature flags or plugin extensions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/skill-optimization-study/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/skill-optimization-study/SKILL.md",
+        ".claude/skills/skill-optimization-study/SKILL.md"
+      ],
+      "manifest_sha256": "bbb9a330c48371783259ecbd74de37e157ba5abbff86312a4dc38a2417d8a73d",
+      "taxonomy_version": 1,
+      "primary_task": "task:performance-analysis",
+      "tag_ids": [
+        "task:performance-analysis",
+        "focus:performance",
+        "focus:agent-evals",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Measures agent tool-call hotspots and compares remedies on fixed scenarios; measurement is primary."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/ssr/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/ssr/SKILL.md",
+        ".claude/skills/ssr/SKILL.md"
+      ],
+      "manifest_sha256": "a4d05c5546085a875dee1f62c7191cd4c462ef6d0a4f2825aa689072efea38f7",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-quality",
+      "tag_ids": [
+        "task:code-quality",
+        "platform:intellij"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Reviews style or creates structural inspections rather than executing tests."
+    },
+    {
+      "repository_key": "mps",
+      "category": "development",
+      "manifest_path": ".agents/skills/teamcity-cli/SKILL.md",
+      "source_aliases": [
+        ".agents/skills/teamcity-cli/SKILL.md",
+        ".claude/skills/teamcity-cli/SKILL.md"
+      ],
+      "manifest_sha256": "7139ad7c31950fe34e99f2a6b10490079831fadbb8fd547bdf91d044ea73b5a7",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:ci",
+        "platform:teamcity"
+      ],
+      "status": "reviewed",
+      "origin": "reviewed",
+      "reason": "Operates builds, logs, queues and jobs; applicability is TeamCity, not the storage repository."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-accessories/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-accessories/SKILL.md"
+      ],
+      "manifest_sha256": "15ab01a68202b2ca6e4c286d200307c455a7149f2db2cd75cf21c564e6848fde",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Configures module/model dependencies, languages, devkits or accessory content."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-actions/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-actions/SKILL.md"
+      ],
+      "manifest_sha256": "501a3ed8189d015ec977536e85d47743cd79c2b14832c8bdb8380362729bad3c",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines the language actions aspect: concept node factories and copy/paste handlers, rather than editing arbitrary model instances."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-behavior/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-behavior/SKILL.md"
+      ],
+      "manifest_sha256": "023217b1082f5cba0326c5b79c1834cf95a94f338e16358664a78b7937c81b5c",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-constraints/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-constraints/SKILL.md"
+      ],
+      "manifest_sha256": "a07ea96d4b039d489505cbf836060a8ed8ebe5f7b60c5dec3c4f3c63b1fb3d3f",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:constraints-scopes",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines property/placement constraints and reference scopes."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-dataflow/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-dataflow/SKILL.md"
+      ],
+      "manifest_sha256": "bbb0f5662a666d94304fa1d04577fe133b7ce390bfc9ed0b928e41fe2cb63b5b",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:dataflow",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines or diagnoses dataflow builders for reachability and variable-use analysis."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md"
+      ],
+      "manifest_sha256": "ecbf4509e53e5ed3acdbec9a749cd239b45211342aec018d4ba948a11bf13347",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines editor layouts, completion/keymaps or Alt+Enter intentions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-editor/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-editor/SKILL.md"
+      ],
+      "manifest_sha256": "b851c1bc27c79464be2e3dee7271afce7c9b9747adb196f67c737231910cf7b7",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines editor layouts, completion/keymaps or Alt+Enter intentions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-generation-plan/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-generation-plan/SKILL.md"
+      ],
+      "manifest_sha256": "41cea9fbdfeb10f2cc4a6444192cd68e9dee17d95bde331b773adba45957ca50",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-generation",
+      "tag_ids": [
+        "task:code-generation",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors generator rules/plans or concept-to-text serialization."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-generator/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-generator/SKILL.md"
+      ],
+      "manifest_sha256": "7c6672bffd62e26d954ec68623b7ed2624e89260e29440b9cda402cedb379661",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-generation",
+      "tag_ids": [
+        "task:code-generation",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors generator rules/plans or concept-to-text serialization."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-intentions/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-intentions/SKILL.md"
+      ],
+      "manifest_sha256": "e0639b536b575040154821001c82ddc62dc7d4464163fc91f701e99ca7f5117f",
+      "taxonomy_version": 1,
+      "primary_task": "task:editor-ui",
+      "tag_ids": [
+        "task:editor-ui",
+        "focus:editor-behaviour",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines editor layouts, completion/keymaps or Alt+Enter intentions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-migrations/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-migrations/SKILL.md"
+      ],
+      "manifest_sha256": "3cfaa74b3c8e54dd19fa04bf3384bc929e4a58ca75a5d450be2f0eea678b9588",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:migrations",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Transforms user models after versioned language changes."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-structure-concepts/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-structure-concepts/SKILL.md"
+      ],
+      "manifest_sha256": "3b0977b1088c6278b466997823c1addc7f9a38068d172802509e49482a5e8d33",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-textgen/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-textgen/SKILL.md"
+      ],
+      "manifest_sha256": "17ac9ec20ec3312676284ece448175142f094f8027d97b4f93fc98a75d697dac",
+      "taxonomy_version": 1,
+      "primary_task": "task:code-generation",
+      "tag_ids": [
+        "task:code-generation",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors generator rules/plans or concept-to-text serialization."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-typesystem/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-aspect-typesystem/SKILL.md"
+      ],
+      "manifest_sha256": "1a55a64ffa5f5a20adb64c042b94aa5b5ff4fe3da462fccdf4287dae1fac1476",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:typesystem",
+        "focus:compiler-diagnostics",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors inference and checking rules; routine validation does not make this a testing workflow."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-baselanguage/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-baselanguage/SKILL.md"
+      ],
+      "manifest_sha256": "11ccc47931abecf2db28fd890466d2a6d0e3d9c10d33a6780139793f5d7d1fac",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-build-language/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-build-language/SKILL.md"
+      ],
+      "manifest_sha256": "34580de2b913df5877a4496c0567bec6dbd3779e81a51bdb39e785a7c2b0d742",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors packaging/build pipelines and distribution wiring."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-console/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-console/SKILL.md"
+      ],
+      "manifest_sha256": "98dd5256c48de6f51c5bf938d7051d4eb193f0fa0582db83db23aa4329f51545",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-distribution-build/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-distribution-build/SKILL.md"
+      ],
+      "manifest_sha256": "44a56395b6c2e739092d71b4853e17a68256ab5e2207df34a9960981404d9d21",
+      "taxonomy_version": 1,
+      "primary_task": "task:build-ci",
+      "tag_ids": [
+        "task:build-ci",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors packaging/build pipelines and distribution wiring."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-dsl-memory/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-dsl-memory/SKILL.md"
+      ],
+      "manifest_sha256": "ccda58f2f80460fae65468e06fd6840e28061fff44cbed7714478e877d1cbf62",
+      "taxonomy_version": 1,
+      "primary_task": "task:documentation-knowledge",
+      "tag_ids": [
+        "task:documentation-knowledge",
+        "focus:documentation",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Creates or refreshes reusable DSL knowledge skills after discovery."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-ide-plugin/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-ide-plugin/SKILL.md"
+      ],
+      "manifest_sha256": "30843bc4733f4448b53eb424688613f6e4cb8a7005f2f626f4e95af131c18bd9",
+      "taxonomy_version": 1,
+      "primary_task": "task:ide-integration",
+      "tag_ids": [
+        "task:ide-integration",
+        "focus:ide-plugins",
+        "platform:intellij",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors host IDE actions, feature flags or plugin extensions."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-lang-core-xml/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-lang-core-xml/SKILL.md"
+      ],
+      "manifest_sha256": "f0d805f9aa37d5ed769da88300caced087b4f58dd1bb95890f3f22cc68329b95",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "task:code-generation",
+        "focus:models-ast",
+        "focus:generators",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors XML model roots and explicitly supports XML-generating templates."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-analysis/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-analysis/SKILL.md"
+      ],
+      "manifest_sha256": "e59f09fef379a23c02dce37dcf3252cd1d913060e341e925875dac30f242a361",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-aspects-overview/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-aspects-overview/SKILL.md"
+      ],
+      "manifest_sha256": "84bd42375e85bac57d2518ef6c890a2fded4394c27d8da89e640c4c471f6710c",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Defines or investigates language concepts, semantics and aspect architecture."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-inheritance/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-inheritance/SKILL.md"
+      ],
+      "manifest_sha256": "b18273e65cb0c11b0600b7be432aaaa9b2b723343e633d1dc9b5ca62f40b7980",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:language-composition",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Analyzes or composes language/concept hierarchies and module extension boundaries."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-modularity/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-language-modularity/SKILL.md"
+      ],
+      "manifest_sha256": "bcba04ac0fc227b6d00609cfaa5f0e7de57ba4d17c300100a8876c82fe0c1579",
+      "taxonomy_version": 1,
+      "primary_task": "task:language-design",
+      "tag_ids": [
+        "task:language-design",
+        "focus:language-composition",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Analyzes or composes language/concept hierarchies and module extension boundaries."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-mcp-workflow/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-mcp-workflow/SKILL.md"
+      ],
+      "manifest_sha256": "6fc7df276b71f9724fb8e63d777ed3acc6242ad810cb7f8237e39b1c8dccd668",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-model-manipulation/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-model-manipulation/SKILL.md"
+      ],
+      "manifest_sha256": "79a2dbf8f18bf39f3788f94d21f9f537c1fc47cef6f2a3db65318e86018f695d",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-node-editing/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-node-editing/SKILL.md"
+      ],
+      "manifest_sha256": "71a4dddac4046fb6d1a928db2d0f64657f3ade50f9e80cbd2aff631655db9b37",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-project-management/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-project-management/SKILL.md"
+      ],
+      "manifest_sha256": "0dc6182f7efb25729f6b160ce1249d7d1731236aee72b97296118ad58c3e4a36",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "focus:dependencies",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Configures module/model dependencies, languages, devkits or accessory content."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-quotations/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-quotations/SKILL.md"
+      ],
+      "manifest_sha256": "6a9ff0cb3ca09f65bbcfb0313ed73151547ad6df7c3cba1a4ee718b6505f82b4",
+      "taxonomy_version": 1,
+      "primary_task": "task:model-editing",
+      "tag_ids": [
+        "task:model-editing",
+        "focus:models-ast",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Constructs, queries or modifies nodes/ASTs and reusable model-editing workflows."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-run-configurations/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-run-configurations/SKILL.md"
+      ],
+      "manifest_sha256": "2291e9b8c0a30f2baf80c8bb348300c411f4fec13c59cbdaafdf210fd0a3fa48",
+      "taxonomy_version": 1,
+      "primary_task": "task:project-setup",
+      "tag_ids": [
+        "task:project-setup",
+        "task:testing",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Creates/reuses run configurations to launch roots; test execution is an explicitly supported secondary workflow."
+    },
+    {
+      "repository_key": "mps",
+      "category": "product",
+      "manifest_path": "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-tests/SKILL.md",
+      "source_aliases": [
+        "plugins/mcp-tools/resources/jetbrains/mps/agents/mcp/skills/mps-tests/SKILL.md"
+      ],
+      "manifest_sha256": "3d659bcecec909d6a4da117f54e788d7d84dbf4c23125de2616b9233784a6cb1",
+      "taxonomy_version": 1,
+      "primary_task": "task:testing",
+      "tag_ids": [
+        "task:testing",
+        "focus:unit-tests",
+        "focus:editor-behaviour",
+        "focus:generators",
+        "focus:migrations",
+        "platform:mps"
+      ],
+      "status": "reviewed",
+      "origin": "exact-content-copy-reviewed",
+      "reason": "Authors and runs NodesTestCase, EditorTestCase, MigrationTestCase and BTestCase tests."
+    }
+  ]
+}

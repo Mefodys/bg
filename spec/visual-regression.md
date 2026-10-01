@@ -89,3 +89,28 @@ python3 tests/visual/ci.py /previous-checkout . /new/artifact-directory
 Playwright Test is JavaScript. Python is only the pixel-analysis/report harness
 and the existing native test runner. Use the pinned CI container for identical
 CI rendering; never raise tolerance to compare incompatible platforms.
+
+## Additive tag feature scenarios
+
+`playwright.tags.config.mjs` runs twelve additional deterministic Playwright Test
+states against native fixture scans and a fixed reviewed fixture catalogue. It
+covers query90 → Testing12 → Testing+Agent evaluations3, unclassified suspension,
+changed hashes, owning details and mobile facets/details. The common 23 scenario
+IDs, fixtures and previous/current exact comparison remain unchanged. CI captures
+the feature suite twice: explicit self-reference generation then verification
+without snapshot updates, with zero tolerance/retries. Its images/results are
+inside `tags-head-1`, `tags-head-2`, `tags-head-snapshots` in the same comparison artifact.
+This additive suite proves feature behavior and repeat determinism; it does not
+replace or waive the existing baseline-to-head visual comparison.
+
+The inherited comparison runs before the additive suite, so a tag failure cannot
+hide its old/new/diff evidence. Versioned tag scenario/fixture/font contracts,
+README and manifests record environment, revisions, image and code hashes,
+assertions and observations. CI requires the exact scenario/PNG/JSON set and
+compares decoded pixels plus DOM on the repeat. When the base has tag support,
+it also replays that exact revision and compares with the retained main tag
+baseline (`head-2/tags`), or explicitly reconstructed base captures. Missing
+accepted scenarios fail as incomplete. Initial self-reference is never a main
+acceptance; only an actual successful main run publishes the next baseline.
+Tag expectations require the same exact-base/pixel/region review in
+`tests/visual/tag-expected-changes.json`; they cannot waive behaviour failures.

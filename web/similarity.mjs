@@ -4,7 +4,7 @@ import { readManifestText } from './manifests.mjs';
 
 const fail = (status, message) => Object.assign(new Error(message), { status });
 const lexical = (a, b) => a < b ? -1 : a > b ? 1 : 0;
-export function scores(texts) {
+export function vectorsFor(texts) {
   const counts = texts.map(text => {
     const terms = new Map();
     for (const token of text.normalize('NFKC').toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? [])
@@ -21,19 +21,29 @@ export function scores(texts) {
     }
     return { vector, norm: Math.sqrt(norm) };
   });
-  const source = vectors[0];
-  return vectors.slice(1).map(candidate => {
+  return vectors;
+}
+export function cosine(source, candidate) {
     if (!source.norm || !candidate.norm) return 0;
     let dot = 0;
     for (const [term, weight] of source.vector) dot += weight * (candidate.vector.get(term) ?? 0);
     const value = Math.min(100, Math.max(0, 100 * dot / (source.norm * candidate.norm)));
     return Math.abs(value - 100) < 1e-10 ? 100 : value;
-  });
+}
+export function scores(texts) {
+  const vectors = vectorsFor(texts);
+  return vectors.slice(1).map(candidate => cosine(vectors[0], candidate));
+}
+export function pairScores(texts) {
+  const vectors = vectorsFor(texts), pairs = [];
+  for (let i = 0; i < vectors.length; i++) for (let j = i + 1; j < vectors.length; j++)
+    pairs.push({ left: i, right: j, score: cosine(vectors[i], vectors[j]) });
+  return pairs;
 }
 
 // Discovery and classification come exclusively from bg. Read only canonical
 // sources of those logical skills, using the same pinned native reader as Filter.
-export async function compare(input, session, scanRepository, root) {
+export async function compare(input, session, scanRepository, root, tagging) {
   if (!input || typeof input.manifest_path !== 'string' || !Array.isArray(input.targets) ||
       input.targets.length > 8 || input.targets.length === 0 ||
       input.targets.some(p => typeof p !== 'string' || !p.trim() || p.length > 4096 || p.includes('\0')) ||
@@ -67,7 +77,7 @@ export async function compare(input, session, scanRepository, root) {
           const manifest = await readManifestText(repository, skill.manifest_path, Math.min(1024 * 1024, remaining));
           remaining -= manifest.bytes;
           if (manifest.truncated) throw new Error('Manifest exceeds read budget; omitted rather than scored from partial text.');
-          candidates.push({ repository, repository_name: path.basename(repository), skill, content: manifest.content });
+          candidates.push({ repository, repository_name: path.basename(repository), skill, content: manifest.content, ...(tagging ? { tagging: tagging.assignment(repository, skill, manifest.manifest_sha256) } : {}) });
         } catch (error) { warnings.push({ repository, path: skill.manifest_path, error: error.message }); }
       }
     } catch (error) { warnings.push({ repository, error: error.message }); }

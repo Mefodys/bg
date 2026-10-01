@@ -12,3 +12,5 @@ __pycache__/
 /reports/features/
 /reports/feature-report/
 /reports/feature-snapshots/
+
+/reports/tags-*/
