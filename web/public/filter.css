@@ -7,7 +7,10 @@
 .filter-panel .search{background:#061812;max-width:none;width:100%;gap:10px;padding:10px;border:1px solid var(--green);border-radius:3px}
 .search svg{width:24px;height:24px;flex-shrink:0;color:var(--green)}
 .filter-panel .search input{font-size:15px;flex:1;width:0;min-width:0;padding:6px;color:var(--text);caret-color:var(--green)}
-.search:focus-within{box-shadow:0 0 0 2px rgba(61,240,154,.25)}
+.search:focus-within{box-shadow:0 0 0 3px rgba(61,240,154,.45)}
+/* The inner input suppresses its own outline, so the console frame carries the
+   keyboard focus indication. */
+.filter-panel .search:focus-within{border-color:#7dffc0}
 .search input::-webkit-search-cancel-button{display:none}
 #clear-search{background:transparent;font-size:24px;color:var(--dim);padding:4px 8px}
 #clear-search:hover:not(:disabled){color:var(--green)}
@@ -50,7 +53,9 @@ mark{background:var(--amber);color:#160e02;border-radius:2px;padding:0 1px}
 
 /* Repository scope controls */
 .scope-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
-.scope-controls select{flex:1;min-width:0;max-width:100%;padding:8px;border:1px solid var(--line-2);border-radius:3px;background:var(--inset);color:var(--text);font:inherit;font-size:13px}
+/* Monospace scope names need the full row; the Refresh button wraps below it
+   rather than clipping "All added repositories". */
+.scope-controls select{flex:1 1 230px;min-width:0;max-width:100%;padding:8px;border:1px solid var(--line-2);border-radius:3px;background:var(--inset);color:var(--text);font:inherit;font-size:13px}
 .scope-controls label{font-size:13px;font-weight:700;color:var(--cyan)}
 .scope-controls button{white-space:normal}
 #repository-choices{margin:0 0 12px;border:1px solid var(--line-2);border-radius:3px;padding:10px;max-height:240px;overflow:auto;background:var(--inset)}
