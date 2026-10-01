@@ -1,0 +1,21 @@
+{
+  "prURL": "https://github.com/Mefodys/bg/pull/9",
+  "mergeSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "servingSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "date": "2026-10-01",
+  "url": "http://127.0.0.1:4173",
+  "pid": 32301,
+  "baselineSHA": "b911ff2b7392d8b69c9642048f5bcef9821a6265",
+  "localComparison": "separate local initial/ordinary-repeat exact verification; macOS and Linux are incompatible environments",
+  "mainNativeCI": 36842410933,
+  "mainVisualCI": 36842410859,
+  "mainVisualConclusion": "originalFAILURE/REGRESSION;declared historical analysis separate",
+  "runs": [
+    "run-postmerge-common-001",
+    "run-postmerge-common-002",
+    "run-postmerge-tags-001",
+    "run-postmerge-tags-002",
+    "run-ci-36842410859"
+  ],
+  "individualManifests": "Each capture run retains exact environment,suite,fixture,script,binary hashes,scenario IDs/observations,masks and PNG hashes."
+}

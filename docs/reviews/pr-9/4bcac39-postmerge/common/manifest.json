@@ -1,0 +1,543 @@
+{
+  "version": 1,
+  "feature": "search-field-color",
+  "run": "run-postmerge-common-002",
+  "createdAt": "2026-10-01T09:41:18.828Z",
+  "mergeSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "servingSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "servingURL": "http://127.0.0.1:4173",
+  "capture": "Isolated native server from serving checkout; versioned deterministic fixtures, not live host repository data.",
+  "baselineSHA": "b911ff2b7392d8b69c9642048f5bcef9821a6265",
+  "prURL": "https://github.com/Mefodys/bg/pull/9",
+  "testRunner": "Playwright Test",
+  "environment": {
+    "browser": "149.0.7827.55",
+    "browserExecutable": "/Users/anton.mefodichev/Library/Caches/ms-playwright/chromium_headless_shell-1228/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+    "browserHash": "11e393326c7d20a7c56641a7c65def33ea9c280da3b0b74cf8563b07989a0ee3",
+    "playwright": "1.63.0",
+    "os": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83",
+    "image": null,
+    "fonts": {
+      "license": "SIL OFL 1.1",
+      "source": "google/fonts and Google Fonts Noto Sans SC 世界 subset",
+      "files": [
+        {
+          "name": "NotoSans.ttf",
+          "sha256": "bfb7bb691513f12e734dc346c03a03f784912432d7e3fa8e56efcf906fe86b3d"
+        },
+        {
+          "name": "NotoSansMono.ttf",
+          "sha256": "2cb2adb378a8f574213e23df697050b83c54c27df465a2015552740b2769a081"
+        },
+        {
+          "name": "NotoSansSC-subset.ttf",
+          "sha256": "e6c29fbf8cc2345edba6984a34c01ce216bd0aaea079d5792eefd40201697327"
+        }
+      ]
+    },
+    "arch": "arm64",
+    "node": "v24.9.0",
+    "dpr": 1,
+    "zoom": 100,
+    "locale": "en-US",
+    "timezone": "UTC",
+    "colorScheme": "light",
+    "reducedMotion": true,
+    "fixedTime": "2026-01-01T12:00:00.000Z",
+    "fixtureRoot": "/private/tmp/skill-atlas-visual-v1",
+    "normalization": [
+      "API scanned_at fixed to suite time",
+      "optional host catalogue filtered to fixture entries"
+    ],
+    "masks": []
+  },
+  "suiteHash": "7576d46febca8dcbf54589fef4b28c42636d3c8cf9bf9bffd6156fbdfc3fd6b3",
+  "fixtureHash": "518d12d7b27770dcd5cc301563068b16516ed9829c5f24c78cd9151ae0058b8c",
+  "scriptHash": "b7621e339fc9f45531c7733880211c36126ace368307c137b2a1266dbff796ac",
+  "binaryHash": "76f861fcc5b582a1c9dc521f2442f585097b9dd92d744840bc9da47122fda247",
+  "scenarios": [
+    {
+      "id": "desktop/01-initial",
+      "action": "initial",
+      "caption": "Initial empty application",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/01-initial.png",
+      "sha256": "a43ff86beaff2cc9527e0b849b4c050874e14492c51fd1ebf7fc4768c73dc417",
+      "observed": {
+        "count": "0 of 0",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 0,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/02-scanned",
+      "action": "scanned",
+      "caption": "Scanned inventory and lavender search field",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/02-scanned.png",
+      "sha256": "62c30831b498f950054c807c8bd4794512364d301fbebe16096a748e7f9a8023",
+      "observed": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 638,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/03-name",
+      "action": "name",
+      "caption": "Name search: release-checklist",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/03-name.png",
+      "sha256": "58dd585404c6de2433980137cd5af89a4df9cb8feb7179dd4d31b408e117b651",
+      "observed": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 346,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/04-description",
+      "action": "description",
+      "caption": "Description search: automated review",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/04-description.png",
+      "sha256": "2163b5cb0c6e9b581659a15c95c657abe7a9cc85647ae6393335e47ffd832e94",
+      "observed": {
+        "count": "1 of 4",
+        "query": "automated review",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 322,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/05-body",
+      "action": "body",
+      "caption": "Body-only search: AlphaBodyToken",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/05-body.png",
+      "sha256": "f3b175773b9f9a8b6033734319d0badebc6e3a05e8dbb06bdb9052030615d047",
+      "observed": {
+        "count": "1 of 4",
+        "query": "AlphaBodyToken",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 365,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/06-current-miss",
+      "action": "current-miss",
+      "caption": "Current excludes a token in another repository",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/06-current-miss.png",
+      "sha256": "0012418ca3407e1a50e96894f5dfe7281477ac9e46ebd621e9bfe3ba1aae697b",
+      "observed": {
+        "count": "0 of 4",
+        "query": "OtherBodyNeedle",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 417,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/07-selected",
+      "action": "selected",
+      "caption": "Selected includes the other repository",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/07-selected.png",
+      "sha256": "a6eddbcbdbfc8ab394f90d3fd63e1b024644d1ff05dc5603165b1ac02d3853fb",
+      "observed": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "selected",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 638,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/08-all",
+      "action": "all",
+      "caption": "All added groups both repositories",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/08-all.png",
+      "sha256": "9d792316b76eec3dc08f90a9ecc926a08063f8422306108b7eb5edffc05b390b",
+      "observed": {
+        "count": "8 of 8",
+        "query": "",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 638,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/09-category",
+      "action": "category",
+      "caption": "Current product category",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/09-category.png",
+      "sha256": "04390d1c5d7e82911438599854c9c0b25dfacbaa3a99d362248b7f193c22ec71",
+      "observed": {
+        "count": "1 of 1",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 322,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/10-empty",
+      "action": "empty",
+      "caption": "No matching skills",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/10-empty.png",
+      "sha256": "fb605ebac8689d78c58cafd6dab6c4d3db16843937a449798d43d0fdfb6c28c7",
+      "observed": {
+        "count": "0 of 4",
+        "query": "missing-visual-token",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 417,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/11-clear",
+      "action": "clear",
+      "caption": "Escape clears and retains focus",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/11-clear.png",
+      "sha256": "62c30831b498f950054c807c8bd4794512364d301fbebe16096a748e7f9a8023",
+      "observed": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 638,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/12-details",
+      "action": "details",
+      "caption": "Details belong to the selected library result",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/12-details.png",
+      "sha256": "5aa9e2a30f03f0dce2dcad405c1f86aa37a7b0c7a205a816ec3547c82ef6ca18",
+      "observed": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 511,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/13-similar",
+      "action": "similar",
+      "caption": "Native Similar skills results",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/13-similar.png",
+      "sha256": "83a5a12e5ca79c6dd0a984b9a8fbddc16197f18633503b0acbfeca98c669168c",
+      "observed": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 638,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/14-refresh",
+      "action": "refresh",
+      "caption": "Refresh discovers changed fixture content",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/14-refresh.png",
+      "sha256": "e35122508cb95b99e784ef8e50ce266c488b8abe29b1109263cd6e838a01c138",
+      "observed": {
+        "count": "1 of 8",
+        "query": "RefreshBodyToken",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 492,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/15-partial",
+      "action": "partial",
+      "caption": "Failed refresh retains explicitly stale results",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/15-partial.png",
+      "sha256": "843c5c161821b1831d19c0f0f929372a4f8705358302eb1b8e5d41b385a58d15",
+      "observed": {
+        "count": "1 of 8 · Partial",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 511,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/16-expired",
+      "action": "expired",
+      "caption": "Expired details offer recovery",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/16-expired.png",
+      "sha256": "e293a61ac69e3e91d30b596ad6bac98b337b4bc197d3c5b23203d86e3c672d72",
+      "observed": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 511,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/17-recovered",
+      "action": "recovered",
+      "caption": "Recovery opens the owning manifest",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/17-recovered.png",
+      "sha256": "5aa9e2a30f03f0dce2dcad405c1f86aa37a7b0c7a205a816ec3547c82ef6ca18",
+      "observed": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 511,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/18-pagination",
+      "action": "pagination",
+      "caption": "Native pagination: second page of 101 matches",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/18-pagination.png",
+      "sha256": "6d9752c24a09a5893701f1c44cb5e3622ee210fa86d49433d5791d2da723a4e1",
+      "observed": {
+        "count": "101 of 109",
+        "query": "PaginationNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 525,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/19-mirrors",
+      "action": "mirrors",
+      "caption": "Mirrored manifest sources retained",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/19-mirrors.png",
+      "sha256": "094919c8565fc88169e97d1925183c6e7c0c12d9dd750d6f5df6f9fb7d575424",
+      "observed": {
+        "count": "1 of 8",
+        "query": "mirror-helper",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 489,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "desktop/20-unicode",
+      "action": "unicode",
+      "caption": "Unicode literal matching",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "file": "desktop/20-unicode.png",
+      "sha256": "9998cd1f2b826dcebfdefb99a1cdc9a3ad631723e91a0add7ccda64cd89ba65a",
+      "observed": {
+        "count": "1 of 8",
+        "query": "世界",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 489,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "mobile/01-overview",
+      "action": "scanned",
+      "caption": "Mobile Filter overview",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mobile/01-overview.png",
+      "sha256": "9673a7a8e344cc9aed443cb86785a4918a899caede6ec9d2fdfb8cea3e0d2ffc",
+      "observed": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 897,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "mobile/02-search",
+      "action": "name",
+      "caption": "Mobile search and result",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mobile/02-search.png",
+      "sha256": "36824a068f3f7d80d0ac10df8548761c5e0b27186d51af295d63437f561526ab",
+      "observed": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 897,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    },
+    {
+      "id": "mobile/03-details",
+      "action": "details",
+      "caption": "Mobile owning manifest details",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "file": "mobile/03-details.png",
+      "sha256": "3c7dd54de849c3f173eefbe84b693a8dd46fa83092be5f1e8423ae24769a5223",
+      "observed": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 1176,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      },
+      "assertions": "Scenario-specific count/content/ownership/state assertions passed; no JS errors or horizontal overflow."
+    }
+  ]
+}

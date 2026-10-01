@@ -1,0 +1,141 @@
+{
+  "kind": "same-revision determinism verification",
+  "beforeSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "afterSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "exactMatch": true,
+  "threshold": 0,
+  "scenarios": [
+    {
+      "id": "desktop/01-query",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "0a93d4682ffe5eb4deecada94bd7976068c539f463a7dda6ee96086578636a87",
+      "afterPixelSHA256": "0a93d4682ffe5eb4deecada94bd7976068c539f463a7dda6ee96086578636a87",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/01-query.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/01-query.png",
+      "diff": "desktop/01-query.png"
+    },
+    {
+      "id": "desktop/02-task",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "d8f9c6f32f91b34102db78803314892dc08c6d7c54e6cefee944cdeaa15314d9",
+      "afterPixelSHA256": "d8f9c6f32f91b34102db78803314892dc08c6d7c54e6cefee944cdeaa15314d9",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/02-task.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/02-task.png",
+      "diff": "desktop/02-task.png"
+    },
+    {
+      "id": "desktop/03-task-focus",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "49528d93658f9ed38cf06a029ad87a45ac07e2eee89d3361108d37c6a15232c7",
+      "afterPixelSHA256": "49528d93658f9ed38cf06a029ad87a45ac07e2eee89d3361108d37c6a15232c7",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/03-task-focus.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/03-task-focus.png",
+      "diff": "desktop/03-task-focus.png"
+    },
+    {
+      "id": "desktop/04-unclassified",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "821d331cd0d43f3472757ea96ff111e0cc20b4cd41b56cb8b9159aeac0181bcb",
+      "afterPixelSHA256": "821d331cd0d43f3472757ea96ff111e0cc20b4cd41b56cb8b9159aeac0181bcb",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/04-unclassified.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/04-unclassified.png",
+      "diff": "desktop/04-unclassified.png"
+    },
+    {
+      "id": "desktop/05-changed",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "670604befd9ab43705585c279c9ada315d6959a5a6605507eff3305d28360119",
+      "afterPixelSHA256": "670604befd9ab43705585c279c9ada315d6959a5a6605507eff3305d28360119",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/05-changed.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/05-changed.png",
+      "diff": "desktop/05-changed.png"
+    },
+    {
+      "id": "desktop/06-owning-details",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "a2eb82eb6f93c0573d0b49bbed4d2aeeec8c7ac4066d8baeca911b32df8ad357",
+      "afterPixelSHA256": "a2eb82eb6f93c0573d0b49bbed4d2aeeec8c7ac4066d8baeca911b32df8ad357",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/06-owning-details.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/06-owning-details.png",
+      "diff": "desktop/06-owning-details.png"
+    },
+    {
+      "id": "desktop/07-zero-results",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "ece29567ef0330ff9348a34f316e9226d88802ee2c13160d7fe7d2fc16da6a3c",
+      "afterPixelSHA256": "ece29567ef0330ff9348a34f316e9226d88802ee2c13160d7fe7d2fc16da6a3c",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/07-zero-results.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/07-zero-results.png",
+      "diff": "desktop/07-zero-results.png"
+    },
+    {
+      "id": "desktop/08-clear-query",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "2c7824724f7107896a61fe434feb6af24d0230dd3247fcfdc9b5bde4ce61e627",
+      "afterPixelSHA256": "2c7824724f7107896a61fe434feb6af24d0230dd3247fcfdc9b5bde4ce61e627",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/08-clear-query.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/08-clear-query.png",
+      "diff": "desktop/08-clear-query.png"
+    },
+    {
+      "id": "desktop/09-similar",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "f7f4b8e1906089a31bc156af9304b1859d3fd079cd4c2c50a7c8935c6e835f0e",
+      "afterPixelSHA256": "f7f4b8e1906089a31bc156af9304b1859d3fd079cd4c2c50a7c8935c6e835f0e",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/09-similar.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/09-similar.png",
+      "diff": "desktop/09-similar.png"
+    },
+    {
+      "id": "desktop/10-unavailable",
+      "changedPixels": 0,
+      "totalPixels": 1440000,
+      "beforePixelSHA256": "a2b0dc64eb0ee15bb26d9b14713014bb2088b18f57bc13f138d5f86d68d5fe61",
+      "afterPixelSHA256": "a2b0dc64eb0ee15bb26d9b14713014bb2088b18f57bc13f138d5f86d68d5fe61",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/desktop/10-unavailable.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/desktop/10-unavailable.png",
+      "diff": "desktop/10-unavailable.png"
+    },
+    {
+      "id": "mobile/01-facets",
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "beforePixelSHA256": "e537bb9994ea66be75aa07f51f0402a0ab29f89cab23c7c0e28c93437f54fa76",
+      "afterPixelSHA256": "e537bb9994ea66be75aa07f51f0402a0ab29f89cab23c7c0e28c93437f54fa76",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/mobile/01-facets.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/mobile/01-facets.png",
+      "diff": "mobile/01-facets.png"
+    },
+    {
+      "id": "mobile/02-details",
+      "changedPixels": 0,
+      "totalPixels": 329160,
+      "beforePixelSHA256": "38df6c5860045a2d57a115ff99a00101e4a277771b988a90241b59921c3c7a4d",
+      "afterPixelSHA256": "38df6c5860045a2d57a115ff99a00101e4a277771b988a90241b59921c3c7a4d",
+      "observedStateMatches": true,
+      "before": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-001/mobile/02-details.png",
+      "after": "/Users/anton.mefodichev/work/AIMEETUPINBG2026/bg-main/screenshots/skill-tags/4bcac3937e6af91874b8939c5f94997384d8d79f/run-postmerge-tags-002/mobile/02-details.png",
+      "diff": "mobile/02-details.png"
+    }
+  ]
+}
