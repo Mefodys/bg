@@ -36,19 +36,25 @@ def compare_feature_snapshots(before,after):
     results=[];changed_keys=set()
     for identifier in sorted(before):
         width,height,old=decode(before[identifier]);new_width,new_height,new=decode(after[identifier])
-        if (width,height)!=(new_width,new_height):raise SystemExit('INCOMPATIBLE FEATURE SNAPSHOT SIZE: '+identifier)
+        resized=(width,height)!=(new_width,new_height)
         points=[];diff=bytearray(b'\xff\xff\xff\xff'*(width*height))
-        for offset in range(0,len(old),4) if old!=new else ():
+        for offset in range(0,len(old),4) if old!=new and not resized else ():
             if old[offset:offset+4]!=new[offset:offset+4]:
                 x,y=offset//4%width,offset//4//width;points.append((x,y));diff[offset:offset+4]=b'\xff\x00\x40\xff'
         after_hash=hashlib.sha256(new).hexdigest();rule=rules.get(identifier);status='UNCHANGED'
-        if points:
+        if resized:
+            changed_keys.add(identifier);points=[(0,0),(new_width-1,new_height-1)]
+            valid_size=rule and rule.get('afterWidth')==new_width and rule.get('afterHeight')==new_height
+            status='EXPECTED FEATURE CHANGE' if declarations.get('baseSHA')==base_sha and valid_size and rule.get('reason','').strip() and rule.get('afterPixelSHA256')==after_hash else 'REGRESSION'
+        elif points:
             changed_keys.add(identifier)
             if declarations.get('baseSHA')!=base_sha or not rule or not rule.get('reason','').strip() or rule.get('afterPixelSHA256')!=after_hash:status='REGRESSION'
             else:status='EXPECTED FEATURE CHANGE'
-        png(output/'diff'/identifier,width,height,diff)
+        if resized:png(output/'diff'/identifier,new_width,new_height,bytearray(b'\xff\x00\x40\xff'*(new_width*new_height)))
+        else:png(output/'diff'/identifier,width,height,diff)
         bounds=None if not points else {'x':min(x for x,_ in points),'y':min(y for _,y in points),'width':max(x for x,_ in points)-min(x for x,_ in points)+1,'height':max(y for _,y in points)-min(y for _,y in points)+1}
-        results.append({'id':identifier,'changedPixels':len(points),'changedBounds':bounds,'status':status,'reason':rule.get('reason','') if rule else '','afterPixelSHA256':after_hash,'observedStateMatches':True,'observedAfter':{}})
+        changed_pixels=new_width*new_height if resized else len(points)
+        results.append({'id':identifier,'changedPixels':changed_pixels,'changedBounds':bounds,'afterWidth':new_width,'afterHeight':new_height,'status':status,'reason':rule.get('reason','') if rule else '','afterPixelSHA256':after_hash,'observedStateMatches':True,'observedAfter':{}})
     stale=set(rules)-changed_keys
     if stale:raise SystemExit('STALE FEATURE DECLARATIONS: '+', '.join(sorted(stale)))
     report={'beforeSHA':base_sha,'afterSHA':subprocess.check_output(['git','rev-parse','HEAD'],cwd=head,text=True).strip(),'status':'REGRESSION' if any(row['status']=='REGRESSION' for row in results) else 'EXPECTED FEATURE CHANGE — REVIEW REQUIRED' if changed_keys else 'NO REGRESSION','scenarios':results}

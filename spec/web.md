@@ -20,9 +20,44 @@ project root. The CLI continues to work independently.
 
 ## User interface
 
-Use an English-language, responsive Skill Atlas interface: a dark navy sidebar,
-a light workspace, violet/teal accents, generous spacing, clear typography,
-summary counters, and skill cards. Support narrow screens and keyboard use.
+Use an English-language, responsive Skill Atlas interface with summary counters
+and skill cards. Support narrow screens and keyboard use.
+
+### Visual direction: hacker terminal
+
+The interface uses a cohesive terminal aesthetic. Information architecture,
+copy, controls, and behavior are independent of it; restyling must never change
+them.
+
+- A near-black navy canvas (`#04070a`) with darker panel, inset, and console
+  surfaces. High-contrast phosphor green is the primary accent, cyan the
+  secondary accent, and amber the restrained warning accent. Red is reserved for
+  scan errors.
+- Only the local/system monospace stack. No external fonts, images, network
+  requests, runtime dependencies, or theme switcher.
+- Panels, cards, inputs, counters, badges, progress bars, pagination, and the
+  details dialog share tight 3–4px radii, crisp one-pixel borders, and
+  command-prompt-inspired label prefixes added through CSS `::before` content.
+  They leave the DOM and `textContent` unchanged but, like all generated
+  content, form part of the accessible name.
+- Subtle static grid texture on the sidebar, workspace, and dialog, and subtle
+  static scanlines on console surfaces, manifest `pre` blocks, and empty states.
+  Textures are background images on the element itself, so they can never
+  intercept pointer events or text selection.
+- Dense paths, manifest text, warnings, scores, and search `<mark>` highlights
+  keep accessible contrast on every surface. The Filter search field keeps a
+  distinct tinted background and a phosphor border; this supersedes its earlier
+  lavender treatment.
+- The system covers every state: empty, loading, error, partial, stale/expired,
+  pagination, comparison results, and the 390px mobile layout.
+- Keyboard focus stays visible on every interactive element: normally through
+  a 3px phosphor `:focus-visible` outline. The scan-row and search inputs
+  suppress their own outline and show focus on the enclosing console frame via
+  `:focus-within`; any new control inside a console frame must keep one method.
+- Decorative motion is absent. The only transitions are result-card border and
+  background colors, and they are disabled under `prefers-reduced-motion`.
+- `color-scheme: dark` keeps native selects, checkboxes, progress bars, and
+  scrollbars legible. No horizontal overflow at 390px.
 
 - A repository-path input and Scan button, with loading and error states.
 - Quick choices for locally available MPS, Koog, Android, and Kotlin checkouts.
@@ -97,8 +132,9 @@ Search trims outer whitespace and performs literal, case-insensitive substring
 matching across names, descriptions, every source location/manifest path, and
 readable full manifest text. Unicode case folding preserves original text
 positions; HTML and regex syntax are data. Names and contextual snippets use
-text nodes and pale yellow `<mark>` elements. Snippets prefer the first match in
-name, description, source bodies in scanner order, then paths, with ellipses
+text nodes and amber `<mark>` elements with near-black text. Snippets prefer the
+first match in name, description, source bodies in scanner order, then paths,
+with ellipses
 where surrounding text is omitted. Result buttons open the existing details;
 source selection, classification, conflicts, and JSON export remain available.
 

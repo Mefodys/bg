@@ -35,7 +35,7 @@ for(const [id,action,viewport] of scenarios) test.describe(id,()=>{
         await route.fulfill({body:await readFile(new URL(name,fontRoot)),contentType:'font/ttf'});
       });
       await page.goto(url);
-      await page.addStyleTag({content:"@font-face{font-family:VisualSans;src:url('/__tag-fonts/NotoSans.ttf');font-weight:100 900}@font-face{font-family:VisualMono;src:url('/__tag-fonts/NotoSansMono.ttf');font-weight:100 900}:root{font-family:VisualSans,sans-serif!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}pre,.path{font-family:VisualMono,monospace!important}"});
+      await page.addStyleTag({content:"@font-face{font-family:VisualSans;src:url('/__tag-fonts/NotoSans.ttf');font-weight:100 900}@font-face{font-family:VisualMono;src:url('/__tag-fonts/NotoSansMono.ttf');font-weight:100 900}:root{--mono:VisualMono,monospace!important;font-family:VisualSans,sans-serif!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}pre,.path{font-family:VisualMono,monospace!important}"});
       await page.evaluate(async()=>{await document.fonts.load('14px VisualSans');await document.fonts.load('14px VisualMono');await document.fonts.ready;});
       await page.locator('#repository-path').fill(fixed+'/mps');await page.locator('#scan-button').click();
       const count=async n=>expect(page.locator('#filter-count')).toHaveText(n);

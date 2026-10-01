@@ -81,6 +81,12 @@ Use `PORT=4174 bash web/run.sh` for another port, or set `NODE` to a Node.js
 executable if it is not on PATH. The launcher detects local Node.js 24 installs
 in the Gradle cache as a convenience. See [the web specification](spec/web.md).
 
+The interface uses a hacker-inspired terminal theme: a near-black navy canvas,
+phosphor green and cyan accents, amber warnings, the local monospace stack, and
+subtle static grid/scanline textures. There are no external assets, no
+decorative motion, and no theme switcher. Behavior, copy, and the information
+architecture are unchanged by the theme.
+
 HTTP tests run with `python3 tests/run.py`. For browser verification only,
 install the development dependency and Chromium:
 

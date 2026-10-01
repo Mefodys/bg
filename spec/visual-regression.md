@@ -39,6 +39,18 @@ Existing fixtures/scenarios/viewports/font versions cannot change in an ordinary
 PR; CI blocks such changes pending an explicit visual-contract migration. This
 prevents removing tests or changing data to hide differences.
 
+A visual harness migration must use `tests/visual/contract-migration.json` to
+bind its reason, exact base SHA, changed file paths and before/after file hashes.
+For that one base-to-head transition CI reconstructs the exact base with the new
+harness instead of comparing an incompatible retained artifact. The declaration
+becomes inactive after it reaches both sides of the next comparison.
+
+Feature and inherited visual gates run independently so either failure cannot
+hide the other's evidence. CI uploads and reports both results, then fails the
+job unless both step outcomes succeeded; a failed gate can never publish a main
+baseline. Exit status 1 is reported as REGRESSION; missing, skipped or status 2
+verification is reported as INCOMPLETE VISUAL VERIFICATION.
+
 ## Classification and review
 
 Undeclared differences fail with **REGRESSION** in a large job summary heading
@@ -133,7 +145,8 @@ the visual comparison artifact.
 An intentional change to an established locator screenshot must be declared in
 `tests/visual/feature-expected-changes.json`. The declaration is keyed by the
 snapshot path and binds the exact base SHA, a review reason and the decoded
-after-image SHA256. Undeclared images, stale declarations, missing snapshots,
-dimension changes and behavior assertion failures block the workflow. CI prints
+after-image SHA256. An intentional dimension change additionally binds exact
+`afterWidth` and `afterHeight` values. Undeclared images, stale declarations,
+unbound dimension changes and behavior assertion failures block the workflow. CI prints
 bounded comparison metadata and retains base, head and highlighted-difference
 images for review.

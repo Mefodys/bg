@@ -96,8 +96,8 @@ export async function captureScenario(page,scenario,expect,testInfo){
   await page.evaluate(()=>{for(const el of document.querySelectorAll('*'))if(getComputedStyle(el).fontFamily.includes('monospace'))el.style.fontFamily='VisualMono,VisualCJK,monospace';});
   await page.mouse.move(0,0); // Fixed neutral hover; scrolling must not hover a result card.
   // Invalidate the whole paint tree after scrolling to avoid incremental edge raster artifacts.
-  await page.evaluate(()=>{document.body.style.visibility='hidden';void document.body.offsetHeight;});
-  await page.evaluate(()=>{document.body.style.visibility='visible';void document.body.offsetHeight;});
+  await page.evaluate(()=>{window.__visualFocus=document.activeElement;document.body.style.visibility='hidden';void document.body.offsetHeight;});
+  await page.evaluate(()=>{document.body.style.visibility='visible';void document.body.offsetHeight;window.__visualFocus?.focus({preventScroll:true});delete window.__visualFocus;});
   await expect(page).toHaveScreenshot(file,{threshold:0,maxDiffPixels:0,animations:'disabled',caret:'hide'});
   const bytes=await page.screenshot({path:path.join(output,file),animations:'disabled',caret:'hide'});
   await testInfo.attach(scenario.id,{body:bytes,contentType:'image/png'});

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Run base/head twice in one environment, then gate the exact PR difference."""
-import json,os,subprocess,sys
+import hashlib,json,os,subprocess,sys
 from pathlib import Path
 from failure import failure_heading
 from tag_capture import validate_tag_capture
@@ -17,14 +17,29 @@ def summary(text):
 
 def contract():
     old=base/'tests/visual'
-    if not old.exists():return # Explicit bootstrap: replay preexisting app with the introduced suite.
+    if not old.exists():return False # Explicit bootstrap: replay preexisting app with the introduced suite.
+    migration_file=tools/'contract-migration.json';old_migration=old/'contract-migration.json'
+    migration=migration_file.exists() and (not old_migration.exists() or old_migration.read_bytes()!=migration_file.read_bytes())
+    if migration:
+        declaration=json.loads(migration_file.read_text())
+        if declaration.get('baseSHA')!=sha(base) or not declaration.get('reason','').strip():raise ValueError('INVALID VISUAL CONTRACT MIGRATION: base SHA or reason')
+        files=declaration.get('files',{})
+        if not files:raise ValueError('INVALID VISUAL CONTRACT MIGRATION: no files')
+        for name,expected in files.items():
+            if not name.startswith('tests/visual/') or set(expected)!=set(('beforeSHA256','afterSHA256')):raise ValueError('INVALID VISUAL CONTRACT MIGRATION FILE: '+name)
+            before,after=base/name,head/name
+            if not before.is_file() or not after.is_file():raise ValueError('MISSING VISUAL CONTRACT MIGRATION FILE: '+name)
+            digest=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
+            if expected['beforeSHA256']==expected['afterSHA256']:raise ValueError('NO-OP VISUAL CONTRACT MIGRATION FILE: '+name)
+            if digest(before)!=expected['beforeSHA256'] or digest(after)!=expected['afterSHA256']:raise ValueError('STALE VISUAL CONTRACT MIGRATION HASH: '+name)
     for name in ['fixtures.json','scenarios.json','fonts/manifest.json']:
         if (old/name).read_bytes()!=(tools/name).read_bytes():raise ValueError('INCOMPATIBLE TEST CONTRACT: fixtures, viewports or font versions changed: '+name)
     for f in json.loads((tools/'fonts/manifest.json').read_text())['files']:
         if (old/'fonts'/f['name']).read_bytes()!=(tools/'fonts'/f['name']).read_bytes():raise ValueError('INCOMPATIBLE FONT: '+f['name'])
+    return migration
 
 try:
-    contract()
+    migration=contract()
     for variant,root in [('base',base),('head',head)]:
         for index in (1,2):
             env={**os.environ,'VISUAL_ROOT':str(root),'VISUAL_OUTPUT':str(artifacts/f'{variant}-{index}'),'VISUAL_RESULTS':str(artifacts/f'{variant}-results-{index}'),'VISUAL_SNAPSHOTS':str(artifacts/f'{variant}-snapshots'),'VISUAL_RUN':f'run-{variant}-{index}','VISUAL_BASE_SHA':sha(base)}
@@ -34,11 +49,12 @@ try:
         call(['python3',str(tools/'compare.py'),str(artifacts/f'{variant}-1'),str(artifacts/f'{variant}-2'),str(artifacts/f'{variant}-determinism')])
     previous=Path(os.environ.get('VISUAL_PREVIOUS_BASELINE','/nonexistent'))
     baseline=artifacts/'base-2'
-    if (previous/'manifest.json').exists():
+    if (previous/'manifest.json').exists() and not migration:
         call(['python3',str(tools/'compare.py'),str(previous),str(baseline),str(artifacts/'previous-baseline-verification')])
         baseline=previous
     else:
-        (artifacts/'baseline-source.txt').write_text('Previous revision reconstructed from exact base SHA; no retained accepted CI artifact was available.\n')
+        reason=('an explicitly hash-bound visual contract migration is active for '+', '.join(json.loads((tools/'contract-migration.json').read_text())['files']) if migration else 'no retained accepted CI artifact was available')
+        (artifacts/'baseline-source.txt').write_text('Previous revision reconstructed from exact base SHA; '+reason+'.\n')
     result=subprocess.run(['python3',str(tools/'analyze.py'),str(baseline),str(artifacts/'head-2'),str(artifacts/'comparison'),str(tools/'expected-changes.json')])
     if (artifacts/'comparison/comparison.json').exists():call(['python3',str(tools/'build-comparison.py'),str(artifacts/'comparison')])
     report=(artifacts/'comparison/comparison.md').read_text();summary(report)
@@ -71,7 +87,7 @@ try:
             current=artifacts/'tags-head-2'
             if len(variants)==2:
                 tag_baseline=artifacts/'tags-base-2'
-                if (previous/'tags/manifest.json').exists():
+                if (previous/'tags/manifest.json').exists() and not migration:
                     validate_tag_capture(previous/'tags',expected_ids)
                     call(['python3',str(tools/'compare.py'),str(previous/'tags'),str(tag_baseline),str(artifacts/'tags-previous-baseline-verification')])
                     tag_baseline=previous/'tags'

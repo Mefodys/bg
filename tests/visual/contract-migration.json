@@ -1,0 +1,14 @@
+{
+  "baseSHA": "d778b28c57b837b4c48c8c8d05176c12b3958dde",
+  "reason": "Restore focus after deterministic paint invalidation and pin tag-theme monospace consumers to the vendored font; both harness changes require exact-base reconstruction.",
+  "files": {
+    "tests/visual/harness.mjs": {
+      "beforeSHA256": "47e97b7e83264eb64ed304ced1c58072ce5ce911b5e8448dc286a9c43baa2329",
+      "afterSHA256": "02efa387f9582ba16d6ef120b5e56a8530a0a6466a73e5094e3b5e3a3cb2f7a9"
+    },
+    "tests/visual/tags.spec.mjs": {
+      "beforeSHA256": "2fe636df6ef52e77fb8dd8205cb2cda55cac5ef51d5059e704326d97ee4401d3",
+      "afterSHA256": "29397cdb8fd3c225ec8b52f9388988538259f5e87590872b177924c08722b32d"
+    }
+  }
+}
