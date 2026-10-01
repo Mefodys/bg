@@ -73,6 +73,9 @@ semantics. Defects inside a declared region still need reviewer analysis.
 Every run uploads `visual-comparison-<headSHA>` with before/after/diff PNGs,
 comparison.json/.md, three-column gallery.html with synchronized zoom/scroll,
 Playwright results/traces and repeat-determinism reports. All labels are English.
+The job log also prints bounded JSON metadata for changed scenarios: exact base
+and head SHAs, decoded after-pixel hashes, observed DOM state and changed-pixel
+bounds. It never embeds screenshots or accepts those changes automatically.
 Download/unzip and open comparison/gallery.html; inline PR uploads are not claimed.
 Only a successful main push publishes `visual-baseline-<mergeSHA>` for the next PR.
 A green PR result does not replace checking the actual merge SHA.

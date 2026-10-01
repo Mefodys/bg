@@ -37,7 +37,8 @@ def analyze(before,after,output,declarations):
         shutil.copyfile(before/s['file'],first);shutil.copyfile(after/new[identifier]['file'],second)
         png(output/'diff'/(identifier+'.png'),w,h,diff)
         rule=next((r for r in declarations.get('changes',[]) if r.get('scenario')==identifier),{})
-        results.append({'id':identifier,'changedPixels':len(points),'totalPixels':w*h,'status':status,'reason':rule.get('reason',''),'afterPixelSHA256':pixel_hash,'observedStateMatches':matches,'before':str(first.resolve()),'after':str(second.resolve()),'diff':'diff/'+identifier+'.png'})
+        bounds=None if not points else {'x':min(x for x,_ in points),'y':min(y for _,y in points),'width':max(x for x,_ in points)-min(x for x,_ in points)+1,'height':max(y for _,y in points)-min(y for _,y in points)+1}
+        results.append({'id':identifier,'changedPixels':len(points),'changedBounds':bounds,'totalPixels':w*h,'status':status,'reason':rule.get('reason',''),'afterPixelSHA256':pixel_hash,'observedStateMatches':matches,'observedAfter':new[identifier]['observed'],'before':str(first.resolve()),'after':str(second.resolve()),'diff':'diff/'+identifier+'.png'})
     failed=any(s['status']=='REGRESSION' for s in results)
     heading='REGRESSION' if failed else 'EXPECTED FEATURE CHANGE — REVIEW REQUIRED' if any(s['status']=='EXPECTED FEATURE CHANGE' for s in results) else 'NO REGRESSION'
     report={'beforeSHA':a['servingSHA'],'afterSHA':b['servingSHA'],'status':heading,'exactMatch':all(s['changedPixels']==0 and s['observedStateMatches'] for s in results),'threshold':0,'scenarios':results}
