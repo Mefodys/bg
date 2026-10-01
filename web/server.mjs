@@ -15,10 +15,13 @@ const binary = path.join(root, 'bg');
 
 const assets = new Map([['/tags.js', ['tags.js', 'text/javascript']], ['/tags.css', ['tags.css', 'text/css']],['/search-scope.js', ['search-scope.js', 'text/javascript']], ['/similarity.js', ['similarity.js', 'text/javascript']], ['/similarity.css', ['similarity.css', 'text/css']], ['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
 async function scanRepository(repository, timeout = 120000) {
+  // All discovery remains in the native scanner.
   const { stdout } = await execute(binary, ['scan', repository, '--json'], { timeout, maxBuffer: 16 * 1024 * 1024 });
   return JSON.parse(stdout);
 }
 const port = Number(process.env.PORT ?? 4173);
+assets.set('/favorites.js', ['favorites.js', 'text/javascript']);
+assets.set('/favorites.css', ['favorites.css', 'text/css']);
 if (!Number.isInteger(port) || port < 0 || port > 65535) throw new Error('PORT must be an integer between 0 and 65535');
 try { await stat(binary); } catch { console.error('Scanner missing. Run bash build.sh first.'); process.exit(1); }
 

@@ -7,3 +7,6 @@ for (const script of ['tests/web_smoke.mjs', 'tests/web_similarity.mjs', 'tests/
   if (code !== 0) failed = true;
 }
 process.exitCode = failed ? 1 : 0;
+const features = spawn(process.execPath, ['node_modules/playwright/cli.js', 'test', '--config', 'playwright.features.config.mjs'], { stdio: 'inherit' });
+const [featureCode] = await once(features, 'exit');
+if (featureCode !== 0) process.exitCode = 1;

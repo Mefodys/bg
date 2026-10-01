@@ -1,1 +1,225 @@
-{"baseSHA":null,"changes":[]}
+{
+  "baseSHA": "4bcac3937e6af91874b8939c5f94997384d8d79f",
+  "changes": [
+    {
+      "scenario": "desktop/01-query",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "a5b982899ec634e2a2667d60874a3765bd90dedc4413c25cbe287a5c637dc08a",
+      "regions": [
+        {
+          "x": 742,
+          "y": 503,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 656,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 809,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 962,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/02-task",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "97ccffc45e951b9232937ff7e9ccb189d78982eded50ad8758dae02444332345",
+      "regions": [
+        {
+          "x": 742,
+          "y": 564,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 717,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 870,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/03-task-focus",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "e3435dba1349c5e698a9b86fbb41881900664b5be9b9884ba35d4f996463def4",
+      "regions": [
+        {
+          "x": 742,
+          "y": 564,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 717,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 870,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/04-unclassified",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "81867e773d8c17b7b09973b937be728efb870d079aa85b06bb5cc3c221e0401a",
+      "regions": [
+        {
+          "x": 742,
+          "y": 755,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/05-changed",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "4228e0c6d135bb51d2fe9eaa2134efab713e9705be13b8e1ad74634630b2e943",
+      "regions": [
+        {
+          "x": 742,
+          "y": 755,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/06-owning-details",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "ce1df0c671c1760556ac167533ab0435fa93e5005c63116b8a3f008e6fcd230c",
+      "regions": [
+        {
+          "x": 1042,
+          "y": 293,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 734,
+          "y": 737,
+          "width": 46,
+          "height": 36
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/08-clear-query",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "64da2596279bb6770dfd7b9ccc9abaf1b04287317750a8e2f87ef9c20f65395c",
+      "regions": [
+        {
+          "x": 742,
+          "y": 564,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 717,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 870,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/09-similar",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "1b436cd61bc6a6672b70c632bf799bb0b0bc8979de53a86360b3dd3e7b7d3979",
+      "regions": [
+        {
+          "x": 742,
+          "y": 813,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 966,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/10-unavailable",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "7bd11021944b973fa46b3f4cac597f9adc080149df6c2161f4965d6c00897091",
+      "regions": [
+        {
+          "x": 742,
+          "y": 282,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 435,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 588,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 741,
+          "width": 30,
+          "height": 30
+        },
+        {
+          "x": 742,
+          "y": 894,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    },
+    {
+      "scenario": "mobile/02-details",
+      "reason": "Reviewed empty star controls on result cards and owning details; existing text, layout and behavior remain unchanged. Dialog background differences are the same controls under the existing blur.",
+      "afterPixelSHA256": "fa1653f361620463cd6cd718141e56e74f5e9d0c71697598c2ba4fb2a52595a6",
+      "regions": [
+        {
+          "x": 268,
+          "y": 215,
+          "width": 30,
+          "height": 30
+        }
+      ]
+    }
+  ]
+}
