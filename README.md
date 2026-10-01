@@ -106,6 +106,39 @@ skills. Statistics and JSON export describe the focused repository. Search shows
 100 results per page, with counts for all matches. See the complete
 [multi-repository search specification](spec/multi-repository-filter.md).
 
+## Scan a GitHub organization
+
+Open **Scan a GitHub organization**, enter `github.com/JetBrains`, and scan
+default branches across all visible repositories. Results stream by repository;
+search includes manifest bodies, category selection and pinned-commit details.
+Cancel stops pending requests/native work. Warnings and partial coverage remain
+visible. Remote results have their own JSON export and do not replace local
+statistics or enter the 64-entry local catalogue.
+
+```bash
+BG_GITHUB_TOKEN=... node web/github-cli.mjs scan-org JetBrains --json
+node web/github-cli.mjs scan-org github.com/JetBrains --cache-dir /private/path/bg-cache
+node web/github-cli.mjs scan-org JetBrains --refresh --concurrency 4 --no-archived --no-forks
+```
+
+Set `BG_GITHUB_TOKEN` on the server (or use `GH_TOKEN`) for higher limits/private
+repository visibility; never paste it into the browser. Without a token only
+public data visible to GitHub's API is available. Forks and archived projects are
+included by default. CLI progress uses stderr; JSON is one final stdout document.
+In environments requiring HTTP(S)_PROXY, enable Node's proxy support with
+`NODE_USE_ENV_PROXY=1`. Production requests still target only api.github.com.
+Exit 1 means a usable partial/cancelled scan, exit 2 invalid input/fatal setup.
+CLI cache is opt-in, private to its owner and contains private manifest text when
+authorized; remove that cache directory to clear it. The server cache is bounded
+and lasts until restart. Refresh bypasses cached results.
+
+The algorithm fetches Git trees, falls back to complete nonrecursive traversal
+when truncated, and downloads only manifests selected by the native scanner.
+It never downloads history or runs repository code. Rate-limit responses pause
+requests and reduce request throughput; limits/deadlines cannot be hidden as
+complete coverage. See [contract, risks and tests](spec/github-organization.md)
+and [performance evidence](reports/github-performance.md).
+
 ## GitHub Actions
 
 Star a result or the open details view to pin it first within its repository

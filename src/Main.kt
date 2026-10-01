@@ -383,6 +383,27 @@ private fun boundedManifest(args: Array<String>) {
 }
 
 fun main(args: Array<String>) {
+    if (args.firstOrNull() == "--select-manifests") {
+        if (args.size != 1) { diagnostic("Usage: bg --select-manifests"); exit(2) }
+        try {
+            var bytes = 0
+            var count = 0
+            while (true) {
+                val line = readlnOrNull() ?: break
+                bytes += line.length
+                if (++count > 250000 || bytes > 32 * 1024 * 1024) error("Git tree exceeds selector limits")
+                val mode = line.substringBefore('\t')
+                val encoded = line.substringAfter('\t', "")
+                if (mode !in setOf("100644", "100755", "120000", "040000", "160000") ||
+                    encoded.length < 2 || !encoded.startsWith('"') || !encoded.endsWith('"')) error("Invalid Git tree record")
+                val relative = unquote(encoded.substring(1, encoded.length - 1))
+                val parts = relative.split('/')
+                if (relative.length > 4096 || relative.contains('\u0000') || parts.any { it.isEmpty() || it == "." || it == ".." }) error("Unsafe Git tree path")
+                if (mode in setOf("100644", "100755") && parts.last() == "SKILL.md" && parts.dropLast(1).none { it in excluded }) println(quote(relative))
+            }
+        } catch (error: Exception) { diagnostic("Git manifest selection failed: ${error.message}"); exit(2) }
+        return
+    }
     if (args.firstOrNull() == "--read-manifest") { boundedManifest(args); return }
     if (args.toList() == listOf("--help")) {
         println("Usage: bg scan <repository-path> [--json]\nScan a repository for agent skills grouped by directory.\nCommands: scan <repository-path>, --help, --version\nDefault output: readable sectioned list. Use --json for machine-readable output.")

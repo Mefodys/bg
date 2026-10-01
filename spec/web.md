@@ -146,6 +146,11 @@ Expired detail sessions offer a refresh action and validate the skill again.
 
 ## Similar skills
 
+GitHub organization discovery has its own bounded jobs/results/search/details
+panel; it does not consume local catalogue entries or masquerade as a local scan.
+Its endpoints, limits, credential handling and partial states are specified in
+[github-organization.md](github-organization.md).
+
 Persistent star toggles and pinned ordering are specified in
 [starred-skills.md](starred-skills.md). They preserve scan/export data.
 
