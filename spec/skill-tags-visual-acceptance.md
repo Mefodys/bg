@@ -4,17 +4,17 @@ PR9 https://github.com/Mefodys/bg/pull/9 was manually merged by Mefodys at 2026-
 
 ## Scope and preserved evidence
 
-The declaration binds exact previous main `b911ff2b7392d8b69c9642048f5bcef9821a6265` and each reviewed decoded after-image SHA256. All 23 main after-image hashes are identical to the previously reviewed PR images. The original failed runs and inline old/new/highlighted comparisons remain preserved at https://github.com/Mefodys/bg/pull/9#issuecomment-5927869334 . Main native CI36842410933 passed; main visual CI36842410859 failed on undeclared changes and did not publish a baseline. This declaration does not retroactively change that run.
+The declaration binds exact previous main `b911ff2b7392d8b69c9642048f5bcef9821a6265` and each reviewed decoded after-image SHA256. All 23 main after-image hashes are identical to the previously reviewed PR images. The original failed runs and inline old/new/highlighted comparisons remain preserved at https://github.com/Mefodys/bg/pull/9#issuecomment-5927869334 . Main native CI 36842410933 passed; main visual CI 36842410859 failed on undeclared changes and did not publish a baseline. This declaration does not retroactively change that run.
 
-Each declaration describes the visible feature addition and affected layout. Regions are bounded horizontal 32px bands covering reviewed changed content; no full-viewport permission is used. The exact after-image hash is required in addition to region containment, so even a different image inside those regions fails. This is acceptance of reviewed images only, not a blanket allowance for future tag changes.
+Each declaration describes the visible feature addition and affected layout. Regions are bounded horizontal 32px bands covering reviewed changed content; no full-viewport permission is used. The exact after-image hash is required in addition to region containment, so even a different image inside those regions fails. For scrolled states and centered dialogs, the affected bands span much of the content area; region containment alone is a broad constraint there. The exact decoded-image hash is the decisive constraint. This is acceptance of reviewed images only, not a blanket allowance for future tag changes.
 
 - Initial: tagged-export action and shift of existing export button.
-- Inventory/search/scopes/category/empty/clear/refresh/errors/pagination/Unicode: Tags disclosure and classification badges add height; the existing scroll-to-filter behavior changes visible page geometry. Existing counts, owning results and errors remain unchanged. ScrollY changes in18states as the page becomes taller; each exact reviewed observedAfter object is declared. All other observed fields match.
+- Inventory/search/scopes/category/empty/clear/refresh/errors/pagination/Unicode: Tags disclosure and classification badges add height; the existing scroll-to-filter behavior changes visible page geometry. Existing counts, owning results and errors remain unchanged. ScrollY changes in 18 states as the page becomes taller; each exact reviewed observedAfter object is declared. All other observed fields match.
 - Similar: new classification badges and reasons expand target rows as well as the inventory.
 - Details/expiry/recovery/mirrors/mobile details: classification badge/reason expands and recenters the dialog; the taller inventory shifts the scrolled background.
 - Mobile overview/search: added disclosure and badges shift results and bottom-visible content.
 
-All 23 common and 12 tag frames were visually inspected; no obvious clipping or overlap was found. All behavior assertions passed. Base/head 23-scenario pixel and DOM repeats, retained baseline verification23/23 and tag12/12 repeats were exact with zero skips/retries/flaky tests. The earlier d0ee116 recovered-details 1px nondeterminism was fixed, not accepted.
+All 23 common and 12 tag frames were visually inspected; no obvious clipping or overlap was found. All behavior assertions passed. Base/head 23-scenario pixel and DOM repeats, retained baseline verification 23/23 and tag 12/12 repeats were exact with zero skips/retries/flaky tests. The earlier d0ee116 recovered-details 1px nondeterminism was fixed, not accepted.
 
 ## Future gate
 
