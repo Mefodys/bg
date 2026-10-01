@@ -123,15 +123,38 @@ jobs:
             echo '# INCOMPLETE VISUAL VERIFICATION' >> "$GITHUB_STEP_SUMMARY"
             echo 'Setup, build or native tests failed before screenshot analysis. Inspect the failed step; no visual baseline was accepted.' >> "$GITHUB_STEP_SUMMARY"
           fi
-      - name: Export synthetic visual review evidence
-        if: always()
+      - name: Save accepted main screenshots for the next PR
+        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baseline-${{ github.sha }}
+          path: visual-artifacts/head-2/
+          if-no-files-found: error
+          retention-days: 90
+  review-evidence:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: '36843774175'
+          pattern: visual-comparison-*
+          merge-multiple: true
+          path: evidence
+      - name: Export existing synthetic visual review evidence
         shell: python
         run: |
-          import base64
+          import base64, json
           from pathlib import Path
-          root = Path('visual-artifacts')
+          root = Path('evidence')
+          if (root / 'visual-artifacts').is_dir():
+              root = root / 'visual-artifacts'
           allowed = ('comparison/', 'head-2/', 'base-2/', 'tags-comparison/', 'tags-head-2/', 'tags-base-2/')
           files = sorted(p for p in root.rglob('*') if p.is_file() and p.suffix in ('.png', '.json', '.md') and any(p.relative_to(root).as_posix().startswith(prefix) for prefix in allowed))
+          if not files:
+              raise SystemExit('No comparison evidence found')
           for file in files:
               data = file.read_bytes()
               if len(data) > 8 * 1024 * 1024:
@@ -141,11 +164,3 @@ jobs:
               for offset in range(0, len(encoded), 16000):
                   print(encoded[offset:offset+16000], flush=True)
               print('REVIEW_FILE_END', flush=True)
-      - name: Save accepted main screenshots for the next PR
-        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-baseline-${{ github.sha }}
-          path: visual-artifacts/head-2/
-          if-no-files-found: error
-          retention-days: 90
