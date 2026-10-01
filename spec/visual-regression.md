@@ -144,7 +144,8 @@ the visual comparison artifact.
 An intentional change to an established locator screenshot must be declared in
 `tests/visual/feature-expected-changes.json`. The declaration is keyed by the
 snapshot path and binds the exact base SHA, a review reason and the decoded
-after-image SHA256. Undeclared images, stale declarations, missing snapshots,
-dimension changes and behavior assertion failures block the workflow. CI prints
+after-image SHA256. An intentional dimension change additionally binds exact
+`afterWidth` and `afterHeight` values. Undeclared images, stale declarations,
+unbound dimension changes and behavior assertion failures block the workflow. CI prints
 bounded comparison metadata and retains base, head and highlighted-difference
 images for review.

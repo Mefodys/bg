@@ -7,5 +7,6 @@ for name in sys.argv[1:]:
     source=Path(name)
     if not source.exists():continue
     report=json.loads(source.read_text())
-    rows=[{key:item[key] for key in ('id','changedPixels','changedBounds','afterPixelSHA256','observedAfter')} for item in report['scenarios'] if item['changedPixels'] or not item['observedStateMatches']]
+    keys=('id','changedPixels','changedBounds','afterWidth','afterHeight','afterPixelSHA256','observedAfter')
+    rows=[{key:item[key] for key in keys if key in item} for item in report['scenarios'] if item['changedPixels'] or not item['observedStateMatches']]
     print(json.dumps({'comparison':str(source),'baseSHA':report['beforeSHA'],'afterSHA':report['afterSHA'],'changes':rows},separators=(',',':')))

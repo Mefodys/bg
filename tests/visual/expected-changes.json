@@ -1,22 +1,16 @@
 {
-  "baseSHA": "1740c13ff110aa3ec261f1d75b6e889df57336e8",
+  "baseSHA": "d778b28c57b837b4c48c8c8d05176c12b3958dde",
   "changes": [
     {
       "scenario": "desktop/01-initial",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "3b406547604970ae6368f3244e93c5679cd2a57d2b9642e7e7a1bf3d3e78c326",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "4e8e80b7fa4f14e2869c3659458c3e53eaed7c49a9d30a9591543ba24c3c0729",
       "regions": [
         {
-          "x": 288,
-          "y": 420,
-          "width": 1110,
-          "height": 195
-        },
-        {
-          "x": 285,
-          "y": 632,
-          "width": 1118,
-          "height": 368
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -24,81 +18,21 @@
         "query": "",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
+        "searchBackground": "rgb(6, 24, 18)",
         "scrollY": 0,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/02-scanned",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "b6d52f74584d096c15494b53d8723b2749a54908ede19ec4431588b4450510be",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "80b2d899e248a1615f2682984f068385f5af53b76819c557ac939331f9a34c3f",
       "regions": [
         {
-          "x": 328,
-          "y": 38,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 379,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 378,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 378,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 378,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -106,159 +40,21 @@
         "query": "",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 715,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 693,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/03-name",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "25298b08f6fff40c0d8a34786e953a70ea2dfa7773e96eef230b537233f8da48",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "2d028185dee778db09d34be5f7b7428cfc86f80e29ee03d220c0f3363eef4773",
       "regions": [
         {
-          "x": 288,
+          "x": 0,
           "y": 0,
-          "width": 8,
-          "height": 18
-        },
-        {
-          "x": 317,
-          "y": 0,
-          "width": 1052,
-          "height": 36
-        },
-        {
-          "x": 1390,
-          "y": 0,
-          "width": 8,
-          "height": 18
-        },
-        {
-          "x": 292,
-          "y": 83,
-          "width": 11,
-          "height": 10
-        },
-        {
-          "x": 546,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 577,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 825,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 856,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1104,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1135,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1383,
-          "y": 83,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 328,
-          "y": 328,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 336,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 336,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 415,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 415,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 590,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 590,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 669,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 668,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 668,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 668,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 297,
-          "y": 924,
-          "width": 1,
-          "height": 1
-        },
-        {
-          "x": 825,
-          "y": 924,
-          "width": 3,
-          "height": 2
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -266,159 +62,21 @@
         "query": "release-checklist",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 425,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 400,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/04-description",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "1d863af8e45fdb6dd9d493baf32d12503a0f46ecb3c8921df0434d4c32d6c4d3",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "73b9b80724599dbc7f573f798cf9cc9acc60b140312b5f8550f8fa38f4a9196a",
       "regions": [
         {
-          "x": 288,
+          "x": 0,
           "y": 0,
-          "width": 12,
-          "height": 21
-        },
-        {
-          "x": 317,
-          "y": 0,
-          "width": 1052,
-          "height": 39
-        },
-        {
-          "x": 1386,
-          "y": 0,
-          "width": 12,
-          "height": 21
-        },
-        {
-          "x": 292,
-          "y": 86,
-          "width": 11,
-          "height": 10
-        },
-        {
-          "x": 546,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 577,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 825,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 856,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1104,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1135,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1383,
-          "y": 86,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 328,
-          "y": 331,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 339,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 339,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 418,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 418,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 593,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 593,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 672,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 671,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 671,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 671,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 298,
-          "y": 926,
-          "width": 3,
-          "height": 2
-        },
-        {
-          "x": 822,
-          "y": 925,
-          "width": 4,
-          "height": 4
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -426,147 +84,21 @@
         "query": "automated review",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 422,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 389,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/05-body",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "2d5ed8ae253228ce9c213f30089fb8c3498efd2755235afc3f8d0badb246e6f2",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "0527193ab6b6222a1504c2436e641969612b4d3976068516b6646d2fa0123d35",
       "regions": [
         {
-          "x": 317,
-          "y": 3,
-          "width": 310,
-          "height": 14
-        },
-        {
-          "x": 292,
-          "y": 64,
-          "width": 11,
-          "height": 10
-        },
-        {
-          "x": 546,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 577,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 825,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 856,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1104,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1135,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1383,
-          "y": 64,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 328,
-          "y": 309,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 317,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 317,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 396,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 396,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 571,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 571,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 650,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 649,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 649,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 649,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 321,
-          "y": 902,
-          "width": 9,
-          "height": 5
-        },
-        {
-          "x": 794,
-          "y": 902,
-          "width": 9,
-          "height": 5
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -574,129 +106,21 @@
         "query": "AlphaBodyToken",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 444,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 417,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/06-current-miss",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "39dde42a7ea674844aacc7e555a313b9683c26b69ea9f8956c05d2c780dfd3f4",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "f3ddfb0ea9c93c4972c2d1740b9dcf41947e88714a7e0d468792f433a14d480e",
       "regions": [
         {
-          "x": 292,
-          "y": 14,
-          "width": 11,
-          "height": 10
-        },
-        {
-          "x": 546,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 577,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 825,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 856,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1104,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1135,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1383,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 328,
-          "y": 259,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 267,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 267,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 346,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 346,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 521,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 521,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 600,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 599,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 599,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 599,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -704,81 +128,21 @@
         "query": "OtherBodyNeedle",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 494,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 472,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/07-selected",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "0a1f6413e16d9cc74a79c934c024804d6aa560032af9d98810ae2b26cc6cc90e",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "f57173b13651774c49cf34f505cddd16433e71b72575df416ad1adbf36b5cd92",
       "regions": [
         {
-          "x": 328,
-          "y": 38,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 879,
-          "y": 378,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 378,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 336,
-          "y": 555,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 783,
-          "y": 555,
-          "width": 5,
-          "height": 5
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -786,75 +150,21 @@
         "query": "OtherBodyNeedle",
         "scope": "selected",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 715,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 693,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/08-all",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "4461284b11ef7307b832b938355b0ded0c707b4fbc1bbc19ed958c24a8633bab",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "0637292235dc28e12432e246b7b07877469006bd69ed1a2253d65bf663066bc9",
       "regions": [
         {
-          "x": 328,
-          "y": 38,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 879,
-          "y": 378,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 378,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 350,
-          "y": 815,
-          "width": 1,
-          "height": 2
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -862,147 +172,21 @@
         "query": "",
         "scope": "all",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 715,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 693,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/09-category",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "671d6ec1c6497cb84da989393ace24e9a9a262e44ee87393792d28190c3f03fb",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "010f90e08209cc74df1635d38fec356e3e52f437012a74763f1dcd827e176bf2",
       "regions": [
         {
-          "x": 288,
+          "x": 0,
           "y": 0,
-          "width": 1110,
-          "height": 60
-        },
-        {
-          "x": 292,
-          "y": 107,
-          "width": 11,
-          "height": 10
-        },
-        {
-          "x": 546,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 577,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 825,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 856,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1104,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1135,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1383,
-          "y": 107,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 328,
-          "y": 352,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 360,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 360,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 439,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 439,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 614,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 614,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 693,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 692,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 692,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 692,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 297,
-          "y": 948,
-          "width": 1,
-          "height": 1
-        },
-        {
-          "x": 825,
-          "y": 948,
-          "width": 3,
-          "height": 2
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1010,129 +194,21 @@
         "query": "",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 401,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 389,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/10-empty",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "f0705548099a39ea1d2077ead219e6eb41d4d55564fa2fa0a70eccf1a069d3b8",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "0e4d2cab903ad1f1ff565290f2922043469d1a34b3b1a437876575854a469b55",
       "regions": [
         {
-          "x": 292,
-          "y": 14,
-          "width": 11,
-          "height": 10
-        },
-        {
-          "x": 546,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 577,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 825,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 856,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1104,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1135,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 1383,
-          "y": 14,
-          "width": 5,
-          "height": 2
-        },
-        {
-          "x": 328,
-          "y": 259,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 267,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 267,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 346,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 346,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 521,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 521,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 600,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 599,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 599,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 599,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1140,81 +216,21 @@
         "query": "missing-visual-token",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 494,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 472,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/11-clear",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "b6d52f74584d096c15494b53d8723b2749a54908ede19ec4431588b4450510be",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "2bf19f440c0cec74f2f300e71da7ee42efaeaf054fc17121df047876adf5fff0",
       "regions": [
         {
-          "x": 328,
-          "y": 38,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 379,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 378,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 378,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 378,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1222,51 +238,21 @@
         "query": "",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 715,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 693,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/12-details",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "3aecbee604b57e9b2f1f15393253029b3681fde6163a3ca63a5dc45c7d3ef865",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "63f93501b65a8c6323f1e1bb47c63b12dad62b751924105bd32de0d92fb97dcd",
       "regions": [
         {
-          "x": 323,
-          "y": 155,
-          "width": 33,
-          "height": 27
-        },
-        {
-          "x": 887,
-          "y": 164,
-          "width": 39,
-          "height": 15
-        },
-        {
-          "x": 383,
-          "y": 244,
-          "width": 2,
-          "height": 9
-        },
-        {
-          "x": 1362,
-          "y": 507,
-          "width": 12,
-          "height": 5
-        },
-        {
-          "x": 310,
-          "y": 930,
-          "width": 1,
-          "height": 1
-        },
-        {
-          "x": 816,
-          "y": 925,
-          "width": 14,
-          "height": 13
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1274,81 +260,21 @@
         "query": "OtherBodyNeedle",
         "scope": "all",
         "dialog": true,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 590,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 574,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/13-similar",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "6ca095643bb678964ac73423c3dc79ae07c89306be0494b8a7d903729096a295",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "e103ac6e44441c930602c357ba80949ca1814601636c76992ecd0124fe77b3e3",
       "regions": [
         {
-          "x": 328,
-          "y": 38,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 46,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 125,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 300,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 339,
-          "y": 379,
-          "width": 5,
-          "height": 4
-        },
-        {
-          "x": 780,
-          "y": 378,
-          "width": 5,
-          "height": 5
-        },
-        {
-          "x": 879,
-          "y": 378,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 378,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1356,69 +282,21 @@
         "query": "",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 715,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 693,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/14-refresh",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "516b9162458eca917ea0941c55e732482a0b211880d3f8b5ddedd3a2d1c9672b",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "dacb3af2a5cdc06b6d17d1f34b0047e6bed993dda4847eae6b629e711d60592b",
       "regions": [
         {
-          "x": 328,
-          "y": 182,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 190,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 190,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 269,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 269,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 444,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 444,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 879,
-          "y": 522,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 522,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1426,81 +304,21 @@
         "query": "RefreshBodyToken",
         "scope": "all",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 571,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 574,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/15-partial",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "107b65c47a2e32254f2a6bd27d9f5251e9a3168477c7a2b2a9aeac608a86d83d",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "d2413e674596566b292c3722e6275d06ed55912f2f1883219e7b58aaefff2ed8",
       "regions": [
         {
-          "x": 328,
-          "y": 163,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 171,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 171,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 250,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 250,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 425,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 425,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 879,
-          "y": 503,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 503,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 301,
-          "y": 927,
-          "width": 7,
-          "height": 4
-        },
-        {
-          "x": 816,
-          "y": 927,
-          "width": 7,
-          "height": 5
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1508,51 +326,21 @@
         "query": "OtherBodyNeedle",
         "scope": "all",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 590,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 574,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/16-expired",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "8c23faa75fbcf3ff6fe5e19c13eb68af54be28620155ddc3916aaae53b51c7bd",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "79056fc0f0f91ad1571eaf023af5db3acec4e6d238eb4007581d3930b9fa5251",
       "regions": [
         {
-          "x": 323,
-          "y": 155,
-          "width": 33,
-          "height": 27
-        },
-        {
-          "x": 887,
-          "y": 164,
-          "width": 39,
-          "height": 15
-        },
-        {
-          "x": 383,
-          "y": 244,
-          "width": 2,
-          "height": 9
-        },
-        {
-          "x": 1362,
-          "y": 507,
-          "width": 12,
-          "height": 5
-        },
-        {
-          "x": 310,
-          "y": 930,
-          "width": 1,
-          "height": 1
-        },
-        {
-          "x": 816,
-          "y": 925,
-          "width": 14,
-          "height": 13
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1560,51 +348,21 @@
         "query": "OtherBodyNeedle",
         "scope": "all",
         "dialog": true,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 590,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 574,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/17-recovered",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "3aecbee604b57e9b2f1f15393253029b3681fde6163a3ca63a5dc45c7d3ef865",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "7680ebf20aa56f578546facd93ba7f997bc1368a90831855b84ec1ef3a811239",
       "regions": [
         {
-          "x": 323,
-          "y": 155,
-          "width": 33,
-          "height": 27
-        },
-        {
-          "x": 887,
-          "y": 164,
-          "width": 39,
-          "height": 15
-        },
-        {
-          "x": 383,
-          "y": 244,
-          "width": 2,
-          "height": 9
-        },
-        {
-          "x": 1362,
-          "y": 507,
-          "width": 12,
-          "height": 5
-        },
-        {
-          "x": 310,
-          "y": 930,
-          "width": 1,
-          "height": 1
-        },
-        {
-          "x": 816,
-          "y": 925,
-          "width": 14,
-          "height": 13
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1612,81 +370,21 @@
         "query": "OtherBodyNeedle",
         "scope": "all",
         "dialog": true,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 590,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 558,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/18-pagination",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "88e606827adcd3ca44720a98d993fa7f75025d60703736e65aecf2bab5ec31c9",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "de2c2a733a923bfb2ca2cd6ea18c6c2b137bb63705baf81b5463a28b3268bf0f",
       "regions": [
         {
-          "x": 328,
-          "y": 154,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 162,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 162,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 241,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 241,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 416,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 416,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 879,
-          "y": 494,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 494,
-          "width": 5,
-          "height": 7
-        },
-        {
-          "x": 298,
-          "y": 926,
-          "width": 3,
-          "height": 2
-        },
-        {
-          "x": 822,
-          "y": 925,
-          "width": 4,
-          "height": 4
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1694,39 +392,21 @@
         "query": "PaginationNeedle",
         "scope": "all",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 599,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 592,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/19-mirrors",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "a23afd9d98dd94f3e81ff011ab48b26c4b687183fa8e31884509392faf6ef0d9",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "e5cfb42c82da4bf707fccedb29b26cdde19eebc0cd43464cab60c51098d2c1b9",
       "regions": [
         {
-          "x": 323,
-          "y": 178,
-          "width": 33,
-          "height": 27
-        },
-        {
-          "x": 887,
-          "y": 187,
-          "width": 39,
-          "height": 15
-        },
-        {
-          "x": 383,
-          "y": 267,
-          "width": 2,
-          "height": 9
-        },
-        {
-          "x": 1362,
-          "y": 530,
-          "width": 12,
-          "height": 5
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1734,69 +414,21 @@
         "query": "mirror-helper",
         "scope": "all",
         "dialog": true,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 567,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 554,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "desktop/20-unicode",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "0f32f0dbf4f6d0ffa11820717e3f058b75abcd5a62ae99072eb31d5508871e5b",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "158d80964bd12e5f4679ef7c302a90e9ff808b801079e358b1549f2f86b68953",
       "regions": [
         {
-          "x": 328,
-          "y": 186,
-          "width": 25,
-          "height": 12
-        },
-        {
-          "x": 889,
-          "y": 194,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 911,
-          "y": 194,
-          "width": 6,
-          "height": 4
-        },
-        {
-          "x": 386,
-          "y": 273,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 633,
-          "y": 273,
-          "width": 4,
-          "height": 4
-        },
-        {
-          "x": 879,
-          "y": 448,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 982,
-          "y": 448,
-          "width": 3,
-          "height": 6
-        },
-        {
-          "x": 879,
-          "y": 526,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 1364,
-          "y": 526,
-          "width": 5,
-          "height": 7
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
         }
       ],
       "observedAfter": {
@@ -1804,45 +436,21 @@
         "query": "世界",
         "scope": "all",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 567,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 571,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "mobile/01-overview",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "6eba21acb81bf319fa06e0f1d505ea1f14c44d3d23e676983ac31c98d97553a1",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "3e242f0368f27d94285cba7b5b27c709b3babeae6ff94f68735adb5a86b672bd",
       "regions": [
         {
-          "x": 35,
-          "y": 54,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 78,
-          "y": 55,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 49,
-          "y": 307,
-          "width": 9,
-          "height": 2
-        },
-        {
-          "x": 332,
-          "y": 307,
-          "width": 9,
-          "height": 4
-        },
-        {
-          "x": 60,
-          "y": 375,
-          "width": 8,
-          "height": 5
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
         }
       ],
       "observedAfter": {
@@ -1850,57 +458,21 @@
         "query": "",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 963,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 993,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "mobile/02-search",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "a6effc85d4a11cc877753e9c893a98820b25cc3bf2853786d00b4c8cf7bcc8f7",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "be5a239955c6edad5903790a587be5574a50da1d09421e1e112e2d9f8d2f38e5",
       "regions": [
         {
-          "x": 35,
-          "y": 54,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 78,
-          "y": 55,
-          "width": 4,
-          "height": 5
-        },
-        {
-          "x": 49,
-          "y": 307,
-          "width": 9,
-          "height": 2
-        },
-        {
-          "x": 332,
-          "y": 307,
-          "width": 9,
-          "height": 4
-        },
-        {
-          "x": 60,
-          "y": 375,
-          "width": 8,
-          "height": 5
-        },
-        {
-          "x": 35,
-          "y": 630,
-          "width": 3,
-          "height": 5
-        },
-        {
-          "x": 352,
-          "y": 630,
-          "width": 3,
-          "height": 5
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
         }
       ],
       "observedAfter": {
@@ -1908,45 +480,21 @@
         "query": "release-checklist",
         "scope": "current",
         "dialog": false,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 963,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 993,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     },
     {
       "scenario": "mobile/03-details",
-      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
-      "afterPixelSHA256": "bb8c4a6d6c794e82b8601cdd618e3317c680348db8be136eb9fae93546a330b2",
+      "reason": "Reviewed cohesive terminal-theme repaint: near-black console surfaces, pinned monospace text, phosphor green/cyan accents, amber warnings, compact borders/radii, and static grid/scanline textures. The restyle preserves the scenario-specific behavior and recorded state; favorites, tags, similarity, and GitHub organization controls use the same tokens.",
+      "afterPixelSHA256": "36e48618f6699862ce5f95ae2653d8693f95c0f0e815c97dbd3cbca37ad6aaf9",
       "regions": [
         {
-          "x": 31,
-          "y": 22,
-          "width": 5,
-          "height": 9
-        },
-        {
-          "x": 350,
-          "y": 28,
-          "width": 1,
-          "height": 1
-        },
-        {
-          "x": 44,
-          "y": 56,
-          "width": 5,
-          "height": 3
-        },
-        {
-          "x": 37,
-          "y": 82,
-          "width": 22,
-          "height": 21
-        },
-        {
-          "x": 331,
-          "y": 82,
-          "width": 22,
-          "height": 22
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
         }
       ],
       "observedAfter": {
@@ -1954,9 +502,9 @@
         "query": "OtherBodyNeedle",
         "scope": "all",
         "dialog": true,
-        "searchBackground": "rgb(240, 237, 255)",
-        "scrollY": 1243,
-        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+        "searchBackground": "rgb(6, 24, 18)",
+        "scrollY": 1294,
+        "bodyFont": "VisualMono, VisualCJK, monospace"
       }
     }
   ]
