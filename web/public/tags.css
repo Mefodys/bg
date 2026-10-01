@@ -8,8 +8,9 @@
 #tag-groups label span { flex: 1; overflow-wrap: anywhere; }
 #tag-groups input { accent-color: #7154cf; flex-shrink: 0; }
 #tag-groups label > small { color: #666276; }
-.tag-badges, #selected-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
-.tag-chip { border: 1px solid #ded5f4; border-radius: 12px; padding: 4px 7px; background: #f3eeff; color: #4e358a; font: inherit; font-size: 11px; overflow-wrap: anywhere; max-width: 100%; }
+.tag-badges, #selected-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin: 8px 0; }
+.tag-chip { border: 1px solid #ded5f4; border-radius: 12px; padding: 4px 7px; background: #f3eeff; color: #4e358a; font: inherit; font-size: 11px; line-height: 16px; overflow-wrap: anywhere; max-width: 100%; }
+.tag-reason { font-size: 12px; line-height: 20px; overflow-wrap: anywhere; }
 button.tag-chip { cursor: pointer; }
 .tag-unknown { background: #fff4d8; border-color: #e8d199; color: #745517; }
 .tag-more summary { cursor: pointer; font-size: 11px; }
