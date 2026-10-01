@@ -2,6 +2,15 @@
 
 ## 1. Purpose
 
+The optional Node.js organization coordinator and internal native Git-path
+selector are specified in [github-organization.md](github-organization.md).
+`node web/github-cli.mjs scan-org <organization> --json` returns an aggregate
+organization inventory. `bg --select-manifests` reads bounded lines of Git mode,
+TAB, JSON-escaped repository-relative path on stdin, and emits JSON-escaped
+regular SKILL.md paths after applying the same native exclusion set. Invalid
+records/paths or limits fail with exit 2. This internal transport does not alter
+the local `bg scan` JSON or read-only behavior.
+
 Build a command-line tool that scans the entire repository tree for agent skills
 and prints a human-readable, sectioned inventory of every skill it finds. The
 tool is intended to be run by humans and automation, including coding agents.

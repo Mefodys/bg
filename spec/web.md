@@ -146,6 +146,11 @@ Expired detail sessions offer a refresh action and validate the skill again.
 
 ## Similar skills
 
+GitHub organization discovery has its own bounded jobs/results/search/details
+panel; it does not consume local catalogue entries or masquerade as a local scan.
+Its endpoints, limits, credential handling and partial states are specified in
+[github-organization.md](github-organization.md).
+
 The Similar skills panel sits beside Filter on wide screens and stacks on narrow
 screens. Selecting a detail result also selects it for comparison; the selected
 skill dropdown can replace it independently. Scan success resets selection and

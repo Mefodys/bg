@@ -79,6 +79,16 @@ jobs:
         run: npm run test:web
       - name: Check whitespace
         run: git diff --check
+      - name: Upload feature demos and browser reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feature-demos-${{ github.event.pull_request.head.sha || github.sha }}
+          path: |
+            reports/features/
+            reports/feature-report/
+          if-no-files-found: warn
+          retention-days: 90
       - name: Package executable (preserve execute permission)
         run: tar -czf build/bg-macos-arm64.tar.gz bg
       - name: Upload tested executable

@@ -88,6 +88,13 @@ jobs:
       - name: Test regression classification
         working-directory: current
         run: python3 tests/visual/test_analysis.py
+      - name: Verify added feature scenarios with exact repeated frames
+        working-directory: current
+        env:
+          FEATURE_VISUAL: '1'
+        run: |
+          FEATURE_ARTIFACTS=../feature-artifacts/first node node_modules/playwright/cli.js test --config playwright.features.config.mjs --update-snapshots=all
+          FEATURE_ARTIFACTS=../feature-artifacts/repeat node node_modules/playwright/cli.js test --config playwright.features.config.mjs --update-snapshots=none
       - name: Retrieve previous accepted main screenshots
         env:
           GH_TOKEN: ${{ github.token }}
@@ -103,7 +110,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: visual-comparison-${{ env.HEAD_SHA }}
-          path: visual-artifacts/
+          path: |
+            visual-artifacts/
+            feature-artifacts/
           if-no-files-found: warn
           retention-days: 90
       - name: Report incomplete verification when setup or build failed

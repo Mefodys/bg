@@ -40,7 +40,9 @@ Repository failures continue independently and make the result explicitly partia
 Enumeration failure preserves completed data and also marks partial coverage.
 
 Cache immutable inventories and manifest text by repository ID + commit SHA in
-a bounded process cache. Repeat scans still resolve the current default branch
+a bounded process cache. Coalesce identical Git blob requests by content SHA
+within a scan, with a separate 64 MiB cap; refresh clears that blob cache.
+Repeat scans still resolve the current default branch
 head, skipping tree/blob/native work for unchanged commits. Refresh bypasses it;
 CLI supports a versioned local cache directory for reuse across invocations.
 Never return old data as a fresh scan after failure. Rename/transfer updates
