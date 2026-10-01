@@ -6,14 +6,23 @@ import {createFixture} from '../github-fixture.mjs';
 
 for(const mobile of [false,true])test(`GitHub organization ${mobile?'mobile':'desktop'} demo and behavior`,async({page},info)=>{
   if(mobile)await page.setViewportSize({width:390,height:844});
-  const fixture=await createFixture({delay:250,truncated:true}),remote=await fixture.server();
+  const fixture=await createFixture({delay:10,truncated:true}),remote=await fixture.server();
   const server=spawn(process.execPath,['web/server.mjs'],{env:{...process.env,PORT:'0',NODE_ENV:'test',BG_GITHUB_TEST_API:remote.url},stdio:['ignore','pipe','pipe']});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
     const [chunk]=await once(server.stdout,'data'),url=chunk.toString().trim().replace('Skill Atlas: ','');await page.goto(url);
+    let injected=false,resume;const held=new Promise(resolve=>{resume=resolve;});
+    await page.route('**/api/github/scans/*',async route=>{
+      const response=await route.fetch(),data=await response.json();
+      if(!injected && data.state==='complete' && data.result?.repositories?.length){
+        injected=true;data.state='running';data.result={...data.result,repositories:data.result.repositories.map(({sources,...repository})=>repository)};
+      }else if(injected)await held;
+      await route.fulfill({response,json:data});
+    });
     await page.locator('#github-panel > summary').click();await page.locator('#github-organization').fill('github.com/demo');await page.locator('#github-submit').click();
     await expect(page.locator('#github-status')).toContainText('running');await expect(page.locator('#github-export')).toBeDisabled();
     await expect(page.locator('.github-result')).toHaveCount(1);await page.locator('.github-result').click();await expect(page.locator('#github-detail-content')).toHaveText('Manifest unavailable.');await page.locator('#github-detail-close').click();
+    resume();
     await expect(page.locator('#github-status')).toContainText('3 of 3 repositories · complete');await expect(page.locator('#github-count')).toHaveText('5 matching skills');
     await page.locator('#github-search').fill('DeepBodyToken');await expect(page.locator('.github-result')).toHaveCount(1);
     await page.locator('#github-panel').scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('01-organization.png')});
