@@ -31,6 +31,17 @@ try:
             # Separate ephemeral self-reference generation from the ordinary exact verification.
             call(['node','node_modules/playwright/cli.js','test','--config','playwright.visual.config.mjs','--update-snapshots=all' if index==1 else '--update-snapshots=none'],cwd=head,env=env)
         call(['python3',str(tools/'compare.py'),str(artifacts/f'{variant}-1'),str(artifacts/f'{variant}-2'),str(artifacts/f'{variant}-determinism')])
+    # Additive feature suite has its own deterministic snapshots/artifacts;
+    # the existing 23-scenario previous/current contract remains untouched.
+    if (head/'playwright.tags.config.mjs').exists():
+        for index in (1,2):
+            env={**os.environ,'TAG_VISUAL_OUTPUT':str(artifacts/f'tags-{index}'),'TAG_VISUAL_SNAPSHOTS':str(artifacts/'tags-snapshots')}
+            current_results=Path(env['TAG_VISUAL_OUTPUT'])/'results.json'
+            call(['node','node_modules/playwright/cli.js','test','--config','playwright.tags.config.mjs','--update-snapshots=all' if index==1 else '--update-snapshots=none'],cwd=head,env=env)
+        for file in sorted((artifacts/'tags-1').glob('*/*.png')):
+            relative=file.relative_to(artifacts/'tags-1')
+            if file.read_bytes()!=(artifacts/'tags-2'/relative).read_bytes():raise ValueError('NONDETERMINISTIC TAG CAPTURE: '+str(relative))
+        (artifacts/'tags-determinism.txt').write_text('12/12 tag scenarios repeated exactly; snapshot verification without updates passed.\n')
     previous=Path(os.environ.get('VISUAL_PREVIOUS_BASELINE','/nonexistent'))
     baseline=artifacts/'base-2'
     if (previous/'manifest.json').exists():

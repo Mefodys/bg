@@ -150,3 +150,19 @@ baseline. Unexpected changes fail with **REGRESSION**; reviewed feature changes
 are explicitly classified. Download the `visual-comparison-SHA` artifact and
 open `comparison/gallery.html` for old/new/highlighted-diff columns.
 Details: [spec/visual-regression.md](spec/visual-regression.md).
+
+### Skill tags
+
+Skill Atlas includes a reviewed catalogue for all 89 logical skills in MPS,
+Koog, Android and Kotlin: 43 Task/Focus/Platform tags. Open **Tags** in Filter
+to narrow text matches. Values in one group use OR; groups use AND. Query and
+tag clearing are separate. Every row/details/Similar skills target shows its
+classification, including **Needs classification** for changed or unbound
+manifests. Metadata lives in Atlas; scanned repositories are never modified.
+
+`node tools/skill-tags.mjs --check` validates the committed catalogue/ledger
+without external checkouts. `--prepare /tmp/tags.json` computes bounded full-text
+similarity evidence for maintenance; `--verify /tmp/tags.json` also checks
+current reference-source coverage. See [tag contract](spec/skill-tags.md) and
+[classification audit](spec/skill-tags-audit.md) for identity, hash lifecycle,
+trusted reference configuration and all initial assignments. No runtime LLM.

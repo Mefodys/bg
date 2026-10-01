@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 1,
+  "groups": [
+    {
+      "id": "task",
+      "label": "Task"
+    },
+    {
+      "id": "focus",
+      "label": "Focus"
+    },
+    {
+      "id": "platform",
+      "label": "Platform"
+    }
+  ],
+  "tags": [
+    {
+      "id": "task:testing",
+      "group": "task",
+      "label": "Testing",
+      "description": "Create/run tests, repro tests, or agent evaluations; incidental test commands alone are insufficient.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "task:debugging",
+      "group": "task",
+      "label": "Debugging",
+      "description": "Diagnose failures, inspect logs/dumps, or execute a bugfix investigation workflow.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "android/agent/skills/android-studio-diagnostics-analysis/SKILL.md"
+    },
+    {
+      "id": "task:build-ci",
+      "group": "task",
+      "label": "Build & CI",
+      "description": "Build systems, packaging, build-tool upgrades and CI operations.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "task:version-control-release",
+      "group": "task",
+      "label": "Version control & release",
+      "description": "Commits, cherry-picks and release tracking.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "kotlin/.claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md"
+    },
+    {
+      "id": "task:documentation-knowledge",
+      "group": "task",
+      "label": "Documentation & knowledge",
+      "description": "Documentation examples or reusable knowledge/skill maintenance.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "koog/.claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+    },
+    {
+      "id": "task:code-quality",
+      "group": "task",
+      "label": "Code quality",
+      "description": "Style, inspections, visibility/API hygiene, structural search.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "android/agent/skills/writing-lint-checks/SKILL.md"
+    },
+    {
+      "id": "task:language-design",
+      "group": "task",
+      "label": "Language design",
+      "description": "Concepts, semantics, constraints, type systems, language analysis/composition.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "mps/.agents/skills/mps-aspect-behavior/SKILL.md"
+    },
+    {
+      "id": "task:code-generation",
+      "group": "task",
+      "label": "Code generation",
+      "description": "Generators, generation plans and textual output generation.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "mps/.agents/skills/mps-aspect-generation-plan/SKILL.md"
+    },
+    {
+      "id": "task:model-editing",
+      "group": "task",
+      "label": "Model & AST work",
+      "description": "Construct, query, modify or migrate models/nodes/ASTs.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "mps/.agents/skills/mps-aspect-actions/SKILL.md"
+    },
+    {
+      "id": "task:editor-ui",
+      "group": "task",
+      "label": "Editor & UI",
+      "description": "Editor behaviour/layout, intentions, Compose/Swing interfaces.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "android/agent/skills/jewel-swing-interop/SKILL.md"
+    },
+    {
+      "id": "task:ide-integration",
+      "group": "task",
+      "label": "IDE integration",
+      "description": "Plugins, host IDE actions and platform extension mechanisms.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "task:project-setup",
+      "group": "task",
+      "label": "Project setup & dependencies",
+      "description": "Projects, module dependencies, source sets and run configurations.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "koog/.claude/skills/split-jvm-nonjvm/SKILL.md"
+    },
+    {
+      "id": "task:performance-analysis",
+      "group": "task",
+      "label": "Performance analysis",
+      "description": "Measurements, profiling, efficiency studies and optimisation experiments.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "mps/.agents/skills/skill-optimization-study/SKILL.md"
+    },
+    {
+      "id": "task:calculations",
+      "group": "task",
+      "label": "Calculations",
+      "description": "Evaluate numeric expressions.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "koog/integration-tests/src/jvmTest/resources/skills/arithmetic-evaluator/SKILL.md"
+    },
+    {
+      "id": "task:weather",
+      "group": "task",
+      "label": "Weather",
+      "description": "Retrieve weather/forecast information.",
+      "guidance": "Assign for the main requested workflow; incidental commands are insufficient. Exactly one task is primary.",
+      "example": "koog/integration-tests/src/jvmTest/resources/skills/weather-retrieval/SKILL.md"
+    },
+    {
+      "id": "focus:unit-tests",
+      "group": "focus",
+      "label": "Unit tests",
+      "description": "Workflow subject or subtype: Unit tests.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-tests/SKILL.md"
+    },
+    {
+      "id": "focus:integration-tests",
+      "group": "focus",
+      "label": "Integration tests",
+      "description": "Workflow subject or subtype: Integration tests.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "kotlin/.claude/skills/build-tools-bump-gradle-in-tests/SKILL.md"
+    },
+    {
+      "id": "focus:agent-evals",
+      "group": "focus",
+      "label": "Agent evaluations",
+      "description": "Workflow subject or subtype: Agent evaluations.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "android/agent/skills/android-studio-evals/SKILL.md"
+    },
+    {
+      "id": "focus:compiler-diagnostics",
+      "group": "focus",
+      "label": "Compiler diagnostics",
+      "description": "Workflow subject or subtype: Compiler diagnostics.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "android/agent/skills/writing-lint-checks/SKILL.md"
+    },
+    {
+      "id": "focus:typesystem",
+      "group": "focus",
+      "label": "Type system",
+      "description": "Workflow subject or subtype: Type system.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-typesystem/SKILL.md"
+    },
+    {
+      "id": "focus:constraints-scopes",
+      "group": "focus",
+      "label": "Constraints & scopes",
+      "description": "Workflow subject or subtype: Constraints & scopes.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-constraints/SKILL.md"
+    },
+    {
+      "id": "focus:dataflow",
+      "group": "focus",
+      "label": "Dataflow",
+      "description": "Workflow subject or subtype: Dataflow.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-dataflow/SKILL.md"
+    },
+    {
+      "id": "focus:generators",
+      "group": "focus",
+      "label": "Generators",
+      "description": "Workflow subject or subtype: Generators.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-generation-plan/SKILL.md"
+    },
+    {
+      "id": "focus:models-ast",
+      "group": "focus",
+      "label": "Models & AST",
+      "description": "Workflow subject or subtype: Models & AST.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-actions/SKILL.md"
+    },
+    {
+      "id": "focus:language-composition",
+      "group": "focus",
+      "label": "Language composition",
+      "description": "Workflow subject or subtype: Language composition.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-language-inheritance/SKILL.md"
+    },
+    {
+      "id": "focus:migrations",
+      "group": "focus",
+      "label": "Migrations",
+      "description": "Workflow subject or subtype: Migrations.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-migrations/SKILL.md"
+    },
+    {
+      "id": "focus:editor-behaviour",
+      "group": "focus",
+      "label": "Editor behaviour",
+      "description": "Workflow subject or subtype: Editor behaviour.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md"
+    },
+    {
+      "id": "focus:desktop-ui",
+      "group": "focus",
+      "label": "Desktop UI",
+      "description": "Workflow subject or subtype: Desktop UI.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "android/agent/skills/jewel-swing-interop/SKILL.md"
+    },
+    {
+      "id": "focus:ide-plugins",
+      "group": "focus",
+      "label": "IDE plugins",
+      "description": "Workflow subject or subtype: IDE plugins.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "focus:gradle",
+      "group": "focus",
+      "label": "Gradle",
+      "description": "Workflow subject or subtype: Gradle.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "kotlin/.claude/skills/build-bump-gradle-version/SKILL.md"
+    },
+    {
+      "id": "focus:ci",
+      "group": "focus",
+      "label": "CI",
+      "description": "Workflow subject or subtype: CI.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "mps/.agents/skills/bugfix-workflow/SKILL.md"
+    },
+    {
+      "id": "focus:dependencies",
+      "group": "focus",
+      "label": "Dependencies",
+      "description": "Workflow subject or subtype: Dependencies.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "koog/.claude/skills/split-jvm-nonjvm/SKILL.md"
+    },
+    {
+      "id": "focus:api-design",
+      "group": "focus",
+      "label": "API design",
+      "description": "Workflow subject or subtype: API design.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "kotlin/.claude/skills/analysis-api-mark-internal-apis/SKILL.md"
+    },
+    {
+      "id": "focus:documentation",
+      "group": "focus",
+      "label": "Documentation",
+      "description": "Workflow subject or subtype: Documentation.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "koog/.claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+    },
+    {
+      "id": "focus:release-tracking",
+      "group": "focus",
+      "label": "Release tracking",
+      "description": "Workflow subject or subtype: Release tracking.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "kotlin/.claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md"
+    },
+    {
+      "id": "focus:performance",
+      "group": "focus",
+      "label": "Performance",
+      "description": "Workflow subject or subtype: Performance.",
+      "guidance": "Assign only for subjects actually covered by the workflow; mentions in examples are insufficient.",
+      "example": "android/agent/skills/android-studio-diagnostics-analysis/SKILL.md"
+    },
+    {
+      "id": "platform:mps",
+      "group": "platform",
+      "label": "MPS",
+      "description": "Applicable platform: MPS.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "mps/.agents/skills/bugfix-workflow/SKILL.md"
+    },
+    {
+      "id": "platform:intellij",
+      "group": "platform",
+      "label": "IntelliJ Platform",
+      "description": "Applicable platform: IntelliJ Platform.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "platform:android-studio",
+      "group": "platform",
+      "label": "Android Studio",
+      "description": "Applicable platform: Android Studio.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "platform:kotlin",
+      "group": "platform",
+      "label": "Kotlin",
+      "description": "Applicable platform: Kotlin.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "koog/.claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+    },
+    {
+      "id": "platform:kotlin-multiplatform",
+      "group": "platform",
+      "label": "Kotlin Multiplatform",
+      "description": "Applicable platform: Kotlin Multiplatform.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "koog/.claude/skills/split-jvm-nonjvm/SKILL.md"
+    },
+    {
+      "id": "platform:compose-jewel",
+      "group": "platform",
+      "label": "Compose / Jewel",
+      "description": "Applicable platform: Compose / Jewel.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "android/agent/skills/jewel-swing-interop/SKILL.md"
+    },
+    {
+      "id": "platform:teamcity",
+      "group": "platform",
+      "label": "TeamCity",
+      "description": "Applicable platform: TeamCity.",
+      "guidance": "Assign by applicability, never by the repository storing the manifest.",
+      "example": "mps/.agents/skills/bugfix-workflow/SKILL.md"
+    }
+  ]
+}

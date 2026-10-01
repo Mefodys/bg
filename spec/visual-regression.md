@@ -89,3 +89,16 @@ python3 tests/visual/ci.py /previous-checkout . /new/artifact-directory
 Playwright Test is JavaScript. Python is only the pixel-analysis/report harness
 and the existing native test runner. Use the pinned CI container for identical
 CI rendering; never raise tolerance to compare incompatible platforms.
+
+## Additive tag feature scenarios
+
+`playwright.tags.config.mjs` runs twelve additional deterministic Playwright Test
+states against native fixture scans and a fixed reviewed fixture catalogue. It
+covers query90 → Testing12 → Testing+Agent evaluations3, unclassified suspension,
+changed hashes, owning details and mobile facets/details. The common 23 scenario
+IDs, fixtures and previous/current exact comparison remain unchanged. CI captures
+the feature suite twice: explicit self-reference generation then verification
+without snapshot updates, with zero tolerance/retries. Its images/results are
+inside `tags-1`, `tags-2`, `tags-snapshots` in the same comparison artifact.
+This additive suite proves feature behavior and repeat determinism; it does not
+replace or waive the existing baseline-to-head visual comparison.

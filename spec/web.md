@@ -204,3 +204,29 @@ Tests include formula/Unicode/full-body scoring, empty/identical/disjoint/partia
 texts, stable corpus order/ties, canonical mirror aliases, roles/product boundaries,
 realpath aliases, source allowlists/expiry/symlinks, missing target sources,
 invalid paths, count/byte limits, and API/keyboard/browser/mobile states.
+
+### Semantic tags and facets
+
+Implemented contract: [skill-tags.md](skill-tags.md), with the complete initial
+[classification audit](skill-tags-audit.md). Atlas ships 89 reviewed logical
+assignments and 43 semantic tags for the four reference presets. `GET /api/tags`
+returns definitions/version/catalogue digest. Scans, indices and snapshots carry
+`tagging` coverage/assignments, and Similar skills targets carry owning tags.
+Complete native reads compute SHA-256 over raw line-ending-normalized bytes.
+Bound focused scans prepare their index once; unbound scans show Needs
+classification and retain on-demand body indexing. Runtime joins never use names
+or inferred remotes. Changed, unknown or unreadable hashes have no active tags.
+
+Tags narrow literal search using OR within Task/Focus/Platform, AND between
+groups. Counts cover all pages. Unclassified only suspends semantic selections;
+Clear tags and Clear search operate independently. Separate buttons activate
+facets and open owning details. Download tagged inventory exports the focused
+inventory and its classification envelope; native Export JSON stays unchanged.
+
+Trusted process configuration may provide `BG_REFERENCE_ROOTS` (a JSON file
+with exactly the four reference_key/absolute path entries) and `BG_TAG_DATA_DIR`
+(an absolute metadata directory). Defaults use the existing reference presets
+and committed web/data. These are administrator configuration, never request
+fields. Catalogue changes require server restart and owned snapshot refresh.
+Invalid metadata preserves literal search with a visible classification warning;
+/api/tags returns 503. Source repositories and manifests remain read-only.

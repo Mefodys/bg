@@ -7,8 +7,8 @@ export const limits = { catalogue: 64, sessions: 8, sources: 512, text: 8 * 1024
 
 // Catalogue, scan sessions and indices share one bounded cache and one worker.
 export class Repositories {
-  constructor(root, scan, read, presets) {
-    this.root = root; this.scanNative = scan; this.read = read; this.presets = presets;
+  constructor(root, scan, read, presets, tagging) {
+    this.tagging = tagging; this.root = root; this.scanNative = scan; this.read = read; this.presets = presets;
     this.entries = new Map(); this.sessions = new Map(); this.pending = new Map(); this.busy = false;
   }
   async canonical(directory, status = 400) {
@@ -69,7 +69,9 @@ export class Repositories {
       const inventory = await this.scanNative(canonical);
       const entry = this.register(canonical);
       const session = this.createSession(canonical, inventory);
-      return { scan_id: session.scan_id, inventory, repository: { ...entry }, scanned_at: session.scanned_at };
+      const index = this.tagging?.bindings.has(canonical) ? await this.index(session, Date.now() + limits.deadline, true) : { sources: [] };
+      return { scan_id: session.scan_id, inventory, repository: { ...entry }, scanned_at: session.scanned_at,
+        ...(this.tagging ? { tagging: this.tagging.envelope(canonical, inventory, index) } : {}) };
     });
   }
   async buildIndex(session, deadline) {
@@ -82,10 +84,12 @@ export class Repositories {
       try {
         const result = await this.read(session, relative, Math.min(1024 * 1024, remaining), Math.min(10000, this.remaining(deadline)));
         remaining -= result.bytes;
-        sources.push({ path: relative, content: result.content, truncated: result.truncated });
+        sources.push({ path: relative, content: result.content, truncated: result.truncated, manifest_sha256: result.manifest_sha256 });
       } catch (error) { sources.push({ path: relative, content: '', error: error.message }); }
     }
-    return { sources };
+    const index = { sources };
+    if (this.tagging) index.tagging = this.tagging.envelope(session.repository, session.inventory, index);
+    return index;
   }
   index(session, deadline = Date.now() + limits.deadline, ownsWorker = false) {
     if (session.index) return session.index;
@@ -119,7 +123,7 @@ export class Repositories {
       }
       const index = await this.index(session, deadline, true);
       const result = { repository: { ...entry }, scan_id: session.scan_id, scanned_at: session.scanned_at,
-        inventory: session.inventory, index, partial: Boolean(session.inventory.warnings.length || index.sources.some(source => source.error || source.truncated)) };
+        inventory: session.inventory, index, ...(this.tagging ? { tagging: index.tagging } : {}), partial: Boolean(session.inventory.warnings.length || index.sources.some(source => source.error || source.truncated)) };
       if (Buffer.byteLength(JSON.stringify(result)) > 64 * 1024 * 1024) throw fail(413, 'Search snapshot exceeds 64 MiB. Use a smaller repository.');
       return result;
     }).catch(error => { if (error.status === 410) entry.available = false; throw error; }).finally(() => this.pending.delete(id));
