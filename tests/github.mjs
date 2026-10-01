@@ -14,6 +14,10 @@ test('organization input and options reject SSRF and credentials',()=>{
   for(const input of ['http://localhost','https://evil.example/demo','github.com/demo/repo','https://token@github.com/demo','../demo','demo?x=1','demo--a','',null])assert.throws(()=>organization(input));
   for(const input of [{organization:'demo',token:'x'},{organization:'demo',concurrency:0},{organization:'demo',refresh:1}])assert.throws(()=>scanOptions(input));
 });
+test('untrusted repository names cannot escape a temporary tree',async()=>{
+  const {scanner}=await setup();
+  for(const name of ['demo/..','demo/.','demo/../../outside'])await assert.rejects(()=>scanner.repository({id:1,full_name:name,default_branch:'main'}, {}, AbortSignal.timeout(1000), {}),/Invalid repository identity/);
+});
 test('native selection is shared, escaped, mode-aware and bounded',()=>{
   const records=[['100644','SKILL.md'],['100755','skills/世界\nextra/SKILL.md'],['100644','vendor/x/SKILL.md'],['120000','link/SKILL.md'],['100644','contest/SKILL.md']];
   const result=execFileSync(binary,['--select-manifests'],{input:records.map(([mode,p])=>mode+'\t'+JSON.stringify(p)+'\n').join(''),encoding:'utf8'});

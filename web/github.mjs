@@ -131,7 +131,7 @@ export class GitHubScanner {
   }
   async repository(repo, options, signal, metrics) {
     // Repository heads/trees must be authorized before content reuse.
-    if (!/^[a-z\d_.-]+\/[a-z\d_.-]+$/i.test(repo.full_name) || !Number.isInteger(repo.id)) throw fail(502,'Invalid repository identity.');
+    if (!/^[a-z\d_.-]+\/[a-z\d_.-]+$/i.test(repo.full_name) || repo.full_name.split('/').some(p=>p==='.' || p==='..') || !Number.isInteger(repo.id)) throw fail(502,'Invalid repository identity.');
     const empty=()=>({ full_name:repo.full_name,url:'https://github.com/'+repo.full_name,commit_sha:null,inventory:{repository:repo.full_name,sections:[],warnings:[]},sources:[],partial:false,cached:false });
     if (!repo.default_branch) return empty();
     let ref;
