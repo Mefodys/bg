@@ -57,4 +57,22 @@ class FailureClassificationTests(unittest.TestCase):
  def test_missing_result_file_is_incomplete(self):
   from failure import failure_heading
   self.assertIn('INCOMPLETE',failure_heading(['node','playwright']))
+class TagCaptureTests(unittest.TestCase):
+ def test_missing_empty_or_duplicate_tag_evidence_fails(self):
+  import tempfile,json
+  from pathlib import Path
+  from tag_capture import validate_tag_capture
+  with tempfile.TemporaryDirectory() as temp:
+   d=Path(temp);(d/'desktop').mkdir()
+   record={'id':'desktop/01','file':'desktop/01.png','observed':{'count':'1'}}
+   (d/'manifest.json').write_text(json.dumps({'scenarios':[record]}))
+   (d/'desktop-01.json').write_text(json.dumps(record))
+   with self.assertRaisesRegex(ValueError,'PNG'):validate_tag_capture(d,{'desktop/01'})
+   (d/'desktop/01.png').write_bytes(b'placeholder')
+   validate_tag_capture(d,{'desktop/01'})
+   (d/'duplicate.json').write_text(json.dumps(record))
+   with self.assertRaisesRegex(ValueError,'duplicate'):validate_tag_capture(d,{'desktop/01'})
+   (d/'duplicate.json').unlink();record['observed']={}
+   (d/'desktop-01.json').write_text(json.dumps(record))
+   with self.assertRaisesRegex(ValueError,'DOM'):validate_tag_capture(d,{'desktop/01'})
 if __name__=='__main__':unittest.main()

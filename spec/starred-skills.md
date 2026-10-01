@@ -32,6 +32,9 @@ explains session-only persistence if a write fails. Bound stored preferences to
 - Pagination: sort the whole matching section before slicing, preserve totals,
   return to page one, and ensure next-page stars move to the first page.
 - Filters: starred nonmatches remain absent; test Current/Selected/All and roles.
+- Tags: apply inherited semantic facets before pinned ordering/pagination; keep
+  tag badges as sibling controls and preserve owning tags in details. Test
+  Testing/Agent evaluations and Unclassified only with a pinned matching skill.
 - Persistence: test reload, missing/restored files, corrupt storage, denied writes,
   and cross-tab synchronization without auto-writing corruption back to storage.
 - Interaction: keyboard/pointer controls, focus after reorder, detail/card sync,

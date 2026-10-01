@@ -3,7 +3,7 @@ function node(tag, text, className) {
   const result = document.createElement(tag); if (text !== undefined) result.textContent = text;
   if (className) result.className = className; return result;
 }
-export function createSimilarity(api) {
+export function createSimilarity(api, tags) {
   let scan, generation = 0, pending = false;
   const select = $('similarity-skill'), status = $('similarity-status'), results = $('similarity-results');
   function clear() { generation++; results.replaceChildren(); status.textContent = 'Choose other local repositories to compare.'; }
@@ -33,6 +33,7 @@ export function createSimilarity(api) {
         progress.setAttribute('aria-label', `${result.skill.name} text similarity`);
         const score = node('span', `${result.score.toFixed(1)}%`, 'similarity-score');
         heading.append(identity, progress, score); row.append(heading);
+        if (tags) row.append(tags.badges(result.tagging ?? { status: 'needs-classification', tag_ids: [], reason: 'Tagging unavailable.' }, false));
         const details = node('details'); details.append(node('summary', 'Paths and manifest'));
         details.append(node('p', `Repository: ${result.repository}`), node('p', `Skill: ${result.skill.location}`),
           node('p', `${result.skill.category} · ${result.skill.sources.length} source(s)${result.skill.conflict ? ' · Conflicting variant' : ''}`),

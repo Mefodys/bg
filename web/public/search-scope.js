@@ -137,7 +137,7 @@ export function createSearchScope(api, render) {
       put(focused); controls(); update();
       const index = await indexPromise;
       if (focused.scan_id !== scan.scan_id) return;
-      focused.index = index; focused.partial = Boolean(index.unavailable || scan.inventory.warnings.length || index.sources.some(s => s.error || s.truncated));
+      focused.index = index; focused.tagging = index.tagging ?? scan.tagging; scan.tagging = focused.tagging; focused.partial = Boolean(index.unavailable || scan.inventory.warnings.length || index.sources.some(s => s.error || s.truncated));
       put(focused); await reload();
       if (token === generation && mode.value !== 'current') await prepare(); else update();
     },

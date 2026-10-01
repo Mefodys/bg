@@ -1,10 +1,11 @@
+import { Tagging } from './tagging.mjs';
 import http from 'node:http';
 import { compare } from './similarity.mjs';
 import { readFile, stat } from 'node:fs/promises';
 import { readManifestText } from './manifests.mjs';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import path from 'node:path';
 import { Repositories } from './repositories.mjs';
 
@@ -12,7 +13,7 @@ const execute = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const binary = path.join(root, 'bg');
 
-const assets = new Map([['/search-scope.js', ['search-scope.js', 'text/javascript']], ['/similarity.js', ['similarity.js', 'text/javascript']], ['/similarity.css', ['similarity.css', 'text/css']], ['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
+const assets = new Map([['/tags.js', ['tags.js', 'text/javascript']], ['/tags.css', ['tags.css', 'text/css']],['/search-scope.js', ['search-scope.js', 'text/javascript']], ['/similarity.js', ['similarity.js', 'text/javascript']], ['/similarity.css', ['similarity.css', 'text/css']], ['/', ['index.html', 'text/html']], ['/app.js', ['app.js', 'text/javascript']], ['/style.css', ['style.css', 'text/css']], ['/filter.js', ['filter.js', 'text/javascript']], ['/filter.css', ['filter.css', 'text/css']]]);
 async function scanRepository(repository, timeout = 120000) {
   // All discovery remains in the native scanner.
   const { stdout } = await execute(binary, ['scan', repository, '--json'], { timeout, maxBuffer: 16 * 1024 * 1024 });
@@ -42,9 +43,16 @@ async function manifestText(session, relative, limit, timeout) {
   if (!session.manifests.has(relative)) throw fail(403, 'Manifest is not part of this scan.');
   return readManifestText(session.repository, relative, limit, timeout);
 }
-const presets = ['MPS', 'koog', 'android'].map(name => ({ name, path: path.join(root, 'repositories', name) }));
-presets.push({ name: 'kotlin', path: path.resolve(root, '../../GIT/kotlin') });
-const repositories = new Repositories(root, scanRepository, manifestText, presets);
+let presets = ['MPS', 'koog', 'android'].map(name => ({ name, reference_key: name.toLowerCase(), path: path.join(root, 'repositories', name) }));
+presets.push({ name: 'kotlin', reference_key: 'kotlin', path: path.resolve(root, '../../GIT/kotlin') });
+if (process.env.BG_REFERENCE_ROOTS) {
+  const configured = JSON.parse(await readFile(process.env.BG_REFERENCE_ROOTS, 'utf8'));
+  if (!Array.isArray(configured) || configured.length !== 4 || configured.some(p => !p || !['mps','koog','android','kotlin'].includes(p.reference_key) || typeof p.path !== 'string' || !path.isAbsolute(p.path)) || new Set(configured.map(p => p.reference_key)).size !== 4 || new Set(configured.map(p => path.resolve(p.path))).size !== 4) throw new Error('BG_REFERENCE_ROOTS must configure the four reference keys and distinct absolute roots.');
+  presets = configured.map(p => ({ ...p, name: p.name || p.reference_key }));
+}
+const tagging = await Tagging.load(process.env.BG_TAG_DATA_DIR ? pathToFileURL(path.resolve(process.env.BG_TAG_DATA_DIR) + path.sep) : undefined);
+await tagging.bind(presets);
+const repositories = new Repositories(root, scanRepository, manifestText, presets, tagging);
 await repositories.list();
 const sessions = repositories.sessions;
 const server = http.createServer(async (req, res) => {
@@ -63,6 +71,7 @@ const server = http.createServer(async (req, res) => {
       res.setHeader('Content-Type', `${type}; charset=utf-8`);
       res.end(await readFile(path.join(root, 'web/public', file))); return;
     }
+    if (req.method === 'GET' && url.pathname === '/api/tags') { json(res, 200, tagging.definitions()); return; }
     if (req.method === 'GET' && url.pathname === '/api/repositories') {
       json(res, 200, await repositories.list()); return;
     }
@@ -81,7 +90,7 @@ const server = http.createServer(async (req, res) => {
       const input = await body(req);
       const session = sessions.get(input?.scan_id);
       if (!session) throw fail(404, 'Scan expired. Scan the repository again.');
-      json(res, 200, await repositories.work(() => compare(input, session, scanRepository, root)));
+      json(res, 200, await repositories.work(() => compare(input, session, scanRepository, root, tagging)));
       return;
     }
     const indexMatch = /^\/api\/scans\/([a-f0-9-]+)\/search-index$/.exec(url.pathname);

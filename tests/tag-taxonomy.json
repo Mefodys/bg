@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "taxonomy_version": 1,
+  "groups": [
+    {
+      "id": "task",
+      "label": "Task"
+    },
+    {
+      "id": "focus",
+      "label": "Focus"
+    },
+    {
+      "id": "platform",
+      "label": "Platform"
+    }
+  ],
+  "tags": [
+    {
+      "id": "task:testing",
+      "group": "task",
+      "label": "Testing",
+      "description": "Create or run tests, regression reproducers or agent evaluations.",
+      "guidance": "Include workflows that explicitly author or execute tests; exclude incidental validation commands. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "task:debugging",
+      "group": "task",
+      "label": "Debugging",
+      "description": "Investigate failures through logs, dumps, reproductions and root-cause analysis.",
+      "guidance": "Include diagnosis and bug investigation; use Testing for workflows whose output is a test case. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "android/agent/skills/android-studio-diagnostics-analysis/SKILL.md"
+    },
+    {
+      "id": "task:build-ci",
+      "group": "task",
+      "label": "Build & CI",
+      "description": "Configure builds, packaging, build-tool upgrades or continuous integration.",
+      "guidance": "Include build configuration and CI operation; running a build to check an unrelated edit is insufficient. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "task:version-control-release",
+      "group": "task",
+      "label": "Version control & release",
+      "description": "Prepare commits, cherry-picks or release coordination.",
+      "guidance": "Include version-control and backport workflows; do not assign for a routine git command in another task. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "kotlin/.claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md"
+    },
+    {
+      "id": "task:documentation-knowledge",
+      "group": "task",
+      "label": "Documentation & knowledge",
+      "description": "Write documentation or maintain reusable workflow knowledge.",
+      "guidance": "Include code examples, knowledge stores and skill maintenance; reading documentation alone is insufficient. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "koog/.claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+    },
+    {
+      "id": "task:code-quality",
+      "group": "task",
+      "label": "Code quality",
+      "description": "Improve style, inspections, structural consistency or API hygiene.",
+      "guidance": "Include lint authoring and visibility cleanups; use Debugging for investigating an observed failure. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "android/agent/skills/writing-lint-checks/SKILL.md"
+    },
+    {
+      "id": "task:language-design",
+      "group": "task",
+      "label": "Language design",
+      "description": "Define language concepts, semantics, constraints and composition.",
+      "guidance": "Include language aspects and node-factory definitions; editing model instances belongs to Model & AST work. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "mps/.agents/skills/mps-aspect-behavior/SKILL.md"
+    },
+    {
+      "id": "task:code-generation",
+      "group": "task",
+      "label": "Code generation",
+      "description": "Define transformations or templates that generate code or text.",
+      "guidance": "Include generators, generation plans and text generation; handwritten code changes alone do not qualify. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "mps/.agents/skills/mps-aspect-generation-plan/SKILL.md"
+    },
+    {
+      "id": "task:model-editing",
+      "group": "task",
+      "label": "Model & AST work",
+      "description": "Construct, query, modify or migrate concrete models and AST nodes.",
+      "guidance": "Include model operations and quotations; designing language semantics alone belongs to Language design. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "mps/.agents/skills/mps-node-editing/SKILL.md"
+    },
+    {
+      "id": "task:editor-ui",
+      "group": "task",
+      "label": "Editor & UI",
+      "description": "Build or adjust editors, interactive behaviour and desktop interfaces.",
+      "guidance": "Include intentions, keymaps, editor layouts and UI interop; host plugin registration alone is IDE integration. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "android/agent/skills/jewel-swing-interop/SKILL.md"
+    },
+    {
+      "id": "task:ide-integration",
+      "group": "task",
+      "label": "IDE integration",
+      "description": "Integrate actions, plugins or extensions with an IDE host.",
+      "guidance": "Include extension points and IDE-specific development; UI rendering alone belongs to Editor & UI. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "task:project-setup",
+      "group": "task",
+      "label": "Project setup & dependencies",
+      "description": "Organise projects, modules, dependencies, source sets or run configurations.",
+      "guidance": "Include project structure and dependency setup; build-tool version upgrades belong to Build & CI. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "koog/.claude/skills/split-jvm-nonjvm/SKILL.md"
+    },
+    {
+      "id": "task:performance-analysis",
+      "group": "task",
+      "label": "Performance analysis",
+      "description": "Measure workflow cost or runtime performance and study optimisations.",
+      "guidance": "Include profiling and comparative optimisation experiments; an unmeasured performance mention is insufficient. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "mps/.agents/skills/skill-optimization-study/SKILL.md"
+    },
+    {
+      "id": "task:calculations",
+      "group": "task",
+      "label": "Calculations",
+      "description": "Evaluate numeric expressions and return calculated results.",
+      "guidance": "Include arithmetic-evaluation workflows, including fixture skills; test-fixture storage alone does not mean Testing. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "koog/integration-tests/src/jvmTest/resources/skills/arithmetic-evaluator/SKILL.md"
+    },
+    {
+      "id": "task:weather",
+      "group": "task",
+      "label": "Weather",
+      "description": "Retrieve weather conditions or forecasts for a location.",
+      "guidance": "Include weather-information workflows, including fixture skills; do not classify by the repository storing them. Choose one primary Task; add up to two secondary Tasks only for explicit additional workflows.",
+      "example": "koog/integration-tests/src/jvmTest/resources/skills/weather-retrieval/SKILL.md"
+    },
+    {
+      "id": "focus:unit-tests",
+      "group": "focus",
+      "label": "Unit tests",
+      "description": "Tests of individual components, methods or model-level behaviour.",
+      "guidance": "Include workflows that author or run component tests; exclude fixture storage and incidental test mentions.",
+      "example": "mps/.agents/skills/mps-tests/SKILL.md"
+    },
+    {
+      "id": "focus:integration-tests",
+      "group": "focus",
+      "label": "Integration tests",
+      "description": "Tests of combined systems or supported tool/version combinations.",
+      "guidance": "Include integration test matrices and cross-component tests; isolated unit tests use Unit tests.",
+      "example": "kotlin/.claude/skills/build-tools-bump-gradle-in-tests/SKILL.md"
+    },
+    {
+      "id": "focus:agent-evals",
+      "group": "focus",
+      "label": "Agent evaluations",
+      "description": "Evaluation scenarios and measurements for agent behaviour.",
+      "guidance": "Include agent verification or skill-optimisation studies; ordinary software tests alone do not qualify.",
+      "example": "android/agent/skills/android-studio-evals/SKILL.md"
+    },
+    {
+      "id": "focus:compiler-diagnostics",
+      "group": "focus",
+      "label": "Compiler diagnostics",
+      "description": "Language-analysis errors, warnings and diagnostic regression cases.",
+      "guidance": "Include compiler/type-system diagnostic tests; IDE lint inspections alone use Code quality.",
+      "example": "kotlin/.claude/skills/minimize-repro-for-diagnostic-test/SKILL.md"
+    },
+    {
+      "id": "focus:typesystem",
+      "group": "focus",
+      "label": "Type system",
+      "description": "Type inference, type checking and type-system rules.",
+      "guidance": "Include workflows operating on typing rules; mentioning types while editing unrelated code is insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-typesystem/SKILL.md"
+    },
+    {
+      "id": "focus:constraints-scopes",
+      "group": "focus",
+      "label": "Constraints & scopes",
+      "description": "Structural restrictions, reference scopes and name-resolution constraints.",
+      "guidance": "Include constraint and scope definitions; general project dependencies use Dependencies.",
+      "example": "mps/.agents/skills/mps-aspect-constraints/SKILL.md"
+    },
+    {
+      "id": "focus:dataflow",
+      "group": "focus",
+      "label": "Dataflow",
+      "description": "Control/dataflow analysis and its language-analysis rules.",
+      "guidance": "Include analysis instructions and dataflow operations; arbitrary data processing is insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-dataflow/SKILL.md"
+    },
+    {
+      "id": "focus:generators",
+      "group": "focus",
+      "label": "Generators",
+      "description": "Generator templates, transformations and generation plans.",
+      "guidance": "Include workflows that configure or edit generation; consuming generated output alone is insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-generation-plan/SKILL.md"
+    },
+    {
+      "id": "focus:models-ast",
+      "group": "focus",
+      "label": "Models & AST",
+      "description": "Structured models, nodes, ASTs and their operations or language structure.",
+      "guidance": "Include concrete node operations or language structure; ordinary source text alone is insufficient.",
+      "example": "mps/.agents/skills/mps-aspect-actions/SKILL.md"
+    },
+    {
+      "id": "focus:language-composition",
+      "group": "focus",
+      "label": "Language composition",
+      "description": "Language extension, inheritance and modular composition.",
+      "guidance": "Include combining languages or aspects; ordinary application-module setup uses Dependencies.",
+      "example": "mps/.agents/skills/mps-language-inheritance/SKILL.md"
+    },
+    {
+      "id": "focus:migrations",
+      "group": "focus",
+      "label": "Migrations",
+      "description": "Versioned model changes and migration scripts.",
+      "guidance": "Include migration authoring or execution; a build-tool version bump alone does not qualify.",
+      "example": "mps/.agents/skills/mps-aspect-migrations/SKILL.md"
+    },
+    {
+      "id": "focus:editor-behaviour",
+      "group": "focus",
+      "label": "Editor behaviour",
+      "description": "Editor interactions, intentions, keymaps and node-editing behaviour.",
+      "guidance": "Include editor workflows and copy/paste handlers; general desktop styling uses Desktop UI.",
+      "example": "mps/.agents/skills/mps-aspect-editor-menus-and-keymaps/SKILL.md"
+    },
+    {
+      "id": "focus:desktop-ui",
+      "group": "focus",
+      "label": "Desktop UI",
+      "description": "Desktop widget rendering, layouts and toolkit interoperability.",
+      "guidance": "Include Compose/Jewel/Swing UI workflows; model editor semantics use Editor behaviour.",
+      "example": "android/agent/skills/jewel-swing-interop/SKILL.md"
+    },
+    {
+      "id": "focus:ide-plugins",
+      "group": "focus",
+      "label": "IDE plugins",
+      "description": "IDE actions, extension points and plugin infrastructure.",
+      "guidance": "Include host integration workflows; merely working in an IDE is insufficient.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "focus:gradle",
+      "group": "focus",
+      "label": "Gradle",
+      "description": "Gradle wrappers, APIs, source sets and test/build configuration.",
+      "guidance": "Include direct Gradle configuration or version work; one incidental Gradle command is insufficient.",
+      "example": "kotlin/.claude/skills/build-bump-gradle-version/SKILL.md"
+    },
+    {
+      "id": "focus:ci",
+      "group": "focus",
+      "label": "CI",
+      "description": "Automated build pipelines, agents and CI operational tooling.",
+      "guidance": "Include pipeline work or explicit CI diagnosis; routine local build commands do not qualify.",
+      "example": "mps/.agents/skills/bugfix-workflow/SKILL.md"
+    },
+    {
+      "id": "focus:dependencies",
+      "group": "focus",
+      "label": "Dependencies",
+      "description": "Project/module dependency relationships and source-set organisation.",
+      "guidance": "Include dependency authoring, resolution or restructuring; companion-skill references are not dependencies.",
+      "example": "koog/.claude/skills/split-jvm-nonjvm/SKILL.md"
+    },
+    {
+      "id": "focus:api-design",
+      "group": "focus",
+      "label": "API design",
+      "description": "Public/internal API boundaries, visibility and stability.",
+      "guidance": "Include API-hygiene decisions; calling an API in an unrelated workflow is insufficient.",
+      "example": "kotlin/.claude/skills/analysis-api-mark-internal-apis/SKILL.md"
+    },
+    {
+      "id": "focus:documentation",
+      "group": "focus",
+      "label": "Documentation",
+      "description": "Explanatory documentation, examples and reusable knowledge records.",
+      "guidance": "Include documentation-writing workflows; reading documentation for another task is insufficient.",
+      "example": "koog/.claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+    },
+    {
+      "id": "focus:release-tracking",
+      "group": "focus",
+      "label": "Release tracking",
+      "description": "Backport issues and coordination of release changes.",
+      "guidance": "Include tracking release/backport delivery; a routine commit alone uses Version control & release.",
+      "example": "kotlin/.claude/skills/analysis-api-create-cherry-pick-issue/SKILL.md"
+    },
+    {
+      "id": "focus:performance",
+      "group": "focus",
+      "label": "Performance",
+      "description": "Runtime efficiency, resource use, profiling and measured workflow cost.",
+      "guidance": "Include performance diagnosis or measurement; generic optimisation claims alone are insufficient.",
+      "example": "android/agent/skills/android-studio-diagnostics-analysis/SKILL.md"
+    },
+    {
+      "id": "platform:mps",
+      "group": "platform",
+      "label": "MPS",
+      "description": "JetBrains MPS languages, models, editors and project tooling.",
+      "guidance": "Include workflows that require MPS; platform-neutral skills stored in MPS do not qualify.",
+      "example": "mps/.agents/skills/bugfix-workflow/SKILL.md"
+    },
+    {
+      "id": "platform:intellij",
+      "group": "platform",
+      "label": "IntelliJ Platform",
+      "description": "IntelliJ Platform APIs, plugins and IDE infrastructure.",
+      "guidance": "Include host-platform workflows, also in Android Studio; repository location alone is insufficient.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "platform:android-studio",
+      "group": "platform",
+      "label": "Android Studio",
+      "description": "Android Studio-specific development, diagnosis and evaluation.",
+      "guidance": "Include workflows tied to Android Studio; general Jewel/Swing work is not automatically Studio-specific.",
+      "example": "android/agent/skills/android-studio-development/SKILL.md"
+    },
+    {
+      "id": "platform:kotlin",
+      "group": "platform",
+      "label": "Kotlin",
+      "description": "Kotlin code, compiler, analysis APIs and ecosystem tooling.",
+      "guidance": "Include Kotlin-specific workflows; storage in the Kotlin repository alone is insufficient.",
+      "example": "koog/.claude/skills/add-java-code-snippets-in-docs/SKILL.md"
+    },
+    {
+      "id": "platform:kotlin-multiplatform",
+      "group": "platform",
+      "label": "Kotlin Multiplatform",
+      "description": "Kotlin shared and platform-specific source-set organisation.",
+      "guidance": "Include KMP/JVM/non-JVM restructuring; Kotlin-only work without multiplatform scope is insufficient.",
+      "example": "koog/.claude/skills/split-jvm-nonjvm/SKILL.md"
+    },
+    {
+      "id": "platform:compose-jewel",
+      "group": "platform",
+      "label": "Compose / Jewel",
+      "description": "Compose Desktop and Jewel UI components or Swing interop.",
+      "guidance": "Include workflows that use these toolkits; generic IDE integration alone does not qualify.",
+      "example": "android/agent/skills/jewel-swing-interop/SKILL.md"
+    },
+    {
+      "id": "platform:teamcity",
+      "group": "platform",
+      "label": "TeamCity",
+      "description": "TeamCity build and CI management or investigation tooling.",
+      "guidance": "Include TeamCity-specific operations; generic CI work without TeamCity scope is insufficient.",
+      "example": "mps/.agents/skills/bugfix-workflow/SKILL.md"
+    }
+  ]
+}
