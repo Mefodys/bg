@@ -1,1 +1,2164 @@
-{"baseSHA":null,"changes":[]}
+{
+  "baseSHA": "b911ff2b7392d8b69c9642048f5bcef9821a6265",
+  "changes": [
+    {
+      "scenario": "desktop/01-initial",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "97ce82fec4b6390f11e323dbe8562139dd2897a1038286ae8f05f32496aa5495",
+      "regions": [
+        {
+          "x": 288,
+          "y": 420,
+          "width": 1110,
+          "height": 195
+        },
+        {
+          "x": 285,
+          "y": 632,
+          "width": 1118,
+          "height": 368
+        }
+      ]
+    },
+    {
+      "scenario": "desktop/02-scanned",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "4418cbd686dd3cd01a69e996b5fba94bc2113d9a98e2f36f0720f03ade3d0437",
+      "regions": [
+        {
+          "x": 328,
+          "y": 38,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 393,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "x": 879,
+          "y": 378,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 378,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 350,
+          "y": 563,
+          "width": 1,
+          "height": 2
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 715,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/03-name",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "fc1665f7a1c1bcf48d7e17251f822065b95d76f8e425d811df0c8c0dced69fe8",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 142
+        },
+        {
+          "x": 292,
+          "y": 189,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 189,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 434,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 442,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 442,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 521,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 521,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 696,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 696,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 788,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 879,
+          "y": 774,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 774,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 319,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/04-description",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "f685b532c574a8e26dc7a4a928adf80a202115d5553b87ffb6ef3dfe7b893fe0",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 145
+        },
+        {
+          "x": 292,
+          "y": 192,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 192,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 437,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 445,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 445,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 524,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 524,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 699,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 699,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 791,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 879,
+          "y": 777,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 777,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "automated review",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 316,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/05-body",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "e4045a3f1040354836a73696d70c4c4412822df9bb0a443e332db87f4cb1ea2f",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 123
+        },
+        {
+          "x": 292,
+          "y": 170,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 170,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 415,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 423,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 423,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 502,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 502,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 677,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 677,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 769,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 879,
+          "y": 755,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 755,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "AlphaBodyToken",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 338,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/06-current-miss",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "17f7c663712572c920f287c0a7a07241d38d0fa54ca5e8a6d3b698e85309c6ff",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 9,
+          "height": 19
+        },
+        {
+          "x": 317,
+          "y": 0,
+          "width": 1052,
+          "height": 37
+        },
+        {
+          "x": 1389,
+          "y": 0,
+          "width": 9,
+          "height": 19
+        },
+        {
+          "x": 292,
+          "y": 84,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 329,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 337,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 337,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 416,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 416,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 591,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 591,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 669,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 669,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 298,
+          "y": 924,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "x": 822,
+          "y": 923,
+          "width": 4,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 4",
+        "query": "OtherBodyNeedle",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 424,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/07-selected",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "657e88d93a5dfe77429b689dd0a72a2b664d3c4a28e559a6dd798d994c0b7a1e",
+      "regions": [
+        {
+          "x": 328,
+          "y": 121,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 129,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 129,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 208,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 208,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 383,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 383,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 461,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 461,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "selected",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 632,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/08-all",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "21d6167adeea37b926ac7c7aa75433d5ab98674a8c4ece6492a59408a487bee7",
+      "regions": [
+        {
+          "x": 328,
+          "y": 38,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 378,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 378,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 350,
+          "y": 902,
+          "width": 1,
+          "height": 2
+        }
+      ],
+      "observedAfter": {
+        "count": "8 of 8",
+        "query": "",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 715,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/09-category",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "fd8dcb2ddadb609234dbcf5cb2258358eab90f61ef5a52005f6a276a541ee80b",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 1110,
+          "height": 166
+        },
+        {
+          "x": 292,
+          "y": 213,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 213,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 458,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 466,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 466,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 545,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 545,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 720,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 720,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 813,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "x": 879,
+          "y": 798,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 798,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 1",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 295,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/10-empty",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "2896d5e9a2d69a95fe36ea0d76c635ca479067b30f9ec78e34633e1bcee8cfc3",
+      "regions": [
+        {
+          "x": 288,
+          "y": 0,
+          "width": 9,
+          "height": 19
+        },
+        {
+          "x": 317,
+          "y": 0,
+          "width": 1052,
+          "height": 37
+        },
+        {
+          "x": 1389,
+          "y": 0,
+          "width": 9,
+          "height": 19
+        },
+        {
+          "x": 292,
+          "y": 84,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 84,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 329,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 337,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 337,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 416,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 416,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 591,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 591,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 669,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 669,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 298,
+          "y": 924,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "x": 822,
+          "y": 923,
+          "width": 4,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "0 of 4",
+        "query": "missing-visual-token",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 424,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/11-clear",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "4418cbd686dd3cd01a69e996b5fba94bc2113d9a98e2f36f0720f03ade3d0437",
+      "regions": [
+        {
+          "x": 328,
+          "y": 38,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 393,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "x": 879,
+          "y": 378,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 378,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 350,
+          "y": 563,
+          "width": 1,
+          "height": 2
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 715,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/12-details",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "d48e6903e08f78f4ae2ad7eb27cd2b60c7af5973ff163b1c5781d8a218bf4699",
+      "regions": [
+        {
+          "x": 290,
+          "y": 19,
+          "width": 17,
+          "height": 13
+        },
+        {
+          "x": 542,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 573,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 821,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 852,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1100,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 1131,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1379,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 323,
+          "y": 259,
+          "width": 33,
+          "height": 21
+        },
+        {
+          "x": 887,
+          "y": 268,
+          "width": 34,
+          "height": 12
+        },
+        {
+          "x": 1362,
+          "y": 611,
+          "width": 12,
+          "height": 5
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 486,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/13-similar",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "4bcc6876a77192466661a84dcbe786a24eca3bb0c2abf8aabb3c9996205b7766",
+      "regions": [
+        {
+          "x": 328,
+          "y": 38,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 46,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 125,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 300,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 350,
+          "y": 393,
+          "width": 1,
+          "height": 1
+        },
+        {
+          "x": 879,
+          "y": 378,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 378,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 350,
+          "y": 563,
+          "width": 1,
+          "height": 2
+        },
+        {
+          "x": 879,
+          "y": 808,
+          "width": 2,
+          "height": 4
+        },
+        {
+          "x": 1367,
+          "y": 808,
+          "width": 2,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 715,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/14-refresh",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "5943d32361a65ea449d8a2a54c68d25444bc146f2bd29132e979bae9cc4ed42c",
+      "regions": [
+        {
+          "x": 292,
+          "y": 41,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 41,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 286,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 294,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 294,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 373,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 373,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 548,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 548,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 626,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 626,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "RefreshBodyToken",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 467,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/15-partial",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "1abf5c33625a14c2ba9f47bd8d081663f3cde5c21b49d32e1b0fae2e1e09fcba",
+      "regions": [
+        {
+          "x": 292,
+          "y": 22,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 22,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 267,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 275,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 275,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 354,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 354,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 529,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 529,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 607,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 607,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8 \u00b7 Partial",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 486,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/16-expired",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "6e3998e121bd87431fa34a7476f20e96a9c5b4c554b8769b352fc8876bdd81d7",
+      "regions": [
+        {
+          "x": 290,
+          "y": 19,
+          "width": 17,
+          "height": 13
+        },
+        {
+          "x": 542,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 573,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 821,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 852,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1100,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 1131,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1379,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 324,
+          "y": 259,
+          "width": 32,
+          "height": 27
+        },
+        {
+          "x": 887,
+          "y": 268,
+          "width": 39,
+          "height": 15
+        },
+        {
+          "x": 1362,
+          "y": 611,
+          "width": 12,
+          "height": 5
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 486,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/17-recovered",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "d48e6903e08f78f4ae2ad7eb27cd2b60c7af5973ff163b1c5781d8a218bf4699",
+      "regions": [
+        {
+          "x": 290,
+          "y": 19,
+          "width": 17,
+          "height": 13
+        },
+        {
+          "x": 542,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 573,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 821,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 852,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1100,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 1131,
+          "y": 19,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1379,
+          "y": 19,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 323,
+          "y": 259,
+          "width": 33,
+          "height": 21
+        },
+        {
+          "x": 887,
+          "y": 268,
+          "width": 34,
+          "height": 12
+        },
+        {
+          "x": 1362,
+          "y": 611,
+          "width": 12,
+          "height": 5
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 486,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/18-pagination",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "b73dc02b9adaf4498471869c0d172d9346c33b378a784a8f7c02413c4bde01dd",
+      "regions": [
+        {
+          "x": 292,
+          "y": 13,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 13,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 258,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 266,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 266,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 345,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 345,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 520,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 520,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 598,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 598,
+          "width": 5,
+          "height": 7
+        },
+        {
+          "x": 338,
+          "y": 853,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "x": 400,
+          "y": 852,
+          "width": 3,
+          "height": 3
+        },
+        {
+          "x": 739,
+          "y": 853,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "x": 783,
+          "y": 853,
+          "width": 3,
+          "height": 2
+        },
+        {
+          "x": 338,
+          "y": 884,
+          "width": 1,
+          "height": 1
+        }
+      ],
+      "observedAfter": {
+        "count": "101 of 109",
+        "query": "PaginationNeedle",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 495,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/19-mirrors",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "d6eb513841cc0b131b5ac7eb9a108e50f17ccaba4b79291ff624b74a9f573aa2",
+      "regions": [
+        {
+          "x": 290,
+          "y": 42,
+          "width": 17,
+          "height": 13
+        },
+        {
+          "x": 542,
+          "y": 42,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 573,
+          "y": 42,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 821,
+          "y": 42,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 852,
+          "y": 42,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1100,
+          "y": 42,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 1131,
+          "y": 42,
+          "width": 13,
+          "height": 6
+        },
+        {
+          "x": 1379,
+          "y": 42,
+          "width": 13,
+          "height": 7
+        },
+        {
+          "x": 323,
+          "y": 282,
+          "width": 33,
+          "height": 18
+        },
+        {
+          "x": 891,
+          "y": 291,
+          "width": 29,
+          "height": 9
+        },
+        {
+          "x": 1362,
+          "y": 634,
+          "width": 12,
+          "height": 5
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "mirror-helper",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 463,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "desktop/20-unicode",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "6d6b4c9a97faebc035f6ff0b00829f1badcc582eb981db1db49ee144c047ef32",
+      "regions": [
+        {
+          "x": 292,
+          "y": 45,
+          "width": 11,
+          "height": 10
+        },
+        {
+          "x": 546,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 577,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 825,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 856,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1104,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1135,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 1383,
+          "y": 45,
+          "width": 5,
+          "height": 2
+        },
+        {
+          "x": 328,
+          "y": 290,
+          "width": 25,
+          "height": 12
+        },
+        {
+          "x": 889,
+          "y": 298,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 911,
+          "y": 298,
+          "width": 6,
+          "height": 4
+        },
+        {
+          "x": 386,
+          "y": 377,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 633,
+          "y": 377,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 879,
+          "y": 552,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 982,
+          "y": 552,
+          "width": 3,
+          "height": 6
+        },
+        {
+          "x": 879,
+          "y": 630,
+          "width": 4,
+          "height": 5
+        },
+        {
+          "x": 1364,
+          "y": 630,
+          "width": 5,
+          "height": 7
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "\u4e16\u754c",
+        "scope": "all",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 463,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "mobile/01-overview",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "df654ffa7c47c88be90da54a659ca5a186dde45e90c9e27c7637375bcc10ac1e",
+      "regions": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        }
+      ],
+      "observedAfter": {
+        "count": "4 of 4",
+        "query": "",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 945,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "mobile/02-search",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "148bac6ab535ed6051c8de2e16fd8f04d2be66d350aee0c80709a0f110f0f139",
+      "regions": [
+        {
+          "x": 25,
+          "y": 579,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 362,
+          "y": 579,
+          "width": 3,
+          "height": 4
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 4",
+        "query": "release-checklist",
+        "scope": "current",
+        "dialog": false,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 945,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    },
+    {
+      "scenario": "mobile/03-details",
+      "reason": "Reviewed new collapsed GitHub organization panel above inventory. It moves following content and the recorded scroll offset by 78 desktop / 68 mobile pixels. After scrolling, existing result text, counts, details and layout match; tiny bounded border/blur antialias changes reflect the fractional panel height. Existing behavior assertions all pass.",
+      "afterPixelSHA256": "c87b831ca4af5b75cae2bb8d021d0a583a8bd096b3c1b38401210f443ce00462",
+      "regions": [
+        {
+          "x": 44,
+          "y": 118,
+          "width": 5,
+          "height": 3
+        },
+        {
+          "x": 51,
+          "y": 165,
+          "width": 33,
+          "height": 17
+        },
+        {
+          "x": 279,
+          "y": 161,
+          "width": 20,
+          "height": 20
+        },
+        {
+          "x": 323,
+          "y": 163,
+          "width": 19,
+          "height": 19
+        }
+      ],
+      "observedAfter": {
+        "count": "1 of 8",
+        "query": "OtherBodyNeedle",
+        "scope": "all",
+        "dialog": true,
+        "searchBackground": "rgb(240, 237, 255)",
+        "scrollY": 1163,
+        "bodyFont": "VisualSans, VisualCJK, sans-serif"
+      }
+    }
+  ]
+}
