@@ -108,6 +108,11 @@ skills. Statistics and JSON export describe the focused repository. Search shows
 
 ## GitHub Actions
 
+Star a result or the open details view to pin it first within its repository
+section. Favorites persist in this browser at the same server origin; they still
+respect search/category/scope filters. Missing skills do not create stale cards.
+See [starred skills](spec/starred-skills.md) for identity and storage behavior.
+
 `.github/workflows/ci.yml` runs on pull requests, pushes/merges to `main`, and
 manual dispatch. The `build-and-test` job uses the macOS 15 ARM64 runner,
 Kotlin/Native 2.4.20, JDK 21, Node.js 24, and Python 3.12. It builds from source, checks the

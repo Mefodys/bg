@@ -88,6 +88,13 @@ jobs:
       - name: Test regression classification
         working-directory: current
         run: python3 tests/visual/test_analysis.py
+      - name: Verify added feature scenarios with exact repeated frames
+        working-directory: current
+        env:
+          FEATURE_VISUAL: '1'
+        run: |
+          FEATURE_ARTIFACTS=../visual-artifacts/feature-first node node_modules/playwright/cli.js test --config playwright.features.config.mjs --update-snapshots=all
+          FEATURE_ARTIFACTS=../visual-artifacts/feature-repeat node node_modules/playwright/cli.js test --config playwright.features.config.mjs --update-snapshots=none
       - name: Retrieve previous accepted main screenshots
         env:
           GH_TOKEN: ${{ github.token }}

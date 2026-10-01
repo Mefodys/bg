@@ -9,3 +9,6 @@ __pycache__/
 
 /reports/visual/
 /screenshots/
+/reports/features/
+/reports/feature-report/
+/reports/feature-snapshots/
