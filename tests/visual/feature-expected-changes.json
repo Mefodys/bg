@@ -1,4 +1,33 @@
 {
-  "baseSHA": "1740c13ff110aa3ec261f1d75b6e889df57336e8",
-  "changes": []
+  "baseSHA": "d778b28c57b837b4c48c8c8d05176c12b3958dde",
+  "changes": [
+    {
+      "scenario": "github.spec.mjs/organization-result-desktop.png",
+      "reason": "Reviewed terminal-theme repaint of the GitHub organization result card, including compact console borders, monospace metrics, and terminal palette.",
+      "afterPixelSHA256": "791c4ca22dc6b1ad88c4e3ba17f5cac6d461a6cc1ff5bb1f344504981c1251d8",
+      "afterWidth": 1072,
+      "afterHeight": 93
+    },
+    {
+      "scenario": "github.spec.mjs/organization-result-mobile.png",
+      "reason": "Reviewed mobile terminal-theme repaint and intentional wrapped height of the GitHub organization result card.",
+      "afterPixelSHA256": "5d5503a05892eda440a9582ae822640665cd8ec4a63888c7bc1e1d480b118ae9",
+      "afterWidth": 320,
+      "afterHeight": 121
+    },
+    {
+      "scenario": "starred.spec.mjs/starred-card-desktop.png",
+      "reason": "Reviewed terminal-theme repaint of the starred card and star control using the shared phosphor and amber tokens.",
+      "afterPixelSHA256": "581861133facc1e7bcd464bb1b580b549541dc70b6219c4f026f8adebfc9d535",
+      "afterWidth": 452,
+      "afterHeight": 142
+    },
+    {
+      "scenario": "starred.spec.mjs/starred-card-mobile.png",
+      "reason": "Reviewed mobile terminal-theme repaint and intentional wrapped height of the starred card and star control.",
+      "afterPixelSHA256": "febe8f66f43765a637a0e8303fbbc98fbd9499a522b71310cff3a0a710be7dc7",
+      "afterWidth": 298,
+      "afterHeight": 168
+    }
+  ]
 }
