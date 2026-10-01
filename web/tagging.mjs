@@ -43,10 +43,15 @@ export class Tagging {
     } catch (error) { return new Tagging(null, null, `Tagging unavailable: ${error.message}`); }
   }
   async bind(presets) {
+    const bindings = new Map(this.bindings);
     for (const preset of presets) {
       if (!keys.has(preset.reference_key)) continue;
-      try { const root = await realpath(preset.path); this.bindings.set(root, preset.reference_key); } catch { /* unavailable optional preset */ }
+      let root;
+      try { root = await realpath(preset.path); } catch { continue; /* unavailable optional preset */ }
+      if (bindings.has(root) && bindings.get(root) !== preset.reference_key) throw new Error('Duplicate reference realpath: multiple reference keys resolve to the same root.');
+      bindings.set(root, preset.reference_key);
     }
+    this.bindings = bindings;
   }
   definitions() {
     if (this.warning) throw Object.assign(new Error(this.warning), { status: 503 });

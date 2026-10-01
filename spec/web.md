@@ -230,3 +230,7 @@ and committed web/data. These are administrator configuration, never request
 fields. Catalogue changes require server restart and owned snapshot refresh.
 Invalid metadata preserves literal search with a visible classification warning;
 /api/tags returns 503. Source repositories and manifests remain read-only.
+
+Reference roots bind once at process start. A preset that becomes available later
+requires a server restart before tags can be confirmed. Duplicate reference
+realpaths are rejected, including aliases resolving to different reference keys.

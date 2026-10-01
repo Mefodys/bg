@@ -115,7 +115,6 @@
       "primary_task": "task:code-quality",
       "tag_ids": [
         "task:code-quality",
-        "focus:compiler-diagnostics",
         "platform:android-studio"
       ],
       "status": "reviewed",

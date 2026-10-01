@@ -16,9 +16,10 @@ export function createTags(api, render) {
   const status = document.getElementById('tag-coverage'), chips = document.getElementById('selected-tags');
   const clear = document.getElementById('clear-tags'), mode = document.getElementById('unclassified-only');
   const find = id => definitions.find(t => t.id === id);
-  function select(id) { const tag = find(id); if (!tag || unclassified) return; selected[tag.group].add(id); render(); }
+  const focusSummary = () => panel.querySelector('summary')?.focus({ preventScroll: true });
+  function select(id) { const tag = find(id); if (!tag || unclassified) return; selected[tag.group].add(id); render(); if (panel.open) chips.querySelector(`[data-remove="${id}"]`)?.focus({ preventScroll: true }); else focusSummary(); }
   mode.addEventListener('change', () => { unclassified = mode.checked; render(); });
-  clear.addEventListener('click', () => { for (const values of Object.values(selected)) values.clear(); unclassified = false; mode.checked = false; render(); });
+  clear.addEventListener('click', () => { for (const values of Object.values(selected)) values.clear(); unclassified = false; mode.checked = false; render(); focusSummary(); });
   async function load() {
     try {
       const value = await api('/api/tags');
@@ -34,15 +35,15 @@ export function createTags(api, render) {
   }
   function badges(record, clickable = true) {
     const row = node('div', undefined, 'tag-badges');
-    if (record.status !== 'reviewed') { const badge = node('span', 'Needs classification', 'tag-chip tag-unknown'); badge.title = record.reason; row.append(badge); return row; }
+    if (record.status !== 'reviewed') { const badge = node('span', 'Needs classification', 'tag-chip tag-unknown'); badge.title = record.reason; row.append(badge); if (!clickable) row.append(node('span', record.reason, 'tag-reason')); return row; }
     const ids = [record.primary_task, ...record.tag_ids.filter(id => id !== record.primary_task)];
     function badge(id) {
       const tag = find(id), n = node(clickable && tag ? 'button' : 'span', tag?.label ?? id, 'tag-chip');
       if (n.tagName === 'BUTTON') { n.type = 'button'; n.disabled = unclassified; n.setAttribute('aria-label', `Filter by ${tag.label}`); n.addEventListener('click', () => select(id)); }
       return n;
     }
-    ids.slice(0,3).forEach(id => row.append(badge(id)));
-    if (ids.length > 3) { const more = node('details', undefined, 'tag-more'); more.append(node('summary', `+${ids.length-3} tags`)); ids.slice(3).forEach(id => more.append(badge(id))); row.append(more); }
+    (clickable ? ids.slice(0,3) : ids).forEach(id => row.append(badge(id)));
+    if (clickable && ids.length > 3) { const more = node('details', undefined, 'tag-more'); more.append(node('summary', `+${ids.length-3} tags`)); ids.slice(3).forEach(id => more.append(badge(id))); row.append(more); }
     return row;
   }
   function update(records, allRecords, owners) {
@@ -50,26 +51,28 @@ export function createTags(api, render) {
     const counts = facetCounts(records, definitions, selected);
     host.replaceChildren(...groups.map(group => {
       const field = node('fieldset'); field.append(node('legend', group[0].toUpperCase()+group.slice(1)));
-      field.append(node('small', { task: 'What the skill helps you do', focus: 'Workflow subject or subtype', platform: 'Where it applies' }[group]));
+      const helper = node('small', { task: 'What the skill helps you do', focus: 'Workflow subject or subtype', platform: 'Where it applies' }[group]);
+      helper.id = `tag-help-${group}`; field.setAttribute('aria-describedby', helper.id); field.append(helper);
       for (const tag of definitions.filter(t => t.group === group)) {
         const label = node('label'), input = node('input'); input.type = 'checkbox'; input.dataset.tag = tag.id;
         input.checked = selected[group].has(tag.id); input.disabled = unclassified || (!input.checked && !counts.get(tag.id));
         input.setAttribute('aria-label', tag.label); input.title = `${tag.description} ${tag.guidance}`;
+        const count = node('small', unclassified ? '—' : String(counts.get(tag.id))); count.id = `count-${tag.id}`; input.setAttribute('aria-describedby', count.id);
         input.addEventListener('change', () => { if (input.checked) selected[group].add(tag.id); else selected[group].delete(tag.id); render(); });
-        label.append(input, node('span', tag.label), node('small', unclassified ? '—' : String(counts.get(tag.id)))); field.append(label);
+        label.append(input, node('span', tag.label), count); field.append(label);
       }
       return field;
     }));
     if (focus) host.querySelector(`[data-tag="${focus}"]`)?.focus({ preventScroll: true });
     chips.replaceChildren(...Object.values(selected).flatMap(values => [...values].map(id => {
-      const b = node('button', `${find(id)?.label ?? id} ×`, 'tag-chip'); b.type = 'button'; b.setAttribute('aria-label', `Remove ${find(id)?.label ?? id}`);
-      b.addEventListener('click', () => { selected[id.split(':')[0]].delete(id); render(); }); return b;
+      const b = node('button', `${find(id)?.label ?? id} ×`, 'tag-chip'); b.type = 'button'; b.dataset.remove = id; b.setAttribute('aria-label', `Remove ${find(id)?.label ?? id}`);
+      b.addEventListener('click', () => { selected[id.split(':')[0]].delete(id); render(); const next = chips.querySelector('button'); if (next) next.focus({ preventScroll: true }); else focusSummary(); }); return b;
     })));
     const needs = records.filter(r => r.status !== 'reviewed').length;
     document.getElementById('unclassified-label').hidden = !needs && !unclassified;
     document.getElementById('unclassified-count').textContent = String(needs);
     const reviewed = allRecords.filter(r => r.status === 'reviewed').length;
-    const mismatch = owners.some(o => o.tagging?.catalogue_digest && o.tagging.catalogue_digest !== digest);
+    const mismatch = Boolean(digest) && owners.some(o => o.tagging?.catalogue_digest && o.tagging.catalogue_digest !== digest);
     const warnings = [...new Set(owners.flatMap(o => o.tagging?.coverage?.warnings ?? []))];
     status.textContent = error || (mismatch ? 'Tag catalogue changed. Reload the page and scan again.' :
       `${reviewed} of ${allRecords.length} loaded skills classified${reviewed < allRecords.length ? ' · Needs classification' : ''}${warnings.length ? ' · '+warnings.join(' · ') : ''}${unclassified ? ' · Semantic selections suspended; turn off Unclassified only to restore them.' : ''}`);

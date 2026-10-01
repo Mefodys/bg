@@ -164,7 +164,6 @@
         "primary_task": "task:code-quality",
         "tag_ids": [
           "task:code-quality",
-          "focus:compiler-diagnostics",
           "platform:android-studio"
         ],
         "reason": "Creates lint detectors; tests verify detector behavior but the primary purpose is code inspection."

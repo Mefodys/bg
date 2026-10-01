@@ -1,7 +1,7 @@
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { manifestDigest } from '../web/manifests.mjs';
 export async function tagFixtures(root) {
-  const taxonomy=JSON.parse(await readFile(new URL('../web/data/skill-tag-taxonomy.json',import.meta.url),'utf8'));
+  const taxonomy=JSON.parse(await readFile(new URL('./tag-taxonomy.json',import.meta.url),'utf8'));
   const catalogue={schema_version:1,taxonomy_version:1,assignments:[]};
   const roots=['mps','koog','android','kotlin'].map(reference_key=>({reference_key,name:reference_key,path:root+'/'+reference_key}));
   for(const r of roots)await mkdir(r.path+'/.git',{recursive:true});

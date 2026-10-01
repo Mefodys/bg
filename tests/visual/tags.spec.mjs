@@ -6,31 +6,20 @@ import { mkdir, writeFile, readFile, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { tagFixtures } from '../tag-fixtures.mjs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 const output=process.env.TAG_VISUAL_OUTPUT || 'reports/tags-visual';
 const fixed='/private/tmp/skill-atlas-tags-visual-v1';
 const fontRoot=new URL('./fonts/',import.meta.url);
 const fonts=JSON.parse(await readFile(new URL('manifest.json',fontRoot),'utf8'));
 const sha256=b=>createHash('sha256').update(b).digest('hex');
-const scenarios=[
-  ['desktop/01-query','query',{width:1440,height:1000}],
-  ['desktop/02-task','task',{width:1440,height:1000}],
-  ['desktop/03-task-focus','task-focus',{width:1440,height:1000}],
-  ['desktop/04-unclassified','unclassified',{width:1440,height:1000}],
-  ['desktop/05-changed','changed',{width:1440,height:1000}],
-  ['desktop/06-owning-details','details',{width:1440,height:1000}],
-  ['desktop/07-zero-results','zero',{width:1440,height:1000}],
-  ['desktop/08-clear-query','clear',{width:1440,height:1000}],
-  ['desktop/09-similar','similar',{width:1440,height:1000}],
-  ['desktop/10-unavailable','unavailable',{width:1440,height:1000}],
-  ['mobile/01-facets','task-focus',{width:390,height:844}],
-  ['mobile/02-details','details',{width:390,height:844}],
-];
+const scenarios=JSON.parse(await readFile(new URL('./tag-scenarios.json',import.meta.url),'utf8')).scenarios;
+const root=path.resolve(process.env.TAG_VISUAL_ROOT || '.');
 for(const [id,action,viewport] of scenarios) test.describe(id,()=>{
   test.use({viewport});
   test(action,async({page},info)=>{
     await rm(fixed,{recursive:true,force:true});await mkdir(fixed,{recursive:true});await tagFixtures(fixed);
     if(action==='unavailable')await writeFile(fixed+'/data/skill-tags.json','{invalid');
-    const server=spawn(process.execPath,['web/server.mjs'],{env:{...process.env,PORT:'0',BG_REFERENCE_ROOTS:fixed+'/roots.json',BG_TAG_DATA_DIR:fixed+'/data'},stdio:['ignore','pipe','pipe']});
+    const server=spawn(process.execPath,['web/server.mjs'],{cwd:root,env:{...process.env,PORT:'0',BG_REFERENCE_ROOTS:fixed+'/roots.json',BG_TAG_DATA_DIR:fixed+'/data'},stdio:['ignore','pipe','pipe']});
     try {
       const [data]=await once(server.stdout,'data');const url=data.toString().trim().replace('Skill Atlas: ','');
       const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -86,7 +75,21 @@ for(const [id,action,viewport] of scenarios) test.describe(id,()=>{
       const target=path.join(output,id+'.png');await mkdir(path.dirname(target),{recursive:true});const bytes=await page.screenshot({path:target,animations:'disabled',caret:'hide'});
       await info.attach(id,{body:bytes,contentType:'image/png'});
       const observed=await page.evaluate(()=>({count:document.querySelector('#filter-count').textContent,coverage:document.querySelector('#tag-coverage').textContent,query:document.querySelector('#search').value,dialog:document.querySelector('#detail').open,selected:[...document.querySelectorAll('#tag-groups input:checked')].map(n=>n.dataset.tag),scrollY}));
-      await writeFile(path.join(output,id.replace('/','-')+'.json'),JSON.stringify({id,action,viewport,sha256:sha256(bytes),observed}));
+      await writeFile(path.join(output,id.replace('/','-')+'.json'),JSON.stringify({id,action,viewport,file:id+'.png',sha256:sha256(bytes),observed,assertions:'Scenario-specific counts, selection, ownership, status, overflow and JS-error assertions passed.'}));
     }finally {server.kill();await once(server,'exit');}
   });
+});
+
+test.afterAll(async({browser})=>{
+  const records=[];
+  for(const [id] of scenarios)try {records.push(JSON.parse(await readFile(path.join(output,id.replace('/','-')+'.json'),'utf8')));}catch(e){if(e.code!=='ENOENT')throw e;}
+  const hashFiles=async files=>sha256(Buffer.concat(await Promise.all(files.map(f=>readFile(new URL(f,import.meta.url))))));
+  const revision=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+  const executable=process.env.PLAYWRIGHT_EXECUTABLE_PATH||null;
+  const manifest={version:1,feature:'skill-tags',createdAt:new Date().toISOString(),servingSHA:revision,mergeSHA:revision,baselineSHA:process.env.VISUAL_BASE_SHA||revision,prURL:process.env.VISUAL_PR_URL||null,testRunner:'Playwright Test',capture:'Isolated native server with versioned tag fixtures; initial self-reference is not a cross-revision acceptance.',
+    environment:{browser:await browser.version(),browserExecutable:executable,browserHash:executable?sha256(await readFile(executable)):null,playwright:JSON.parse(await readFile(new URL('../../node_modules/playwright/package.json',import.meta.url),'utf8')).version,os:process.platform==='darwin'?execFileSync('sw_vers',{encoding:'utf8'}).trim():await readFile('/etc/os-release','utf8'),image:process.env.VISUAL_CI_IMAGE||null,fonts,arch:process.arch,node:process.version,dpr:1,zoom:100,locale:'en-US',timezone:'UTC',colorScheme:'light',reducedMotion:true,fixedTime:'2026-01-01T12:00:00.000Z',fixtureRoot:fixed,normalization:['API scanned_at fixed to fixture time'],masks:[]},
+    suiteHash:await hashFiles(['./tag-scenarios.json']),fixtureHash:await hashFiles(['../tag-fixtures.mjs','../tag-taxonomy.json']),scriptHash:await hashFiles(['./tags.spec.mjs','../../playwright.tags.config.mjs']),binaryHash:sha256(await readFile(path.join(root,'bg'))),scenarios:records};
+  await mkdir(output,{recursive:true});await writeFile(path.join(output,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+  await writeFile(path.join(output,'README.md'),`# Skill tags visual run\n\nRevision: ${revision}. PR: ${manifest.prURL||'local verification'}.\n\n${manifest.capture}\n\nEnvironment, suite/fixture/binary hashes, assertions and image hashes: [manifest.json](manifest.json).\n\n`+records.map(r=>`## ${r.id}\n\n![${r.action}](${r.file})\n\nCount: ${r.observed.count}; coverage: ${r.observed.coverage}.\n`).join('\n'));
+  if(records.length!==scenarios.length)await writeFile(path.join(output,'INCOMPLETE.txt'),`Missing/failed scenarios: ${records.length}/${scenarios.length}`);
 });

@@ -17,7 +17,24 @@ const used = new Set(tagging.catalogue.assignments.flatMap(r => r.tag_ids));
 if ([...tagging.tags.keys()].some(id => !used.has(id))) throw new Error('Taxonomy contains unused tags.');
 if (tagging.catalogue.assignments.some(r => r.status !== 'reviewed')) throw new Error('Initial catalogue must be fully reviewed.');
 if (mode === '--check') {
+  for (const tag of tagging.tags.values()) {
+    if (!tagging.catalogue.assignments.some(r => `${r.repository_key}/${r.manifest_path}` === tag.example && r.tag_ids.includes(tag.id))) throw new Error(`Taxonomy example does not carry ${tag.id}.`);
+  }
   const audit = JSON.parse(await readFile(new URL('../web/data/skill-tags-audit.json', import.meta.url), 'utf8'));
+  const document = await readFile(new URL('../spec/skill-tags-audit.md', import.meta.url), 'utf8');
+  const counts = [...document.matchAll(/^\| (task|focus|platform) \| .*\(`([^`]+)`\) \| (\d+) \|$/gm)];
+  if (counts.length !== tagging.tags.size || new Set(counts.map(row => row[2])).size !== tagging.tags.size) throw new Error('Audit document tag table is incomplete/duplicated.');
+  for (const [, group, id, count] of counts) {
+    if (tagging.tags.get(id)?.group !== group || Number(count) !== tagging.catalogue.assignments.filter(r => r.tag_ids.includes(id)).length) throw new Error(`Audit document count mismatch: ${id}.`);
+  }
+  const repositoryRows = [...document.matchAll(/^\| (mps|koog|android|kotlin) \| `([^`]+)` \| (\d+) \| (\d+) \|$/gm)];
+  if (repositoryRows.length !== 4 || new Set(repositoryRows.map(r => r[1])).size !== 4) throw new Error('Audit repository table is incomplete/duplicated.');
+  for (const [, key, revision, logical, physical] of repositoryRows) {
+    const rows = tagging.catalogue.assignments.filter(r => r.repository_key === key), repository = audit.repositories.find(r => r.repository_key === key);
+    if (rows.length !== Number(logical) || rows.reduce((n, r) => n+r.source_aliases.length, 0) !== Number(physical) || repository?.revision !== revision || repository.logical !== Number(logical) || repository.sources !== Number(physical)) throw new Error(`Audit repository count/revision mismatch: ${key}.`);
+  }
+  const roleCount = role => tagging.catalogue.assignments.filter(r => r.category === role).length;
+  if (!document.includes(`Roles: ${roleCount('development')} development, ${roleCount('product')} product, ${roleCount('test-fixture')} fixtures.`)) throw new Error('Audit role counts do not match catalogue.');
   const expected = tagging.catalogue.assignments.map(r => [r.repository_key, r.category, r.manifest_path, r.manifest_sha256]);
   if (JSON.stringify(audit.records.map(r => [r.repository_key, r.category, r.manifest_path, r.manifest_sha256])) !== JSON.stringify(expected)) throw new Error('Audit identities/hashes do not match the catalogue.');
   for (let i = 0; i < expected.length; i++) {

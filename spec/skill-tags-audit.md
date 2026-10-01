@@ -35,7 +35,7 @@ Specific reviewed boundaries:
 - `mps-aspect-typesystem` remains Language design despite test-related words such as WhenConcreteStatement. `mps-tests` is Testing because it authors/runs test cases.
 - Gradle wrapper and compile API upgrades are Build & CI. The integration-test matrix skill also receives secondary Testing and Integration tests; it does not modify the wrapper.
 - `write-evals` is Testing / Agent evaluations. `skill-optimization-study` is Performance analysis / Agent evaluations because its invocation measures hotspots and remedies rather than authoring ordinary tests.
-- Android general development explicitly covers builds and testing: both secondary tasks are supported. Lint-check authoring and internal API visibility remain Code quality even though tests support their workflows.
+- Android general development explicitly covers builds and testing: both secondary tasks are supported. Lint-check authoring and internal API visibility remain Code quality even though tests support their workflows. IDE lint inspections do not receive Compiler diagnostics.
 - `mps-run-configurations` is Project setup with secondary Testing because launching MPS test roots is explicitly supported.
 - XML model authoring is Model & AST work with secondary Code generation for explicitly documented generator templates.
 - TeamCity applicability is TeamCity, not MPS merely because of storage. Jewel applies to Compose / Jewel and IntelliJ; it is not automatically Android Studio specific.
@@ -66,7 +66,7 @@ Similarity evidence (scores depend on this exact corpus): Jewel UI / Swing inter
 | focus | Unit tests (`focus:unit-tests`) | 2 |
 | focus | Integration tests (`focus:integration-tests`) | 1 |
 | focus | Agent evaluations (`focus:agent-evals`) | 2 |
-| focus | Compiler diagnostics (`focus:compiler-diagnostics`) | 4 |
+| focus | Compiler diagnostics (`focus:compiler-diagnostics`) | 3 |
 | focus | Type system (`focus:typesystem`) | 2 |
 | focus | Constraints & scopes (`focus:constraints-scopes`) | 2 |
 | focus | Dataflow (`focus:dataflow`) | 2 |

@@ -44,7 +44,7 @@ let presets = ['MPS', 'koog', 'android'].map(name => ({ name, reference_key: nam
 presets.push({ name: 'kotlin', reference_key: 'kotlin', path: path.resolve(root, '../../GIT/kotlin') });
 if (process.env.BG_REFERENCE_ROOTS) {
   const configured = JSON.parse(await readFile(process.env.BG_REFERENCE_ROOTS, 'utf8'));
-  if (!Array.isArray(configured) || configured.length !== 4 || new Set(configured.map(p => p.reference_key)).size !== 4 || configured.some(p => !['mps','koog','android','kotlin'].includes(p.reference_key) || typeof p.path !== 'string' || !path.isAbsolute(p.path))) throw new Error('BG_REFERENCE_ROOTS must configure the four reference keys and absolute roots.');
+  if (!Array.isArray(configured) || configured.length !== 4 || configured.some(p => !p || !['mps','koog','android','kotlin'].includes(p.reference_key) || typeof p.path !== 'string' || !path.isAbsolute(p.path)) || new Set(configured.map(p => p.reference_key)).size !== 4 || new Set(configured.map(p => path.resolve(p.path))).size !== 4) throw new Error('BG_REFERENCE_ROOTS must configure the four reference keys and distinct absolute roots.');
   presets = configured.map(p => ({ ...p, name: p.name || p.reference_key }));
 }
 const tagging = await Tagging.load(process.env.BG_TAG_DATA_DIR ? pathToFileURL(path.resolve(process.env.BG_TAG_DATA_DIR) + path.sep) : undefined);

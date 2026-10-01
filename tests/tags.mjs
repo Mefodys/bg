@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, realpath, mkdir, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, realpath, mkdir, writeFile, rm, symlink } from 'node:fs/promises';
 import { Tagging, validateCatalogue } from '../web/tagging.mjs';
 import { manifestDigest, readManifestText } from '../web/manifests.mjs';
 import { Repositories } from '../web/repositories.mjs';
@@ -45,6 +45,29 @@ test('invalid catalogue degrades visibly; no stale active assignments', () => {
   const envelope=broken.envelope('/bound',inventory);
   assert.equal(envelope.coverage.needs_classification,1);assert.equal(envelope.coverage.warnings.length,1);
   assert.deepEqual(envelope.assignments[skill.manifest_path].tag_ids,[]);
+});
+test('reference aliases bind by realpath; duplicate roots cannot overwrite a trusted key', async t => {
+  const root=await realpath(await mkdtemp('/tmp/bg-tags-bind-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  await mkdir(root+'/real');await symlink(root+'/real',root+'/alias');
+  const tagging=fixtureTagging();await tagging.bind([{reference_key:'mps',path:root+'/alias'}]);
+  assert.equal(tagging.assignment(root+'/real',skill,hash).status,'reviewed');
+  await assert.rejects(tagging.bind([{reference_key:'koog',path:root+'/real'}]),/Duplicate reference realpath/);
+  assert.equal(tagging.bindings.get(root+'/real'),'mps');
+});
+test('native complete reads and index preserve BOM/invalid byte identities; truncation cannot classify', async t => {
+  const root=await realpath(await mkdtemp('/tmp/bg-tags-bytes-'));t.after(()=>rm(root,{recursive:true,force:true}));
+  await mkdir(root+'/.agents/skills/shared',{recursive:true});
+  for (const bytes of [Buffer.concat([Buffer.from([0xef,0xbb,0xbf]),raw]),Buffer.concat([raw,Buffer.from([0xff])]),Buffer.concat([raw,Buffer.from([0xfe])])]) {
+    await writeFile(root+'/'+skill.manifest_path,bytes);
+    const manifest=await readManifestText(root,skill.manifest_path,1024*1024,10000);
+    assert.equal(manifest.manifest_sha256,manifestDigest(bytes));
+    const tagging=fixtureTagging();tagging.bindings.set(root,'mps');
+    const store=new Repositories(root,async()=>inventory,async(s,p,l,d)=>readManifestText(s.repository,p,l,d),[],tagging);
+    const scan=await store.scan(root), index=await store.index(store.sessions.get(scan.scan_id));
+    assert.equal(index.sources[0].manifest_sha256,manifestDigest(bytes));
+    assert.equal(scan.tagging.coverage.needs_classification,1);
+    assert.equal(tagging.assignment(root,skill,(await readManifestText(root,skill.manifest_path,2)).manifest_sha256).status,'needs-classification');
+  }
 });
 test('facets use OR within group, AND across groups; counts ignore own group and cover all records', () => {
   const s=selected();s.task.add('task:testing');s.task.add('task:debugging');s.focus.add('focus:gradle');
