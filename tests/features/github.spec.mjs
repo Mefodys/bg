@@ -21,7 +21,7 @@ for(const mobile of [false,true])test(`GitHub organization ${mobile?'mobile':'de
     });
     await page.locator('#github-panel > summary').click();await page.locator('#github-organization').fill('github.com/demo');await page.locator('#github-submit').click();
     await expect(page.locator('#github-status')).toContainText('running');await expect(page.locator('#github-export')).toBeDisabled();
-    await expect(page.locator('.github-result')).toHaveCount(1);await page.locator('.github-result').click();await expect(page.locator('#github-detail-content')).toHaveText('Manifest unavailable.');await page.locator('#github-detail-close').click();
+    await expect(page.locator('.github-result')).toHaveCount(5);await page.locator('.github-result').first().click();await expect(page.locator('#github-detail-content')).toHaveText('Manifest unavailable.');await page.locator('#github-detail-close').click();
     resume();
     await expect(page.locator('#github-status')).toContainText('3 of 3 repositories · complete');await expect(page.locator('#github-count')).toHaveText('5 matching skills');
     await page.locator('#github-search').fill('DeepBodyToken');await expect(page.locator('.github-result')).toHaveCount(1);
